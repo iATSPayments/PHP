@@ -79,11 +79,16 @@ class IATS {
    *   Error string or method results.
    */
   public function getSoapResponse($serverid, $service, $request) {
-    $restrict['server'] = $this->checkServerRestrictions($serverid, $service);
-    $currency = $request['currency'];
-    $mop = $request['mop'];
-    $restrict['mop'] = $this->checkMOPCurrencyRestrictions($serverid, $currency, $mop);
-    $restrictions = array_filter($restrict);
+    $servicename = get_class($service);
+    $checkreestrictionsarray = array('IATSCustomerLink', 'IATSProcessLink');
+    $restrictions = array();
+    if (in_array($servicename, $checkreestrictionsarray)) {
+      $restrict['server'] = $this->checkServerRestrictions($serverid, $service);
+      $currency = $request['currency'];
+      $mop = $request['mop'];
+      $restrict['mop'] = $this->checkMOPCurrencyRestrictions($serverid, $currency, $mop);
+      $restrictions = array_filter($restrict);
+    }
 
     if (!empty($restrictions)) {
       return $restrictions;
@@ -96,7 +101,8 @@ class IATS {
         $method = $service->method;
         $result = $service->result;
         $format = $service->format;
-        $return = $service->responseHandler($soap->$method($request), $result, $format);
+        $response = $soap->$method($request);
+        $return = $service->responseHandler($response, $result, $format);
         return $return;
       }
       catch (SoapFault $exception) {
@@ -367,7 +373,13 @@ class IATSReportLink extends IATSService {
           $resp = 'Bad Credentials';
         }
         else {
-          $resp = $result;
+          if (isset($result['JOURNALREPORT']['TN'])) {
+            $resp = $result['JOURNALREPORT']['TN'];
+          }
+          else {
+            $resp = 'No data returned for this date';
+          }
+
         }
         return $resp;
 

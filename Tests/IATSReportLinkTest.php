@@ -11,10 +11,41 @@
  */
 class IATSReportLinkTest extends \PHPUnit_Framework_TestCase {
   /**
-   * Test constructor.
+   * Test getCCRej.
    */
-  public function testReportLink() {
-    $this->assertTrue(TRUE);
+  public function testReportLinkgetCCRej() {
+    $agentcode = 'TEST88';
+    $password = 'TEST88';
+    $date = time();
+    $request = array(
+      'customerIPAddress' => '',
+      'date' => $date,
+    );
+
+    $iats = new IATS($agentcode, $password);
+    $service = new IATSReportLink();
+    $service->getCCRej();
+    $response = $iats->getSoapResponse('NA', $service, $request);
+    $this->assertTrue(FALSE);
+  }
+
+  /**
+   * Test no data.
+   */
+  public function testNoData() {
+    $agentcode = 'TEST88';
+    $password = 'TEST88';
+    $date = strtotime('1/1/2025');
+    $request = array(
+      'customerIPAddress' => '',
+      'date' => $date,
+    );
+
+    $iats = new IATS($agentcode, $password);
+    $service = new IATSReportLink();
+    $service->getCCRej();
+    $response = $iats->getSoapResponse('NA', $service, $request);
+    $this->assertEquals('No data returned for this date', $response);
   }
 
   /**
