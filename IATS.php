@@ -79,22 +79,31 @@ class IATS {
    *   Error string or method results.
    */
   public function getSoapResponse($serverid, $service, $request) {
-    $this->checkServerRestrictions($serverid, $service);
-    $this->checkMOPCurrencyRestrictions(NULL, NULL, NULL);
+    $restrict['server'] = $this->checkServerRestrictions($serverid, $service);
+    $currency = $request['currency'];
+    $mop = $request['mop'];
+    $restrict['mop'] = $this->checkMOPCurrencyRestrictions($serverid, $currency, $mop);
+    $restrictions = array_filter($restrict);
 
-    try {
-      $soap = $this->getSoapClient($serverid, $service->endpoint);
-      $request['agentcode'] = $this->agentcode;
-      $request['password'] = $this->password;
-      $method = $service->method;
-      $result = $service->result;
-      $format = $service->format;
-      $return = $service->responseHandler($soap->$method($request), $result, $format);
-      return $return;
+    if (!empty($restrictions)) {
+      return $restrictions;
     }
-    catch (SoapFault $exception) {
-      return FALSE;
+    else {
+      try {
+        $soap = $this->getSoapClient($serverid, $service->endpoint);
+        $request['agentCode'] = $this->agentcode;
+        $request['password'] = $this->password;
+        $method = $service->method;
+        $result = $service->result;
+        $format = $service->format;
+        $return = $service->responseHandler($soap->$method($request), $result, $format);
+        return $return;
+      }
+      catch (SoapFault $exception) {
+        return FALSE;
+      }
     }
+
   }
 
   /**
@@ -109,11 +118,10 @@ class IATS {
    *   Result of server restricted check
    */
   public function checkServerRestrictions($serverid, $service) {
-    if (in_array($serverid, $service->restricted_servers)){
-      $this->restricted = SERVICE_NOT_AVAILABLE;
-      return FALSE;
+    if (in_array($serverid, $service->restrictedservers)){
+      return array(SERVICE_NOT_AVAILABLE);
     }
-    return TRUE;
+    return FALSE;
   }
 
   /**
@@ -130,13 +138,38 @@ class IATS {
    *   Result of check
    */
   public function checkMOPCurrencyRestrictions($serverid, $currency, $mop) {
-    return TRUE;
+    $msg = 'MOP not available for this server for this currency';
+    $matrix = $this->getMOPCurrencyMatrix();
+    $filter = $this->MOPfilter($mop);
+    if (isset($matrix[$serverid][$currency])) {
+      $filter_result = array_filter($matrix[$serverid][$currency], $filter);
+      return empty($filter_result) ? $msg : FALSE;
+    }
+    else {
+      return $msg;
+    }
+  }
+
+  /**
+   * Method of payment filter closure.
+   *
+   * @param string $mop
+   *   Method of payment
+   *
+   * @return callable
+   *   Match
+   */
+  public function MOPfilter($mop) {
+    return function($item) use($mop) {
+      return $item == $mop;
+    };
   }
 
   /**
    * MOP Currency matrix.
    *
    * @return array
+   *   Array of Server/Currency/MOP
    */
   public function getMOPCurrencyMatrix() {
     return array(
@@ -174,6 +207,13 @@ class IATSService {
   public $result = '';
   public $format = '';
   public $restrictedservers = array();
+
+  /**
+   *
+   */
+  public function __construt(){
+    $this->restricted_servers = $this->restrictedservers;
+  }
 }
 
 /**
@@ -197,6 +237,15 @@ class IATSProcessLink extends IATSService {
   public function processCCwithCustCode() {
     $this->method = 'ProcessCreditCardWithCustomerCode';
     $this->result = 'ProcessCreditCardWithCustomerCodeV1Result';
+    $this->format = 'AR';
+  }
+
+  /**
+   * Sets properties for the CreateCustomerCodeAndProcessCreditCardV1 method.
+   */
+  public function createCustCodeProcessCC() {
+    $this->method = 'CreateCustomerCodeAndProcessCreditCard';
+    $this->result = 'CreateCustomerCodeAndProcessCreditCardV1Result';
     $this->format = 'AR';
   }
 
