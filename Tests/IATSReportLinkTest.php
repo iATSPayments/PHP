@@ -4,10 +4,6 @@
  * File description.
  */
 
-namespace IATSAPI\Test;
-
-use \IATSAPI\IATS;
-
 /**
  * Class IATSReportLinkTest
  *

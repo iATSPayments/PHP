@@ -4,52 +4,107 @@
  * File description.
  */
 
-namespace IATSAPI\Test;
-
-use \IATSAPI\IATS;
-use \IATSAPI\IATSReportLink;
+use IATS;
 
 /**
  * Class IATSSoapClientTest
- *
- * @package IATSAPI\Test
  */
 class IATSSoapClientTest extends \PHPUnit_Framework_TestCase {
-  /**
-   * Test constructor.
-   */
-  public function testConstruct() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
-    $test = new IATS($agentcode, $password);
-    $this->assertObjectHasAttribute('agentCode', $test);
-    $this->assertObjectHasAttribute('password', $test);
-  }
 
   /**
    * Bad credentials.
    */
   public function testBadCredentials() {
     $agentcode = 'TEST88';
-    $password = 'TEST88';
-    $iats = new IATS('TEST88', 'TEST88');
-    $soapClient = $this->getMockBuilder('SoapClient')
-                ->setMethods(array('methodOnService'))
-                ->disableOriginalConstructor()
-                ->getMock();
-    $iats->soap = $soapClient;
-    $service = new IATSReportLink();
-    $service->getCCRejCSV();
-    $request = array();
+    $password = 'TEST88aa';
+    $date = time();
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => '',
+      'firstName' => 'Test',
+      'lastName' => 'Account',
+      'companyName' => '',
+      'address' => '1234 Any Street',
+      'city' => 'Schenectady',
+      'state' => 'NY',
+      'zipCode' => '12345',
+      'phone' => '',
+      'fax' => '',
+      'alternatePhone' => '',
+      'email' => '',
+      'comment' => '',
+      'creditCardCustomerName' => 'Test Account',
+      'creditCardNum' => '4111111111111111',
+      'cvv2' => '000',
+      'invoiceNum' => '00000001',
+      'creditCardExpiry' => '12/17',
+      'mop' => 'VISA',
+      'total' => '15',
+      'date' => $date,
+    );
+
+    $iats = new IATS($agentcode, $password);
+    $service = new IATSProcessLink();
+    $service->processCC();
     $response = $iats->getSoapResponse('NA', $service, $request);
-    $this->assertTrue(FALSE);
+    $this->assertEquals('Bad Credentials', $response);
+
+    $service = new IATSCustomerLink();
+    $service->getCustCode();
+    $response = $iats->getSoapResponse('NA', $service, $request);
+    $this->assertEquals('Bad Credentials', $response);
+
+    $service = new IATSReportLink();
+    $service->getCCRej();
+    $response = $iats->getSoapResponse('NA', $service, $request);
+    $this->assertEquals('Bad Credentials', $response);
+
   }
 
   /**
    * Bad params.
    */
   public function testBadParams() {
-    $this->assertTrue(FALSE);
+    $agentcode = 'TEST88';
+    $password = 'TEST88';
+    $date = strtotime('12/17/2011') + 'a';
+    // Create and populate the request object.
+    $request = array(
+     'customerIPAddress'=>'',
+     'customerCode'=>'(*&(*%&#(*&#',
+     'firstName'=>'Test',
+     'lastName'=>'Account',
+     'companyName'=>'',
+     'address'=>'1234 Any Street',
+     'city'=>'Schenectady',
+     'state'=>'NY',
+     'zipCode'=>'12345',
+     'phone'=>'',
+     'fax'=>'',
+     'alternatePhone'=>'',
+     'email'=>'',
+     'comment'=>'',
+ //    'recurring'=>FALSE,
+ //    'amount'=>'10',
+ //    'beginDate'=>$beginDate,
+ //    'endDate'=>$endDate,
+ //    'scheduleType'=>'',
+ //    'scheduleDate'=>'',
+     'creditCardCustomerName'=>'Test Account',
+     'creditCardNum'=>'4111111111111111a',
+     'cvv2'=>'000',
+     'invoiceNum' => '00000001',
+     'creditCardExpiry'=>'12/17',
+     'mop'=>'VISA',
+     'total' => '2.00',
+    'date' => '',
+    );
+
+    $iats = new IATS($agentcode, $password);
+    $service = new IATSProcessLink();
+    $service->processCCwithCustCode();
+    $response = $iats->getSoapResponse('NA', $service, $request);
+    $this->assertEquals('Bad Credentials', $response);
   }
 
   /**
