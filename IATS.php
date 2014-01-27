@@ -290,6 +290,15 @@ class IATSCustomerLink extends IATSService {
   }
 
   /**
+   * Sets properties for the CreateCreditCardCustomerCodeV1 method.
+   */
+  public function createCustCodeCC() {
+    $this->method = 'CreateCreditCardCustomerCode';
+    $this->result = 'CreateCreditCardCustomerCodeV1Result';
+    $this->format = 'AR';
+  }
+
+  /**
    * Response Handler for CustomerLink calls.
    *
    * @param array $response
@@ -304,13 +313,7 @@ class IATSCustomerLink extends IATSService {
    */
   public function responseHandler($response, $result, $format) {
     $result = xmlstr_to_array($response->$result->any);
-    if ($result['PROCESSRESULT']['AUTHORIZATIONRESULT'] == 'Error : Invalid Username or Password.') {
-      $resp = 'Bad Credentials';
-    }
-    else {
-      $resp = $result;
-    }
-    return $resp;
+    return $result;
   }
 }
 
