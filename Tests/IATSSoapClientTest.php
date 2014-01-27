@@ -34,7 +34,7 @@ class IATSSoapClientTest extends \PHPUnit_Framework_TestCase {
       'email' => '',
       'comment' => '',
       'creditCardCustomerName' => 'Test Account',
-      'creditCardNum' => '4111111111111111',
+      'creditCardNum' => '4222222222222220',
       'cvv2' => '000',
       'invoiceNum' => '00000001',
       'creditCardExpiry' => '12/17',
