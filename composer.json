@@ -7,7 +7,7 @@
     },
     "autoload": {
         "psr-0": {
-            "IATS": ""
+            "lib": "iATS"
         }
     }
 }
