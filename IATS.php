@@ -8,6 +8,7 @@
  * Class IATS
  */
 class IATS {
+  // TODO: Document me.
   private $na_server = 'https://www.iatspayments.com';
   private $uk_server = 'https://www.uk.iatspayments.com';
   private $agentcode = '';
@@ -40,7 +41,7 @@ class IATS {
    * @return SoapClient
    *   Returns IATS SoapClient object
    */
-  public function getSoapClient($serverid, $endpoint, $options = array('trace' => TRUE)) {
+  protected function getSoapClient($serverid, $endpoint, $options = array('trace' => TRUE)) {
     $url = $this->getServer($serverid) . $endpoint;
     return new SoapClient($url, $options);
   }
@@ -54,7 +55,7 @@ class IATS {
    * @return string
    *   Return server URL
    */
-  public function getServer($serverid) {
+  protected function getServer($serverid) {
     switch ($serverid) {
       case 'NA':
         return $this->na_server;
@@ -78,10 +79,12 @@ class IATS {
    * @return mixed
    *   Error string or method results.
    */
-  public function getSoapResponse($serverid, $service, $request) {
+  protected function getSoapResponse($serverid, $service, $request) {
     $servicename = get_class($service);
     $checkreestrictionsarray = array('IATSCustomerLink', 'IATSProcessLink');
     $restrictions = array();
+
+    // TODO: Explain me.
     if (in_array($servicename, $checkreestrictionsarray)) {
       $restrict['server'] = $this->checkServerRestrictions($serverid, $service);
       $currency = $request['currency'];
@@ -115,6 +118,8 @@ class IATS {
   /**
    * Check server restrictions
    *
+   * TODO: Why am I a separate method, only used once?
+   *
    * @param string $serverid
    *   Server identifier
    * @param object $service
@@ -123,7 +128,7 @@ class IATS {
    * @return bool
    *   Result of server restricted check
    */
-  public function checkServerRestrictions($serverid, $service) {
+  protected function checkServerRestrictions($serverid, $service) {
     if (in_array($serverid, $service->restrictedservers)){
       return array(SERVICE_NOT_AVAILABLE);
     }
@@ -143,11 +148,12 @@ class IATS {
    * @return bool
    *   Result of check
    */
-  public function checkMOPCurrencyRestrictions($serverid, $currency, $mop) {
+  protected function checkMOPCurrencyRestrictions($serverid, $currency, $mop) {
     $msg = 'MOP not available for this server for this currency';
     $matrix = $this->getMOPCurrencyMatrix();
     $filter = $this->MOPfilter($mop);
     if (isset($matrix[$serverid][$currency])) {
+      // TODO: Seems this can be simplified using an anonymous function.
       $filter_result = array_filter($matrix[$serverid][$currency], $filter);
       return empty($filter_result) ? $msg : FALSE;
     }
@@ -165,7 +171,7 @@ class IATS {
    * @return callable
    *   Match
    */
-  public function MOPfilter($mop) {
+  private function MOPfilter($mop) {
     return function($item) use($mop) {
       return $item == $mop;
     };
@@ -177,7 +183,7 @@ class IATS {
    * @return array
    *   Array of Server/Currency/MOP
    */
-  public function getMOPCurrencyMatrix() {
+  protected function getMOPCurrencyMatrix() {
     return array(
       'NA' => array(
         'USD' => array(
