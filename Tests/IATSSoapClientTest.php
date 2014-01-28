@@ -4,7 +4,7 @@
  * File description.
  */
 
-use IATS;
+use iATS\iATS;
 
 /**
  * Class IATSSoapClientTest
