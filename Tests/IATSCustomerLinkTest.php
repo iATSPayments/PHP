@@ -4,12 +4,17 @@
  * File description.
  */
 
+namespace iATS;
+
+use \iATS\iATS;
+use \iATS\CustomerLink;
+
 /**
  * Class IATSCustomerLinkTest
  *
  * @package IATSAPI\Test
  */
-class IATSCustomerLinkTest extends \PHPUnit_Framework_TestCase {
+class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   /**
    * Test createCustCodeCC.
    */
@@ -49,8 +54,8 @@ class IATSCustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'currency' => 'USD',
     );
 
-    $iats = new IATS($agentcode, $password);
-    $service = new IATSCustomerLink();
+    $iats = new iATS($agentcode, $password);
+    $service = new CustomerLink();
     $service->createCustCodeCC();
     $response = $iats->getSoapResponse('NA', $service, $request);
     $this->assertTrue(TRUE);
@@ -70,8 +75,8 @@ class IATSCustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'currency' => 'USD',
     );
 
-    $iats = new IATS($agentcode, $password);
-    $service = new IATSCustomerLink();
+    $iats = new iATS($agentcode, $password);
+    $service = new CustomerLink();
     $service->getCustCode();
     $response = $iats->getSoapResponse('NA', $service, $request);
     $this->assertTrue(TRUE);
