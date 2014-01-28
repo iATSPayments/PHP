@@ -6,8 +6,8 @@
         "phpunit/phpunit": "3.7.14"
     },
     "autoload": {
-        "psr-0": {
-            "lib": "iATS"
+        "psr-4": {
+            "iATS\\": "lib/iATS"
         }
     }
 }
