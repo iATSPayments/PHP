@@ -4,12 +4,14 @@
  * File description.
  */
 
+namespace iATS;
+
 /**
  * Class IATSReportLinkTest
  *
  * @package IATSAPI\Test
  */
-class IATSReportLinkTest extends \PHPUnit_Framework_TestCase {
+class ReportLinkTest extends \PHPUnit_Framework_TestCase {
   /**
    * Test getCCRej.
    */
@@ -22,8 +24,8 @@ class IATSReportLinkTest extends \PHPUnit_Framework_TestCase {
       'date' => $date,
     );
 
-    $iats = new IATS($agentcode, $password);
-    $service = new IATSReportLink();
+    $iats = new iATS($agentcode, $password);
+    $service = new ReportLink();
     $service->getCCRej();
     $response = $iats->getSoapResponse('NA', $service, $request);
     $this->assertTrue(FALSE);
@@ -41,8 +43,8 @@ class IATSReportLinkTest extends \PHPUnit_Framework_TestCase {
       'date' => $date,
     );
 
-    $iats = new IATS($agentcode, $password);
-    $service = new IATSReportLink();
+    $iats = new iATS($agentcode, $password);
+    $service = new ReportLink();
     $service->getCCRej();
     $response = $iats->getSoapResponse('NA', $service, $request);
     $this->assertEquals('No data returned for this date', $response);

@@ -4,12 +4,14 @@
  * File description.
  */
 
+namespace iATS;
+
 use iATS\iATS;
 
 /**
  * Class IATSSoapClientTest
  */
-class IATSSoapClientTest extends \PHPUnit_Framework_TestCase {
+class SoapClientTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Bad credentials.
@@ -43,18 +45,18 @@ class IATSSoapClientTest extends \PHPUnit_Framework_TestCase {
       'date' => $date,
     );
 
-    $iats = new IATS($agentcode, $password);
-    $service = new IATSProcessLink();
+    $iats = new iATS($agentcode, $password);
+    $service = new ProcessLink();
     $service->processCC();
     $response = $iats->getSoapResponse('NA', $service, $request);
     $this->assertEquals('Bad Credentials', $response);
 
-    $service = new IATSCustomerLink();
+    $service = new CustomerLink();
     $service->getCustCode();
     $response = $iats->getSoapResponse('NA', $service, $request);
     $this->assertEquals('Bad Credentials', $response);
 
-    $service = new IATSReportLink();
+    $service = new ReportLink();
     $service->getCCRej();
     $response = $iats->getSoapResponse('NA', $service, $request);
     $this->assertEquals('Bad Credentials', $response);
@@ -100,8 +102,8 @@ class IATSSoapClientTest extends \PHPUnit_Framework_TestCase {
     'date' => '',
     );
 
-    $iats = new IATS($agentcode, $password);
-    $service = new IATSProcessLink();
+    $iats = new iATS($agentcode, $password);
+    $service = new ProcessLink();
     $service->processCCwithCustCode();
     $response = $iats->getSoapResponse('NA', $service, $request);
     $this->assertEquals('Bad Credentials', $response);

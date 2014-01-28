@@ -4,12 +4,14 @@
  * File description.
  */
 
+namespace iATS;
+
 /**
  * Class IATSProcessLinkTest
  *
  * @package IATSAPI\Test
  */
-class IATSProcessLinkTest extends \PHPUnit_Framework_TestCase {
+class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
   /**
    * Test processCC.
    */
@@ -36,8 +38,8 @@ class IATSProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'currency' => 'USD',
     );
 
-    $iats = new IATS($agentcode, $password);
-    $service = new IATSProcessLink();
+    $iats = new iATS($agentcode, $password);
+    $service = new ProcessLink();
     $service->processCC();
     $response = $iats->getSoapResponse('NA', $service, $request);
     $this->assertTrue(TRUE);
@@ -68,8 +70,8 @@ class IATSProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'currency' => 'USD',
     );
 
-    $iats = new IATS($agentcode, $password);
-    $service = new IATSProcessLink();
+    $iats = new iATS($agentcode, $password);
+    $service = new ProcessLink();
     $service->createCustCodeProcessCC();
     $response = $iats->getSoapResponse('NA', $service, $request);
     $this->assertTrue(TRUE);
