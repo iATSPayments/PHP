@@ -45,7 +45,7 @@ class iATS {
    */
   protected function getSoapClient($serverid, $endpoint, $options = array('trace' => TRUE)) {
     $url = $this->getServer($serverid) . $endpoint;
-    return new SoapClient($url, $options);
+    return new \SoapClient($url, $options);
   }
 
   /**
@@ -81,7 +81,7 @@ class iATS {
    * @return mixed
    *   Error string or method results.
    */
-  protected function getSoapResponse($serverid, $service, $request) {
+  public function getSoapResponse($serverid, $service, $request) {
     $servicename = get_class($service);
     $checkreestrictionsarray = array('IATSCustomerLink', 'IATSProcessLink');
     $restrictions = array();
@@ -221,7 +221,7 @@ class iATS {
  *   Array
  */
 function xmlstr_to_array($xmlstr) {
-  $doc = new DOMDocument();
+  $doc = new \DOMDocument();
   $doc->loadXML($xmlstr);
   $root = $doc->documentElement;
   $output = domnode_to_array($root);
