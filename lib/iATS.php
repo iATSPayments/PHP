@@ -7,9 +7,9 @@
 namespace iATS;
 
 /**
- * Class iATS
+ * Class iATS/Core.
  */
-class iATS {
+class Core {
   // TODO: Document me.
   private $na_server = 'https://www.iatspayments.com';
   private $uk_server = 'https://www.uk.iatspayments.com';
@@ -17,9 +17,10 @@ class iATS {
   private $password = '';
   const SERVICE_NOT_AVAILABLE = 'This service is not available on this server.';
 
+  private $server = '';
+  protected $endpoint = '';
+
   // TODO: Clarify and comment. These were moved from the Service class.
-  public $endpoint = '';
-  public $method = '';
   public $result = '';
   public $format = '';
   public $restrictedservers = array();
@@ -27,14 +28,14 @@ class iATS {
   /**
    * IATS class constructor.
    *
-   * @param string $agentcode
-   *   IATS account Agent Code
-   * @param string $password
-   *   IATS account password
+   * @param $agentcode
+   * @param $password
+   * @param string $server_id
    */
-  public function __construct($agentcode, $password) {
+  public function __construct($agentcode, $password, $server_id = 'NA') {
     $this->agentcode = $agentcode;
     $this->password = $password;
+    $this->setServer($server_id);
   }
 
   /**
@@ -56,72 +57,67 @@ class iATS {
   }
 
   /**
-   * Get server URL.
+   * Set the server to use based on a server id.
    *
-   * @param string $serverid
-   *   Server identifier
-   *
-   * @return string
-   *   Return server URL
+   * @param $serverid
+   *   Possible values are 'NA' and 'UK'.
+   * @throws \Exception
    */
-  protected function getServer($serverid) {
-    switch ($serverid) {
+  private function setServer($server_id) {
+    switch ($server_id) {
       case 'NA':
-        return $this->na_server;
-
+        $this->server = $this->na_server;
+        break;
       case 'UK':
-        return $this->uk_server;
-
+        $this->server = $this->uk_server;
+        break;
+      default:
+        throw new \Exception('Invalid Server ID.');
     }
   }
 
   /**
-   * Get Soap Response.
+   * Make web service requests to the iATS API.
    *
-   * @param string $serverid
-   *   Server identifier
-   * @param object $service
-   *   Service object
-   * @param array $request
-   *   Request variable array
+   * @param $method
+   *   The name of the method to call.
+   * @param $params
+   *   Parameters to pass the API.
+   * @param string $format
+   *   Resposnse. Defaults to 'AR'.
    *
-   * @return mixed
-   *   Error string or method results.
+   * @return array|bool
    */
-  public function getSoapResponse($serverid, $service, $request) {
-    $servicename = get_class($service);
-    $checkreestrictionsarray = array('IATSCustomerLink', 'IATSProcessLink');
-    $restrictions = array();
-
-    // TODO: Explain me.
-    if (in_array($servicename, $checkreestrictionsarray)) {
-      $restrict['server'] = $this->checkServerRestrictions($serverid, $service);
-      $currency = $request['currency'];
-      $mop = $request['mop'];
-      $restrict['mop'] = $this->checkMOPCurrencyRestrictions($serverid, $currency, $mop);
-      $restrictions = array_filter($restrict);
-    }
-
-    if (!empty($restrictions)) {
-      return $restrictions;
-    }
-    else {
+  protected function apiCall($method, $params, $format = 'AR') {
+//    $checkreestrictionsarray = array('IATSCustomerLink', 'IATSProcessLink');
+//    $restrictions = array();
+//
+//    // TODO: Explain me. Why is this here and not in CustomerLink and ProcessLink respectively?
+//    if (in_array($servicename, $checkreestrictionsarray)) {
+//      $restrict['server'] = $this->checkServerRestrictions($serverid, $service);
+//      $currency = $request['currency'];
+//      $mop = $request['mop'];
+//      $restrict['mop'] = $this->checkMOPCurrencyRestrictions($serverid, $currency, $mop);
+//      $restrictions = array_filter($restrict);
+//    }
+//
+//    if (!empty($restrictions)) {
+//      return $restrictions;
+//    }
+//    else {
       try {
-        $soap = $this->getSoapClient($serverid, $service->endpoint);
-        $request['agentCode'] = $this->agentcode;
-        $request['password'] = $this->password;
-        $method = $service->method;
-        $result = $service->result;
-        $format = $service->format;
-        $response = $soap->$method($request);
-        $return = $service->responseHandler($response, $result, $format);
-        return $return;
+        $soap = $this->getSoapClient($this->server, $this->endpoint);
+        // TODO: Consider refactoting into a default parameters protected method.
+        $params['agentCode'] = $this->agentcode;
+        $params['password'] = $this->password;
+        // TODO: Question - Is there common response handling across the 3 services.
+        return $soap->$method($params);
       }
-      catch (SoapFault $exception) {
+      // TODO: Why are we catching this? Should at least throw our own custom Exception type.
+      catch (\SoapFault $exception) {
         return FALSE;
       }
-    }
-
+//    }
   }
 
   /**
@@ -216,77 +212,78 @@ class iATS {
       ),
     );
   }
-}
 
-/**
- * From https://github.com/gaarf/XML-string-to-PHP-array/blob/master/xmlstr_to_array.php.
- *
- * @param array $xmlstr
- *   Array
- *
- * @return array|string
- *   Array
- */
-function xmlstr_to_array($xmlstr) {
-  $doc = new \DOMDocument();
-  $doc->loadXML($xmlstr);
-  $root = $doc->documentElement;
-  $output = domnode_to_array($root);
-  $output['@root'] = $root->tagName;
-  return $output;
-}
-
-/**
- * Parse nodes to arrays.
- *
- * @param mixed $node
- *   XML Node to be processed
- *
- * @return array|string
- *   Processed node
- */
-function domnode_to_array($node) {
-  $output = array();
-  switch ($node->nodeType) {
-
-    case XML_CDATA_SECTION_NODE:
-    case XML_TEXT_NODE:
-      $output = trim($node->textContent);
-      break;
-
-    case XML_ELEMENT_NODE:
-      for ($i = 0, $m = $node->childNodes->length; $i < $m; $i++) {
-        $child = $node->childNodes->item($i);
-        $v = domnode_to_array($child);
-        if (isset($child->tagName)) {
-          $t = $child->tagName;
-          if (!isset($output[$t])) {
-            $output[$t] = array();
-          }
-          $output[$t][] = $v;
-        }
-        elseif ($v || $v === '0') {
-          $output = (string) $v;
-        }
-      }
-      if ($node->attributes->length && !is_array($output)) {
-        $output = array('@content' => $output);
-      }
-      if (is_array($output)) {
-        if ($node->attributes->length) {
-          $a = array();
-          foreach ($node->attributes as $attrName => $attrNode) {
-            $a[$attrName] = (string) $attrNode->value;
-          }
-          $output['@attributes'] = $a;
-        }
-        foreach ($output as $t => $v) {
-          if (is_array($v) && count($v) == 1 && $t != '@attributes') {
-            $output[$t] = $v[0];
-          }
-        }
-      }
-      break;
+  /**
+   * From https://github.com/gaarf/XML-string-to-PHP-array/blob/master/xmlstr_to_array.php.
+   *
+   * @param array $xmlstr
+   *   Array
+   *
+   * @return array|string
+   *   Array
+   */
+  protected function xmlstr_to_array($xmlstr) {
+    $doc = new \DOMDocument();
+    $doc->loadXML($xmlstr);
+    $root = $doc->documentElement;
+    $output = $this->domnode_to_array($root);
+    $output['@root'] = $root->tagName;
+    return $output;
   }
-  return $output;
+
+  /**
+   * Parse nodes to arrays.
+   *
+   * @param mixed $node
+   *   XML Node to be processed
+   *
+   * @return array|string
+   *   Processed node
+   */
+  private function domnode_to_array($node) {
+    $output = array();
+    switch ($node->nodeType) {
+
+      case XML_CDATA_SECTION_NODE:
+      case XML_TEXT_NODE:
+        $output = trim($node->textContent);
+        break;
+
+      case XML_ELEMENT_NODE:
+        for ($i = 0, $m = $node->childNodes->length; $i < $m; $i++) {
+          $child = $node->childNodes->item($i);
+          $v = $this->domnode_to_array($child);
+          if (isset($child->tagName)) {
+            $t = $child->tagName;
+            if (!isset($output[$t])) {
+              $output[$t] = array();
+            }
+            $output[$t][] = $v;
+          }
+          elseif ($v || $v === '0') {
+            $output = (string) $v;
+          }
+        }
+        if ($node->attributes->length && !is_array($output)) {
+          $output = array('@content' => $output);
+        }
+        if (is_array($output)) {
+          if ($node->attributes->length) {
+            $a = array();
+            foreach ($node->attributes as $attrName => $attrNode) {
+              $a[$attrName] = (string) $attrNode->value;
+            }
+            $output['@attributes'] = $a;
+          }
+          foreach ($output as $t => $v) {
+            if (is_array($v) && count($v) == 1 && $t != '@attributes') {
+              $output[$t] = $v[0];
+            }
+          }
+        }
+        break;
+    }
+    return $output;
+  }
+
 }
