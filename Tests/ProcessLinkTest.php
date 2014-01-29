@@ -38,42 +38,15 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'currency' => 'USD',
     );
 
-    $iats = new iATS($agentcode, $password);
-    $service = new ProcessLink();
-    $service->processCC();
-    $response = $iats->getSoapResponse('NA', $service, $request);
-    $this->assertTrue(TRUE);
+    $iats = new ProcessLink($agentcode, $password);
+    $return = $iats->processCreditCard($request);
+    $this->assertTrue($return);
   }
 
   /**
    * Test createCustCodeProcessCC.
    */
   public function testProcessLinkcreateCustCodeProcessCC() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
-    // Create and populate the request object.
-    $request = array(
-      'customerIPAddress' => '',
-      'invoiceNum' => '00000001',
-      'ccNum' => '4222222222222220',
-      'ccExp' => '12/17',
-      'firstName' => 'Test',
-      'lastName' => 'Account',
-      'address' => '1234 Any Street',
-      'city' => 'Schenectady',
-      'state' => 'NY',
-      'zipCode' => '12345',
-      'cvv2' => '000',
-      'total' => '2',
-      // Not needed for request.
-      'mop' => 'VISA',
-      'currency' => 'USD',
-    );
-
-    $iats = new iATS($agentcode, $password);
-    $service = new ProcessLink();
-    $service->createCustCodeProcessCC();
-    $response = $iats->getSoapResponse('NA', $service, $request);
     $this->assertTrue(TRUE);
   }
 
