@@ -17,6 +17,13 @@ class iATS {
   private $password = '';
   const SERVICE_NOT_AVAILABLE = 'This service is not available on this server.';
 
+  // TODO: Clarify and comment. These were moved from the Service class.
+  public $endpoint = '';
+  public $method = '';
+  public $result = '';
+  public $format = '';
+  public $restrictedservers = array();
+
   /**
    * IATS class constructor.
    *
