@@ -5,16 +5,44 @@ namespace iATS;
 /**
  * Class IATSProcessLink
  */
-class ProcessLink extends Service {
-  public $endpoint = '/NetGate/ProcessLink.asmx?WSDL';
+class ProcessLink extends Core {
+
+  public function __construct($agentcode, $password, $server_id = 'NA') {
+    parent::__construct($agentcode, $password, $server_id);
+    $this->$endpoint = '/NetGate/ProcessLink.asmx?WSDL';
+  }
 
   /**
-   * Sets properties for the ProcessCreditCardV1 method.
+   * Process a credit card transation.
+   *
+   * @param $parameters
+   *   An associative array with the following possible values.
+   * @code
+   *     $request = array(
+   *       'customerIPAddress' => '',
+   *       'invoiceNum' => '00000001',
+   *       'creditCardNum' => '4222222222222220',
+   *       'creditCardExpiry' => '12/17',
+   *       'cvv2' => '000',
+   *       'mop' => 'VISA',
+   *       'firstName' => 'Test',
+   *       'lastName' => 'Account',
+   *       'address' => '1234 Any Street',
+   *       'city' => 'Schenectady',
+   *       'state' => 'NY',
+   *       'zipCode' => '12345',
+   *       'total' => '2',
+   *       'comment' => 'Process CC test.',
+   *       // Not needed for request.
+   *       'currency' => 'USD',
+   *     );
+   * @endcode
+   *
+   * @return mixed
    */
-  public function processCC() {
-    $this->method = 'ProcessCreditCard';
-    $this->result = 'ProcessCreditCardV1Result';
-    $this->format = 'AR';
+  public function processCreditCard($parameters) {
+    $response = $this->apiCall('ProcessCreditCard', $parameters);
+    return $this->responseHandler($response, 'ProcessCreditCardV1Result');
   }
 
   /**
@@ -40,22 +68,12 @@ class ProcessLink extends Service {
    *
    * @param array $response
    *   Response
-   * @param string $result
-   *   Result string
-   * @param string  $format
-   *   Output format
    *
    * @return mixed
    *   Response
    */
-  public function responseHandler($response, $result, $format) {
+  public function responseHandler($response, $result_name) {
     $result = xmlstr_to_array($response->$result->any);
-//    if ($result['PROCESSRESULT']['AUTHORIZATIONRESULT'] == 'REJECT: 1') {
-//      $resp = 'Bad Credentials';
-//    }
-//    else {
-//      $resp = $result;
-//    }
     return $result;
   }
 }
