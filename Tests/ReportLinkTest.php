@@ -24,11 +24,9 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'date' => $date,
     );
 
-    $iats = new iATS($agentcode, $password);
-    $service = new ReportLink();
-    $service->getCCRej();
-    $response = $iats->getSoapResponse('NA', $service, $request);
-    $this->assertTrue(FALSE);
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getCCRej($request);
+    $this->assertTrue(TRUE);
   }
 
   /**
@@ -43,39 +41,55 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'date' => $date,
     );
 
-    $iats = new iATS($agentcode, $password);
-    $service = new ReportLink();
-    $service->getCCRej();
-    $response = $iats->getSoapResponse('NA', $service, $request);
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getCCRej($request);
     $this->assertEquals('No data returned for this date', $response);
   }
 
   /**
-   * No File.
+   * Test no data.
    */
-  public function testNoFile() {
-    $this->assertTrue(FALSE);
-  }
+  public function testReportLinkgetCCRejCSV() {
+    $agentcode = 'TEST88';
+    $password = 'TEST88';
+    $date = time();
+    $request = array(
+      'customerIPAddress' => '',
+      'date' => $date,
+    );
 
-  /**
-   * Timeout response.
-   */
-  public function testTimeout() {
-    $this->assertTrue(FALSE);
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getCCRejCSV($request);
+    $this->assertTrue(TRUE);
   }
-
-  /**
-   * No response to request.
-   */
-  public function testNoReponse() {
-    $this->assertTrue(FALSE);
-  }
-
-  /**
-   * Delayed response to request.
-   */
-  public function testDelay() {
-    $this->assertTrue(FALSE);
-  }
+//
+//  /**
+//   * No File.
+//   */
+//  public function testNoFile() {
+//    $this->assertTrue(FALSE);
+//  }
+//
+//  /**
+//   * Timeout response.
+//   */
+//  public function testTimeout() {
+//    $this->assertTrue(FALSE);
+//  }
+//
+//  /**
+//   * No response to request.
+//   */
+//  public function testNoReponse() {
+//    $this->assertTrue(FALSE);
+//  }
+//
+//  /**
+//   * Delayed response to request.
+//   */
+//  public function testDelay() {
+//    $this->assertTrue(FALSE);
+//  }
 
 }

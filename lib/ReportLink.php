@@ -1,32 +1,51 @@
 <?php
+/**
+ * @file
+ */
 
 namespace iATS;
 
 /**
- * Class IATSReportLink
+ * Class ReportLink
  *
- * @package IATSAPI
+ * @package iATS
  */
-class ReportLink extends Service {
-  public $endpoint = '/NetGate/ReportLink.asmx?WSDL';
-
+class ReportLink extends Core {
   /**
-   * Sets properties for the GetCreditCardReject method.
+   * ReportLink constructor.
+   *
+   * @param string $agentcode
+   *   Agent code.
+   * @param string $password
+   *   Password.
+   * @param string $server_id
+   *   Server ID ('UK' or 'NA'. Defaults to 'NA')
    */
-  public function getCCRej() {
-    $this->method = 'GetCreditCardReject';
-    $this->result = 'GetCreditCardRejectV1Result';
-    $this->format = 'AR';
+  public function __construct($agentcode, $password, $server_id = 'NA') {
+    parent::__construct($agentcode, $password, $server_id);
+    $this->endpoint = '/NetGate/ReportLink.asmx?WSDL';
   }
 
   /**
-   * Sets properties for the GetCreditCardRejectCSV method.
+   * @param $parameters
+   *
+   * @return mixed
    */
-  public function getCCRejCSV() {
-    $this->method = 'GetCreditCardRejectCSV';
-    $this->result = 'GetCreditCardRejectCSVV1Result';
-    $this->format = 'CSV';
+  public function getCCRej($parameters) {
+    $response = $this->apiCall('GetCreditCardReject', $parameters);
+    return $this->responseHandler($response, 'GetCreditCardRejectV1Result', 'AR');
+  }
+
+  /**
+   * @param $parameters
+   *
+   * @return mixed
+   */
+  public function getCCRejCSV($parameters) {
+    // TODO: Handle restricted servers.
     $this->restricted_servers = array('UK');
+    $response = $this->apiCall('GetCreditCardRejectCSV', $parameters);
+    return $this->responseHandler($response, 'GetCreditCardRejectCSVV1Result', 'CSV');
   }
 
   /**
@@ -37,7 +56,9 @@ class ReportLink extends Service {
    * @param string $result
    *   Result string
    * @param string  $format
-   *   Output format
+   *   Output format.
+   *   'AR' will return array(),
+   *   'CSV' will return a comma delimited data string with headers.
    *
    * @return mixed
    *   Response
@@ -46,7 +67,7 @@ class ReportLink extends Service {
     $return = $response->$result->any;
     switch ($format) {
       case 'AR':
-        $result = xmlstr_to_array($response->$result->any);
+        $result = $this->xml2array($response->$result->any);
         if ($result['STATUS'] == 'Failure') {
           $resp = 'Bad Credentials';
         }
@@ -62,17 +83,8 @@ class ReportLink extends Service {
         return $resp;
 
       case 'CSV':
-        $xml_element = new SimpleXMLElement($return);
-        $file = base64_decode($xml_element->FILE);
-        $file = 'test.csv';
-        file_put_contents($file, $return);
-        header("Cache-Control: public");
-        header("Content-Description: File Transfer");
-        header("Content-Length: " . filesize("$file") . ";");
-        header("Content-Disposition: attachment; filename=$file");
-        header("Content-Type: application/octet-stream; ");
-        header("Content-Transfer-Encoding: binary");
-        readfile($file);
+        $xml_element = new \SimpleXMLElement($return);
+        return base64_decode($xml_element->FILE);
     }
   }
 

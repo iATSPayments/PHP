@@ -1,29 +1,55 @@
 <?php
+/**
+ * @file
+ */
 
 namespace iATS;
 
 /**
- * Class IATSCustomerLink
+ * Class CustomerLink
+ *
+ * @package iATS
  */
-class CustomerLink extends Service {
-  public $endpoint = '/NetGate/CustomerLink.asmx?WSDL';
-
+class CustomerLink extends Core {
   /**
-   * Sets properties for the GetCustomerCodeDetailV1 method.
+   * CustomerLink constructor.
+   *
+   * @param string $agentcode
+   *   Agent code.
+   * @param string $password
+   *   Password.
+   * @param string $server_id
+   *   Server ID ('UK' or 'NA'. Defaults to 'NA')
    */
-  public function getCustCode() {
-    $this->method = 'GetCustomerCodeDetail';
-    $this->result = 'GetCustomerCodeDetailV1Result';
-    $this->format = 'AR';
+  public function __construct($agentcode, $password, $server_id = 'NA') {
+    parent::__construct($agentcode, $password, $server_id);
+    $this->endpoint = '/NetGate/CustomerLink.asmx?WSDL';
   }
 
   /**
-   * Sets properties for the CreateCreditCardCustomerCodeV1 method.
+   * Get Customer Code Detail.
+   *
+   * @param array $parameters
+   *   Request array.
+   *
+   * @return mixed
+   *   Response.
    */
-  public function createCustCodeCC() {
-    $this->method = 'CreateCreditCardCustomerCode';
-    $this->result = 'CreateCreditCardCustomerCodeV1Result';
-    $this->format = 'AR';
+  public function getCustomerCodeDetail($parameters) {
+    $response = $this->apiCall('GetCustomerCodeDetail', $parameters);
+    return $this->responseHandler($response, 'GetCustomerCodeDetailV1Result');
+  }
+
+  /**
+   * Create Credit Card Customer Code.
+   *
+   * @param $parameters
+   *
+   * @return mixed
+   */
+  public function createCreditCardCustomerCode($parameters) {
+    $response = $this->apiCall('CreateCreditCardCustomerCode', $parameters);
+    return $this->responseHandler($response, 'CreateCreditCardCustomerCodeV1Result');
   }
 
   /**
@@ -31,17 +57,25 @@ class CustomerLink extends Service {
    *
    * @param array $response
    *   Response
-   * @param string $result
-   *   Result string
-   * @param string  $format
-   *   Output format
+   * @param string $result_name
+   *   Result name string
    *
    * @return mixed
    *   Response
    */
-  public function responseHandler($response, $result, $format) {
-    $result = xmlstr_to_array($response->$result->any);
+  public function responseHandler($response, $result_name) {
+    // Check restrictions.
+    if ($this->checkServerRestrictions($this->server_id, $this->restrictedservers)) {
+      return 'Service cannot be used on this server.';
+    }
+
+    $currency = isset($this->params['currency']) ? $this->params['currency'] : NULL;
+    $mop = isset($this->params['mop']) ? $this->params['mop'] : NULL;
+    if ($this->checkMOPCurrencyRestrictions($this->server_id, $currency, $mop)) {
+      return 'Service cannot be used with this Method of Payment or Currency.';
+    }
+
+    $result = $this->xml2array($response->$result_name->any);
     return $result;
   }
 }
-
