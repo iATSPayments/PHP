@@ -13,9 +13,9 @@ namespace iATS;
  */
 class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   /**
-   * Test createCustCodeCC.
+   * Test createCreditCardCustomerCode.
    */
-  public function testCustomerLinkcreateCustCodeCC() {
+  public function testCustomerLinkcreateCreditCardCustomerCode() {
     $agentcode = 'TEST88';
     $password = 'TEST88';
     $date = strtotime('12/17/2011');
@@ -51,14 +51,14 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'currency' => 'USD',
     );
 
-    $iats = new CustomerLink($agentcode, $password);
+    $iats = new CustomerLink($agentcode, $password, 'NA');
     $response = $iats->createCreditCardCustomerCode($request);
     $this->assertTrue(TRUE);
   }
   /**
    * Test createCustCodeCC.
    */
-  public function testCustomerLinkgetCustCode() {
+  public function testgetCustomerCodeDetail() {
     $agentcode = 'TEST88';
     $password = 'TEST88';
     // Create and populate the request object.
@@ -70,7 +70,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'currency' => 'USD',
     );
 
-    $iats = new CustomerLink($agentcode, $password);
+    $iats = new CustomerLink($agentcode, $password, 'NA');
     $response = $iats->getCustomerCodeDetail($request);
     $this->assertTrue(TRUE);
   }

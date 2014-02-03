@@ -15,35 +15,57 @@ class ReportLink extends Core {
    * ReportLink constructor.
    *
    * @param string $agentcode
-   *   Agent code.
+   *   iATS account agent code.
    * @param string $password
-   *   Password.
-   * @param string $server_id
-   *   Server ID ('UK' or 'NA'. Defaults to 'NA')
+   *   iATS account password.
+   * @param string $serverid
+   *   Server identifider (Defaults to 'NA').
+   *   \see setServer()
    */
-  public function __construct($agentcode, $password, $server_id = 'NA') {
-    parent::__construct($agentcode, $password, $server_id);
+  public function __construct($agentcode, $password, $serverid = 'NA') {
+    parent::__construct($agentcode, $password, $serverid);
     $this->endpoint = '/NetGate/ReportLink.asmx?WSDL';
   }
 
   /**
-   * @param $parameters
+   * Get Credit Card Reject report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'customerIPAddress' => '',
+   *     'date' => 946771200,
+   *   );
+   * @endcode
    *
    * @return mixed
+   *   Report array or API error.
    */
-  public function getCCRej($parameters) {
+  public function getCreditCardReject($parameters) {
     $response = $this->apiCall('GetCreditCardReject', $parameters);
     return $this->responseHandler($response, 'GetCreditCardRejectV1Result', 'AR');
   }
 
   /**
-   * @param $parameters
+   * Get Credit Card Reject CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'customerIPAddress' => '',
+   *     'date' => 946771200,
+   *   );
+   * @endcode
    *
    * @return mixed
+   *   Report CSV (string) or API error.
    */
-  public function getCCRejCSV($parameters) {
-    // TODO: Handle restricted servers.
-    $this->restricted_servers = array('UK');
+  public function getCreditCardRejectCSV($parameters) {
+    $this->restrictedservers = array('UK');
     $response = $this->apiCall('GetCreditCardRejectCSV', $parameters);
     return $this->responseHandler($response, 'GetCreditCardRejectCSVV1Result', 'CSV');
   }

@@ -15,14 +15,15 @@ class CustomerLink extends Core {
    * CustomerLink constructor.
    *
    * @param string $agentcode
-   *   Agent code.
+   *   iATS account agent code.
    * @param string $password
-   *   Password.
-   * @param string $server_id
-   *   Server ID ('UK' or 'NA'. Defaults to 'NA')
+   *   iATS account password.
+   * @param string $serverid
+   *   Server identifier (Defaults to 'NA')
+   *   \see serServer()
    */
-  public function __construct($agentcode, $password, $server_id = 'NA') {
-    parent::__construct($agentcode, $password, $server_id);
+  public function __construct($agentcode, $password, $serverid = 'NA') {
+    parent::__construct($agentcode, $password, $serverid);
     $this->endpoint = '/NetGate/CustomerLink.asmx?WSDL';
   }
 
@@ -30,10 +31,20 @@ class CustomerLink extends Core {
    * Get Customer Code Detail.
    *
    * @param array $parameters
-   *   Request array.
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'customerIPAddress' => '',
+   *     'customerCode' => 'A10396688',
+   *     // Not needed for request.
+   *     'mop' => 'VISA',
+   *     'currency' => 'USD',
+   *   );
+   * @endcode
    *
    * @return mixed
-   *   Response.
+   *   SOAP Client response or API error.
    */
   public function getCustomerCodeDetail($parameters) {
     $response = $this->apiCall('GetCustomerCodeDetail', $parameters);
@@ -43,9 +54,42 @@ class CustomerLink extends Core {
   /**
    * Create Credit Card Customer Code.
    *
-   * @param $parameters
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'customerIPAddress' => '',
+   *     'customerCode' => '',
+   *     'firstName' => 'Test',
+   *     'lastName' => 'Account',
+   *     'companyName' => 'Test Co.',
+   *     'address' => '1234 Any Street',
+   *     'city' => 'Schenectady',
+   *     'state' => 'NY',
+   *     'zipCode' => '12345',
+   *     'phone' => '555-555-1234',
+   *     'fax' => '555-555-4321',
+   *     'alternatePhone' => '555-555-5555',
+   *     'email' => 'email@test.co',
+   *     'comment' => 'Customer code creation test.',
+   *     'recurring' => FALSE,
+   *     'amount' => '5',
+   *     'beginDate' => 946684800,
+   *     'endDate' => 946771200,
+   *     'scheduleType' => 'Annually',
+   *     'scheduleDate' => '',
+   *     'creditCardCustomerName' => 'Test Account',
+   *     'creditCardNum' => '4222222222222220',
+   *     'creditCardExpiry' => '12/17',
+   *     'mop' => 'VISA',
+   *     // Not required.
+   *     'currency' => 'USD',
+   *   );
+   * @endcode
    *
    * @return mixed
+   *   SOAP Client response or API error.
    */
   public function createCreditCardCustomerCode($parameters) {
     $response = $this->apiCall('CreateCreditCardCustomerCode', $parameters);
@@ -56,22 +100,22 @@ class CustomerLink extends Core {
    * Response Handler for CustomerLink calls.
    *
    * @param array $response
-   *   Response
+   *   Restriction, error or API result.
    * @param string $result_name
-   *   Result name string
+   *   API result name.
    *
    * @return mixed
-   *   Response
+   *   Restriction, error or API result.
    */
   public function responseHandler($response, $result_name) {
     // Check restrictions.
-    if ($this->checkServerRestrictions($this->server_id, $this->restrictedservers)) {
+    if ($this->checkServerRestrictions($this->serverid, $this->restrictedservers)) {
       return 'Service cannot be used on this server.';
     }
 
-    $currency = isset($this->params['currency']) ? $this->params['currency'] : NULL;
-    $mop = isset($this->params['mop']) ? $this->params['mop'] : NULL;
-    if ($this->checkMOPCurrencyRestrictions($this->server_id, $currency, $mop)) {
+    $currency = isset($this->parameters['currency']) ? $this->parameters['currency'] : NULL;
+    $mop = isset($this->parameters['mop']) ? $this->parameters['mop'] : NULL;
+    if ($this->checkMOPCurrencyRestrictions($this->serverid, $currency, $mop)) {
       return 'Service cannot be used with this Method of Payment or Currency.';
     }
 

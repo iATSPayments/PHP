@@ -1,7 +1,7 @@
 var classi_a_t_s_1_1_report_link =
 [
-    [ "__construct", "classi_a_t_s_1_1_report_link.html#a6cd45ab5efcbf75e7a82c1bcabdedf8c", null ],
-    [ "getCCRej", "classi_a_t_s_1_1_report_link.html#af2438becd710a52b0df603d9685ada91", null ],
-    [ "getCCRejCSV", "classi_a_t_s_1_1_report_link.html#aa85551104f249e48afde2456ebd876be", null ],
+    [ "__construct", "classi_a_t_s_1_1_report_link.html#a50fb23ed7ba2e65cede735ce6a4f1671", null ],
+    [ "getCreditCardReject", "classi_a_t_s_1_1_report_link.html#ae716691eef132a68bd6b8e8d2b92c343", null ],
+    [ "getCreditCardRejectCSV", "classi_a_t_s_1_1_report_link.html#a58dcf4b53e7b78feca53ab7d70eda170", null ],
     [ "responseHandler", "classi_a_t_s_1_1_report_link.html#a2497664b2c27cc776626e998ac2f65fe", null ]
 ];

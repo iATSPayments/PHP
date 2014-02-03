@@ -44,23 +44,20 @@ class CoreTest extends \PHPUnit_Framework_TestCase {
       'currency' => 'USD',
     );
 
-    $iats = new ProcessLink($agentcode, $password);
+    $iats = new ProcessLink($agentcode, $password, 'NA');
     $response = $iats->processCreditCard($request);
     $this->assertEquals($response,
       'Agent code has not been set up on the authorization system. Please call iATS at 1-888-955-5455.');
-  }
 
-//    $service = new CustomerLink();
-//    $service->getCustCode();
-//    $response = $iats->getSoapResponse('NA', $service, $request);
-//    $this->assertEquals('Bad Credentials', $response);
-//
-//    $service = new ReportLink();
-//    $service->getCCRej();
-//    $response = $iats->getSoapResponse('NA', $service, $request);
-//    $this->assertEquals('Bad Credentials', $response);
-//
-//  }
+    $service = new CustomerLink($agentcode, $password, 'NA');
+    $response = $iats->getCustomerCodeDetail($request);
+    $this->assertEquals('Bad Credentials', $response);
+
+    $service = new ReportLink($agentcode, $password);
+    $response = $iats->getCreditCardReject($request);
+    $this->assertEquals('Bad Credentials', $response);
+
+  }
 //
 //  /**
 //   * Bad params.

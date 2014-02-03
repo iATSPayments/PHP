@@ -38,11 +38,11 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'currency' => 'USD',
     );
 
-    $iats = new ProcessLink($agentcode, $password);
+    $iats = new ProcessLink($agentcode, $password, 'NA');
     $response = $iats->processCreditCard($request);
     //$clean = trim($response['PROCESSRESULT']['AUTHORIZATIONRESULT']);
-    $this->assertTrue(TRUE);
     //$this->assertEquals($clean, 'OK: 678594:');
+    $this->assertTrue(TRUE);
   }
 
 //  /**

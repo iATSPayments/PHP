@@ -38,9 +38,11 @@ class Core {
    *   iATS account agent code.
    * @var string $password
    *   iATS account password.
-   * @var string $server_id
+   * @var string $serverid
    *   Server identifier.
-   *   \see setsServer()
+   *   \see setServer()
+   * @var string $server
+   *   Server url.
    * @var string $endpoint
    *   Service endpoint
    * @var string $params
@@ -48,16 +50,22 @@ class Core {
    */
   protected $agentcode = '';
   protected $password = '';
-  protected $server_id = '';
+  protected $serverid = '';
+  protected $server = '';
   protected $endpoint = '';
-  protected $params = array();
+  protected $parameters = array();
 
   // Public properties.
   /**
-   * @var string $result_name
+   * @var string $resultname
    *   The result name
+   * @var string $format
+   *   Format
+   * @var array $restrictedservers
+   *   Restricted servers array
+   *   \see checkServerRestrictions()
    */
-  public $result_name = '';
+  public $resultname = '';
   public $format = '';
   public $restrictedservers = array();
 
@@ -68,14 +76,14 @@ class Core {
    *   iATS account agent code.
    * @param string $password
    *   iATS account password.
-   * @param string $server_id
-   *   Server ID.
+   * @param string $serverid
+   *   Server indentifier.
    *   \see setServer()
    */
-  public function __construct($agentcode, $password, $server_id = 'NA') {
+  public function __construct($agentcode, $password, $serverid = 'NA') {
     $this->agentcode = $agentcode;
     $this->password = $password;
-    $this->server_id = $server_id;
+    $this->serverid = $serverid;
   }
 
   /**
@@ -91,7 +99,7 @@ class Core {
    *   Returns IATS SoapClient object
    */
   protected function getSoapClient($endpoint, $options = array('trace' => TRUE)) {
-    $this->setServer($this->server_id);
+    $this->setServer($this->serverid);
     $wsdl = $this->server . $endpoint;
     return new \SoapClient($wsdl, $options);
   }
@@ -99,13 +107,13 @@ class Core {
   /**
    * Set the server to use based on a server id.
    *
-   * @param string $server_id
-   *   Server ID
+   * @param string $serverid
+   *   Server identifider ('UK' or 'NA'.)
    *
    * @throws \Exception
    */
-  private function setServer($server_id) {
-    switch ($server_id) {
+  private function setServer($serverid) {
+    switch ($serverid) {
       case 'NA':
         $this->server = $this->na_server;
         break;
@@ -124,19 +132,19 @@ class Core {
    *
    * @param string $method
    *   The name of the method to call.
-   * @param array $params
+   * @param array $parameters
    *   Parameters to pass the API.
    *
    * @return object
    *   XML object or boolean.
    * @throws \SoapFault
    */
-  protected function apiCall($method, $params) {
+  protected function apiCall($method, $parameters) {
     try {
-      $this->params = $params;
+      $this->parameters = $parameters;
       $this->defaultparams();
       $soap = $this->getSoapClient($this->endpoint);
-      return $soap->$method($this->params);
+      return $soap->$method($this->parameters);
     }
     catch (\SoapFault $exception) {
       throw new \SoapFault($exception->faultcode, $exception->faultstring);
@@ -186,12 +194,12 @@ class Core {
   protected function checkMOPCurrencyRestrictions($serverid, $currency, $mop) {
     $matrix = $this->getMOPCurrencyMatrix();
     if (isset($matrix[$serverid][$currency])) {
-      $filter_result = array_filter($matrix[$serverid][$currency],
+      $filterresult = array_filter($matrix[$serverid][$currency],
       function ($item) use ($mop) {
         return $item == $mop;
       }
       );
-      return empty($filter_result) ? TRUE : FALSE;
+      return empty($filterresult) ? TRUE : FALSE;
     }
     else {
       return TRUE;
@@ -251,7 +259,7 @@ class Core {
    *   Reject codes and their meaning.
    *
    * @return mixed
-   *   Returns reject code meanin.
+   *   Returns reject code meaning.
    */
   protected function reject($rejectcode) {
     $rejects = array(

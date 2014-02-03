@@ -13,23 +13,6 @@ namespace iATS;
  */
 class ReportLinkTest extends \PHPUnit_Framework_TestCase {
   /**
-   * Test getCCRej.
-   */
-  public function testReportLinkgetCCRej() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
-    $date = time();
-    $request = array(
-      'customerIPAddress' => '',
-      'date' => $date,
-    );
-
-    $iats = new ReportLink($agentcode, $password);
-    $response = $iats->getCCRej($request);
-    $this->assertTrue(TRUE);
-  }
-
-  /**
    * Test no data.
    */
   public function testNoData() {
@@ -41,16 +24,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'date' => $date,
     );
 
-
     $iats = new ReportLink($agentcode, $password);
-    $response = $iats->getCCRej($request);
+    $response = $iats->getCreditCardReject($request);
     $this->assertEquals('No data returned for this date', $response);
   }
 
   /**
-   * Test no data.
+   * Test getCCRej.
    */
-  public function testReportLinkgetCCRejCSV() {
+  public function testReportLinkgetCreditCardReject() {
     $agentcode = 'TEST88';
     $password = 'TEST88';
     $date = time();
@@ -60,7 +42,24 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     );
 
     $iats = new ReportLink($agentcode, $password);
-    $response = $iats->getCCRejCSV($request);
+    $response = $iats->getCreditCardReject($request);
+    $this->assertTrue(TRUE);
+  }
+
+  /**
+   * Test no data.
+   */
+  public function testReportLinkgetCreditCardRejectCSV() {
+    $agentcode = 'TEST88';
+    $password = 'TEST88';
+    $date = time();
+    $request = array(
+      'customerIPAddress' => '',
+      'date' => $date,
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getCreditCardRejectCSV($request);
     $this->assertTrue(TRUE);
   }
 //
