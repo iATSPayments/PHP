@@ -11,6 +11,7 @@ namespace iATS;
  * @package iATS
  */
 class ReportLink extends Core {
+
   /**
    * ReportLink constructor.
    *
@@ -19,7 +20,7 @@ class ReportLink extends Core {
    * @param string $password
    *   iATS account password.
    * @param string $serverid
-   *   Server identifider (Defaults to 'NA').
+   *   Server identifier (Defaults to 'NA').
    *   \see setServer()
    */
   public function __construct($agentcode, $password, $serverid = 'NA') {
@@ -34,7 +35,7 @@ class ReportLink extends Core {
    *   An associative array with the following possible values.
    *
    * @code
-   *   $request = array(
+   *   array(
    *     'customerIPAddress' => '',
    *     'date' => 946771200,
    *   );

@@ -35,7 +35,7 @@ class ProcessLink extends Core {
    *   An associative array with the following possible values.
    *
    * @code
-   *   $request = array(
+   *   array(
    *     'customerIPAddress' => '',
    *     'invoiceNum' => '00000001',
    *     'creditCardNum' => '4222222222222220',
@@ -70,7 +70,7 @@ class ProcessLink extends Core {
    *   An associative array with the following possible values.
    *
    * @code
-   *   $request = array(
+   *   array(
    *     'customerIPAddress' => '',
    *     'invoiceNum' => '00000001',
    *     'creditCardNum' => '4222222222222220',

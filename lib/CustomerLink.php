@@ -34,7 +34,7 @@ class CustomerLink extends Core {
    *   An associative array with the following possible values.
    *
    * @code
-   *   $request = array(
+   *   array(
    *     'customerIPAddress' => '',
    *     'customerCode' => 'A10396688',
    *     // Not needed for request.
@@ -58,7 +58,7 @@ class CustomerLink extends Core {
    *   An associative array with the following possible values.
    *
    * @code
-   *   $request = array(
+   *   array(
    *     'customerIPAddress' => '',
    *     'customerCode' => '',
    *     'firstName' => 'Test',
@@ -119,7 +119,7 @@ class CustomerLink extends Core {
       return 'Service cannot be used with this Method of Payment or Currency.';
     }
 
-    $result = $this->xml2array($response->$result_name->any);
-    return $result;
+    return $this->xml2array($response->$result_name->any);
   }
+
 }
