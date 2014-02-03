@@ -147,7 +147,7 @@ class Core {
       return $soap->$method($this->parameters);
     }
     catch (\SoapFault $exception) {
-      throw new \SoapFault($exception->faultcode, $exception->faultstring);
+      throw new \SoapFault($exception->getCode(), $exception->getMessage());
     }
 
   }
