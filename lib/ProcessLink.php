@@ -156,12 +156,20 @@ class ProcessLink extends Core {
     }
 
     $result = $this->xml2array($response->$result_name->any);
-    $authresult = $result['PROCESSRESULT']['AUTHORIZATIONRESULT'];
-    // Process reject codes.
-    if (strpos($authresult, 'REJECT') !== FALSE) {
-      $reject_code = preg_replace("/[^0-9]/", "", $authresult);
-      return $this->reject($reject_code);
+    // Handle auth failure.
+    if ($result['STATUS'] == 'Failure') {
+      return $result['ERRORS'];
     }
+    // Handle reject codes.
+    else {
+      $authresult = $result['PROCESSRESULT']['AUTHORIZATIONRESULT'];
+      // Process reject codes.
+      if (strpos($authresult, 'REJECT') !== FALSE) {
+        $reject_code = preg_replace("/[^0-9]/", "", $authresult);
+        return $this->reject($reject_code);
+      }
+    }
+
     return $result;
   }
 }
