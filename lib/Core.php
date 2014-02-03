@@ -53,7 +53,6 @@ class Core {
   protected $serverid = '';
   protected $server = '';
   protected $endpoint = '';
-  protected $parameters = array();
 
   // Public properties.
   /**
@@ -141,23 +140,16 @@ class Core {
    */
   protected function apiCall($method, $parameters) {
     try {
-      $this->parameters = $parameters;
-      $this->defaultparams();
+      // Set the agentcode and password parameters.
+      $parameters['agentCode'] = $this->agentcode;
+      $parameters['password'] = $this->password;
+
       $soap = $this->getSoapClient($this->endpoint);
-      return $soap->$method($this->parameters);
+      return $soap->$method($parameters);
     }
     catch (\SoapFault $exception) {
       throw new \SoapFault($exception->getCode(), $exception->getMessage());
     }
-
-  }
-
-  /**
-   * Set default paramaters, agent code and password.
-   */
-  protected function defaultparams() {
-    $this->params['agentCode'] = $this->agentcode;
-    $this->params['password'] = $this->password;
   }
 
   /**
@@ -305,4 +297,5 @@ class Core {
     );
     return $rejects[$rejectcode];
   }
+
 }
