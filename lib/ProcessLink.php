@@ -56,11 +56,18 @@ class ProcessLink extends Core {
    * @endcode
    *
    * @return mixed
-   *   SOAP Client response or API error.
+   *   Client response array or API error.
    */
   public function processCreditCard($parameters) {
-    $response = $this->apiCall('ProcessCreditCard', $parameters);
-    return $this->responseHandler($response, 'ProcessCreditCardV1Result');
+    $this->restrictedservers = array('UK');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else {
+      $response = $this->apiCall('ProcessCreditCard', $parameters);
+      return $this->responseHandler($response, 'ProcessCreditCardV1Result');
+    }
   }
 
   /**
@@ -91,7 +98,7 @@ class ProcessLink extends Core {
    * @endcode
    *
    * @return mixed
-   *   RespSOAP Client response or API error.
+   *   Client response array or API error.
    */
   public function processCreditCardWithCustomerCode($parameters) {
     $response = $this->apiCall('ProcessCreditCardWithCustomerCode', $parameters);
@@ -126,7 +133,7 @@ class ProcessLink extends Core {
    * @endcode
    *
    * @return mixed
-   *   SOAP Client response or API error.
+   *   Client response array or API error.
    */
   public function createCustomerCodeAndProcessCreditCard($parameters) {
     $response = $this->apiCall('CreateCustomerCodeAndProcessCreditCard', $parameters);
@@ -145,17 +152,6 @@ class ProcessLink extends Core {
    *   Restriction, error or API result.
    */
   public function responseHandler($response, $result_name) {
-    // Check restrictions.
-    if ($this->checkServerRestrictions($this->serverid, $this->restrictedservers)) {
-      return 'Service cannot be used on this server.';
-    }
-
-    $currency = isset($this->parameters['currency']) ? $this->parameters['currency'] : NULL;
-    $mop = isset($this->parameters['mop']) ? $this->parameters['mop'] : NULL;
-    if ($this->checkMOPCurrencyRestrictions($this->serverid, $currency, $mop)) {
-      return 'Service cannot be used with this Method of Payment or Currency.';
-    }
-
     $result = $this->xml2array($response->$result_name->any);
     // Handle auth failure.
     if ($result['STATUS'] == 'Failure') {

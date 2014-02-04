@@ -108,18 +108,19 @@ class CustomerLink extends Core {
    *   Restriction, error or API result.
    */
   public function responseHandler($response, $result_name) {
-    // Check restrictions.
-    if ($this->checkServerRestrictions($this->serverid, $this->restrictedservers)) {
-      return 'Service cannot be used on this server.';
+    $result = $this->xml2array($response->$result_name->any);
+    if ($result['STATUS'] == 'Failure') {
+      return $result['ERRORS'];
     }
-
-    $currency = isset($this->parameters['currency']) ? $this->parameters['currency'] : NULL;
-    $mop = isset($this->parameters['mop']) ? $this->parameters['mop'] : NULL;
-    if ($this->checkMOPCurrencyRestrictions($this->serverid, $currency, $mop)) {
-      return 'Service cannot be used with this Method of Payment or Currency.';
+    // Handle reject codes.
+    else {
+      $authresult = $result['PROCESSRESULT']['AUTHORIZATIONRESULT'];
+      // Process reject codes.
+      if (strpos($authresult, 'Error') !== FALSE) {
+        return $authresult;
+      }
     }
-
-    return $this->xml2array($response->$result_name->any);
+    return $result;
   }
 
 }

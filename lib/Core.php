@@ -153,6 +153,28 @@ class Core {
   }
 
   /**
+   * Check restrictions for service.
+   *
+   * @param array $parameters
+   *   Request parameters.
+   *
+   * @return bool|string
+   *   FALSE if no restrictions. Message if restricted.
+   */
+  protected function checkRestrictions($parameters) {
+    if ($this->checkServerRestrictions($this->serverid, $this->restrictedservers)) {
+      return 'Service cannot be used on this server.';
+    }
+
+    $currency = isset($parameters['currency']) ? $parameters['currency'] : NULL;
+    $mop = isset($parameters['mop']) ? $parameters['mop'] : NULL;
+    if ($this->checkMOPCurrencyRestrictions($this->serverid, $currency, $mop)) {
+      return 'Service cannot be used with this Method of Payment or Currency.';
+    }
+    return FALSE;
+  }
+
+  /**
    * Check server restrictions.
    *
    * @param string $serverid
@@ -184,6 +206,7 @@ class Core {
    *   Result of check
    */
   protected function checkMOPCurrencyRestrictions($serverid, $currency, $mop) {
+    $restricted = FALSE;
     $matrix = $this->getMOPCurrencyMatrix();
     if (isset($matrix[$serverid][$currency])) {
       $filterresult = array_filter($matrix[$serverid][$currency],
@@ -191,11 +214,14 @@ class Core {
         return $item == $mop;
       }
       );
-      return empty($filterresult) ? TRUE : FALSE;
+      if (empty($filterresult)) {
+        $restricted = TRUE;
+      }
+      else {
+        $restricted = FALSE;
+      }
     }
-    else {
-      return TRUE;
-    }
+    return $restricted;
   }
 
   /**
