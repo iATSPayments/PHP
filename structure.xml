@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project title="iATS Payments API PHP Wrapper" version="2.2.0&#10;">
+  <partials/>
+  <file path="Core.php" generated-path="Core.html" hash="3a4d88ae3ec699aea531a0c1e6cab2d8" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="file" line="0" description="iATS API PHP wrapper."/>
+    </docblock>
+    <class final="false" abstract="false" namespace="iATS" line="24" package="iATS&#10;The core class.">
+      <extends/>
+      <name>Core</name>
+      <full_name>\iATS\Core</full_name>
+      <docblock line="24">
+        <description>Class Core</description>
+        <long-description></long-description>
+        <tag name="package" line="24" description="iATS&#10;The core class."/>
+      </docblock>
+      <property static="false" visibility="private" line="32" namespace="iATS" package="iATS&#10;The core class.">
+        <name>$na_server</name>
+        <default>'https://www.iatspayments.com'</default>
+        <docblock line="32">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="32" description="&lt;p&gt;North America server url.&lt;/p&gt;" type="string" variable="$na_server">
+            <type>string</type>
+          </tag>
+          <tag name="var" line="32" description="&lt;p&gt;UK server url.&lt;/p&gt;" type="string" variable="$uk_server">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" line="33" namespace="iATS" package="iATS&#10;The core class.">
+        <name>$uk_server</name>
+        <default>'https://www.uk.iatspayments.com'</default>
+        <docblock line="33">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="51" namespace="iATS" package="iATS&#10;The core class.">
+        <name>$agentcode</name>
+        <default>''</default>
+        <docblock line="51">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="51" description="&lt;p&gt;iATS account agent code.&lt;/p&gt;" type="string" variable="$agentcode">
+            <type>string</type>
+          </tag>
+          <tag name="var" line="51" description="&lt;p&gt;iATS account password.&lt;/p&gt;" type="string" variable="$password">
+            <type>string</type>
+          </tag>
+          <tag name="var" line="51" description="&lt;p&gt;Server identifier.&#10;  \see setServer()&lt;/p&gt;" type="string" variable="$serverid">
+            <type>string</type>
+          </tag>
+          <tag name="var" line="51" description="&lt;p&gt;Server url.&lt;/p&gt;" type="string" variable="$server">
+            <type>string</type>
+          </tag>
+          <tag name="var" line="51" description="&lt;p&gt;Service endpoint&lt;/p&gt;" type="string" variable="$endpoint">
+            <type>string</type>
+          </tag>
+          <tag name="var" line="51" description="&lt;p&gt;Requrest parameters&lt;/p&gt;" type="string" variable="$params">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="52" namespace="iATS" package="iATS&#10;The core class.">
+        <name>$password</name>
+        <default>''</default>
+        <docblock line="52">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="53" namespace="iATS" package="iATS&#10;The core class.">
+        <name>$serverid</name>
+        <default>''</default>
+        <docblock line="53">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="54" namespace="iATS" package="iATS&#10;The core class.">
+        <name>$server</name>
+        <default>''</default>
+        <docblock line="54">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="55" namespace="iATS" package="iATS&#10;The core class.">
+        <name>$endpoint</name>
+        <default>''</default>
+        <docblock line="55">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="public" line="67" namespace="iATS" package="iATS&#10;The core class.">
+        <name>$resultname</name>
+        <default>''</default>
+        <docblock line="67">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="67" description="&lt;p&gt;The result name&lt;/p&gt;" type="string" variable="$resultname">
+            <type>string</type>
+          </tag>
+          <tag name="var" line="67" description="&lt;p&gt;Format&lt;/p&gt;" type="string" variable="$format">
+            <type>string</type>
+          </tag>
+          <tag name="var" line="67" description="&lt;p&gt;Restricted servers array&#10;  \see checkServerRestrictions()&lt;/p&gt;" type="array" variable="$restrictedservers">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="public" line="68" namespace="iATS" package="iATS&#10;The core class.">
+        <name>$format</name>
+        <default>''</default>
+        <docblock line="68">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="public" line="69" namespace="iATS" package="iATS&#10;The core class.">
+        <name>$restrictedservers</name>
+        <default>array()</default>
+        <docblock line="69">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="iATS" line="82" package="iATS&#10;The core class.">
+        <name>__construct</name>
+        <full_name>\iATS\Core::__construct()</full_name>
+        <docblock line="82">
+          <description>IATS class constructor.</description>
+          <long-description></long-description>
+          <tag name="param" line="82" description="&lt;p&gt;iATS account agent code.&lt;/p&gt;" type="string" variable="$agentcode">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="82" description="&lt;p&gt;iATS account password.&lt;/p&gt;" type="string" variable="$password">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="82" description="&lt;p&gt;Server indentifier.&#10;  \see setServer()&lt;/p&gt;" type="string" variable="$serverid">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$agentcode</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$password</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$serverid</name>
+          <default>'NA'</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="iATS" line="100" package="iATS&#10;The core class.">
+        <name>getSoapClient</name>
+        <full_name>\iATS\Core::getSoapClient()</full_name>
+        <docblock line="100">
+          <description>Create SoapClient object.</description>
+          <long-description></long-description>
+          <tag name="param" line="100" description="&lt;p&gt;Service endpoint&lt;/p&gt;" type="string" variable="$endpoint">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="100" description="&lt;p&gt;SoapClient options&#10; \see &lt;a href=&quot;http://www.php.net/manual/en/soapclient.soapclient.php&quot;&gt;http://www.php.net/manual/en/soapclient.soapclient.php&lt;/a&gt;&lt;/p&gt;" type="array" variable="$options">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="100" description="Returns IATS SoapClient object" type="\SoapClient">
+            <type link="SoapClient.html">\SoapClient</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$endpoint</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$options</name>
+          <default>array('trace' =&gt; TRUE)</default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="iATS" line="114" package="iATS&#10;The core class.">
+        <name>setServer</name>
+        <full_name>\iATS\Core::setServer()</full_name>
+        <docblock line="114">
+          <description>Set the server to use based on a server id.</description>
+          <long-description></long-description>
+          <tag name="param" line="114" description="&lt;p&gt;Server identifider ('UK' or 'NA'.)&lt;/p&gt;" type="string" variable="$serverid">
+            <type>string</type>
+          </tag>
+          <tag name="throws" line="114" description="" type="\Exception">
+            <type link="Exception.html">\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$serverid</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="iATS" line="141" package="iATS&#10;The core class.">
+        <name>apiCall</name>
+        <full_name>\iATS\Core::apiCall()</full_name>
+        <docblock line="141">
+          <description>Make web service requests to the iATS API.</description>
+          <long-description></long-description>
+          <tag name="param" line="141" description="&lt;p&gt;The name of the method to call.&lt;/p&gt;" type="string" variable="$method">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="141" description="&lt;p&gt;Parameters to pass the API.&lt;/p&gt;" type="array" variable="$parameters">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="141" description="XML object or boolean." type="object">
+            <type>object</type>
+          </tag>
+          <tag name="throws" line="141" description="" type="\SoapFault">
+            <type link="SoapFault.html">\SoapFault</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$method</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$parameters</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="iATS" line="164" package="iATS&#10;The core class.">
+        <name>checkRestrictions</name>
+        <full_name>\iATS\Core::checkRestrictions()</full_name>
+        <docblock line="164">
+          <description>Check restrictions for service.</description>
+          <long-description></long-description>
+          <tag name="param" line="164" description="&lt;p&gt;Request parameters.&lt;/p&gt;" type="array" variable="$parameters">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="164" description="FALSE if no restrictions. Message if restricted." type="bool|string">
+            <type>bool</type>
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$parameters</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="iATS" line="188" package="iATS&#10;The core class.">
+        <name>checkServerRestrictions</name>
+        <full_name>\iATS\Core::checkServerRestrictions()</full_name>
+        <docblock line="188">
+          <description>Check server restrictions.</description>
+          <long-description></long-description>
+          <tag name="param" line="188" description="&lt;p&gt;Server identifier&lt;/p&gt;" type="string" variable="$serverid">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="188" description="&lt;p&gt;Restricted servers array&lt;/p&gt;" type="array" variable="$restrictedservers">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="188" description="Result of server restricted check" type="bool">
+            <type>bool</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$serverid</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$restrictedservers</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="iATS" line="208" package="iATS&#10;The core class.">
+        <name>checkMOPCurrencyRestrictions</name>
+        <full_name>\iATS\Core::checkMOPCurrencyRestrictions()</full_name>
+        <docblock line="208">
+          <description>Check Method of Payment (MOP) is available based on server and currency.</description>
+          <long-description></long-description>
+          <tag name="param" line="208" description="&lt;p&gt;Server identifier&lt;/p&gt;" type="string" variable="$serverid">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="208" description="&lt;p&gt;Currency&lt;/p&gt;" type="string" variable="$currency">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="208" description="&lt;p&gt;Method of Payment&lt;/p&gt;" type="string" variable="$mop">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="208" description="Result of check" type="bool">
+            <type>bool</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$serverid</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$currency</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$mop</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="iATS" line="233" package="iATS&#10;The core class.">
+        <name>getMOPCurrencyMatrix</name>
+        <full_name>\iATS\Core::getMOPCurrencyMatrix()</full_name>
+        <docblock line="233">
+          <description>MOP Currency matrix.</description>
+          <long-description></long-description>
+          <tag name="return" line="233" description="Array of Server/Currency/MOP" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="iATS" line="267" package="iATS&#10;The core class.">
+        <name>xml2array</name>
+        <full_name>\iATS\Core::xml2array()</full_name>
+        <docblock line="267">
+          <description>Create array from XML string.</description>
+          <long-description></long-description>
+          <tag name="param" line="267" description="&lt;p&gt;An XML string to be processed.&lt;/p&gt;" type="string" variable="$xmlstring">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="267" description="Array." type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$xmlstring</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="iATS" line="282" package="iATS&#10;The core class.">
+        <name>reject</name>
+        <full_name>\iATS\Core::reject()</full_name>
+        <docblock line="282">
+          <description>Reject code lookup array.</description>
+          <long-description></long-description>
+          <tag name="param" line="282" description="&lt;p&gt;Reject codes and their meaning.&lt;/p&gt;" type="int" variable="$rejectcode">
+            <type>int</type>
+          </tag>
+          <tag name="return" line="282" description="Returns reject code meaning." type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$rejectcode</name>
+          <default></default>
+          <type>int</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="33" code="PPC:ERR-50007">No summary for property $uk_server</error>
+      <error line="52" code="PPC:ERR-50007">No summary for property $password</error>
+      <error line="53" code="PPC:ERR-50007">No summary for property $serverid</error>
+      <error line="54" code="PPC:ERR-50007">No summary for property $server</error>
+      <error line="55" code="PPC:ERR-50007">No summary for property $endpoint</error>
+      <error line="68" code="PPC:ERR-50007">No summary for property $format</error>
+      <error line="69" code="PPC:ERR-50007">No summary for property $restrictedservers</error>
+    </parse_markers>
+    <source>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</source>
+  </file>
+  <file path="CustomerLink.php" generated-path="CustomerLink.html" hash="09a2a6e5d3b5013defb211ccefd44620" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="file" line="0" description=""/>
+    </docblock>
+    <class final="false" abstract="false" namespace="iATS" line="13" package="iATS">
+      <extends>\iATS\Core</extends>
+      <name>CustomerLink</name>
+      <full_name>\iATS\CustomerLink</full_name>
+      <docblock line="13">
+        <description>Class CustomerLink</description>
+        <long-description></long-description>
+        <tag name="package" line="13" description="iATS"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="iATS" line="25" package="iATS">
+        <name>__construct</name>
+        <full_name>\iATS\CustomerLink::__construct()</full_name>
+        <docblock line="25">
+          <description>CustomerLink constructor.</description>
+          <long-description></long-description>
+          <tag name="param" line="25" description="&lt;p&gt;iATS account agent code.&lt;/p&gt;" type="string" variable="$agentcode">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="25" description="&lt;p&gt;iATS account password.&lt;/p&gt;" type="string" variable="$password">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="25" description="&lt;p&gt;Server identifier (Defaults to 'NA')&#10;  \see serServer()&lt;/p&gt;" type="string" variable="$serverid">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$agentcode</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$password</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$serverid</name>
+          <default>'NA'</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="iATS" line="49" package="iATS">
+        <name>getCustomerCodeDetail</name>
+        <full_name>\iATS\CustomerLink::getCustomerCodeDetail()</full_name>
+        <docblock line="49">
+          <description>Get Customer Code Detail.</description>
+          <long-description></long-description>
+          <tag name="param" line="49" description="&lt;p&gt;An associative array with the following possible values.&lt;/p&gt;" type="array" variable="$parameters">
+            <type>array</type>
+          </tag>
+          <tag name="code" line="49" description="array(&#10;    'customerIPAddress' =&gt; '',&#10;    'customerCode' =&gt; 'A10396688',&#10;    // Not needed for request.&#10;    'mop' =&gt; 'VISA',&#10;    'currency' =&gt; 'USD',&#10;  );"/>
+          <tag name="endcode" line="49" description=""/>
+          <tag name="return" line="49" description="Client response array or API error." type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$parameters</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="iATS" line="94" package="iATS">
+        <name>createCreditCardCustomerCode</name>
+        <full_name>\iATS\CustomerLink::createCreditCardCustomerCode()</full_name>
+        <docblock line="94">
+          <description>Create Credit Card Customer Code.</description>
+          <long-description></long-description>
+          <tag name="param" line="94" description="&lt;p&gt;An associative array with the following possible values.&lt;/p&gt;" type="array" variable="$parameters">
+            <type>array</type>
+          </tag>
+          <tag name="code" line="94" description="array(&#10;    'customerIPAddress' =&gt; '',&#10;    'customerCode' =&gt; '',&#10;    'firstName' =&gt; 'Test',&#10;    'lastName' =&gt; 'Account',&#10;    'companyName' =&gt; 'Test Co.',&#10;    'address' =&gt; '1234 Any Street',&#10;    'city' =&gt; 'Schenectady',&#10;    'state' =&gt; 'NY',&#10;    'zipCode' =&gt; '12345',&#10;    'phone' =&gt; '555-555-1234',&#10;    'fax' =&gt; '555-555-4321',&#10;    'alternatePhone' =&gt; '555-555-5555',&#10;    'email' =&gt; 'email@test.co',&#10;    'comment' =&gt; 'Customer code creation test.',&#10;    'recurring' =&gt; FALSE,&#10;    'amount' =&gt; '5',&#10;    'beginDate' =&gt; 946684800,&#10;    'endDate' =&gt; 946771200,&#10;    'scheduleType' =&gt; 'Annually',&#10;    'scheduleDate' =&gt; '',&#10;    'creditCardCustomerName' =&gt; 'Test Account',&#10;    'creditCardNum' =&gt; '4222222222222220',&#10;    'creditCardExpiry' =&gt; '12/17',&#10;    'mop' =&gt; 'VISA',&#10;    // Not required.&#10;    'currency' =&gt; 'USD',&#10;  );"/>
+          <tag name="endcode" line="94" description=""/>
+          <tag name="return" line="94" description="Client response array or API error." type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$parameters</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="iATS" line="110" package="iATS">
+        <name>responseHandler</name>
+        <full_name>\iATS\CustomerLink::responseHandler()</full_name>
+        <docblock line="110">
+          <description>Response Handler for CustomerLink calls.</description>
+          <long-description></long-description>
+          <tag name="param" line="110" description="&lt;p&gt;Restriction, error or API result.&lt;/p&gt;" type="array" variable="$response">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="110" description="&lt;p&gt;API result name.&lt;/p&gt;" type="string" variable="$result_name">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="110" description="Restriction, error or API result." type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$response</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$result_name</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
+    <source>eJzdVm1P40YQ/p5fsZWQHFBICC8HdxTurJDjIqEQxeGq9npCiz0h27PX7noNSSv+e2d3vY43GNpTv1RFCnE8M8+8PM+O/eP7bJG1ejs7LbJDPsxZDHjRa7U4TSDPaAiE+bPgtGVdBjHNczIocpkmIK4Y/4Z3dSw6f6P3xl9jhM9cCSwl8AhvpgLIny1CNCpRuHW3MOW5FEUoU9HVZuODKQRNCJoYvydbmIzLMI3AWInOTGgYpgWXRFuJMncbozMs7jEVUWOwNTaH5iAeQLAqNNC/CYswI5szvGxfwJwWscyJTIk39r1t6/trDkAQwMS0zf0e/s+Ku5iFZF7wULKUk9vbagrtdauddeGddSHkzCTRI0UoKtD93bvvgdg+1aFbcsHy3XMkKUsZDgKBe2OQl1RCr05Rl+bJ8v1PwcWVpwKfWnUuL0FWfCLVEZALkJTFDVxSIehKFYQ/QILI7Zx8TrDINGRUsgco/R6ZXBC5ADJP4zh9VGRkaZ6zuxjIA40LyJ0UdW1ogLb9RYgXlgWOJn4UCchzj5ydE8/rNPioHozZ7+8dvH3z5uSk7tfrkXEqCQeIIMLaBBHwOxYjuzWsJM0MxOdR4G9kEchXuDLmm+BibTWsYCtISNVNeUuALAQnCVtCpcRBzJTqsZ0Mmbdjw4L8yYiAEPY8NQnuHuSg1q+hrF2jxsprq4I/s3qhGRvQOG57l00gXqfOcKm0svwSwEJ+ojyK8VxUOTqkGfNzfwo5njBv+7n+BgJQr+orYqhEKiJXjv8DHTrmORO5HGPhxjZD5Tl23MM1s292nJsgTTLKVy4GzqrreNF6gf39g0OczooEUgBswDFZqjkIF8AhlDRaOR65RIaMy/hnx/IHy9ZtqiRHjjlbpLw0Hh0d7aqPcnLnQZeux+HBft/tJEaOOZYweQ6HHzclJErD2kdffpDqaIfp5gQTPHrGrVKbYp6ESo7qhOk4J0qAOvyoHx330b8Khk6ZiWbKlOcE3sE94xd2hm8PcSUdnuztOWXzqO5wfNzfdx1y5CYqYpitMisNzgs8xhtUlW4V2IY29SlTh8x2vaGiRr1VQeMiMb6H+87f3gv+w2XGxMqqo9c/dvxeXLLlilZ7mSFWfTH/R9avVgkMnk1THYbv3cKDV7D+5TJ+Dfq1nTy11Zag+jHpvvRh6fnLq9nWYGeNgPg6pmfXMbO1gxa6iOZXN2O7VW+31YavQoi63f07kv9Z4iaKX5lrvbA6w6qqit9lEu+b50cVuXtej0QJ8FVJKZuTdmn74gUzf3YTeF/JGb7QfcQdVgioXhfX9Fv34XR6PUV3g/TUKk+QqRu9f8ONrneb4YtAnEMFtkULuViXbjEn0+vBMAimw+DmauZ9/eL5N7NP19PRL/5sdD22t09LEMw2EWmIT5uGdKY5ZAEfuu1aOpTnUPGBnf2Ajep1um5y3eY6wqZ7qjXqDqNU8lPrLxVCyro=</source>
+  </file>
+  <file path="ProcessLink.php" generated-path="ProcessLink.html" hash="0a5bcb1043424bced9813df687942dbb" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="file" line="0" description="ProcessLink class file."/>
+    </docblock>
+    <class final="false" abstract="false" namespace="iATS" line="14" package="iATS">
+      <extends>\iATS\Core</extends>
+      <name>ProcessLink</name>
+      <full_name>\iATS\ProcessLink</full_name>
+      <docblock line="14">
+        <description>Class ProcessLink</description>
+        <long-description></long-description>
+        <tag name="package" line="14" description="iATS"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="iATS" line="26" package="iATS">
+        <name>__construct</name>
+        <full_name>\iATS\ProcessLink::__construct()</full_name>
+        <docblock line="26">
+          <description>ProcessLink constructor.</description>
+          <long-description></long-description>
+          <tag name="param" line="26" description="&lt;p&gt;iATS account agent code.&lt;/p&gt;" type="string" variable="$agentcode">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="26" description="&lt;p&gt;iATS account password.&lt;/p&gt;" type="string" variable="$password">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="26" description="&lt;p&gt;Server identifier (Defaults to 'NA').&#10;  \see setServer()&lt;/p&gt;" type="string" variable="$serverid">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$agentcode</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$password</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$serverid</name>
+          <default>'NA'</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="iATS" line="61" package="iATS">
+        <name>processCreditCard</name>
+        <full_name>\iATS\ProcessLink::processCreditCard()</full_name>
+        <docblock line="61">
+          <description>Process a credit card transaction.</description>
+          <long-description></long-description>
+          <tag name="param" line="61" description="&lt;p&gt;An associative array with the following possible values.&lt;/p&gt;" type="array" variable="$parameters">
+            <type>array</type>
+          </tag>
+          <tag name="code" line="61" description="array(&#10;    'customerIPAddress' =&gt; '',&#10;    'invoiceNum' =&gt; '00000001',&#10;    'creditCardNum' =&gt; '4222222222222220',&#10;    'creditCardExpiry' =&gt; '12/17',&#10;    'cvv2' =&gt; '000',&#10;    'mop' =&gt; 'VISA',&#10;    'firstName' =&gt; 'Test',&#10;    'lastName' =&gt; 'Account',&#10;    'address' =&gt; '1234 Any Street',&#10;    'city' =&gt; 'Schenectady',&#10;    'state' =&gt; 'NY',&#10;    'zipCode' =&gt; '12345',&#10;    'total' =&gt; '2',&#10;    'comment' =&gt; 'Process CC test.',&#10;    // Not needed for request.&#10;    'currency' =&gt; 'USD',&#10;  );"/>
+          <tag name="endcode" line="61" description=""/>
+          <tag name="return" line="61" description="Client response array or API error." type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$parameters</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="iATS" line="103" package="iATS">
+        <name>processCreditCardWithCustomerCode</name>
+        <full_name>\iATS\ProcessLink::processCreditCardWithCustomerCode()</full_name>
+        <docblock line="103">
+          <description>Process a credit card transaction with Customer Code.</description>
+          <long-description></long-description>
+          <tag name="param" line="103" description="&lt;p&gt;An associative array with the following possible values.&lt;/p&gt;" type="array" variable="$parameters">
+            <type>array</type>
+          </tag>
+          <tag name="code" line="103" description="array(&#10;    'customerIPAddress' =&gt; '',&#10;    'invoiceNum' =&gt; '00000001',&#10;    'creditCardNum' =&gt; '4222222222222220',&#10;    'creditCardExpiry' =&gt; '12/17',&#10;    'cvv2' =&gt; '000',&#10;    'mop' =&gt; 'VISA',&#10;    'firstName' =&gt; 'Test',&#10;    'lastName' =&gt; 'Account',&#10;    'address' =&gt; '1234 Any Street',&#10;    'city' =&gt; 'Schenectady',&#10;    'state' =&gt; 'NY',&#10;    'zipCode' =&gt; '12345',&#10;    'total' =&gt; '2',&#10;    'comment' =&gt; 'Process CC test.',&#10;    // Not needed for request.&#10;    'currency' =&gt; 'USD',&#10;  );"/>
+          <tag name="endcode" line="103" description=""/>
+          <tag name="return" line="103" description="Client response array or API error." type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$parameters</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="iATS" line="138" package="iATS">
+        <name>createCustomerCodeAndProcessCreditCard</name>
+        <full_name>\iATS\ProcessLink::createCustomerCodeAndProcessCreditCard()</full_name>
+        <docblock line="138">
+          <description>Process a credit card transaction and return Customer Code.</description>
+          <long-description></long-description>
+          <tag name="param" line="138" description="&lt;p&gt;An associative array with the following possible values.&lt;/p&gt;" type="array" variable="$parameters">
+            <type>array</type>
+          </tag>
+          <tag name="code" line="138" description="$request = array(&#10;    'customerIPAddress' =&gt; '',&#10;    'invoiceNum' =&gt; '00000001',&#10;    'creditCardNum' =&gt; '4222222222222220',&#10;    'creditCardExpiry' =&gt; '12/17',&#10;    'cvv2' =&gt; '000',&#10;    'mop' =&gt; 'VISA',&#10;    'firstName' =&gt; 'Test',&#10;    'lastName' =&gt; 'Account',&#10;    'address' =&gt; '1234 Any Street',&#10;    'city' =&gt; 'Schenectady',&#10;    'state' =&gt; 'NY',&#10;    'zipCode' =&gt; '12345',&#10;    'total' =&gt; '2',&#10;    'comment' =&gt; 'Process CC test.',&#10;    // Not needed for request.&#10;    'currency' =&gt; 'USD',&#10;  );"/>
+          <tag name="endcode" line="138" description=""/>
+          <tag name="return" line="138" description="Client response array or API error." type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$parameters</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="iATS" line="154" package="iATS">
+        <name>responseHandler</name>
+        <full_name>\iATS\ProcessLink::responseHandler()</full_name>
+        <docblock line="154">
+          <description>Response Handler for ProcessLink calls.</description>
+          <long-description></long-description>
+          <tag name="param" line="154" description="&lt;p&gt;SOAP response.&lt;/p&gt;" type="array|bool" variable="$response">
+            <type>array</type>
+            <type>bool</type>
+          </tag>
+          <tag name="param" line="154" description="&lt;p&gt;API result name.&lt;/p&gt;" type="string" variable="$result_name">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="154" description="Restriction, error or API result." type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$response</name>
+          <default></default>
+          <type>array|bool</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$result_name</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
+    <source>eJztWG1P40YQ/p5fMUVIDigkkF5V9a5wtUyulxYFFIc7tZSiZT2BPRyvu7sO0Jb/3rHX6xcI9NB9uQ9EIoo9z7zPPF7z49v0Mu0MNjc7sAk/zUWM+Y8jJTlqfSCSK+Ax0xpySZ9Eg04nYQvUKeMIwp+FbzpOOyiADVW6WVgl7BW7sPDCBL+PBLwxmEQaAqkQ/ukAFDbhfigy0UZl3EjVL6QWQg4UWwCJRHIB6+QqMVxGaKVQ+AXGucwSA4UUcnF/pXZKoV1LFa1UdsLVqhrVEpWoVMPiGkREHsVc0M/uPs5ZFhsNRoI38b2NvgP/oRFBo7FK3Y3i/oC+0+w8FhzmWcKNkAmcnVVl6Na59urIe3UksGu9FCUlU0wR/PXr55jYeFOorptLobf2qEmpFFQJMjyYoPmZGRw0WtRnenHz9mO4f+DlenedFa0EBlxhJKgLTEVgFEs0K3Jb0VSmFLvNA6MLNKi0q5efAAUruWBGLLHEXQtzCeYSYS7jWF7nXUml1uI8RliyOEPdctEcksJA110BeDzTRi5QjY/8KFIUtwe7e+B5vQZGJEspOE6yhRVu289OC2STDSjXCvdq2PpsP4If3aRC3VqVneFg5/s2brkcVm5bkoVMreDDOPRbkrlQ2kyolFY+Q21aclrMhti3Y99CsGYxdobfvqJO3EJoFGIbyIUpQw/5JSbIDYtuWwhtaHosZPJbS/K3SAPqTe3ku5bYSMNiKxy2fcrFgqbZity4BQEYyrPfRA4GMJEGEsQII5oWBQr/ynJUawIU7QsvszgO92sLditohGghqikqbyk0mUpgIW6wooIgFjntUOVS2jw3ruTWPxoDKuUIbdXCpzaPoBqLbmMd3GqX+0kOiIy4wcjur6ZFtZPtHf/quV2uUSQuNalH/GpaCsitbnmximIO3Yay8w1QptyQWYW74htjjRV0vapB5ZqlImBx3HUdqzP1evAwitpdlXNh8D1Lopios/LQg4cWP+xQjsTArhZ3z2cpyzJBSQ8QVI+SF+J6Ia4X4nqCuD7SlLu9ycu0ksieww/3Da7kiy9gi/v22+zxXN4gjy6Yr4Y91svxqZ4TL0TyQiRfG5HQPFCdmovoJ9GDZX0umwSfZfULKeXznDzFK1OXQWm+6FXrrZiy0Y9xyL/nUsZ1GVw3wkP/qOrF6rdZVUR0lr/tV+RDrbK3Ib/d/7+eN46TPdtj13Br5fGOP1HSZmDNNudRVU2+WcRDy2eV5tZeU5PmILktu0mrYP0Ay4hI50zEmbLZVUde0jvxwpk/Ow69U9il1993FuatPAUX8NF0ejglePMsXPtS+IkYofhPhO3evXNyHkudlrN5ND0MRmE4HYXHBzPv9MTzj2fvD6fj3/3Z+HDibruDMnlzHPDQnU2OOkTPim7DHU3tdPTLKJhRat9Qpu/8g3BUZ1lUO7d1ltui2FKFF2cK05hx7K4NTv7c3vrhdLDWgzX6a9itju8P9yc3122arbB3Ze1aa2ft2VW56/wHpo5ikw==</source>
+  </file>
+  <file path="ReportLink.php" generated-path="ReportLink.html" hash="27f2401f9d82c710f9504883cbf7b335" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="file" line="0" description=""/>
+    </docblock>
+    <class final="false" abstract="false" namespace="iATS" line="13" package="iATS">
+      <extends>\iATS\Core</extends>
+      <name>ReportLink</name>
+      <full_name>\iATS\ReportLink</full_name>
+      <docblock line="13">
+        <description>Class ReportLink</description>
+        <long-description></long-description>
+        <tag name="package" line="13" description="iATS"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="iATS" line="26" package="iATS">
+        <name>__construct</name>
+        <full_name>\iATS\ReportLink::__construct()</full_name>
+        <docblock line="26">
+          <description>ReportLink constructor.</description>
+          <long-description></long-description>
+          <tag name="param" line="26" description="&lt;p&gt;iATS account agent code.&lt;/p&gt;" type="string" variable="$agentcode">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="26" description="&lt;p&gt;iATS account password.&lt;/p&gt;" type="string" variable="$password">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="26" description="&lt;p&gt;Server identifier (Defaults to 'NA').&#10;  \see setServer()&lt;/p&gt;" type="string" variable="$serverid">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$agentcode</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$password</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$serverid</name>
+          <default>'NA'</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="iATS" line="47" package="iATS">
+        <name>getCreditCardReject</name>
+        <full_name>\iATS\ReportLink::getCreditCardReject()</full_name>
+        <docblock line="47">
+          <description>Get Credit Card Reject report.</description>
+          <long-description></long-description>
+          <tag name="param" line="47" description="&lt;p&gt;An associative array with the following possible values.&lt;/p&gt;" type="array" variable="$parameters">
+            <type>array</type>
+          </tag>
+          <tag name="code" line="47" description="array(&#10;    'customerIPAddress' =&gt; '',&#10;    'date' =&gt; 946771200,&#10;  );"/>
+          <tag name="endcode" line="47" description=""/>
+          <tag name="return" line="47" description="Report array or API error." type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$parameters</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="iATS" line="68" package="iATS">
+        <name>getCreditCardRejectCSV</name>
+        <full_name>\iATS\ReportLink::getCreditCardRejectCSV()</full_name>
+        <docblock line="68">
+          <description>Get Credit Card Reject CSV report.</description>
+          <long-description></long-description>
+          <tag name="param" line="68" description="&lt;p&gt;An associative array with the following possible values.&lt;/p&gt;" type="array" variable="$parameters">
+            <type>array</type>
+          </tag>
+          <tag name="code" line="68" description="$request = array(&#10;    'customerIPAddress' =&gt; '',&#10;    'date' =&gt; 946771200,&#10;  );"/>
+          <tag name="endcode" line="68" description=""/>
+          <tag name="return" line="68" description="Report CSV (string) or API error." type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$parameters</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="iATS" line="89" package="iATS">
+        <name>responseHandler</name>
+        <full_name>\iATS\ReportLink::responseHandler()</full_name>
+        <docblock line="89">
+          <description>Response Handler for ReportLink calls.</description>
+          <long-description></long-description>
+          <tag name="param" line="89" description="&lt;p&gt;Response&lt;/p&gt;" type="array" variable="$response">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="89" description="&lt;p&gt;Result string&lt;/p&gt;" type="string" variable="$result">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="89" description="&lt;p&gt;Output format.&#10;  'AR' will return array(),&#10;  'CSV' will return a comma delimited data string with headers.&lt;/p&gt;" type="string" variable="$format">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="89" description="Response" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$response</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$result</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$format</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
+    <source>eJzNVt9v2zYQfvdfcQ8BKAeO3RZFiyVLWs9Ns2yeE9hOV6ANAkY6x1wpUSOpJMXg/31HUr+cqt1a9KF5SCTy7vvu7vtE5ucX+TrvjXZ3e7ALL1dCIj2Mer2Mp2hyHiOI8XJx0KtCJpIbA3PMlbZTkX2gNZ9JoR/4TYj2CPGDQMB7i1liYKI0wj+9HoCHBMpuRcUqM1YXsVV66DdDBOFrngJtiewGdogps7FKMOyCpwUex6rILPhdcNvDzuycKrtTOulMrja7Uw3qW9SiTl34dxAJMYqVoMfoFa54Ia0Bq4DNxqw/rILfG0QwaENS1PfrI/qdF9dSxLAqstgKlcHVVT2GqOl10FQ+aCqBw8BCIyU4Kl9T+P7+10D0D3zqjl0Ls3dEIuVK0CQIeDRDe8ItjhqFhtyk9y/+XLyaMpe22RLyBC1MNCaC/nCdkLB/YWxB++wOPbnW/KOriV7QojbVqMYZUJ0qFtyKWyzj7oRdg10jrJSU6s4JkitjxLVEuOWyQLNF0faHB4iqNwAWF8aqFPXp+ThJNBrD4PAIGBu0YhLq3C//9PTZ8+ePnzx6VO+GkREJTavmKZc02kJnkIp7rH0S5lf2oTSMz08Bta5M3mWCG7RhlG6SYZBRa1KV4DtUfE5SI+lVKshzMeFSRuzkUwg2aI+7VL6suEyvAH/lWSLJpzXDALoQ3zyeoyHDEzIbz1n/f7tisnjzAziDuvub9p3dfxCTuLlE4cDpf7tXCKXTLrXGRBBbTMIhYOr22cXvrDoQvs5axPj93UWgbYM5jg6HzatCS1Tygd66Vahm83mXVSU0QrTfH1wB2hfTCqW3crMrHnaolpTXCWeFzQsLYbG+GtyXQy6WsppWEKNfe8l3vh1BN1yackhQilSQkkBW5BWt/yLWyBPSYfjfxmv12+WvL4hWzmNQ9dk6lzzRYTPevaMymHyUfQzmMFRovIboQTaQZCSnG8t+uQAVVePG+1Q+CYP6DEfpQPcjVhCVW+/YYjleXizYJRzSJfeaC1loZA13bX53B/7CE396uRueS8MayE39hNLgVrZjE4bu+obzt7OL+Ww8nR+fn82X7PIdW87YZX+btKH9ctpBK2fTev6kjlYfMxUMEnQhu7hvxM0R/BG2DdnRY/UZO7yD3pZKzpstmUiWK5SYov8nIsM7eL8QaS7x7R/T47AelfZoCVTiXxPis6dXCboTM2pj7R29Pp0elxmbcAZs/gWGoizB</source>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="iATS" full_name="iATS"/>
+  <package name="iATS&#10;The core class." full_name="iATS&#10;The core class."/>
+  <namespace name="iATS" full_name="iATS"/>
+  <deprecated count="0"/>
+</project>
