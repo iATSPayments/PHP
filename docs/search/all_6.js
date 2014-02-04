@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['iats',['iATS',['../namespacei_a_t_s.html',1,'']]],
-  ['iats_20api_20php_20wrapper',['iATS API PHP wrapper',['../index.html',1,'']]]
+  ['processcreditcard',['processCreditCard',['../classi_a_t_s_1_1_process_link.html#a957317354e1baccb4b79e63c6b258820',1,'iATS::ProcessLink']]],
+  ['processcreditcardwithcustomercode',['processCreditCardWithCustomerCode',['../classi_a_t_s_1_1_process_link.html#a9c2e1e1bc6678ff1e0ab250d71b05b45',1,'iATS::ProcessLink']]],
+  ['processlink',['ProcessLink',['../classi_a_t_s_1_1_process_link.html',1,'iATS']]],
+  ['processlink_2ephp',['ProcessLink.php',['../_process_link_8php.html',1,'']]]
 ];

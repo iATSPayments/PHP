@@ -148,8 +148,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a4afde19f7d1d506d2cea3e352e6be2cc inherit pro_methods_classi_a_t_s_1_1_core"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34b37e0885f97eb360f1813208f84bb9 inherit pro_methods_classi_a_t_s_1_1_core"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classi_a_t_s_1_1_core.html#a34b37e0885f97eb360f1813208f84bb9">apiCall</a> ($method, $parameters)</td></tr>
 <tr class="separator:a34b37e0885f97eb360f1813208f84bb9 inherit pro_methods_classi_a_t_s_1_1_core"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d27c40b4131bc5b0a7eb5788810702a inherit pro_methods_classi_a_t_s_1_1_core"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classi_a_t_s_1_1_core.html#a1d27c40b4131bc5b0a7eb5788810702a">defaultparams</a> ()</td></tr>
-<tr class="separator:a1d27c40b4131bc5b0a7eb5788810702a inherit pro_methods_classi_a_t_s_1_1_core"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0df9f41b9366ed0dcaca311ee763c67c inherit pro_methods_classi_a_t_s_1_1_core"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classi_a_t_s_1_1_core.html#a0df9f41b9366ed0dcaca311ee763c67c">checkRestrictions</a> ($parameters)</td></tr>
+<tr class="separator:a0df9f41b9366ed0dcaca311ee763c67c inherit pro_methods_classi_a_t_s_1_1_core"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a034d12d3f005b3e5e25720cae377b79e inherit pro_methods_classi_a_t_s_1_1_core"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classi_a_t_s_1_1_core.html#a034d12d3f005b3e5e25720cae377b79e">checkServerRestrictions</a> ($serverid, $restrictedservers)</td></tr>
 <tr class="separator:a034d12d3f005b3e5e25720cae377b79e inherit pro_methods_classi_a_t_s_1_1_core"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea9970b2019013f840921e55da97f913 inherit pro_methods_classi_a_t_s_1_1_core"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classi_a_t_s_1_1_core.html#aea9970b2019013f840921e55da97f913">checkMOPCurrencyRestrictions</a> ($serverid, $currency, $mop)</td></tr>
@@ -171,8 +171,6 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a3533f6ff5bb8484fbbdd7b2c73010008 inherit pro_attribs_classi_a_t_s_1_1_core"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad583bb676d00d6597b45d01de5257983 inherit pro_attribs_classi_a_t_s_1_1_core"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classi_a_t_s_1_1_core.html#ad583bb676d00d6597b45d01de5257983">$endpoint</a> = ''</td></tr>
 <tr class="separator:ad583bb676d00d6597b45d01de5257983 inherit pro_attribs_classi_a_t_s_1_1_core"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab79d246480c4ac3a0db6bbceca92ad32 inherit pro_attribs_classi_a_t_s_1_1_core"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classi_a_t_s_1_1_core.html#ab79d246480c4ac3a0db6bbceca92ad32">$parameters</a> = array()</td></tr>
-<tr class="separator:ab79d246480c4ac3a0db6bbceca92ad32 inherit pro_attribs_classi_a_t_s_1_1_core"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a50fb23ed7ba2e65cede735ce6a4f1671"></a>
@@ -238,14 +236,14 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line">$request = array(</div>
+<div class="fragment"><div class="line">array(</div>
 <div class="line">  <span class="stringliteral">&#39;customerIPAddress&#39;</span> =&gt; <span class="stringliteral">&#39;&#39;</span>,</div>
 <div class="line">  <span class="stringliteral">&#39;customerCode&#39;</span> =&gt; <span class="stringliteral">&#39;A10396688&#39;</span>,</div>
 <div class="line">  <span class="comment">// Not needed for request.</span></div>
 <div class="line">  <span class="stringliteral">&#39;mop&#39;</span> =&gt; <span class="stringliteral">&#39;VISA&#39;</span>,</div>
 <div class="line">  <span class="stringliteral">&#39;currency&#39;</span> =&gt; <span class="stringliteral">&#39;USD&#39;</span>,</div>
 <div class="line">);</div>
-</div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>mixed SOAP Client response or API error. </dd></dl>
+</div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>mixed Client response array or API error. </dd></dl>
 
 </div>
 </div>
@@ -269,7 +267,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line">$request = array(</div>
+<div class="fragment"><div class="line">array(</div>
 <div class="line">  <span class="stringliteral">&#39;customerIPAddress&#39;</span> =&gt; <span class="stringliteral">&#39;&#39;</span>,</div>
 <div class="line">  <span class="stringliteral">&#39;customerCode&#39;</span> =&gt; <span class="stringliteral">&#39;&#39;</span>,</div>
 <div class="line">  <span class="stringliteral">&#39;firstName&#39;</span> =&gt; <span class="stringliteral">&#39;Test&#39;</span>,</div>
@@ -297,7 +295,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">  <span class="comment">// Not required.</span></div>
 <div class="line">  <span class="stringliteral">&#39;currency&#39;</span> =&gt; <span class="stringliteral">&#39;USD&#39;</span>,</div>
 <div class="line">);</div>
-</div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>mixed SOAP Client response or API error. </dd></dl>
+</div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>mixed Client response array or API error. </dd></dl>
 
 </div>
 </div>

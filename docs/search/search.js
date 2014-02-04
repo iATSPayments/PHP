@@ -7,11 +7,11 @@
 
 var indexSectionsWithContent =
 {
-  0: "$_acdgiprsx",
+  0: "$_acgiprsx",
   1: "cpr",
   2: "i",
   3: "cpr",
-  4: "_acdgprsx",
+  4: "_acgprsx",
   5: "$",
   6: "i"
 };

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['setserver',['setServer',['../classi_a_t_s_1_1_core.html#a2896fd14304fcfb69257df247db1325e',1,'iATS::Core']]]
+  ['xml2array',['xml2array',['../classi_a_t_s_1_1_core.html#a72b56b1df589306cc4742397b0dc00e8',1,'iATS::Core']]]
 ];

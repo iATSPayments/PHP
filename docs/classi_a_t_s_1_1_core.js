@@ -4,7 +4,7 @@ var classi_a_t_s_1_1_core =
     [ "getSoapClient", "classi_a_t_s_1_1_core.html#a4afde19f7d1d506d2cea3e352e6be2cc", null ],
     [ "setServer", "classi_a_t_s_1_1_core.html#a2896fd14304fcfb69257df247db1325e", null ],
     [ "apiCall", "classi_a_t_s_1_1_core.html#a34b37e0885f97eb360f1813208f84bb9", null ],
-    [ "defaultparams", "classi_a_t_s_1_1_core.html#a1d27c40b4131bc5b0a7eb5788810702a", null ],
+    [ "checkRestrictions", "classi_a_t_s_1_1_core.html#a0df9f41b9366ed0dcaca311ee763c67c", null ],
     [ "checkServerRestrictions", "classi_a_t_s_1_1_core.html#a034d12d3f005b3e5e25720cae377b79e", null ],
     [ "checkMOPCurrencyRestrictions", "classi_a_t_s_1_1_core.html#aea9970b2019013f840921e55da97f913", null ],
     [ "getMOPCurrencyMatrix", "classi_a_t_s_1_1_core.html#a12a2e57bab5a59280e77134dbabd3c8d", null ],
@@ -17,7 +17,6 @@ var classi_a_t_s_1_1_core =
     [ "$serverid", "classi_a_t_s_1_1_core.html#af91279f2aabee2a9d88f71f281ebfe9a", null ],
     [ "$server", "classi_a_t_s_1_1_core.html#a3533f6ff5bb8484fbbdd7b2c73010008", null ],
     [ "$endpoint", "classi_a_t_s_1_1_core.html#ad583bb676d00d6597b45d01de5257983", null ],
-    [ "$parameters", "classi_a_t_s_1_1_core.html#ab79d246480c4ac3a0db6bbceca92ad32", null ],
     [ "$resultname", "classi_a_t_s_1_1_core.html#a07f27ebde6375529f2c9b2586feaa898", null ],
     [ "$format", "classi_a_t_s_1_1_core.html#a587175885c7f92ee54019f88fb71f82d", null ],
     [ "$restrictedservers", "classi_a_t_s_1_1_core.html#ae72eb3910ec2ffeb50c05487cbd06516", null ]
