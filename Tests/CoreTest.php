@@ -49,11 +49,11 @@ class CoreTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals($response,
       'Agent code has not been set up on the authorization system. Please call iATS at 1-888-955-5455.');
 
-    $service = new CustomerLink($agentcode, $password, 'NA');
+    $iats = new CustomerLink($agentcode, $password, 'NA');
     $response = $iats->getCustomerCodeDetail($request);
-    $this->assertEquals('Bad Credentials', $response);
+    $this->assertEquals('Error : Invalid Username or Password.', $response);
 
-    $service = new ReportLink($agentcode, $password);
+    $iats = new ReportLink($agentcode, $password);
     $response = $iats->getCreditCardReject($request);
     $this->assertEquals('Bad Credentials', $response);
 
