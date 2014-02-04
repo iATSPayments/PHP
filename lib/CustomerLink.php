@@ -44,7 +44,7 @@ class CustomerLink extends Core {
    * @endcode
    *
    * @return mixed
-   *   SOAP Client response or API error.
+   *   Client response array or API error.
    */
   public function getCustomerCodeDetail($parameters) {
     $response = $this->apiCall('GetCustomerCodeDetail', $parameters);
@@ -89,7 +89,7 @@ class CustomerLink extends Core {
    * @endcode
    *
    * @return mixed
-   *   SOAP Client response or API error.
+   *   Client response array or API error.
    */
   public function createCreditCardCustomerCode($parameters) {
     $response = $this->apiCall('CreateCreditCardCustomerCode', $parameters);
