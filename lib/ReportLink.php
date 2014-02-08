@@ -1,6 +1,6 @@
 <?php
 /**
- * @file
+ * ReportLink class file.
  */
 
 namespace iATS;

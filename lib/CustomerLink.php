@@ -1,6 +1,6 @@
 <?php
 /**
- * @file
+ * CustomerLink class file.
  */
 
 namespace iATS;

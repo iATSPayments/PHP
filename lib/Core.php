@@ -1,15 +1,6 @@
 <?php
 /**
- * @file
- * iATS API PHP wrapper.
- */
-
-/*! \mainpage iATS API PHP wrapper
- *
- * \section intro_sec Introduction
- *
- * iATS API PHP wrapper documentation.
- *
+ * Core class file.
  */
 
 namespace iATS;
@@ -18,55 +9,66 @@ namespace iATS;
  * Class Core
  *
  * @package iATS
- *
- * The core class.
  */
 class Core {
-
   /**
    * @var string $na_server
    *   North America server url.
+   */
+  private $na_server = 'https://www.iatspayments.com';
+  /**
    * @var string $uk_server
    *   UK server url.
    */
-  private $na_server = 'https://www.iatspayments.com';
   private $uk_server = 'https://www.uk.iatspayments.com';
 
-  // Protected properties.
   /**
    * @var string $agentcode
    *   iATS account agent code.
+   */
+  protected $agentcode = '';
+  /**
    * @var string $password
    *   iATS account password.
+   */
+  protected $password = '';
+  /**
    * @var string $serverid
    *   Server identifier.
    *   \see setServer()
+   */
+  protected $serverid = '';
+  /**
    * @var string $server
    *   Server url.
+   */
+  protected $server = '';
+  /**
    * @var string $endpoint
    *   Service endpoint
+   */
+  protected $endpoint = '';
+  /**
    * @var string $params
    *   Requrest parameters
    */
-  protected $agentcode = '';
-  protected $password = '';
-  protected $serverid = '';
-  protected $server = '';
-  protected $endpoint = '';
+  protected $params = '';
 
-  // Public properties.
   /**
    * @var string $resultname
    *   The result name
-   * @var string $format
-   *   Format
-   * @var array $restrictedservers
-   *   Restricted servers array
-   *   \see checkServerRestrictions()
    */
   public $resultname = '';
+  /**
+   * @var string $format
+   *   Format
+   */
   public $format = '';
-  public $restrictedservers = array();
+  /**
+   * @var array $restrictedservers
+   *   Restricted servers array
+   */
+  public $restrictedservers = '';
 
   /**
    * IATS class constructor.
@@ -76,8 +78,10 @@ class Core {
    * @param string $password
    *   iATS account password.
    * @param string $serverid
-   *   Server indentifier.
-   *   \see setServer()
+   *   Server indentifier. (Defaults to 'NA')
+   *
+   * @see setServer() For options
+   *
    */
   public function __construct($agentcode, $password, $serverid = 'NA') {
     $this->agentcode = $agentcode;
