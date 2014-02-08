@@ -1,265 +1,1230 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta charset="utf-8">
-<title>iATS Payments API PHP Wrapper » \iATS\ProcessLink</title>
-<meta name="author" content="Mike van Riel">
-<meta name="description" content="">
-<link href="../css/template.css" rel="stylesheet" media="all">
-<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
-<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    iATS Payments API PHP Wrapper &raquo; \iATS\ProcessLink
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
 <body>
-<div class="navbar navbar-fixed-top">
-<div class="navbar-inner"><div class="container">
-<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">iATS Payments API PHP Wrapper</a><div class="nav-collapse"><ul class="nav">
-<li class="dropdown">
-<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
-<li><a>Packages</a></li>
-<li><a href="../packages/iATS.html"><i class="icon-folder-open"></i> iATS</a></li>
-</ul>
-</li>
-<li class="dropdown" id="charts-menu">
-<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
-                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
-</li>
-<li class="dropdown" id="reports-menu">
-<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
-                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
-<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">0</span></a></li>
-<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul></ul></a></li>
-<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
-                <span class="label label-info">0</span></a></li>
-</ul>
-</li>
-</ul></div>
-</div></div>
-<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
-</div>
-<div id="___" class="container">
-<noscript><div class="alert alert-warning">
-                            Javascript is disabled; several features are only available
-                            if Javascript is enabled.
-                        </div></noscript>
-<div class="row">
-<div class="span4">
-<div class="btn-toolbar">
-<div class="btn-group visibility" data-toggle="buttons-checkbox">
-<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
-</div>
-<div class="btn-group view pull-right" data-toggle="buttons-radio">
-<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
-</div>
-</div>
-<ul class="side-nav nav nav-list"><li class="nav-header">
-<i title="Methods" class="icon-custom icon-method"></i> Methods
-                    <ul>
-<li class="method public "><a href="#method___construct" title="__construct() :: ProcessLink constructor."><span class="description">ProcessLink constructor.</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method_createCustomerCodeAndProcessCreditCard" title="createCustomerCodeAndProcessCreditCard() :: Process a credit card transaction and return Customer Code."><span class="description">Process a credit card transaction and return Customer Code.</span><pre>createCustomerCodeAndProcessCreditCard()</pre></a></li>
-<li class="method public "><a href="#method_processCreditCard" title="processCreditCard() :: Process a credit card transaction."><span class="description">Process a credit card transaction.</span><pre>processCreditCard()</pre></a></li>
-<li class="method public "><a href="#method_processCreditCardWithCustomerCode" title="processCreditCardWithCustomerCode() :: Process a credit card transaction with Customer Code."><span class="description">Process a credit card transaction with Customer Code.</span><pre>processCreditCardWithCustomerCode()</pre></a></li>
-<li class="method public "><a href="#method_responseHandler" title="responseHandler() :: Response Handler for ProcessLink calls."><span class="description">Response Handler for ProcessLink calls.</span><pre>responseHandler()</pre></a></li>
-</ul>
-</li></ul>
-</div>
-<div class="span8">
-<a id="\iATS\ProcessLink"></a><ul class="breadcrumb">
-<li>
-<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
-</li>
-<li><a href="../namespaces/iATS.html">iATS</a></li>
-<li class="active">
-<span class="divider">\</span><a href="../classes/iATS.ProcessLink.html">ProcessLink</a>
-</li>
-</ul>
-<div class="element class">
-<p class="short_description">Class ProcessLink</p>
-<div class="details">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>package</th>
-<td><a href="../packages/iATS.html">iATS</a></td>
-</tr></table>
-<h3>
-<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
-<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse" title="public">
-<h2>ProcessLink constructor.</h2>
-<pre>__construct(string $agentcode, string $password, string $serverid<code> = 'NA'</code>) </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$agentcode</h4>
-<code>string</code><p>iATS account agent code.</p></div>
-<div class="subelement argument">
-<h4>$password</h4>
-<code>string</code><p>iATS account password.</p></div>
-<div class="subelement argument">
-<h4>$serverid</h4>
-<code>string</code><p>Server identifier (Defaults to 'NA').
-  \see setServer()</p></div>
-</div></div>
-</div>
-<a id="method_createCustomerCodeAndProcessCreditCard"></a><div class="element clickable method public method_createCustomerCodeAndProcessCreditCard" data-toggle="collapse" data-target=".method_createCustomerCodeAndProcessCreditCard .collapse" title="public">
-<h2>Process a credit card transaction and return Customer Code.</h2>
-<pre>createCustomerCodeAndProcessCreditCard(array $parameters) : mixed</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered">
-<tr>
-<th>code</th>
-<td>$request = array(
-    'customerIPAddress' => '',
-    'invoiceNum' => '00000001',
-    'creditCardNum' => '4222222222222220',
-    'creditCardExpiry' => '12/17',
-    'cvv2' => '000',
-    'mop' => 'VISA',
-    'firstName' => 'Test',
-    'lastName' => 'Account',
-    'address' => '1234 Any Street',
-    'city' => 'Schenectady',
-    'state' => 'NY',
-    'zipCode' => '12345',
-    'total' => '2',
-    'comment' => 'Process CC test.',
-    // Not needed for request.
-    'currency' => 'USD',
-  );</td>
-</tr>
-<tr>
-<th>endcode</th>
-<td></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$parameters</h4>
-<code>array</code><p>An associative array with the following possible values.</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>mixed</code>Client response array or API error.</div>
-</div></div>
-</div>
-<a id="method_processCreditCard"></a><div class="element clickable method public method_processCreditCard" data-toggle="collapse" data-target=".method_processCreditCard .collapse" title="public">
-<h2>Process a credit card transaction.</h2>
-<pre>processCreditCard(array $parameters) : mixed</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered">
-<tr>
-<th>code</th>
-<td>array(
-    'customerIPAddress' => '',
-    'invoiceNum' => '00000001',
-    'creditCardNum' => '4222222222222220',
-    'creditCardExpiry' => '12/17',
-    'cvv2' => '000',
-    'mop' => 'VISA',
-    'firstName' => 'Test',
-    'lastName' => 'Account',
-    'address' => '1234 Any Street',
-    'city' => 'Schenectady',
-    'state' => 'NY',
-    'zipCode' => '12345',
-    'total' => '2',
-    'comment' => 'Process CC test.',
-    // Not needed for request.
-    'currency' => 'USD',
-  );</td>
-</tr>
-<tr>
-<th>endcode</th>
-<td></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$parameters</h4>
-<code>array</code><p>An associative array with the following possible values.</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>mixed</code>Client response array or API error.</div>
-</div></div>
-</div>
-<a id="method_processCreditCardWithCustomerCode"></a><div class="element clickable method public method_processCreditCardWithCustomerCode" data-toggle="collapse" data-target=".method_processCreditCardWithCustomerCode .collapse" title="public">
-<h2>Process a credit card transaction with Customer Code.</h2>
-<pre>processCreditCardWithCustomerCode(array $parameters) : mixed</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered">
-<tr>
-<th>code</th>
-<td>array(
-    'customerIPAddress' => '',
-    'invoiceNum' => '00000001',
-    'creditCardNum' => '4222222222222220',
-    'creditCardExpiry' => '12/17',
-    'cvv2' => '000',
-    'mop' => 'VISA',
-    'firstName' => 'Test',
-    'lastName' => 'Account',
-    'address' => '1234 Any Street',
-    'city' => 'Schenectady',
-    'state' => 'NY',
-    'zipCode' => '12345',
-    'total' => '2',
-    'comment' => 'Process CC test.',
-    // Not needed for request.
-    'currency' => 'USD',
-  );</td>
-</tr>
-<tr>
-<th>endcode</th>
-<td></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$parameters</h4>
-<code>array</code><p>An associative array with the following possible values.</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>mixed</code>Client response array or API error.</div>
-</div></div>
-</div>
-<a id="method_responseHandler"></a><div class="element clickable method public method_responseHandler" data-toggle="collapse" data-target=".method_responseHandler .collapse" title="public">
-<h2>Response Handler for ProcessLink calls.</h2>
-<pre>responseHandler(array|bool $response, string $result_name) : mixed</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$response</h4>
-<code>array</code><code>bool</code><p>SOAP response.</p></div>
-<div class="subelement argument">
-<h4>$result_name</h4>
-<code>string</code><p>API result name.</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>mixed</code>Restriction, error or API result.</div>
-</div></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="row"><footer class="span12">
-            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
-</a> and<br>
-            generated on 2014-02-07T16:13:56-08:00.<br></footer></div>
-</div>
-</body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">iATS Payments API PHP Wrapper</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                    <li><a>Namespaces</a></li>
+                                                                        <li><a href="../namespaces/iATS.html">iATS</a></li>
+                                                                                                                                </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public inherited">
+        <a href="#method___construct" title="__construct :: IATS class constructor.">
+            <span class="description">IATS class constructor.</span><pre>__construct</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_processCreditCard" title="processCreditCard :: Process a credit card transaction.">
+            <span class="description">Process a credit card transaction.</span><pre>processCreditCard</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_processCreditCardWithCustomerCode" title="processCreditCardWithCustomerCode :: Process a credit card transaction with Customer Code.">
+            <span class="description">Process a credit card transaction with Customer Code.</span><pre>processCreditCardWithCustomerCode</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_createCustomerCodeAndProcessCreditCard" title="createCustomerCodeAndProcessCreditCard :: Process a credit card transaction and return Customer Code.">
+            <span class="description">Process a credit card transaction and return Customer Code.</span><pre>createCustomerCodeAndProcessCreditCard</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_responseHandler" title="responseHandler :: Response Handler for ProcessLink calls.">
+            <span class="description">Response Handler for ProcessLink calls.</span><pre>responseHandler</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                <li class="method protected inherited">
+                            <a href="#method_getSoapClient" title="getSoapClient :: Create SoapClient object.">
+                                <span class="description">Create SoapClient object.</span><pre>getSoapClient</pre>
+                            </a>
+                        </li>
+                                                                                                                    <li class="method protected inherited">
+                            <a href="#method_apiCall" title="apiCall :: Make web service requests to the iATS API.">
+                                <span class="description">Make web service requests to the iATS API.</span><pre>apiCall</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected inherited">
+                            <a href="#method_checkRestrictions" title="checkRestrictions :: Check restrictions for service.">
+                                <span class="description">Check restrictions for service.</span><pre>checkRestrictions</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected inherited">
+                            <a href="#method_checkServerRestrictions" title="checkServerRestrictions :: Check server restrictions.">
+                                <span class="description">Check server restrictions.</span><pre>checkServerRestrictions</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected inherited">
+                            <a href="#method_checkMOPCurrencyRestrictions" title="checkMOPCurrencyRestrictions :: Check Method of Payment (MOP) is available based on server and currency.">
+                                <span class="description">Check Method of Payment (MOP) is available based on server and currency.</span><pre>checkMOPCurrencyRestrictions</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected inherited">
+                            <a href="#method_getMOPCurrencyMatrix" title="getMOPCurrencyMatrix :: MOP Currency matrix.">
+                                <span class="description">MOP Currency matrix.</span><pre>getMOPCurrencyMatrix</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected inherited">
+                            <a href="#method_xml2array" title="xml2array :: Create array from XML string.">
+                                <span class="description">Create array from XML string.</span><pre>xml2array</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected inherited">
+                            <a href="#method_reject" title="reject :: Reject code lookup array.">
+                                <span class="description">Reject code lookup array.</span><pre>reject</pre>
+                            </a>
+                        </li>
+                                                </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                    <li class="method private inherited">
+                            <a href="#method_setServer" title="setServer :: Set the server to use based on a server id.">
+                                <span class="description">Set the server to use based on a server id.</span><pre>setServer</pre>
+                            </a>
+                        </li>
+                                                                                                                                                                                                                                                                                                            </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>ProcessLink</h1>
+                <small style="display: block; text-align: right">
+                                            Extends <a href="../classes/iATS.Core.html">\iATS\Core</a>
+                                                        </small>
+                <p class="short_description">Class ProcessLink</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>iATS</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                                                                    </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method___construct"></a>
+                        <div class="element clickable method public  method___construct inherited" data-toggle="collapse" data-target=".method___construct .collapse">
+                            <h2>IATS class constructor.</h2>
+                            <pre>__construct(string $agentcode, string $password, string $serverid = &#039;NA&#039;) </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    see
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                            \iATS\setServer()
+                                                                                                                <p>For options</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$agentcode</h4>
+                                                <code>string</code><p><p>iATS account agent code.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$password</h4>
+                                                <code>string</code><p><p>iATS account password.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$serverid</h4>
+                                                <code>string</code><p><p>Server indentifier. (Defaults to 'NA')</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_processCreditCard"></a>
+                        <div class="element clickable method public  method_processCreditCard" data-toggle="collapse" data-target=".method_processCreditCard .collapse">
+                            <h2>Process a credit card transaction.</h2>
+                            <pre>processCreditCard(array $parameters) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    code
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>array(</p>
+<pre><code>'customerIPAddress' =&gt; '',
+'invoiceNum' =&gt; '00000001',
+'creditCardNum' =&gt; '4222222222222220',
+'creditCardExpiry' =&gt; '12/17',
+'cvv2' =&gt; '000',
+'mop' =&gt; 'VISA',
+'firstName' =&gt; 'Test',
+'lastName' =&gt; 'Account',
+'address' =&gt; '1234 Any Street',
+'city' =&gt; 'Schenectady',
+'state' =&gt; 'NY',
+'zipCode' =&gt; '12345',
+'total' =&gt; '2',
+'comment' =&gt; 'Process CC test.',
+// Not needed for request.
+'currency' =&gt; 'USD',</code></pre>
+<p>  );</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    endcode
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>An associative array with the following possible values.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_processCreditCardWithCustomerCode"></a>
+                        <div class="element clickable method public  method_processCreditCardWithCustomerCode" data-toggle="collapse" data-target=".method_processCreditCardWithCustomerCode .collapse">
+                            <h2>Process a credit card transaction with Customer Code.</h2>
+                            <pre>processCreditCardWithCustomerCode(array $parameters) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    code
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>array(</p>
+<pre><code>'customerIPAddress' =&gt; '',
+'invoiceNum' =&gt; '00000001',
+'creditCardNum' =&gt; '4222222222222220',
+'creditCardExpiry' =&gt; '12/17',
+'cvv2' =&gt; '000',
+'mop' =&gt; 'VISA',
+'firstName' =&gt; 'Test',
+'lastName' =&gt; 'Account',
+'address' =&gt; '1234 Any Street',
+'city' =&gt; 'Schenectady',
+'state' =&gt; 'NY',
+'zipCode' =&gt; '12345',
+'total' =&gt; '2',
+'comment' =&gt; 'Process CC test.',
+// Not needed for request.
+'currency' =&gt; 'USD',</code></pre>
+<p>  );</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    endcode
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>An associative array with the following possible values.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_createCustomerCodeAndProcessCreditCard"></a>
+                        <div class="element clickable method public  method_createCustomerCodeAndProcessCreditCard" data-toggle="collapse" data-target=".method_createCustomerCodeAndProcessCreditCard .collapse">
+                            <h2>Process a credit card transaction and return Customer Code.</h2>
+                            <pre>createCustomerCodeAndProcessCreditCard(array $parameters) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    code
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>$request = array(</p>
+<pre><code>'customerIPAddress' =&gt; '',
+'invoiceNum' =&gt; '00000001',
+'creditCardNum' =&gt; '4222222222222220',
+'creditCardExpiry' =&gt; '12/17',
+'cvv2' =&gt; '000',
+'mop' =&gt; 'VISA',
+'firstName' =&gt; 'Test',
+'lastName' =&gt; 'Account',
+'address' =&gt; '1234 Any Street',
+'city' =&gt; 'Schenectady',
+'state' =&gt; 'NY',
+'zipCode' =&gt; '12345',
+'total' =&gt; '2',
+'comment' =&gt; 'Process CC test.',
+// Not needed for request.
+'currency' =&gt; 'USD',</code></pre>
+<p>  );</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    endcode
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>An associative array with the following possible values.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_responseHandler"></a>
+                        <div class="element clickable method public  method_responseHandler" data-toggle="collapse" data-target=".method_responseHandler .collapse">
+                            <h2>Response Handler for ProcessLink calls.</h2>
+                            <pre>responseHandler(array|bool $response, string $result_name) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$response</h4>
+                                                <code>array|bool</code><p><p>SOAP response.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result_name</h4>
+                                                <code>string</code><p><p>API result name.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>Restriction, error or API result.</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getSoapClient"></a>
+                        <div class="element clickable method protected  method_getSoapClient inherited" data-toggle="collapse" data-target=".method_getSoapClient .collapse">
+                            <h2>Create SoapClient object.</h2>
+                            <pre>getSoapClient(string $endpoint, array $options = array(&#039;trace&#039; =&gt; TRUE)) : \SoapClient</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$endpoint</h4>
+                                                <code>string</code><p><p>Service endpoint</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$options</h4>
+                                                <code>array</code><p><p>SoapClient options
+ \see <a href="http://www.php.net/manual/en/soapclient.soapclient.php">http://www.php.net/manual/en/soapclient.soapclient.php</a></p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\SoapClient</code><p><p>Returns IATS SoapClient object</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_setServer"></a>
+                        <div class="element clickable method private  method_setServer inherited" data-toggle="collapse" data-target=".method_setServer .collapse">
+                            <h2>Set the server to use based on a server id.</h2>
+                            <pre>setServer(string $serverid) </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$serverid</h4>
+                                                <code>string</code><p><p>Server identifider ('UK' or 'NA'.)</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_apiCall"></a>
+                        <div class="element clickable method protected  method_apiCall inherited" data-toggle="collapse" data-target=".method_apiCall .collapse">
+                            <h2>Make web service requests to the iATS API.</h2>
+                            <pre>apiCall(string $method, array $parameters) : object</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$method</h4>
+                                                <code>string</code><p><p>The name of the method to call.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>Parameters to pass the API.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>object</code><p><p>XML object or boolean.</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_checkRestrictions"></a>
+                        <div class="element clickable method protected  method_checkRestrictions inherited" data-toggle="collapse" data-target=".method_checkRestrictions .collapse">
+                            <h2>Check restrictions for service.</h2>
+                            <pre>checkRestrictions(array $parameters) : bool|string</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>Request parameters.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>bool|string</code><p><p>FALSE if no restrictions. Message if restricted.</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_checkServerRestrictions"></a>
+                        <div class="element clickable method protected  method_checkServerRestrictions inherited" data-toggle="collapse" data-target=".method_checkServerRestrictions .collapse">
+                            <h2>Check server restrictions.</h2>
+                            <pre>checkServerRestrictions(string $serverid, array $restrictedservers) : bool</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$serverid</h4>
+                                                <code>string</code><p><p>Server identifier</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$restrictedservers</h4>
+                                                <code>array</code><p><p>Restricted servers array</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>bool</code><p><p>Result of server restricted check</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_checkMOPCurrencyRestrictions"></a>
+                        <div class="element clickable method protected  method_checkMOPCurrencyRestrictions inherited" data-toggle="collapse" data-target=".method_checkMOPCurrencyRestrictions .collapse">
+                            <h2>Check Method of Payment (MOP) is available based on server and currency.</h2>
+                            <pre>checkMOPCurrencyRestrictions(string $serverid, string $currency, string $mop) : bool</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$serverid</h4>
+                                                <code>string</code><p><p>Server identifier</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$currency</h4>
+                                                <code>string</code><p><p>Currency</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$mop</h4>
+                                                <code>string</code><p><p>Method of Payment</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>bool</code><p><p>Result of check</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getMOPCurrencyMatrix"></a>
+                        <div class="element clickable method protected  method_getMOPCurrencyMatrix inherited" data-toggle="collapse" data-target=".method_getMOPCurrencyMatrix .collapse">
+                            <h2>MOP Currency matrix.</h2>
+                            <pre>getMOPCurrencyMatrix() : array</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Array of Server/Currency/MOP</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_xml2array"></a>
+                        <div class="element clickable method protected  method_xml2array inherited" data-toggle="collapse" data-target=".method_xml2array .collapse">
+                            <h2>Create array from XML string.</h2>
+                            <pre>xml2array(string $xmlstring) : array</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$xmlstring</h4>
+                                                <code>string</code><p><p>An XML string to be processed.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Array.</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_reject"></a>
+                        <div class="element clickable method protected  method_reject inherited" data-toggle="collapse" data-target=".method_reject .collapse">
+                            <h2>Reject code lookup array.</h2>
+                            <pre>reject(int $rejectcode) : mixed</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$rejectcode</h4>
+                                                <code>int</code><p><p>Reject codes and their meaning.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>Returns reject code meaning.</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                    
+                    
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property_na_server"> </a>
+                            <div class="element clickable property  private property_na_server inherited" data-toggle="collapse" data-target=".property_na_server .collapse">
+                                <h2>North America server url.</h2>
+                                <pre>na_server : string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>North America server url.</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_uk_server"> </a>
+                            <div class="element clickable property  private property_uk_server inherited" data-toggle="collapse" data-target=".property_uk_server .collapse">
+                                <h2>UK server url.</h2>
+                                <pre>uk_server : string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>UK server url.</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_agentcode"> </a>
+                            <div class="element clickable property  protected property_agentcode inherited" data-toggle="collapse" data-target=".property_agentcode .collapse">
+                                <h2>iATS account agent code.</h2>
+                                <pre>agentcode : string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>iATS account agent code.</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_password"> </a>
+                            <div class="element clickable property  protected property_password inherited" data-toggle="collapse" data-target=".property_password .collapse">
+                                <h2>iATS account password.</h2>
+                                <pre>password : string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>iATS account password.</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_serverid"> </a>
+                            <div class="element clickable property  protected property_serverid inherited" data-toggle="collapse" data-target=".property_serverid .collapse">
+                                <h2>Server identifier.
+  \see setServer()</h2>
+                                <pre>serverid : string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Server identifier.
+  \see setServer()</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_server"> </a>
+                            <div class="element clickable property  protected property_server inherited" data-toggle="collapse" data-target=".property_server .collapse">
+                                <h2>Server url.</h2>
+                                <pre>server : string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Server url.</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_endpoint"> </a>
+                            <div class="element clickable property  protected property_endpoint inherited" data-toggle="collapse" data-target=".property_endpoint .collapse">
+                                <h2>Service endpoint</h2>
+                                <pre>endpoint : string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Service endpoint</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_params"> </a>
+                            <div class="element clickable property  protected property_params inherited" data-toggle="collapse" data-target=".property_params .collapse">
+                                <h2>Requrest parameters</h2>
+                                <pre>params : string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Requrest parameters</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_resultname"> </a>
+                            <div class="element clickable property  public property_resultname inherited" data-toggle="collapse" data-target=".property_resultname .collapse">
+                                <h2>The result name</h2>
+                                <pre>resultname : string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>The result name</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_format"> </a>
+                            <div class="element clickable property  public property_format inherited" data-toggle="collapse" data-target=".property_format .collapse">
+                                <h2>Format</h2>
+                                <pre>format : string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Format</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_restrictedservers"> </a>
+                            <div class="element clickable property  public property_restrictedservers inherited" data-toggle="collapse" data-target=".property_restrictedservers .collapse">
+                                <h2>Restricted servers array</h2>
+                                <pre>restrictedservers : array</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Restricted servers array</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\iATS\ProcessLink"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/iATS.html">iATS</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/iATS.ProcessLink.html">ProcessLink</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Sat, 08 Feb 2014 00:17:02 +0000.<br/>
+    </footer>
+    </body>
 </html>
