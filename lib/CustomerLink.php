@@ -112,15 +112,24 @@ class CustomerLink extends Core {
     if ($result['STATUS'] == 'Failure') {
       return $result['ERRORS'];
     }
+
+    $authresult = FALSE;
+
     // Handle reject codes.
-    else {
+    if (isset($result['PROCESSRESULT'])) {
       $authresult = $result['PROCESSRESULT']['AUTHORIZATIONRESULT'];
-      // Process reject codes.
-      if (strpos($authresult, 'Error') !== FALSE) {
-        return $authresult;
-      }
     }
-    return $result;
+    else if (isset($result['CUSTOMERS']))
+    {
+      $authresult = $result['CUSTOMERS'];
+    }
+
+    if (!$authresult)
+    {
+      $authresult = $result;
+    }
+
+    return $authresult;
   }
 
 }
