@@ -1,0 +1,217 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * @file
+ * ProcessLink class file.
+ */
+
+namespace iATS;
+
+/**
+ * Class ProcessLink
+ *
+ * @package iATS
+ */
+class ProcessLink extends Core {
+  /**
+   * ProcessLink constructor.
+   *
+   * @param string $agentcode
+   *   iATS account agent code.
+   * @param string $password
+   *   iATS account password.
+   * @param string $serverid
+   *   Server identifier (Defaults to 'NA').
+   *   \see setServer()
+   */
+  public function __construct($agentcode, $password, $serverid = 'NA') {
+    parent::__construct($agentcode, $password, $serverid);
+    $this-&gt;endpoint = '/NetGate/ProcessLink.asmx?WSDL';
+  }
+
+  /**
+   * Process a credit card transaction.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   array(
+   *     'customerIPAddress' =&gt; '',
+   *     'invoiceNum' =&gt; '00000001',
+   *     'creditCardNum' =&gt; '4222222222222220',
+   *     'creditCardExpiry' =&gt; '12/17',
+   *     'cvv2' =&gt; '000',
+   *     'mop' =&gt; 'VISA',
+   *     'firstName' =&gt; 'Test',
+   *     'lastName' =&gt; 'Account',
+   *     'address' =&gt; '1234 Any Street',
+   *     'city' =&gt; 'Schenectady',
+   *     'state' =&gt; 'NY',
+   *     'zipCode' =&gt; '12345',
+   *     'total' =&gt; '2',
+   *     'comment' =&gt; 'Process CC test.',
+   *     // Not needed for request.
+   *     'currency' =&gt; 'USD',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
+  public function processCreditCard($parameters) {
+    $this-&gt;restrictedservers = array('UK');
+    $restricted = $this-&gt;checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else {
+      $response = $this-&gt;apiCall('ProcessCreditCard', $parameters);
+      return $this-&gt;responseHandler($response, 'ProcessCreditCardV1Result');
+    }
+  }
+
+  /**
+   * Process a credit card transaction with Customer Code.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   array(
+   *     'customerIPAddress' =&gt; '',
+   *     'invoiceNum' =&gt; '00000001',
+   *     'creditCardNum' =&gt; '4222222222222220',
+   *     'creditCardExpiry' =&gt; '12/17',
+   *     'cvv2' =&gt; '000',
+   *     'mop' =&gt; 'VISA',
+   *     'firstName' =&gt; 'Test',
+   *     'lastName' =&gt; 'Account',
+   *     'address' =&gt; '1234 Any Street',
+   *     'city' =&gt; 'Schenectady',
+   *     'state' =&gt; 'NY',
+   *     'zipCode' =&gt; '12345',
+   *     'total' =&gt; '2',
+   *     'comment' =&gt; 'Process CC test.',
+   *     // Not needed for request.
+   *     'currency' =&gt; 'USD',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
+  public function processCreditCardWithCustomerCode($parameters) {
+    $response = $this-&gt;apiCall('ProcessCreditCardWithCustomerCode', $parameters);
+    return $this-&gt;responseHandler($response, 'ProcessCreditCardWithCustomerCodeV1Result');
+  }
+
+  /**
+   * Process a credit card transaction and return Customer Code.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'customerIPAddress' =&gt; '',
+   *     'invoiceNum' =&gt; '00000001',
+   *     'creditCardNum' =&gt; '4222222222222220',
+   *     'creditCardExpiry' =&gt; '12/17',
+   *     'cvv2' =&gt; '000',
+   *     'mop' =&gt; 'VISA',
+   *     'firstName' =&gt; 'Test',
+   *     'lastName' =&gt; 'Account',
+   *     'address' =&gt; '1234 Any Street',
+   *     'city' =&gt; 'Schenectady',
+   *     'state' =&gt; 'NY',
+   *     'zipCode' =&gt; '12345',
+   *     'total' =&gt; '2',
+   *     'comment' =&gt; 'Process CC test.',
+   *     // Not needed for request.
+   *     'currency' =&gt; 'USD',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
+  public function createCustomerCodeAndProcessCreditCard($parameters) {
+    $response = $this-&gt;apiCall('CreateCustomerCodeAndProcessCreditCard', $parameters);
+    return $this-&gt;responseHandler($response, 'CreateCustomerCodeAndProcessCreditCardV1Result');
+  }
+
+  /**
+   * Response Handler for ProcessLink calls.
+   *
+   * @param array|bool $response
+   *   SOAP response.
+   * @param string $result_name
+   *   API result name.
+   *
+   * @return mixed
+   *   Restriction, error or API result.
+   */
+  public function responseHandler($response, $result_name) {
+    $result = $this-&gt;xml2array($response-&gt;$result_name-&gt;any);
+    // Handle auth failure.
+    if ($result['STATUS'] == 'Failure') {
+      return $result['ERRORS'];
+    }
+    // Handle reject codes.
+    else {
+      $authresult = $result['PROCESSRESULT']['AUTHORIZATIONRESULT'];
+      // Process reject codes.
+      if (strpos($authresult, 'REJECT') !== FALSE) {
+        $reject_code = preg_replace(&quot;/[^0-9]/&quot;, &quot;&quot;, $authresult);
+        return $this-&gt;reject($reject_code);
+      }
+    }
+
+    return $result;
+  }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

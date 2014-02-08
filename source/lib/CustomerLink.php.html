@@ -1,0 +1,171 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * @file
+ */
+
+namespace iATS;
+
+/**
+ * Class CustomerLink
+ *
+ * @package iATS
+ */
+class CustomerLink extends Core {
+  /**
+   * CustomerLink constructor.
+   *
+   * @param string $agentcode
+   *   iATS account agent code.
+   * @param string $password
+   *   iATS account password.
+   * @param string $serverid
+   *   Server identifier (Defaults to 'NA')
+   *   \see serServer()
+   */
+  public function __construct($agentcode, $password, $serverid = 'NA') {
+    parent::__construct($agentcode, $password, $serverid);
+    $this-&gt;endpoint = '/NetGate/CustomerLink.asmx?WSDL';
+  }
+
+  /**
+   * Get Customer Code Detail.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   array(
+   *     'customerIPAddress' =&gt; '',
+   *     'customerCode' =&gt; 'A10396688',
+   *     // Not needed for request.
+   *     'mop' =&gt; 'VISA',
+   *     'currency' =&gt; 'USD',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
+  public function getCustomerCodeDetail($parameters) {
+    $response = $this-&gt;apiCall('GetCustomerCodeDetail', $parameters);
+    return $this-&gt;responseHandler($response, 'GetCustomerCodeDetailV1Result');
+  }
+
+  /**
+   * Create Credit Card Customer Code.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   array(
+   *     'customerIPAddress' =&gt; '',
+   *     'customerCode' =&gt; '',
+   *     'firstName' =&gt; 'Test',
+   *     'lastName' =&gt; 'Account',
+   *     'companyName' =&gt; 'Test Co.',
+   *     'address' =&gt; '1234 Any Street',
+   *     'city' =&gt; 'Schenectady',
+   *     'state' =&gt; 'NY',
+   *     'zipCode' =&gt; '12345',
+   *     'phone' =&gt; '555-555-1234',
+   *     'fax' =&gt; '555-555-4321',
+   *     'alternatePhone' =&gt; '555-555-5555',
+   *     'email' =&gt; 'email@test.co',
+   *     'comment' =&gt; 'Customer code creation test.',
+   *     'recurring' =&gt; FALSE,
+   *     'amount' =&gt; '5',
+   *     'beginDate' =&gt; 946684800,
+   *     'endDate' =&gt; 946771200,
+   *     'scheduleType' =&gt; 'Annually',
+   *     'scheduleDate' =&gt; '',
+   *     'creditCardCustomerName' =&gt; 'Test Account',
+   *     'creditCardNum' =&gt; '4222222222222220',
+   *     'creditCardExpiry' =&gt; '12/17',
+   *     'mop' =&gt; 'VISA',
+   *     // Not required.
+   *     'currency' =&gt; 'USD',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
+  public function createCreditCardCustomerCode($parameters) {
+    $response = $this-&gt;apiCall('CreateCreditCardCustomerCode', $parameters);
+    return $this-&gt;responseHandler($response, 'CreateCreditCardCustomerCodeV1Result');
+  }
+
+  /**
+   * Response Handler for CustomerLink calls.
+   *
+   * @param array $response
+   *   Restriction, error or API result.
+   * @param string $result_name
+   *   API result name.
+   *
+   * @return mixed
+   *   Restriction, error or API result.
+   */
+  public function responseHandler($response, $result_name) {
+    $result = $this-&gt;xml2array($response-&gt;$result_name-&gt;any);
+    if ($result['STATUS'] == 'Failure') {
+      return $result['ERRORS'];
+    }
+    // Handle reject codes.
+    else {
+      $authresult = $result['PROCESSRESULT']['AUTHORIZATIONRESULT'];
+      // Process reject codes.
+      if (strpos($authresult, 'Error') !== FALSE) {
+        return $authresult;
+      }
+    }
+    return $result;
+  }
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

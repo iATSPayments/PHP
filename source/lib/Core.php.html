@@ -1,0 +1,364 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * This is a file-level DocBlock
+ *
+ * @package Some_Package
+ */
+
+namespace iATS;
+
+/**
+ * Class Core
+ *
+ * @package iATS
+ */
+class Core {
+
+  /**
+   * @var string $na_server
+   *   North America server url.
+   * @var string $uk_server
+   *   UK server url.
+   */
+  private $na_server = 'https://www.iatspayments.com';
+  private $uk_server = 'https://www.uk.iatspayments.com';
+
+  // Protected properties.
+  /**
+   * @var string $agentcode
+   *   iATS account agent code.
+   * @var string $password
+   *   iATS account password.
+   * @var string $serverid
+   *   Server identifier.
+   *   \see setServer()
+   * @var string $server
+   *   Server url.
+   * @var string $endpoint
+   *   Service endpoint
+   * @var string $params
+   *   Requrest parameters
+   */
+  protected $agentcode = '';
+  protected $password = '';
+  protected $serverid = '';
+  protected $server = '';
+  protected $endpoint = '';
+
+  // Public properties.
+  /**
+   * @var string $resultname
+   *   The result name
+   * @var string $format
+   *   Format
+   * @var array $restrictedservers
+   *   Restricted servers array
+
+   */
+  public $resultname = '';
+  public $format = '';
+  public $restrictedservers = array();
+
+  /**
+   * IATS class constructor.
+   *
+   * @param string $agentcode
+   *   iATS account agent code.
+   * @param string $password
+   *   iATS account password.
+   * @param string $serverid
+   *   Server indentifier.
+   *
+   * @see Core::setServer() setServer()
+   */
+  public function __construct($agentcode, $password, $serverid = 'NA') {
+    $this-&gt;agentcode = $agentcode;
+    $this-&gt;password = $password;
+    $this-&gt;serverid = $serverid;
+  }
+
+  /**
+   * Create SoapClient object.
+   *
+   * @param string $endpoint
+   *   Service endpoint
+   * @param array $options
+   *   SoapClient options
+   *  \see http://www.php.net/manual/en/soapclient.soapclient.php
+   *
+   * @return \SoapClient
+   *   Returns IATS SoapClient object
+   */
+  protected function getSoapClient($endpoint, $options = array('trace' =&gt; TRUE)) {
+    $this-&gt;setServer($this-&gt;serverid);
+    $wsdl = $this-&gt;server . $endpoint;
+    return new \SoapClient($wsdl, $options);
+  }
+
+  /**
+   * Set the server to use based on a server id.
+   *
+   * @param string $serverid
+   *   Server identifider ('UK' or 'NA'.)
+   *
+   * @throws \Exception
+   */
+  private function setServer($serverid) {
+    switch ($serverid) {
+      case 'NA':
+        $this-&gt;server = $this-&gt;na_server;
+        break;
+
+      case 'UK':
+        $this-&gt;server = $this-&gt;uk_server;
+        break;
+
+      default:
+        throw new \Exception('Invalid Server ID.');
+    }
+  }
+
+  /**
+   * Make web service requests to the iATS API.
+   *
+   * @param string $method
+   *   The name of the method to call.
+   * @param array $parameters
+   *   Parameters to pass the API.
+   *
+   * @return object
+   *   XML object or boolean.
+   * @throws \SoapFault
+   */
+  protected function apiCall($method, $parameters) {
+    try {
+      // Set the agentcode and password parameters.
+      $parameters['agentCode'] = $this-&gt;agentcode;
+      $parameters['password'] = $this-&gt;password;
+
+      $soap = $this-&gt;getSoapClient($this-&gt;endpoint);
+      return $soap-&gt;$method($parameters);
+    }
+    catch (\SoapFault $exception) {
+      throw new \SoapFault($exception-&gt;getCode(), $exception-&gt;getMessage());
+    }
+  }
+
+  /**
+   * Check restrictions for service.
+   *
+   * @param array $parameters
+   *   Request parameters.
+   *
+   * @return bool|string
+   *   FALSE if no restrictions. Message if restricted.
+   */
+  protected function checkRestrictions($parameters) {
+    if ($this-&gt;checkServerRestrictions($this-&gt;serverid, $this-&gt;restrictedservers)) {
+      return 'Service cannot be used on this server.';
+    }
+
+    $currency = isset($parameters['currency']) ? $parameters['currency'] : NULL;
+    $mop = isset($parameters['mop']) ? $parameters['mop'] : NULL;
+    if ($this-&gt;checkMOPCurrencyRestrictions($this-&gt;serverid, $currency, $mop)) {
+      return 'Service cannot be used with this Method of Payment or Currency.';
+    }
+    return FALSE;
+  }
+
+  /**
+   * Check server restrictions.
+   *
+   * @param string $serverid
+   *   Server identifier
+   * @param array $restrictedservers
+   *   Restricted servers array
+   *
+   * @return bool
+   *   Result of server restricted check
+   */
+  protected function checkServerRestrictions($serverid, $restrictedservers) {
+    if (in_array($serverid, $restrictedservers)) {
+      return TRUE;
+    }
+    return FALSE;
+  }
+
+  /**
+   * Check Method of Payment (MOP) is available based on server and currency.
+   *
+   * @param string $serverid
+   *   Server identifier
+   * @param string $currency
+   *   Currency
+   * @param string $mop
+   *   Method of Payment
+   *
+   * @return bool
+   *   Result of check
+   */
+  protected function checkMOPCurrencyRestrictions($serverid, $currency, $mop) {
+    $restricted = FALSE;
+    $matrix = $this-&gt;getMOPCurrencyMatrix();
+    if (isset($matrix[$serverid][$currency])) {
+      $filterresult = array_filter($matrix[$serverid][$currency],
+      function ($item) use ($mop) {
+        return $item == $mop;
+      }
+      );
+      if (empty($filterresult)) {
+        $restricted = TRUE;
+      }
+      else {
+        $restricted = FALSE;
+      }
+    }
+    return $restricted;
+  }
+
+  /**
+   * MOP Currency matrix.
+   *
+   * @return array
+   *   Array of Server/Currency/MOP
+   */
+  protected function getMOPCurrencyMatrix() {
+    return array(
+      'NA' =&gt; array(
+        'USD' =&gt; array(
+          'VISA','MC', 'AMX', 'DSC',
+          'VISA DEBIT', 'MC DEBIT',
+        ),
+        'CDN' =&gt; array(
+          'VISA', 'MC', 'AMX',
+          'VISA DEBIT',
+        ),
+      ),
+      'UK' =&gt; array(
+        'GBP' =&gt; array(
+          'VISA', 'MC', 'AMX', 'MAESTRO',
+          'VISA DEBIT',
+        ),
+        'EUR'  =&gt; array(
+          'VISA', 'MC', 'AMX',
+          'VISA DEBIT',
+        ),
+      ),
+    );
+  }
+
+  /**
+   * Create array from XML string.
+   *
+   * @param string $xmlstring
+   *   An XML string to be processed.
+   *
+   * @return array
+   *   Array.
+   */
+  protected function xml2array($xmlstring) {
+    $xml = simplexml_load_string($xmlstring);
+    $json = json_encode($xml);
+    return json_decode($json, TRUE);
+  }
+
+  /**
+   * Reject code lookup array.
+   *
+   * @param int $rejectcode
+   *   Reject codes and their meaning.
+   *
+   * @return mixed
+   *   Returns reject code meaning.
+   */
+  protected function reject($rejectcode) {
+    $rejects = array(
+      1 =&gt; 'Agent code has not been set up on the authorization system. Please call iATS at 1-888-955-5455.',
+      2 =&gt; 'Unable to process transaction. Verify and re-enter credit card information.',
+      3 =&gt; 'Invalid Customer Code.',
+      4 =&gt; 'Incorrect expiration date.',
+      5 =&gt; 'Invalid transaction. Verify and re-enter credit card information.',
+      6 =&gt; 'Please have cardholder call the number on the back of the card.',
+      7 =&gt; 'Lost or stolen card.',
+      8 =&gt; 'Invalid card status.',
+      9 =&gt; 'Restricted card status. Usually on corporate cards restricted to specific sales.',
+      10 =&gt; 'Error. Please verify and re-enter credit card information.',
+      11 =&gt; 'General decline code. Please have client call the number on the back of credit card',
+      12 =&gt; 'Incorrect CVV2 or Expiry date',
+      14 =&gt; 'The card is over the limit.',
+      15 =&gt; 'General decline code. Please have client call the number on the back of credit card',
+      16 =&gt; 'Invalid charge card number. Verify and re-enter credit card information.',
+      17 =&gt; 'Unable to authorize transaction. Authorizer needs more information for approval.',
+      18 =&gt; 'Card not supported by institution.',
+      19 =&gt; 'Incorrect CVV2 security code',
+      22 =&gt; 'Bank timeout. Bank lines may be down or busy. Re-try transaction later.',
+      23 =&gt; 'System error. Re-try transaction later.',
+      24 =&gt; 'Charge card expired.',
+      25 =&gt; 'Capture card. Reported lost or stolen.',
+      26 =&gt; 'Invalid transaction, invalid expiry date. Please confirm and retry transaction.',
+      27 =&gt; 'Please have cardholder call the number on the back of the card.',
+      32 =&gt; 'Invalid charge card number.',
+      39 =&gt; 'Contact IATS 1-888-955-5455.',
+      40 =&gt; 'Invalid card number. Card not supported by IATS.',
+      41 =&gt; 'Invalid Expiry date.',
+      42 =&gt; 'CVV2 required.',
+      43 =&gt; 'Incorrect AVS.',
+      45 =&gt; 'Credit card name blocked. Call iATS at 1-888-955-5455.',
+      46 =&gt; 'Card tumbling. Call iATS at 1-888-955-5455.',
+      47 =&gt; 'Name tumbling. Call iATS at 1-888-955-5455.',
+      48 =&gt; 'IP blocked. Call iATS at 1-888-955-5455.',
+      49 =&gt; 'Velocity 1 &acirc;€“ IP block. Call iATS at 1-888-955-5455.',
+      50 =&gt; 'Velocity 2 &acirc;€“ IP block. Call iATS at 1-888-955-5455.',
+      51 =&gt; 'Velocity 3 &acirc;€“ IP block. Call iATS at 1-888-955-5455.',
+      52 =&gt; 'Credit card BIN country blocked. Call iATS at 1-888-955-5455.',
+      100 =&gt; 'DO NOT REPROCESS. Call iATS at 1-888-955-5455.',
+    );
+    return $rejects[$rejectcode];
+  }
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

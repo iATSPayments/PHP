@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>iATS Payments API PHP Wrapper</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" href="../css/template.css" type="text/css"></link><script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="../js/jquery.tools.min.js"></script><script type="text/javascript" src="../js/jquery-ui-1.8.2.custom.min.js"></script><script type="text/javascript" src="../js/template.js"></script></head><body><div id="content"><h1 class="file">lib/CustomerLink.php<a href="../source/lib/CustomerLink.php.html"><img src="../images/icons/view_source.png" alt="View Source" border="0"></img></a></h1><div id="file-nav-box"><div id="file-nav-options">
+              Show:
+              <img src="../images/icons/visibility_public.png" alt="Public" id="show-public"></img><img src="../images/icons/visibility_protected.png" alt="Protected" id="show-protected"></img><img src="../images/icons/visibility_private.png" alt="Private" id="show-private"></img><span class="attribute" id="show-inherited">inherited</span></div><div id="file-nav-container"><ul id="file-nav"><li><a href="#classes"><img src="../images/icons/class.png" alt="Class" height="14"></img>
+                          Classes
+                      </a><ul><li><a href="#\iATS\CustomerLink">\iATS\CustomerLink</a></li></ul></li></ul><div style="clear: left;"></div></div><div id="file-nav-tab">
+              Table of Contents
+          </div></div><a name="top" class="anchor"></a><div id="file-description"><div class="long-description"></div></div><dl class="file-info"><dt>File</dt><dd>
+         
+    </dd></dl><a name="classes" class="anchor"></a><a id="\iATS\CustomerLink" class="anchor"></a><h2 class="class">\iATS\CustomerLink<div class="to-top"><a href="#top">jump to top</a></div></h2><div class="class"><small class="package"><b>Package: </b>iATS</small><div class="short-description">Class CustomerLink</div><div class="long-description"></div><dl class="class-info"><dt>Parent(s)</dt><dd><a href="../files/lib.Core.html#\iATS\Core">\iATS\Core</a></dd></dl><h3>Methods</h3><div><a id="\iATS\CustomerLink::__construct()" class="anchor"></a><div class="method public"><a href="#" class="gripper"><img src="../images/icons/arrow_right.png"></img><img src="../images/icons/arrow_down.png" style="display: none;"></img></a><code class="title"><img src="../images/icons/method.png" alt="method" title="method"></img><img src="../images/icons/visibility_public.png" style="margin-right: 5px" alt="public"></img><span class="highlight">__construct</span><span class="nb-faded-text">(string $agentcode, string $password, string $serverid = 'NA')</span> : void</code><div class="description"><p class="short_description">CustomerLink constructor.</p></div><div class="code-tabs"><div class="long-description"></div><strong>Parameters</strong><table class="argument-info"><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tr><th>$agentcode</th><td>string</td><td><em><p>iATS account agent code.</p></em></td></tr><tr><th>$password</th><td>string</td><td><em><p>iATS account password.</p></em></td></tr><tr><th>$serverid</th><td>string</td><td><em><p>Server identifier (Defaults to 'NA')
+  \see serServer()</p></em></td></tr></table></div><div class="clear"></div></div><a id="\iATS\CustomerLink::createCreditCardCustomerCode()" class="anchor"></a><div class="method public"><a href="#" class="gripper"><img src="../images/icons/arrow_right.png"></img><img src="../images/icons/arrow_down.png" style="display: none;"></img></a><code class="title"><img src="../images/icons/method.png" alt="method" title="method"></img><img src="../images/icons/visibility_public.png" style="margin-right: 5px" alt="public"></img><span class="highlight">createCreditCardCustomerCode</span><span class="nb-faded-text">(array $parameters)</span> : mixed</code><div class="description"><p class="short_description">Create Credit Card Customer Code.</p></div><div class="code-tabs"><div class="long-description"></div><strong>Parameters</strong><table class="argument-info"><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tr><th>$parameters</th><td>array</td><td><em><p>An associative array with the following possible values.</p></em></td></tr></table><strong>Returns</strong><table class="argument-info"><thead><tr><th>Type</th><th>Description</th></tr></thead><tr><td>mixed</td><td>Client response array or API error.</td></tr></table><strong>Details</strong><dl class="function-info"><dt>Code</dt><dd>array(
+    'customerIPAddress' => '',
+    'customerCode' => '',
+    'firstName' => 'Test',
+    'lastName' => 'Account',
+    'companyName' => 'Test Co.',
+    'address' => '1234 Any Street',
+    'city' => 'Schenectady',
+    'state' => 'NY',
+    'zipCode' => '12345',
+    'phone' => '555-555-1234',
+    'fax' => '555-555-4321',
+    'alternatePhone' => '555-555-5555',
+    'email' => 'email@test.co',
+    'comment' => 'Customer code creation test.',
+    'recurring' => FALSE,
+    'amount' => '5',
+    'beginDate' => 946684800,
+    'endDate' => 946771200,
+    'scheduleType' => 'Annually',
+    'scheduleDate' => '',
+    'creditCardCustomerName' => 'Test Account',
+    'creditCardNum' => '4222222222222220',
+    'creditCardExpiry' => '12/17',
+    'mop' => 'VISA',
+    // Not required.
+    'currency' => 'USD',
+  );
+         
+    </dd><dt>Endcode</dt><dd>
+         
+    </dd></dl></div><div class="clear"></div></div><a id="\iATS\CustomerLink::getCustomerCodeDetail()" class="anchor"></a><div class="method public"><a href="#" class="gripper"><img src="../images/icons/arrow_right.png"></img><img src="../images/icons/arrow_down.png" style="display: none;"></img></a><code class="title"><img src="../images/icons/method.png" alt="method" title="method"></img><img src="../images/icons/visibility_public.png" style="margin-right: 5px" alt="public"></img><span class="highlight">getCustomerCodeDetail</span><span class="nb-faded-text">(array $parameters)</span> : mixed</code><div class="description"><p class="short_description">Get Customer Code Detail.</p></div><div class="code-tabs"><div class="long-description"></div><strong>Parameters</strong><table class="argument-info"><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tr><th>$parameters</th><td>array</td><td><em><p>An associative array with the following possible values.</p></em></td></tr></table><strong>Returns</strong><table class="argument-info"><thead><tr><th>Type</th><th>Description</th></tr></thead><tr><td>mixed</td><td>Client response array or API error.</td></tr></table><strong>Details</strong><dl class="function-info"><dt>Code</dt><dd>array(
+    'customerIPAddress' => '',
+    'customerCode' => 'A10396688',
+    // Not needed for request.
+    'mop' => 'VISA',
+    'currency' => 'USD',
+  );
+         
+    </dd><dt>Endcode</dt><dd>
+         
+    </dd></dl></div><div class="clear"></div></div><a id="\iATS\CustomerLink::responseHandler()" class="anchor"></a><div class="method public"><a href="#" class="gripper"><img src="../images/icons/arrow_right.png"></img><img src="../images/icons/arrow_down.png" style="display: none;"></img></a><code class="title"><img src="../images/icons/method.png" alt="method" title="method"></img><img src="../images/icons/visibility_public.png" style="margin-right: 5px" alt="public"></img><span class="highlight">responseHandler</span><span class="nb-faded-text">(array $response, string $result_name)</span> : mixed</code><div class="description"><p class="short_description">Response Handler for CustomerLink calls.</p></div><div class="code-tabs"><div class="long-description"></div><strong>Parameters</strong><table class="argument-info"><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tr><th>$response</th><td>array</td><td><em><p>Restriction, error or API result.</p></em></td></tr><tr><th>$result_name</th><td>string</td><td><em><p>API result name.</p></em></td></tr></table><strong>Returns</strong><table class="argument-info"><thead><tr><th>Type</th><th>Description</th></tr></thead><tr><td>mixed</td><td>Restriction, error or API result.</td></tr></table></div><div class="clear"></div></div></div></div></div><small class="footer">
+            Documentation was generated by
+            <a href="http://phpdoc.org">phpDocumentor
+                2.2.0
+</a>.
+        </small></body></html>

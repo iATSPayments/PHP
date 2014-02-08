@@ -21,8 +21,6 @@
                                     API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
 <li><a href="../packages/iATS.html"><i class="icon-folder-open"></i> iATS</a></li>
-<li><a href="../packages/iATS%0AThe%20core%20class..html"><i class="icon-folder-open"></i> iATS
-The core class.</a></li>
 </ul>
 </li>
 <li class="dropdown" id="charts-menu">
@@ -33,7 +31,7 @@ The core class.</a></li>
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">11</span></a></li>
+                <span class="label label-info">0</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -82,24 +80,26 @@ The core class.</a></li>
 <li class="nav-header">
 <i title="Properties" class="icon-custom icon-property"></i> Properties
                     <ul>
-<li class="property public "><a href="#property_format" title="$format() :: "><span class="description"></span><pre>$format</pre></a></li>
-<li class="property public "><a href="#property_restrictedservers" title="$restrictedservers() :: "><span class="description"></span><pre>$restrictedservers</pre></a></li>
+<li class="property public "><a href="#property_format" title="$format() :: "><span class="description">Format</span><pre>$format</pre></a></li>
+<li class="property public "><a href="#property_restrictedservers" title="$restrictedservers() :: "><span class="description">Restricted servers array</span><pre>$restrictedservers</pre></a></li>
 <li class="property public "><a href="#property_resultname" title="$resultname() :: "><span class="description">The result name</span><pre>$resultname</pre></a></li>
 </ul>
 </li>
 <li class="nav-header protected">» Protected
                     <ul>
 <li class="property protected "><a href="#property_agentcode" title="$agentcode() :: "><span class="description">iATS account agent code.</span><pre>$agentcode</pre></a></li>
-<li class="property protected "><a href="#property_endpoint" title="$endpoint() :: "><span class="description"></span><pre>$endpoint</pre></a></li>
-<li class="property protected "><a href="#property_password" title="$password() :: "><span class="description"></span><pre>$password</pre></a></li>
-<li class="property protected "><a href="#property_server" title="$server() :: "><span class="description"></span><pre>$server</pre></a></li>
-<li class="property protected "><a href="#property_serverid" title="$serverid() :: "><span class="description"></span><pre>$serverid</pre></a></li>
+<li class="property protected "><a href="#property_endpoint" title="$endpoint() :: "><span class="description">Service endpoint</span><pre>$endpoint</pre></a></li>
+<li class="property protected "><a href="#property_params" title="$params() :: "><span class="description">Requrest parameters</span><pre>$params</pre></a></li>
+<li class="property protected "><a href="#property_password" title="$password() :: "><span class="description">iATS account password.</span><pre>$password</pre></a></li>
+<li class="property protected "><a href="#property_server" title="$server() :: "><span class="description">Server url.</span><pre>$server</pre></a></li>
+<li class="property protected "><a href="#property_serverid" title="$serverid() :: "><span class="description">Server identifier.
+  \see setServer()</span><pre>$serverid</pre></a></li>
 </ul>
 </li>
 <li class="nav-header private">» Private
                     <ul>
 <li class="property private "><a href="#property_na_server" title="$na_server() :: "><span class="description">North America server url.</span><pre>$na_server</pre></a></li>
-<li class="property private "><a href="#property_uk_server" title="$uk_server() :: "><span class="description"></span><pre>$uk_server</pre></a></li>
+<li class="property private "><a href="#property_uk_server" title="$uk_server() :: "><span class="description">UK server url.</span><pre>$uk_server</pre></a></li>
 </ul>
 </li>
 </ul>
@@ -120,8 +120,7 @@ The core class.</a></li>
 <div class="long_description"></div>
 <table class="table table-bordered"><tr>
 <th>package</th>
-<td><a href="../packages/iATS%0AThe%20core%20class..html">iATS
-The core class.</a></td>
+<td><a href="../packages/iATS.html">iATS</a></td>
 </tr></table>
 <h3>
 <i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
@@ -131,6 +130,10 @@ The core class.</a></td>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="%5CiATS%5CsetServer()">For options</a></td>
+</tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$agentcode</h4>
@@ -140,8 +143,7 @@ The core class.</a></td>
 <code>string</code><p>iATS account password.</p></div>
 <div class="subelement argument">
 <h4>$serverid</h4>
-<code>string</code><p>Server indentifier.
-  \see setServer()</p></div>
+<code>string</code><p>Server indentifier. (Defaults to 'NA')</p></div>
 </div></div>
 </div>
 <a id="method_apiCall"></a><div class="element clickable method protected method_apiCall" data-toggle="collapse" data-target=".method_apiCall .collapse" title="protected">
@@ -301,8 +303,8 @@ The core class.</a></td>
 <h3>
 <i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
 <a id="property_format"> </a><div class="element clickable property public property_format" data-toggle="collapse" data-target=".property_format .collapse" title="public">
-<h2>$format</h2>
-<pre>$format </pre>
+<h2>Format</h2>
+<pre>$format : string</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
 <div class="subelement argument"><code>''</code></div>
@@ -311,18 +313,18 @@ The core class.</a></td>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="property_restrictedservers"> </a><div class="element clickable property public property_restrictedservers" data-toggle="collapse" data-target=".property_restrictedservers .collapse" title="public">
-<h2>$restrictedservers</h2>
-<pre>$restrictedservers </pre>
+<h2>Restricted servers array</h2>
+<pre>$restrictedservers : array</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
-<div class="subelement argument"><code>array()</code></div>
+<div class="subelement argument"><code>''</code></div>
 </div></div>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="property_resultname"> </a><div class="element clickable property public property_resultname" data-toggle="collapse" data-target=".property_resultname .collapse" title="public">
 <h2>The result name</h2>
-<pre>$resultname : string: string: array</pre>
+<pre>$resultname : string</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
 <div class="subelement argument"><code>''</code></div>
@@ -332,7 +334,7 @@ The core class.</a></td>
 </div>
 <a id="property_agentcode"> </a><div class="element clickable property protected property_agentcode" data-toggle="collapse" data-target=".property_agentcode .collapse" title="protected">
 <h2>iATS account agent code.</h2>
-<pre>$agentcode : string: string: string: string: string: string</pre>
+<pre>$agentcode : string</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
 <div class="subelement argument"><code>''</code></div>
@@ -341,8 +343,18 @@ The core class.</a></td>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="property_endpoint"> </a><div class="element clickable property protected property_endpoint" data-toggle="collapse" data-target=".property_endpoint .collapse" title="protected">
-<h2>$endpoint</h2>
-<pre>$endpoint </pre>
+<h2>Service endpoint</h2>
+<pre>$endpoint : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>''</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_params"> </a><div class="element clickable property protected property_params" data-toggle="collapse" data-target=".property_params .collapse" title="protected">
+<h2>Requrest parameters</h2>
+<pre>$params : string</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
 <div class="subelement argument"><code>''</code></div>
@@ -351,8 +363,8 @@ The core class.</a></td>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="property_password"> </a><div class="element clickable property protected property_password" data-toggle="collapse" data-target=".property_password .collapse" title="protected">
-<h2>$password</h2>
-<pre>$password </pre>
+<h2>iATS account password.</h2>
+<pre>$password : string</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
 <div class="subelement argument"><code>''</code></div>
@@ -361,8 +373,8 @@ The core class.</a></td>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="property_server"> </a><div class="element clickable property protected property_server" data-toggle="collapse" data-target=".property_server .collapse" title="protected">
-<h2>$server</h2>
-<pre>$server </pre>
+<h2>Server url.</h2>
+<pre>$server : string</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
 <div class="subelement argument"><code>''</code></div>
@@ -371,8 +383,9 @@ The core class.</a></td>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="property_serverid"> </a><div class="element clickable property protected property_serverid" data-toggle="collapse" data-target=".property_serverid .collapse" title="protected">
-<h2>$serverid</h2>
-<pre>$serverid </pre>
+<h2>Server identifier.
+  \see setServer()</h2>
+<pre>$serverid : string</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
 <div class="subelement argument"><code>''</code></div>
@@ -382,7 +395,7 @@ The core class.</a></td>
 </div>
 <a id="property_na_server"> </a><div class="element clickable property private property_na_server" data-toggle="collapse" data-target=".property_na_server .collapse" title="private">
 <h2>North America server url.</h2>
-<pre>$na_server : string: string</pre>
+<pre>$na_server : string</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
 <div class="subelement argument"><code>'https://www.iatspayments.com'</code></div>
@@ -391,8 +404,8 @@ The core class.</a></td>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="property_uk_server"> </a><div class="element clickable property private property_uk_server" data-toggle="collapse" data-target=".property_uk_server .collapse" title="private">
-<h2>$uk_server</h2>
-<pre>$uk_server </pre>
+<h2>UK server url.</h2>
+<pre>$uk_server : string</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
 <div class="subelement argument"><code>'https://www.uk.iatspayments.com'</code></div>
@@ -408,7 +421,7 @@ The core class.</a></td>
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
 </a> and<br>
-            generated on 2014-02-04T10:16:16-08:00.<br></footer></div>
+            generated on 2014-02-07T16:13:56-08:00.<br></footer></div>
 </div>
 </body>
 </html>

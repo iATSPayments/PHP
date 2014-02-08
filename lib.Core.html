@@ -1,0 +1,706 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>iATS Payments API PHP Wrapper</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" href="css/black-tie/jquery-ui-1.8.2.custom.css" type="text/css"></link><link rel="stylesheet" href="css/jquery.treeview.css" type="text/css"></link><link rel="stylesheet" href="css/default.css" type="text/css"></link><script type="text/javascript" src="js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script><script type="text/javascript" src="js/jquery.cookie.js"></script><script type="text/javascript" src="js/jquery.treeview.js"></script></head><body><script type="text/javascript">
+          $(document).ready(function()
+          {
+            $(".filetree").treeview({
+              animated: "fast",
+              collapsed: true,
+              persist: "cookie"
+            });
+          });
+
+          function jq_escape(myid)
+          {
+            return '#' + myid.replace(/(#|\$|:|\.|\(|\))/g, '\\$1');
+          }
+
+          function applySearchHash()
+          {
+            hashes = document.location.hash.substr(1, document.location.hash.length);
+            if (hashes != "")
+            {
+              hashes = hashes.split('/');
+              $.each(hashes, function(index, hash)
+              {
+                node = $(jq_escape(hash));
+                switch (node[0].nodeName)
+                {
+                  case 'DIV':
+                    tabs = node.parents('.tabs');
+                    $(tabs[0]).tabs('select', '#' + hash)
+                    break;
+                  case 'A':
+                    window.scrollTo(0, node.offset().top);
+                    break;
+                }
+              });
+            }
+          }
+
+          jQuery(function()
+          {
+            jQuery(".tabs").tabs();
+            applySearchHash();
+          });
+        </script><div id="maincontainer"><div id="header"><h1>iATS Payments API PHP Wrapper<img src="images/top-stopper.png"></img></h1></div><ul xmlns="" id="menu">
+<li><a href="graph.html">Class diagram</a></li>
+<li><a href="markers.html">TODO / Markers</a></li>
+<li><a href="parse_markers.html">Errors</a></li>
+</ul>
+<div id="content_container"><div xmlns="" id="content">
+<h1>lib/Core.php</h1>
+<div class="file_menu">
+<a href="#classes">Classes</a> |</div>
+<div class="properties">
+<h1>Properties</h1>
+<label class="property-key">package</label><div class="property-value"></div>
+</div>
+<h2>Description</h2>This is a file-level DocBlock<br><br><a name="classes"></a><h2>Classes</h2>
+<div id="Core" class="class">
+<h3>Core</h3>
+<div class="properties">
+<h1>Properties</h1>
+<label class="property-key">Extends</label><div class="property-value">
+         </div>
+<label class="property-key">Implements</label><div class="property-value"> 
+      </div>
+<label class="property-key">package</label><div class="property-value">
+<a title="">iATS</a>
+             
+        </div>
+<label class="property-key">Abstract</label><div class="property-value">No 
+      </div>
+<label class="property-key">Final</label><div class="property-value">No 
+      </div>
+</div>
+<h4>Description</h4>
+<em>Class Core</em><br><br><div id="methods_Core">
+<h4>Methods</h4>
+<a style="font-style: italic;" href="#Core::__construct()">__construct</a>,
+      <a style="font-style: italic;" href="#Core::apiCall()">apiCall</a>,
+      <a style="font-style: italic;" href="#Core::checkMOPCurrencyRestrictions()">checkMOPCurrencyRestrictions</a>,
+      <a style="font-style: italic;" href="#Core::checkRestrictions()">checkRestrictions</a>,
+      <a style="font-style: italic;" href="#Core::checkServerRestrictions()">checkServerRestrictions</a>,
+      <a style="font-style: italic;" href="#Core::getMOPCurrencyMatrix()">getMOPCurrencyMatrix</a>,
+      <a style="font-style: italic;" href="#Core::getSoapClient()">getSoapClient</a>,
+      <a style="font-style: italic;" href="#Core::reject()">reject</a>,
+      <a style="font-style: italic;" href="#Core::setServer()">setServer</a>,
+      <a style="font-style: italic;" href="#Core::xml2array()">xml2array</a>,
+      <div class="method">
+<a id="Core::__construct()"></a><h3>__construct<span class="nb-faded-text">(
+          string
+             
+            $agentcode,
+          string
+             
+            $password,
+          string
+             
+            $serverid
+            = 'NA',
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>IATS class constructor.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$agentcode</td>
+<td style="white-space: normal;">string</td>
+<td><p>iATS account agent code.</p></td>
+<td></td>
+</tr>
+<tr>
+<td>$password</td>
+<td style="white-space: normal;">string</td>
+<td><p>iATS account password.</p></td>
+<td></td>
+</tr>
+<tr>
+<td>$serverid</td>
+<td style="white-space: normal;">string</td>
+<td><p>Server indentifier.</p></td>
+<td>'NA'</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+<h4>Tags</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>see</td>
+<td><a href="%5CiATS%5Chttp://www.phpdoc.org/templates"><small>setServer()</small></a></td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Core::apiCall()"></a><h3>apiCall<span class="nb-faded-text">(
+          string
+             
+            $method,
+          array
+             
+            $parameters,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">object</span>
+</h3>
+<h4>Description</h4>
+<em>Make web service requests to the iATS API.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$method</td>
+<td style="white-space: normal;">string</td>
+<td><p>The name of the method to call.</p></td>
+<td></td>
+</tr>
+<tr>
+<td>$parameters</td>
+<td style="white-space: normal;">array</td>
+<td><p>Parameters to pass the API.</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>object</td>
+<td>XML object or boolean.</td>
+</tr></tbody>
+</table>
+<h4>Tags</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>throws</td>
+<td></td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Core::checkMOPCurrencyRestrictions()"></a><h3>checkMOPCurrencyRestrictions<span class="nb-faded-text">(
+          string
+             
+            $serverid,
+          string
+             
+            $currency,
+          string
+             
+            $mop,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">bool</span>
+</h3>
+<h4>Description</h4>
+<em>Check Method of Payment (MOP) is available based on server and currency.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$serverid</td>
+<td style="white-space: normal;">string</td>
+<td><p>Server identifier</p></td>
+<td></td>
+</tr>
+<tr>
+<td>$currency</td>
+<td style="white-space: normal;">string</td>
+<td><p>Currency</p></td>
+<td></td>
+</tr>
+<tr>
+<td>$mop</td>
+<td style="white-space: normal;">string</td>
+<td><p>Method of Payment</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>bool</td>
+<td>Result of check</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Core::checkRestrictions()"></a><h3>checkRestrictions<span class="nb-faded-text">(
+          array
+             
+            $parameters,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">bool|string</span>
+</h3>
+<h4>Description</h4>
+<em>Check restrictions for service.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$parameters</td>
+<td style="white-space: normal;">array</td>
+<td><p>Request parameters.</p></td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>bool|string</td>
+<td>FALSE if no restrictions. Message if restricted.</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Core::checkServerRestrictions()"></a><h3>checkServerRestrictions<span class="nb-faded-text">(
+          string
+             
+            $serverid,
+          array
+             
+            $restrictedservers,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">bool</span>
+</h3>
+<h4>Description</h4>
+<em>Check server restrictions.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$serverid</td>
+<td style="white-space: normal;">string</td>
+<td><p>Server identifier</p></td>
+<td></td>
+</tr>
+<tr>
+<td>$restrictedservers</td>
+<td style="white-space: normal;">array</td>
+<td><p>Restricted servers array</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>bool</td>
+<td>Result of server restricted check</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Core::getMOPCurrencyMatrix()"></a><h3>getMOPCurrencyMatrix<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">array</span>
+</h3>
+<h4>Description</h4>
+<em>MOP Currency matrix.</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>array</td>
+<td>Array of Server/Currency/MOP</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Core::getSoapClient()"></a><h3>getSoapClient<span class="nb-faded-text">(
+          string
+             
+            $endpoint,
+          array
+             
+            $options
+            = array('trace' => TRUE),
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">\SoapClient</span>
+</h3>
+<h4>Description</h4>
+<em>Create SoapClient object.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$endpoint</td>
+<td style="white-space: normal;">string</td>
+<td><p>Service endpoint</p></td>
+<td></td>
+</tr>
+<tr>
+<td>$options</td>
+<td style="white-space: normal;">array</td>
+<td><p>SoapClient options
+ \see <a href="http://www.php.net/manual/en/soapclient.soapclient.php">http://www.php.net/manual/en/soapclient.soapclient.php</a></p></td>
+<td>array('trace' => TRUE)</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>\SoapClient</td>
+<td>Returns IATS SoapClient object</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Core::reject()"></a><h3>reject<span class="nb-faded-text">(
+          int
+             
+            $rejectcode,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">mixed</span>
+</h3>
+<h4>Description</h4>
+<em>Reject code lookup array.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$rejectcode</td>
+<td style="white-space: normal;">int</td>
+<td><p>Reject codes and their meaning.</p></td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>mixed</td>
+<td>Returns reject code meaning.</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Core::setServer()"></a><h3>setServer<span class="nb-faded-text">(
+          string
+             
+            $serverid,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>Set the server to use based on a server id.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$serverid</td>
+<td style="white-space: normal;">string</td>
+<td><p>Server identifider ('UK' or 'NA'.)</p></td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+<h4>Tags</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>throws</td>
+<td></td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Core::xml2array()"></a><h3>xml2array<span class="nb-faded-text">(
+          string
+             
+            $xmlstring,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">array</span>
+</h3>
+<h4>Description</h4>
+<em>Create array from XML string.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$xmlstring</td>
+<td style="white-space: normal;">string</td>
+<td><p>An XML string to be processed.</p></td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>array</td>
+<td>Array.</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<div id="properties_Core">
+<h4>Properties</h4>
+<a href="#Core::%24agentcode">$agentcode</a>,
+      <a href="#Core::%24endpoint">$endpoint</a>,
+      <a href="#Core::%24format">$format</a>,
+      <a href="#Core::%24na_server">$na_server</a>,
+      <a href="#Core::%24password">$password</a>,
+      <a href="#Core::%24restrictedservers">$restrictedservers</a>,
+      <a href="#Core::%24resultname">$resultname</a>,
+      <a href="#Core::%24server">$server</a>,
+      <a href="#Core::%24serverid">$serverid</a>,
+      <a href="#Core::%24uk_server">$uk_server</a>,
+      <div class="method">
+<a id="Core::$agentcode"></a><h3>
+<span class="nb-faded-text">string 
+          protected 
+          </span>$agentcode
+          =
+          ''</h3>
+<em><p>iATS account agent code.</p></em><br><small></small><br><br>
+</div>
+<div class="method">
+<a id="Core::$endpoint"></a><h3>
+<span class="nb-faded-text"> 
+          protected 
+          </span>$endpoint
+          =
+          ''</h3>
+<em></em><br><small></small><br><br>
+</div>
+<div class="method">
+<a id="Core::$format"></a><h3>
+<span class="nb-faded-text"> 
+          public 
+          </span>$format
+          =
+          ''</h3>
+<em></em><br><small></small><br><br>
+</div>
+<div class="method">
+<a id="Core::$na_server"></a><h3>
+<span class="nb-faded-text">string 
+          private 
+          </span>$na_server
+          =
+          'https://www.iatspayments.com'</h3>
+<em><p>North America server url.</p></em><br><small></small><br><br>
+</div>
+<div class="method">
+<a id="Core::$password"></a><h3>
+<span class="nb-faded-text"> 
+          protected 
+          </span>$password
+          =
+          ''</h3>
+<em></em><br><small></small><br><br>
+</div>
+<div class="method">
+<a id="Core::$restrictedservers"></a><h3>
+<span class="nb-faded-text"> 
+          public 
+          </span>$restrictedservers
+          =
+          array()</h3>
+<em></em><br><small></small><br><br>
+</div>
+<div class="method">
+<a id="Core::$resultname"></a><h3>
+<span class="nb-faded-text">string 
+          public 
+          </span>$resultname
+          =
+          ''</h3>
+<em><p>The result name</p></em><br><small></small><br><br>
+</div>
+<div class="method">
+<a id="Core::$server"></a><h3>
+<span class="nb-faded-text"> 
+          protected 
+          </span>$server
+          =
+          ''</h3>
+<em></em><br><small></small><br><br>
+</div>
+<div class="method">
+<a id="Core::$serverid"></a><h3>
+<span class="nb-faded-text"> 
+          protected 
+          </span>$serverid
+          =
+          ''</h3>
+<em></em><br><small></small><br><br>
+</div>
+<div class="method">
+<a id="Core::$uk_server"></a><h3>
+<span class="nb-faded-text"> 
+          private 
+          </span>$uk_server
+          =
+          'https://www.uk.iatspayments.com'</h3>
+<em></em><br><small></small><br><br>
+</div>
+</div>
+<div style="clear: both"></div>
+</div>
+</div>
+<small xmlns="" class="footer">Documentation was generated by <a href="http://www.phpdoc.org">phpDocumentor 2.2.0
+</a>.</small></div><div id="index"><div class="padder"><input id="search_box"></input><div class="section">
+<h1>Namespaces</h1>
+<ul id="namespaces-" class="filetree"><li class="closed">
+<span class="folder">iATS</span><ul>
+<li><span class="class"><a href="lib.Core.html#Core">Core</a><br><small>Class Core</small></span></li>
+<li><span class="class"><a href="lib.CustomerLink.html#CustomerLink">CustomerLink</a><br><small>Class CustomerLink</small></span></li>
+<li><span class="class"><a href="lib.ProcessLink.html#ProcessLink">ProcessLink</a><br><small>Class ProcessLink</small></span></li>
+<li><span class="class"><a href="lib.ReportLink.html#ReportLink">ReportLink</a><br><small>Class ReportLink</small></span></li>
+</ul>
+</li></ul>
+</div><div class="section">
+<h1>Packages</h1>
+<ul id="packages-" class="filetree">
+<li class="closed">
+<span class="folder">Default</span><ul id="packages_Default" class="filetree"></ul>
+</li>
+<li class="closed">
+<span class="folder">Some_Package</span><ul id="packages_Some_Package" class="filetree"></ul>
+</li>
+<li class="closed">
+<span class="folder">iATS</span><ul id="packages_iATS" class="filetree">
+<li class="closed"><span class="class"><a href="lib.Core.html#Core">Core</a><br><small>Class Core</small></span></li>
+<li class="closed"><span class="class"><a href="lib.CustomerLink.html#CustomerLink">CustomerLink</a><br><small>Class CustomerLink</small></span></li>
+<li class="closed"><span class="class"><a href="lib.ProcessLink.html#ProcessLink">ProcessLink</a><br><small>Class ProcessLink</small></span></li>
+<li class="closed"><span class="class"><a href="lib.ReportLink.html#ReportLink">ReportLink</a><br><small>Class ReportLink</small></span></li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div><div id="footer"><div class="padder"></div></div></div></body></html>

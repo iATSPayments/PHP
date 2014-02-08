@@ -1,0 +1,356 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>iATS Payments API PHP Wrapper</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" href="css/black-tie/jquery-ui-1.8.2.custom.css" type="text/css"></link><link rel="stylesheet" href="css/jquery.treeview.css" type="text/css"></link><link rel="stylesheet" href="css/default.css" type="text/css"></link><script type="text/javascript" src="js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script><script type="text/javascript" src="js/jquery.cookie.js"></script><script type="text/javascript" src="js/jquery.treeview.js"></script></head><body><script type="text/javascript">
+          $(document).ready(function()
+          {
+            $(".filetree").treeview({
+              animated: "fast",
+              collapsed: true,
+              persist: "cookie"
+            });
+          });
+
+          function jq_escape(myid)
+          {
+            return '#' + myid.replace(/(#|\$|:|\.|\(|\))/g, '\\$1');
+          }
+
+          function applySearchHash()
+          {
+            hashes = document.location.hash.substr(1, document.location.hash.length);
+            if (hashes != "")
+            {
+              hashes = hashes.split('/');
+              $.each(hashes, function(index, hash)
+              {
+                node = $(jq_escape(hash));
+                switch (node[0].nodeName)
+                {
+                  case 'DIV':
+                    tabs = node.parents('.tabs');
+                    $(tabs[0]).tabs('select', '#' + hash)
+                    break;
+                  case 'A':
+                    window.scrollTo(0, node.offset().top);
+                    break;
+                }
+              });
+            }
+          }
+
+          jQuery(function()
+          {
+            jQuery(".tabs").tabs();
+            applySearchHash();
+          });
+        </script><div id="maincontainer"><div id="header"><h1>iATS Payments API PHP Wrapper<img src="images/top-stopper.png"></img></h1></div><ul xmlns="" id="menu">
+<li><a href="graph.html">Class diagram</a></li>
+<li><a href="markers.html">TODO / Markers</a></li>
+<li><a href="parse_markers.html">Errors</a></li>
+</ul>
+<div id="content_container"><div xmlns="" id="content">
+<h1>lib/ReportLink.php</h1>
+<div class="file_menu">
+<a href="#classes">Classes</a> |</div>
+<div class="properties">
+<h1>Properties</h1>
+<label class="property-key">file</label><div class="property-value"></div>
+</div>
+<a name="classes"></a><h2>Classes</h2>
+<div id="ReportLink" class="class">
+<h3>ReportLink</h3>
+<div class="properties">
+<h1>Properties</h1>
+<label class="property-key">Extends</label><div class="property-value">
+         </div>
+<label class="property-key">Implements</label><div class="property-value"> 
+      </div>
+<label class="property-key">package</label><div class="property-value">
+<a title="">iATS</a>
+             
+        </div>
+<label class="property-key">Abstract</label><div class="property-value">No 
+      </div>
+<label class="property-key">Final</label><div class="property-value">No 
+      </div>
+</div>
+<h4>Description</h4>
+<em>Class ReportLink</em><br><br><div id="methods_ReportLink">
+<h4>Methods</h4>
+<a style="font-style: italic;" href="#ReportLink::__construct()">__construct</a>,
+      <a style="font-style: italic;" href="#ReportLink::getCreditCardReject()">getCreditCardReject</a>,
+      <a style="font-style: italic;" href="#ReportLink::getCreditCardRejectCSV()">getCreditCardRejectCSV</a>,
+      <a style="font-style: italic;" href="#ReportLink::responseHandler()">responseHandler</a>,
+      <div class="method">
+<a id="ReportLink::__construct()"></a><h3>__construct<span class="nb-faded-text">(
+          string
+             
+            $agentcode,
+          string
+             
+            $password,
+          string
+             
+            $serverid
+            = 'NA',
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>ReportLink constructor.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$agentcode</td>
+<td style="white-space: normal;">string</td>
+<td><p>iATS account agent code.</p></td>
+<td></td>
+</tr>
+<tr>
+<td>$password</td>
+<td style="white-space: normal;">string</td>
+<td><p>iATS account password.</p></td>
+<td></td>
+</tr>
+<tr>
+<td>$serverid</td>
+<td style="white-space: normal;">string</td>
+<td><p>Server identifier (Defaults to 'NA').
+  \see setServer()</p></td>
+<td>'NA'</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="ReportLink::getCreditCardReject()"></a><h3>getCreditCardReject<span class="nb-faded-text">(
+          array
+             
+            $parameters,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">mixed</span>
+</h3>
+<h4>Description</h4>
+<em>Get Credit Card Reject report.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$parameters</td>
+<td style="white-space: normal;">array</td>
+<td><p>An associative array with the following possible values.</p></td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>mixed</td>
+<td>Report array or API error.</td>
+</tr></tbody>
+</table>
+<h4>Tags</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>array(
+    'customerIPAddress' =&gt; '',
+    'date' =&gt; 946771200,
+  );</td>
+</tr>
+<tr>
+<td>endcode</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="method">
+<a id="ReportLink::getCreditCardRejectCSV()"></a><h3>getCreditCardRejectCSV<span class="nb-faded-text">(
+          array
+             
+            $parameters,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">mixed</span>
+</h3>
+<h4>Description</h4>
+<em>Get Credit Card Reject CSV report.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$parameters</td>
+<td style="white-space: normal;">array</td>
+<td><p>An associative array with the following possible values.</p></td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>mixed</td>
+<td>Report CSV (string) or API error.</td>
+</tr></tbody>
+</table>
+<h4>Tags</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>$request = array(
+    'customerIPAddress' =&gt; '',
+    'date' =&gt; 946771200,
+  );</td>
+</tr>
+<tr>
+<td>endcode</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="method">
+<a id="ReportLink::responseHandler()"></a><h3>responseHandler<span class="nb-faded-text">(
+          array
+             
+            $response,
+          string
+             
+            $result,
+          string
+             
+            $format,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">mixed</span>
+</h3>
+<h4>Description</h4>
+<em>Response Handler for ReportLink calls.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$response</td>
+<td style="white-space: normal;">array</td>
+<td><p>Response</p></td>
+<td></td>
+</tr>
+<tr>
+<td>$result</td>
+<td style="white-space: normal;">string</td>
+<td><p>Result string</p></td>
+<td></td>
+</tr>
+<tr>
+<td>$format</td>
+<td style="white-space: normal;">string</td>
+<td><p>Output format.
+  'AR' will return array(),
+  'CSV' will return a comma delimited data string with headers.</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>mixed</td>
+<td>Response</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<div style="clear: both"></div>
+</div>
+</div>
+<small xmlns="" class="footer">Documentation was generated by <a href="http://www.phpdoc.org">phpDocumentor 2.2.0
+</a>.</small></div><div id="index"><div class="padder"><input id="search_box"></input><div class="section">
+<h1>Namespaces</h1>
+<ul id="namespaces-" class="filetree"><li class="closed">
+<span class="folder">iATS</span><ul>
+<li><span class="class"><a href="lib.Core.html#Core">Core</a><br><small>Class Core</small></span></li>
+<li><span class="class"><a href="lib.CustomerLink.html#CustomerLink">CustomerLink</a><br><small>Class CustomerLink</small></span></li>
+<li><span class="class"><a href="lib.ProcessLink.html#ProcessLink">ProcessLink</a><br><small>Class ProcessLink</small></span></li>
+<li><span class="class"><a href="lib.ReportLink.html#ReportLink">ReportLink</a><br><small>Class ReportLink</small></span></li>
+</ul>
+</li></ul>
+</div><div class="section">
+<h1>Packages</h1>
+<ul id="packages-" class="filetree">
+<li class="closed">
+<span class="folder">Default</span><ul id="packages_Default" class="filetree"></ul>
+</li>
+<li class="closed">
+<span class="folder">Some_Package</span><ul id="packages_Some_Package" class="filetree"></ul>
+</li>
+<li class="closed">
+<span class="folder">iATS</span><ul id="packages_iATS" class="filetree">
+<li class="closed"><span class="class"><a href="lib.Core.html#Core">Core</a><br><small>Class Core</small></span></li>
+<li class="closed"><span class="class"><a href="lib.CustomerLink.html#CustomerLink">CustomerLink</a><br><small>Class CustomerLink</small></span></li>
+<li class="closed"><span class="class"><a href="lib.ProcessLink.html#ProcessLink">ProcessLink</a><br><small>Class ProcessLink</small></span></li>
+<li class="closed"><span class="class"><a href="lib.ReportLink.html#ReportLink">ReportLink</a><br><small>Class ReportLink</small></span></li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div><div id="footer"><div class="padder"></div></div></div></body></html>
