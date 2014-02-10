@@ -55,6 +55,50 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     $response = $iats->createCreditCardCustomerCode($request);
     $this->assertTrue(TRUE);
   }
+
+  /**
+   * Test updateCreditCardCustomerCode.
+   */
+  public function testCustomerLinkupdateCreditCardCustomerCode() {
+    $agentcode = 'TEST88';
+    $password = 'TEST88';
+    $date = strtotime('12/17/2011');
+    $beginDate = strtotime('10/23/2011');
+    $endDate = strtotime('10/23/2014');
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => '',
+      'firstName' => 'Test',
+      'lastName' => 'Account',
+      'companyName' => 'Test Co.',
+      'address' => '1234 Any Street',
+      'city' => 'Schenectady',
+      'state' => 'NY',
+      'zipCode' => '12345',
+      'phone' => '555-555-1234',
+      'fax' => '555-555-4321',
+      'alternatePhone' => '555-555-5555',
+      'email' => 'email@test.co',
+      'comment' => 'Customer code update test.',
+      'recurring' => FALSE,
+      'amount' => '5',
+      'beginDate' => $beginDate,
+      'endDate' => $endDate,
+      'scheduleType' => 'Annually',
+      'scheduleDate' => '',
+      'creditCardCustomerName' => 'Test Account',
+      'creditCardNum' => '4222222222222220',
+      'creditCardExpiry' => '12/17',
+      'mop' => 'VISA',
+      'updateCreditCardNum' => FALSE,
+    );
+
+    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $response = $iats->updateCreditCardCustomerCode($request);
+    $this->assertTrue(TRUE);
+  }
+
   /**
    * Test createCustCodeCC.
    */
@@ -74,6 +118,10 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     $response = $iats->getCustomerCodeDetail($request);
     $this->assertTrue(TRUE);
   }
+
+
+
+
 //
 //  /**
 //   * Invalid customer code.
