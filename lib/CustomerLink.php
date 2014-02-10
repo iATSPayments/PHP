@@ -96,8 +96,48 @@ class CustomerLink extends Core {
     return $this->responseHandler($response, 'CreateCreditCardCustomerCodeV1Result');
   }
 
+  /**
+   * Update Credit Card Customer Code.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   array(
+   *     'customerIPAddress' => '',
+   *     'customerCode' => '',
+   *     'firstName' => 'Test',
+   *     'lastName' => 'Account',
+   *     'companyName' => 'Test Co.',
+   *     'address' => '1234 Any Street',
+   *     'city' => 'Schenectady',
+   *     'state' => 'NY',
+   *     'zipCode' => '12345',
+   *     'phone' => '555-555-1234',
+   *     'fax' => '555-555-4321',
+   *     'alternatePhone' => '555-555-5555',
+   *     'email' => 'email@test.co',
+   *     'comment' => 'Customer code update test.',
+   *     'recurring' => FALSE,
+   *     'amount' => '5',
+   *     'beginDate' => 946684800,
+   *     'endDate' => 946771200,
+   *     'scheduleType' => 'Annually',
+   *     'scheduleDate' => '',
+   *     'creditCardCustomerName' => 'Test Account',
+   *     'creditCardNum' => '4222222222222220',
+   *     'creditCardExpiry' => '12/17',
+   *     'mop' => 'VISA',
+   *     'updateCreditCardNum' => FALSE,
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
   public function updateCreditCardCustomerCode($parameters) {
-    // TODO: Populate method.
+    $response = $this->apiCall('UpdateCreditCardCustomerCode', $parameters);
+    return $this->responseHandler($response, 'UpdateCreditCardCustomerCodeV1Result');
   }
 
   public function createACHEFTCustomerCode($parameters) {
