@@ -194,11 +194,31 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'accountCustomerName' => 'Test Account',
       'accountNum' => '999999999',
       'accountType' => 'Checking',
-      'updateAccountNum' => FALSE
+      'updateAccountNum' => FALSE,
     );
 
     $iats = new CustomerLink($agentcode, $password, 'NA');
     $response = $iats->updateACHEFTCustomerCode($request);
+    $this->assertTrue(TRUE);
+  }
+
+  /**
+   * Test deleteCustomerCode.
+   */
+  public function testCustomerLinkdeleteCustomerCode() {
+    $agentcode = 'TEST88';
+    $password = 'TEST88';
+    $date = strtotime('12/17/2011');
+    $beginDate = strtotime('10/23/2011');
+    $endDate = strtotime('10/23/2014');
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => '',
+    );
+
+    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $response = $iats->deleteCustomerCode($request);
     $this->assertTrue(TRUE);
   }
 
