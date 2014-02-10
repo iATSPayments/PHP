@@ -58,6 +58,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test updateCreditCardCustomerCode.
+   *
+   * @depends testCustomerLinkcreateCreditCardCustomerCode
    */
   public function testCustomerLinkupdateCreditCardCustomerCode() {
     $agentcode = 'TEST88';
@@ -100,7 +102,9 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Test createCustCodeCC.
+   * Test getCustomerCodeDetail.
+   *
+   * @depends testCustomerLinkupdateCreditCardCustomerCode
    */
   public function testgetCustomerCodeDetail() {
     $agentcode = 'TEST88';
@@ -162,6 +166,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test updateACHEFTCustomerCode.
+   *
+   * @depends testCustomerLinkcreateACHEFTCustomerCode
    */
   public function testCustomerLinkupdateACHEFTCustomerCode() {
     $agentcode = 'TEST88';
@@ -204,6 +210,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test deleteCustomerCode.
+   *
+   * @depends testgetCustomerCodeDetail
    */
   public function testCustomerLinkdeleteCustomerCode() {
     $agentcode = 'TEST88';
