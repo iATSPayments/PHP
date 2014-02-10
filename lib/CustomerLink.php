@@ -96,6 +96,22 @@ class CustomerLink extends Core {
     return $this->responseHandler($response, 'CreateCreditCardCustomerCodeV1Result');
   }
 
+  public function updateCreditCardCustomerCode($parameters) {
+    // TODO: Populate method.
+  }
+
+  public function createACHEFTCustomerCode($parameters) {
+    // TODO: Populate method.
+  }
+
+  public function updateACHEFTCustomerCode($parameters) {
+    // TODO: Populate method.
+  }
+
+  public function deleteCustomerCode($parameters) {
+    // TODO: Populate method.
+  }
+
   /**
    * Response Handler for CustomerLink calls.
    *
