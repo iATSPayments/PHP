@@ -140,8 +140,49 @@ class CustomerLink extends Core {
     return $this->responseHandler($response, 'UpdateCreditCardCustomerCodeV1Result');
   }
 
+  /**
+   * Create ACH/EFT Customer Code.
+   *
+   * ACH: http://en.wikipedia.org/wiki/Automated_Clearing_House
+   * EFT: http://en.wikipedia.org/wiki/Electronic_funds_transfer
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   array(
+   *     'customerIPAddress' => '',
+   *     'customerCode' => '',
+   *     'firstName' => 'Test',
+   *     'lastName' => 'Account',
+   *     'companyName' => 'Test Co.',
+   *     'address' => '1234 Any Street',
+   *     'city' => 'Schenectady',
+   *     'state' => 'NY',
+   *     'zipCode' => '12345',
+   *     'phone' => '555-555-1234',
+   *     'fax' => '555-555-4321',
+   *     'alternatePhone' => '555-555-5555',
+   *     'email' => 'email@test.co',
+   *     'comment' => 'Customer code update test.',
+   *     'recurring' => FALSE,
+   *     'amount' => '5',
+   *     'beginDate' => 946684800,
+   *     'endDate' => 946771200,
+   *     'scheduleType' => 'Annually',
+   *     'scheduleDate' => '',
+   *     'accountCustomerName' => 'Test Account',
+   *     'accountNum' => '999999999',
+   *     'accountType' => 'Checking',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
   public function createACHEFTCustomerCode($parameters) {
-    // TODO: Populate method.
+    $response = $this->apiCall('CreateACHEFTCustomerCode', $parameters);
+    return $this->responseHandler($response, 'CreateACHEFTCustomerCodeV1Result');
   }
 
   public function updateACHEFTCustomerCode($parameters) {
