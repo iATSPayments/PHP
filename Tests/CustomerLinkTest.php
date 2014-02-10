@@ -194,6 +194,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'accountCustomerName' => 'Test Account',
       'accountNum' => '999999999',
       'accountType' => 'Checking',
+      'updateAccountNum' => FALSE
     );
 
     $iats = new CustomerLink($agentcode, $password, 'NA');
