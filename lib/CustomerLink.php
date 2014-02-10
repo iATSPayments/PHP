@@ -228,7 +228,7 @@ class CustomerLink extends Core {
    */
   public function updateACHEFTCustomerCode($parameters) {
     $response = $this->apiCall('UpdateACHEFTCustomerCode', $parameters);
-    return $this->responseHandler($response, 'UpdateACHEFTCustomerCodeV1Response');
+    return $this->responseHandler($response, 'UpdateACHEFTCustomerCodeV1Result');
   }
 
   /**
