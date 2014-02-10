@@ -1,6 +1,7 @@
 <?php
 /**
  * CustomerLink class file.
+ * Targeting iATS API version 1.0.
  */
 
 namespace iATS;
