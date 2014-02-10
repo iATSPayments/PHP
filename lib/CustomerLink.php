@@ -250,7 +250,7 @@ class CustomerLink extends Core {
    */
   public function deleteCustomerCode($parameters) {
     $response = $this->apiCall('DeleteCustomerCode', $parameters);
-    return $this->responseHandler($response, 'DeleteCustomerCodeV1Response');
+    return $this->responseHandler($response, 'DeleteCustomerCodeV1Result');
   }
 
   /**
