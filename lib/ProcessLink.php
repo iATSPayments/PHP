@@ -177,8 +177,37 @@ class ProcessLink extends Core {
     return $this->responseHandler($response, 'ProcessACHEFTRefundWithTransactionIdV1Result');
   }
 
+  /**
+   * Process a direct debit transaction using an existing account,
+   * without using a Customer Code.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'customerIPAddress' => '',
+   *     'invoiceNum' => '00000001',
+   *     'firstName' => 'Test',
+   *     'lastName' => 'Account',
+   *     'address' => '1234 Any Street',
+   *     'city' => 'Schenectady',
+   *     'state' => 'NY',
+   *     'zipCode' => '12345',
+   *     'accountNum' => '02100002100000000000000001',
+   *     'accountType' => 'CHECKING',
+   *     'invoiceNum' => '00000001',
+   *     'total' => '5',
+   *     'comment' => 'Process direct debit test.',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
   public function processACHEFT($parameters) {
-
+    $response = $this->apiCall('ProcessACHEFT', $parameters);
+    return $this->responseHandler($response, 'ProcessACHEFTV1Result');
   }
 
   public function processACHEFTWithCustomerCode($parameters) {
