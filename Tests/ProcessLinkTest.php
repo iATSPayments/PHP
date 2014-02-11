@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * File description.
+ * Unit tests for Report Link element of the iATS API.
  */
 
 namespace iATS;
@@ -12,12 +12,16 @@ namespace iATS;
  * @package iATS
  */
 class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
+  const AGENT_CODE = 'TEST88';
+  const PASSWORD = 'TEST88';
+
   /**
-   * Test processCreditCard().
+   * Test processCreditCard.
    */
   public function testprocessCreditCard() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
@@ -32,10 +36,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'city' => 'Schenectady',
       'state' => 'NY',
       'zipCode' => '12345',
-      'total' => '2',
+      'total' => '5',
       'comment' => 'Process CC test.',
-      // Not needed for request.
-      'currency' => 'USD',
     );
 
     $iats = new ProcessLink($agentcode, $password, 'UK');
