@@ -195,12 +195,12 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     );
 
     $iats = new ProcessLink($agentcode, $password);
-    $response = $iats->processCreditCard($request);
+    $response = $iats->processCreditCardWithCustomerCode($request);
 
     $this->assertEquals('Success', $response['STATUS']);
 
-    //$clean = trim($response['PROCESSRESULT']['AUTHORIZATIONRESULT']);
-    //$this->assertEquals($clean, 'OK: 678594:');
+    $clean = trim($response['PROCESSRESULT']['AUTHORIZATIONRESULT']);
+    $this->assertEquals($clean, 'OK: 678594:');
   }
 
 //  /**
