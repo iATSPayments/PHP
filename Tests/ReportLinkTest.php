@@ -324,40 +324,42 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertStringStartsWith('Transaction ID,Invoice Number,Date Time', $response);
   }
 
-
-
   /**
-   * Test no data.
+   * Test getCreditCardPaymentBoxRejectCSV.
    */
-  public function testNoData() {
+  public function testReportLinkgetCreditCardPaymentBoxRejectCSV() {
     $agentcode = self::AGENT_CODE;
     $password = self::PASSWORD;
-    $date = strtotime('1/1/2025');
+    $fromDate = strtotime('10/23/2011');
+    $toDate = strtotime('10/23/2014');
     $request = array(
+      'fromDate' => $fromDate,
+      'toDate' => $toDate,
       'customerIPAddress' => '',
-      'date' => $date,
     );
 
     $iats = new ReportLink($agentcode, $password);
-    $response = $iats->getCreditCardReject($request);
-    $this->assertEquals('No data returned for this date', $response);
+    $response = $iats->getCreditCardPaymentBoxRejectCSV($request);
+
+    $this->assertStringStartsWith('Transaction ID,Invoice Number,Date Time', $response);
   }
 
   /**
-   * Test getCCRej.
+   * Test getCreditCardReject.
    */
   public function testReportLinkgetCreditCardReject() {
     $agentcode = self::AGENT_CODE;
     $password = self::PASSWORD;
     $date = time();
     $request = array(
-      'customerIPAddress' => '',
       'date' => $date,
+      'customerIPAddress' => '',
     );
 
     $iats = new ReportLink($agentcode, $password);
     $response = $iats->getCreditCardReject($request);
-    $this->assertTrue(TRUE);
+
+    $this->assertArrayHasKey('TNID', $response[0]);
   }
 
   /**
@@ -376,6 +378,24 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $response = $iats->getCreditCardRejectCSV($request);
     $this->assertTrue(TRUE);
   }
+
+  /**
+   * Test no data.
+   */
+  public function testNoData() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $date = strtotime('1/1/2025');
+    $request = array(
+      'customerIPAddress' => '',
+      'date' => $date,
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getCreditCardReject($request);
+    $this->assertEquals('No data returned for this date', $response);
+  }
+
 //
 //  /**
 //   * No File.
