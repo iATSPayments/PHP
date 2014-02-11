@@ -116,6 +116,25 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertStringStartsWith('Transaction ID,Invoice Number,Date Time', $response);
   }
 
+  /**
+   * Test getACHEFTRejectCSV.
+   */
+  public function testReportLinkgetACHEFTRejectCSV() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $date = time();
+    $request = array(
+      'date' => $date,
+      'customerIPAddress' => '',
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getACHEFTRejectCSV($request);
+
+    $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
+  }
+
+
 
   /**
    * Test no data.
