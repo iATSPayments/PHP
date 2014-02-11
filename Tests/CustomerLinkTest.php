@@ -100,7 +100,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink($agentcode, $password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
-    $this->assertTrue(TRUE);
+    $this->assertEquals('OK', $response);
   }
 
   /**
@@ -114,7 +114,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => 'A10396688',
+      'customerCode' => self::TEST_CUSTOMER_CODE,
       // Not required.
       'mop' => 'VISA',
       'currency' => 'USD',
@@ -122,7 +122,9 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink($agentcode, $password, 'NA');
     $response = $iats->getCustomerCodeDetail($request);
-    $this->assertTrue(TRUE);
+
+    $this->assertArrayHasKey('CST', $response);
+    $this->assertEquals(self::TEST_CUSTOMER_CODE, $response['CST']['CSTC']);
   }
 
   /**
