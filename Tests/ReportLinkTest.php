@@ -134,6 +134,24 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
   }
 
+  /**
+   * Test getACHEFTReject.
+   */
+  public function testReportLinkgetACHEFTReject() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $date = time();
+    $request = array(
+      'date' => $date,
+      'customerIPAddress' => '',
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getACHEFTReject($request);
+
+    $this->assertArrayHasKey('TNID', $response[0]);
+  }
+
 
 
   /**

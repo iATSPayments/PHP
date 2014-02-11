@@ -177,7 +177,7 @@ class ReportLink extends Core {
    *   Report array or API error.
    */
   public function getACHEFTReject($parameters) {
-    $response = $this->apiCall('GetACHEFTRejectV1', $parameters);
+    $response = $this->apiCall('GetACHEFTReject', $parameters);
     return $this->responseHandler($response, 'GetACHEFTRejectV1Result', 'AR');
   }
 
