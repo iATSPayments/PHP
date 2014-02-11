@@ -189,6 +189,25 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('No data returned for this date', $response);
   }
 
+  /**
+   * Test getACHJournalCSV.
+   */
+  public function testReportLinkgetACHJournalCSV() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $date = time();
+    $request = array(
+      'date' => $date,
+      'customerIPAddress' => '',
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getACHJournalCSV($request);
+
+    // TODO: Get test data for this method.
+    $this->assertEquals('', $response);
+  }
+
 
 
   /**

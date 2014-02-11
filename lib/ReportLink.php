@@ -240,7 +240,7 @@ class ReportLink extends Core {
    */
   public function getACHJournalCSV($parameters)
   {
-    $response = $this->apiCall('GetACHJournalCSV_x0020_V1', $parameters);
+    $response = $this->apiCall('GetACHJournalCSV', $parameters);
     return $this->responseHandler($response, 'GetACHJournalCSV_x0020_V1Result', 'CSV');
   }
 
