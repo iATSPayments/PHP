@@ -28,6 +28,75 @@ class ReportLink extends Core {
     $this->endpoint = '/NetGate/ReportLink.asmx?WSDL';
   }
 
+  public function getACHEFTBankReconciliationReportCSV($parameters) {
+
+  }
+
+  public function getACHEFTJournalCSV($parameters) {
+
+  }
+
+  public function GetACHEFTJournal($parameters) {
+
+  }
+
+  public function getACHEFTPaymentBoxJournalCSV($parameters) {
+
+  }
+
+  public function getACHEFTPaymentBoxRejectCSV($parameters) {
+
+  }
+
+  public function getACHEFTRejectCSV($parameters) {
+
+  }
+
+  public function getACHEFTReject($parameters) {
+
+  }
+
+  public function getACHEFTReturnCSV($parameters) {
+
+  }
+
+  public function getACHEFTReturn($parameters) {
+
+  }
+
+  public function getACHJournalCSV($parameters)
+  {
+
+  }
+
+  public function getCCJournalCSV($parameters) {
+
+  }
+
+  public function getCCPaymentBoxJournalCSV($parameters) {
+
+  }
+
+  public function getCreditCardBankReconciliationReportCSV($parameters) {
+
+  }
+
+  public function getCreditCardJournalCSV($parameters) {
+
+  }
+
+  public function getCreditCardJournal($parameters) {
+
+  }
+
+  public function getCreditCardPaymentBoxJournalCSV($parameters) {
+
+  }
+
+  public function getCreditCardPaymentBoxRejectCSV($parameters) {
+
+  }
+
   /**
    * Get Credit Card Reject report.
    *
