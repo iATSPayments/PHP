@@ -117,7 +117,26 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * Test processACHEFT.
    */
   public function testProcessLinkprocessACHEFT() {
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'invoiceNum' => '00000001',
+      'firstName' => 'Test',
+      'lastName' => 'Account',
+      'address' => '1234 Any Street',
+      'city' => 'Schenectady',
+      'state' => 'NY',
+      'zipCode' => '12345',
+      'accountNum' => '02100002100000000000000001',
+      'accountType' => 'CHECKING',
+      'total' => '5',
+      'comment' => 'Process direct debit test.',
+    );
 
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
+    $response = $iats->processACHEFT($request);
+
+    $this->assertEquals('Success', $response['STATUS']);
   }
 
   /**
