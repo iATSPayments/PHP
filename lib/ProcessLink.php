@@ -90,8 +90,25 @@ class ProcessLink extends Core {
     return $this->responseHandler($response, 'CreateCustomerCodeAndProcessCreditCardV1Result');
   }
 
+  /**
+   * Get the results of a preview batch request.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'customerIPAddress' => '',
+   *     'batchId' => '1',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
   public function getBatchProcessResultFile($parameters) {
-
+    $response = $this->apiCall('GetBatchProcessResultFile', $parameters);
+    return $this->responseHandler($response, 'GetBatchProcessResultFileV1Result');
   }
 
   public function processACHEFTChargeBatch($parameters) {
