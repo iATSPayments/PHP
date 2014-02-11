@@ -75,8 +75,25 @@ class ReportLink extends Core {
     return $this->responseHandler($response, 'GetACHEFTJournalCSVV1Result', 'CSV');
   }
 
+  /**
+   * Get ACH / EFT Journal report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   array(
+   *     'date' => 946771200,
+   *     'customerIPAddress' => '',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report array or API error.
+   */
   public function GetACHEFTJournal($parameters) {
-
+    $response = $this->apiCall('GetACHEFTJournalV1', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTJournalV1Result', 'AR');
   }
 
   public function getACHEFTPaymentBoxJournalCSV($parameters) {
