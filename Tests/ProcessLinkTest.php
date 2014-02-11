@@ -53,8 +53,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink($agentcode, $password);
     $response = $iats->createCustomerCodeAndProcessACHEFT($request);
 
-    $this->creditCardCustomerCode = trim($response['PROCESSRESULT']['CUSTOMERCODE']);
-    $this->creditCardTransactionId = trim($response['PROCESSRESULT']['TRANSACTIONID']);
+    $this->ACHEFTCustomerCode = trim($response['PROCESSRESULT']['CUSTOMERCODE']);
+    $this->ACHEFTTransationId = trim($response['PROCESSRESULT']['TRANSACTIONID']);
 
     $this->assertEquals('Success', $response['STATUS']);
   }
