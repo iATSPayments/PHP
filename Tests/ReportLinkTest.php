@@ -416,6 +416,8 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('', $response);
   }
 
+  // TODO: Address timeout and non-response errors. May be better suited to CoreTest.php
+
 //
 //  /**
 //   * Timeout response.
