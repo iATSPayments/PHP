@@ -214,11 +214,11 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Test deleteCustomerCode.
+   * Test deleteCustomerCode for credit card customers.
    *
    * @depends testgetCustomerCodeDetail
    */
-  public function testCustomerLinkdeleteCustomerCode() {
+  public function testCustomerLinkdeleteCreditCardCustomerCode() {
     $agentcode = 'TEST88';
     $password = 'TEST88';
     $date = strtotime('12/17/2011');
@@ -228,6 +228,28 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     $request = array(
       'customerIPAddress' => '',
       'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
+    );
+
+    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $response = $iats->deleteCustomerCode($request);
+    $this->assertEquals('OK', $response);
+  }
+
+  /**
+   * Test deleteCustomerCode for ACH / EFT customers.
+   *
+   * @depends testCustomerLinkupdateACHEFTCustomerCode
+   */
+  public function testCustomerLinkdeleteACHEFTCustomerCode() {
+    $agentcode = 'TEST88';
+    $password = 'TEST88';
+    $date = strtotime('12/17/2011');
+    $beginDate = strtotime('10/23/2011');
+    $endDate = strtotime('10/23/2014');
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => self::TEST_ACH_EFT_CUSTOMER_CODE,
     );
 
     $iats = new CustomerLink($agentcode, $password, 'NA');
