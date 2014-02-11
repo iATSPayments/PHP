@@ -21,8 +21,8 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
   public function testReportLinkgetACHEFTBankReconciliationReportCSV() {
     $agentcode = self::AGENT_CODE;
     $password = self::PASSWORD;
-    $fromDate = strtotime('946684800');
-    $toDate = strtotime('946771200');
+    $fromDate = strtotime('10/23/2011');
+    $toDate = strtotime('10/23/2014');
     $request = array(
       'fromDate' => $fromDate,
       'toDate' => $toDate,
