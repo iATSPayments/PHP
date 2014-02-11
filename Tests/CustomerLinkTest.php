@@ -231,7 +231,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink($agentcode, $password, 'NA');
     $response = $iats->deleteCustomerCode($request);
-    $this->assertTrue(TRUE);
+    $this->assertEquals('OK', $response);
   }
 
 //
