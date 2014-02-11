@@ -16,6 +16,30 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
   const PASSWORD = 'TEST88';
 
   /**
+   * Test getACHEFTBankReconciliationReportCSV.
+   */
+  public function testReportLinkgetACHEFTBankReconciliationReportCSV() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $fromDate = strtotime('946684800');
+    $toDate = strtotime('946771200');
+    $request = array(
+      'fromDate' => $fromDate,
+      'toDate' => $toDate,
+      'currency' => 'USD',
+      'summaryOnly' => FALSE,
+      'customerIPAddress' => '',
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getACHEFTBankReconciliationReportCSV($request);
+
+    $this->assertTrue(TRUE);
+  }
+
+
+
+  /**
    * Test no data.
    */
   public function testNoData() {
