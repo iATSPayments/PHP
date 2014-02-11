@@ -50,11 +50,29 @@ class ReportLink extends Core {
   public function getACHEFTBankReconciliationReportCSV($parameters) {
     $this->restrictedservers = array('UK');
     $response = $this->apiCall('GetACHEFTBankReconciliationReportCSVV1', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTBankReconciliationReportCSVV1Response', 'CSV');
+    return $this->responseHandler($response, 'GetACHEFTBankReconciliationReportCSVV1Result', 'CSV');
   }
 
+  /**
+   * Get ACH / EFT Journal CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'date' => 946771200,
+   *     'customerIPAddress' => '',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
   public function getACHEFTJournalCSV($parameters) {
-
+    $this->restrictedservers = array('UK');
+    $response = $this->apiCall('GetACHEFTJournalCSVV1', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTJournalCSVV1Result', 'CSV');
   }
 
   public function GetACHEFTJournal($parameters) {
