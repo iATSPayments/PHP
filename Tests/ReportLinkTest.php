@@ -12,12 +12,15 @@ namespace iATS;
  * @package IATSAPI\Test
  */
 class ReportLinkTest extends \PHPUnit_Framework_TestCase {
+  const AGENT_CODE = 'TEST88';
+  const PASSWORD = 'TEST88';
+
   /**
    * Test no data.
    */
   public function testNoData() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
     $date = strtotime('1/1/2025');
     $request = array(
       'customerIPAddress' => '',
@@ -33,8 +36,8 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCCRej.
    */
   public function testReportLinkgetCreditCardReject() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
     $date = time();
     $request = array(
       'customerIPAddress' => '',
@@ -50,8 +53,8 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test no data.
    */
   public function testReportLinkgetCreditCardRejectCSV() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
     $date = time();
     $request = array(
       'customerIPAddress' => '',
