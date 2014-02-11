@@ -48,7 +48,6 @@ class ReportLink extends Core {
    *   Report CSV (string) or API error.
    */
   public function getACHEFTBankReconciliationReportCSV($parameters) {
-    $this->restrictedservers = array('UK');
     $response = $this->apiCall('GetACHEFTBankReconciliationReportCSVV1', $parameters);
     return $this->responseHandler($response, 'GetACHEFTBankReconciliationReportCSVV1Result', 'CSV');
   }
@@ -70,7 +69,6 @@ class ReportLink extends Core {
    *   Report CSV (string) or API error.
    */
   public function getACHEFTJournalCSV($parameters) {
-    $this->restrictedservers = array('UK');
     $response = $this->apiCall('GetACHEFTJournalCSVV1', $parameters);
     return $this->responseHandler($response, 'GetACHEFTJournalCSVV1Result', 'CSV');
   }
@@ -114,7 +112,6 @@ class ReportLink extends Core {
    *   Report CSV (string) or API error.
    */
   public function getACHEFTPaymentBoxJournalCSV($parameters) {
-    $this->restrictedservers = array('UK');
     $response = $this->apiCall('GetACHEFTPaymentBoxJournalCSVV1', $parameters);
     return $this->responseHandler($response, 'GetACHEFTPaymentBoxJournalCSVV1Result', 'CSV');
   }
@@ -137,7 +134,6 @@ class ReportLink extends Core {
    *   Report CSV (string) or API error.
    */
   public function getACHEFTPaymentBoxRejectCSV($parameters) {
-    $this->restrictedservers = array('UK');
     $response = $this->apiCall('GetACHEFTPaymentBoxRejectCSVV1', $parameters);
     return $this->responseHandler($response, 'GetACHEFTPaymentBoxRejectCSVV1Result', 'CSV');
   }
@@ -159,7 +155,6 @@ class ReportLink extends Core {
    *   Report CSV (string) or API error.
    */
   public function getACHEFTRejectCSV($parameters) {
-    $this->restrictedservers = array('UK');
     $response = $this->apiCall('GetACHEFTRejectCSVV1', $parameters);
     return $this->responseHandler($response, 'GetACHEFTRejectCSVV1Result', 'CSV');
   }
@@ -264,7 +259,6 @@ class ReportLink extends Core {
    *   Report CSV (string) or API error.
    */
   public function getCreditCardRejectCSV($parameters) {
-    $this->restrictedservers = array('UK');
     $response = $this->apiCall('GetCreditCardRejectCSV', $parameters);
     return $this->responseHandler($response, 'GetCreditCardRejectCSVV1Result', 'CSV');
   }
