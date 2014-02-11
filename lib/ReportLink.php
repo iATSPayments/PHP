@@ -164,8 +164,25 @@ class ReportLink extends Core {
     return $this->responseHandler($response, 'GetACHEFTRejectCSVV1Result', 'CSV');
   }
 
+  /**
+   * Get ACH / EFT Reject report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   array(
+   *     'date' => 946771200,
+   *     'customerIPAddress' => '',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report array or API error.
+   */
   public function getACHEFTReject($parameters) {
-
+    $response = $this->apiCall('GetACHEFTRejectV1', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTRejectV1Result', 'AR');
   }
 
   public function getACHEFTReturnCSV($parameters) {
