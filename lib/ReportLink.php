@@ -49,7 +49,7 @@ class ReportLink extends Core {
    *   Report CSV (string) or API error.
    */
   public function getACHEFTBankReconciliationReportCSV($parameters) {
-    $response = $this->apiCall('GetACHEFTBankReconciliationReportCSVV1', $parameters);
+    $response = $this->apiCall('GetACHEFTBankReconciliationReportCSV', $parameters);
     return $this->responseHandler($response, 'GetACHEFTBankReconciliationReportCSVV1Result', 'CSV');
   }
 
