@@ -115,9 +115,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     $request = array(
       'customerIPAddress' => '',
       'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
-      // Not required.
-      'mop' => 'VISA',
-      'currency' => 'USD',
     );
 
     $iats = new CustomerLink($agentcode, $password, 'NA');
@@ -260,9 +257,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     $request = array(
       'customerIPAddress' => '',
       'customerCode' => self::TEST_INVALID_CUSTOMER_CODE,
-      // Not required.
-      'mop' => 'VISA',
-      'currency' => 'USD',
     );
 
     $iats = new CustomerLink($agentcode, $password, 'NA');
