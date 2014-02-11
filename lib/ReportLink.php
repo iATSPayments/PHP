@@ -326,7 +326,7 @@ class ReportLink extends Core {
    *   Report CSV (string) or API error.
    */
   public function getCreditCardJournalCSV($parameters) {
-    $response = $this->apiCall('GetCreditCardJournalCSVV1', $parameters);
+    $response = $this->apiCall('GetCreditCardJournalCSV', $parameters);
     return $this->responseHandler($response, 'GetCreditCardJournalCSVV1Result', 'CSV');
   }
 
@@ -347,7 +347,7 @@ class ReportLink extends Core {
    *   Report array or API error.
    */
   public function getCreditCardJournal($parameters) {
-    $response = $this->apiCall('GetCreditCardJournalV1', $parameters);
+    $response = $this->apiCall('GetCreditCardJournal', $parameters);
     return $this->responseHandler($response, 'GetCreditCardJournalV1Result', 'AR');
   }
 
