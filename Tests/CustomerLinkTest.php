@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * File description.
+ * Unit tests for Customer Link element of the iATS API.
  */
 
 namespace iATS;
 
 /**
- * Class IATSCustomerLinkTest
+ * Class CustomerLinkTest
  *
  * @package IATSAPI\Test
  */
