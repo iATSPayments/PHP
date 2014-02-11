@@ -153,8 +153,28 @@ class ProcessLink extends Core {
     return $this->responseHandler($response, 'ProcessACHEFTRefundBatchV1Result');
   }
 
+  /**
+   * Refund a specific direct debit transaction.
+   * Partial refunds are valid.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'customerIPAddress' => '',
+   *     'transactionId' => '0000001',
+   *     'total' => '-10', // Must be a negative number.
+   *     'comment' => 'ACH / EFT refund test.',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
   public function processACHEFTRefundWithTransactionId($parameters) {
-
+    $response = $this->apiCall('ProcessACHEFTRefundWithTransactionId', $parameters);
+    return $this->responseHandler($response, 'ProcessACHEFTRefundWithTransactionIdV1Result');
   }
 
   public function processACHEFT($parameters) {
