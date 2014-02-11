@@ -34,7 +34,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ReportLink($agentcode, $password);
     $response = $iats->getACHEFTBankReconciliationReportCSV($request);
 
-    // No data right now. Need to aquire test data for this method.
+    // TODO: Get test data for this method.
     $this->assertEquals('', $response);
   }
 
@@ -56,6 +56,45 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
   }
 
+  /**
+   * Test getACHEFTJournal.
+   */
+  public function testReportLinkgetACHEFTJournal() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $date = time();
+    $request = array(
+      'date' => $date,
+      'customerIPAddress' => '',
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getACHEFTJournal($request);
+
+    // TODO: Get test data for this method.
+    $this->assertEquals('No data returned for this date', $response);
+  }
+
+  /**
+   * Test getACHEFTPaymentBoxJournalCSV.
+   */
+  public function testReportLinkgetACHEFTPaymentBoxJournalCSV() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $fromDate = strtotime('10/23/2011');
+    $toDate = strtotime('10/23/2014');
+    $request = array(
+      'from' => $fromDate, // NOTE: Docs say 'fromDate', API says 'from'
+      'to' => $toDate, // NOTE: Docs say 'toDate', API says 'to'
+      'customerIPAddress' => '',
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getACHEFTPaymentBoxJournalCSV($request);
+
+    // TODO: Get test data for this method.
+    $this->assertEquals('', $response);
+  }
 
 
   /**
