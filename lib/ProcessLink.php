@@ -300,10 +300,8 @@ class ProcessLink extends Core {
    *     'city' => 'Schenectady',
    *     'state' => 'NY',
    *     'zipCode' => '12345',
-   *     'total' => '2',
+   *     'total' => '5',
    *     'comment' => 'Process CC test.',
-   *     // Not needed for request.
-   *     'currency' => 'USD',
    *   );
    * @endcode
    *
@@ -331,21 +329,11 @@ class ProcessLink extends Core {
    * @code
    *   array(
    *     'customerIPAddress' => '',
+   *     'customerCode' => '',
    *     'invoiceNum' => '00000001',
-   *     'creditCardNum' => '4222222222222220',
-   *     'creditCardExpiry' => '12/17',
    *     'cvv2' => '000',
-   *     'mop' => 'VISA',
-   *     'firstName' => 'Test',
-   *     'lastName' => 'Account',
-   *     'address' => '1234 Any Street',
-   *     'city' => 'Schenectady',
-   *     'state' => 'NY',
-   *     'zipCode' => '12345',
-   *     'total' => '2',
-   *     'comment' => 'Process CC test.',
-   *     // Not needed for request.
-   *     'currency' => 'USD',
+   *     'total' => '5',
+   *     'comment' => 'Process CC test with Customer Code.',
    *   );
    * @endcode
    *
