@@ -69,20 +69,16 @@ class ProcessLink extends Core {
    *   $request = array(
    *     'customerIPAddress' => '',
    *     'invoiceNum' => '00000001',
-   *     'creditCardNum' => '4222222222222220',
-   *     'creditCardExpiry' => '12/17',
-   *     'cvv2' => '000',
-   *     'mop' => 'VISA',
+   *     'ccNum' => '4222222222222220',
+   *     'ccExp' => '12/17',
    *     'firstName' => 'Test',
    *     'lastName' => 'Account',
    *     'address' => '1234 Any Street',
    *     'city' => 'Schenectady',
    *     'state' => 'NY',
    *     'zipCode' => '12345',
-   *     'total' => '2',
-   *     'comment' => 'Process CC test.',
-   *     // Not needed for request.
-   *     'currency' => 'USD',
+   *     'cvv2' => '000',
+   *     'total' => '5',
    *   );
    * @endcode
    *
