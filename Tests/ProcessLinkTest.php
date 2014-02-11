@@ -31,9 +31,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * Test createCustomerCodeAndProcessACHEFT.
    */
   public function testProcessLinkcreateCustomerCodeAndProcessACHEFT() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
-
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
@@ -50,7 +47,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'comment' => 'Process direct debit test.',
     );
 
-    $iats = new ProcessLink($agentcode, $password);
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
     $response = $iats->createCustomerCodeAndProcessACHEFT($request);
 
     $this->ACHEFTCustomerCode = trim($response['PROCESSRESULT']['CUSTOMERCODE']);
@@ -63,7 +60,29 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * Test createCustomerCodeAndProcessCreditCard.
    */
   public function testProcessLinkcreateCustomerCodeAndProcessCreditCard() {
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'firstName' => 'Test',
+      'lastName' => 'Account',
+      'address' => '1234 Any Street',
+      'city' => 'Schenectady',
+      'state' => 'NY',
+      'zipCode' => '12345',
+      'accountNum' => '02100002100000000000000001',
+      'accountType' => 'CHECKING',
+      'invoiceNum' => '00000001',
+      'total' => '5',
+      'comment' => 'Process direct debit test.',
+    );
 
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
+    $response = $iats->createCustomerCodeAndProcessCreditCard($request);
+
+    $this->creditCardCustomerCode = trim($response['PROCESSRESULT']['CUSTOMERCODE']);
+    $this->creditCardTransationId = trim($response['PROCESSRESULT']['TRANSACTIONID']);
+
+    $this->assertEquals('Success', $response['STATUS']);
   }
 
   /**
