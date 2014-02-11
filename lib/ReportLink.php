@@ -91,7 +91,7 @@ class ReportLink extends Core {
    *   Report array or API error.
    */
   public function GetACHEFTJournal($parameters) {
-    $response = $this->apiCall('GetACHEFTJournalV1', $parameters);
+    $response = $this->apiCall('GetACHEFTJournal', $parameters);
     return $this->responseHandler($response, 'GetACHEFTJournalV1Result', 'AR');
   }
 
@@ -103,8 +103,8 @@ class ReportLink extends Core {
    *
    * @code
    *   $request = array(
-   *     'fromDate' => 946684800,
-   *     'toDate' => 946771200,
+   *     'fromDate' => 946684800, // NOTE: Docs say 'fromDate', API says 'from'
+   *     'toDate' => 946771200, // NOTE: Docs say 'toDate', API says 'to'
    *     'customerIPAddress' => '',
    *   );
    * @endcode
@@ -113,7 +113,7 @@ class ReportLink extends Core {
    *   Report CSV (string) or API error.
    */
   public function getACHEFTPaymentBoxJournalCSV($parameters) {
-    $response = $this->apiCall('GetACHEFTPaymentBoxJournalCSVV1', $parameters);
+    $response = $this->apiCall('GetACHEFTPaymentBoxJournalCSV', $parameters);
     return $this->responseHandler($response, 'GetACHEFTPaymentBoxJournalCSVV1Result', 'CSV');
   }
 
@@ -472,8 +472,13 @@ class ReportLink extends Core {
         return $resp;
 
       case 'CSV':
-        $xml_element = new \SimpleXMLElement($return);
-        return base64_decode($xml_element->FILE);
+        if ($return != null)
+        {
+          $xml_element = new \SimpleXMLElement($return);
+          return base64_decode($xml_element->FILE);
+        }
+        // Account for null being returned in a CSV request.
+        return '';
     }
   }
 
