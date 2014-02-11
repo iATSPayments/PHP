@@ -198,7 +198,7 @@ class ReportLink extends Core {
    *   Report CSV (string) or API error.
    */
   public function getACHEFTReturnCSV($parameters) {
-    $response = $this->apiCall('GetACHEFTReturnCSVV1', $parameters);
+    $response = $this->apiCall('GetACHEFTReturnCSV', $parameters);
     return $this->responseHandler($response, 'GetACHEFTReturnCSVV1Result', 'CSV');
   }
 
@@ -219,7 +219,7 @@ class ReportLink extends Core {
    *   Report array or API error.
    */
   public function getACHEFTReturn($parameters) {
-    $response = $this->apiCall('GetACHEFTReturnV1', $parameters);
+    $response = $this->apiCall('GetACHEFTReturn', $parameters);
     return $this->responseHandler($response, 'GetACHEFTReturnV1Result', 'AR');
   }
 

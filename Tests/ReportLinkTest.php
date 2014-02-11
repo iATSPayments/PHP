@@ -152,6 +152,43 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertArrayHasKey('TNID', $response[0]);
   }
 
+  /**
+   * Test getACHEFTReturnCSV.
+   */
+  public function testReportLinkgetACHEFTReturnCSV() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $date = time();
+    $request = array(
+      'date' => $date,
+      'customerIPAddress' => '',
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getACHEFTReturnCSV($request);
+
+    $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
+  }
+
+  /**
+   * Test getACHEFTReturn.
+   */
+  public function testReportLinkgetACHEFTReturn() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $date = time();
+    $request = array(
+      'date' => $date,
+      'customerIPAddress' => '',
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getACHEFTReturn($request);
+
+    // TODO: Get test data for this method.
+    $this->assertEquals('No data returned for this date', $response);
+  }
+
 
 
   /**
