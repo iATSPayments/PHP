@@ -136,9 +136,23 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test processCreditCardRefundWithTransactionId.
+   *
+   * @depends testProcessLinkcreateCustomerCodeAndProcessCreditCard
    */
   public function testProcessLinkprocessCreditCardRefundWithTransactionId() {
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'transactionId' => self::$creditCardTransactionId,
+      'total' => '-5',
+      'comment' => 'Credit card refund test.',
+    );
 
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
+    $response = $iats->processCreditCardRefundWithTransactionId($request);
+
+    $clean = trim($response['PROCESSRESULT']['AUTHORIZATIONRESULT']);
+    $this->assertEquals($clean, 'OK: 678594:');
   }
 
   /**
