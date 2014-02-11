@@ -111,8 +111,25 @@ class ProcessLink extends Core {
     return $this->responseHandler($response, 'GetBatchProcessResultFileV1Result');
   }
 
+  /**
+   * Process a number of direct debit transactions from a batch file.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'customerIPAddress' => '',
+   *     'batchFile' => {base64Binary file},
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
   public function processACHEFTChargeBatch($parameters) {
-
+    $response = $this->apiCall('ProcessACHEFTChargeBatch', $parameters);
+    return $this->responseHandler($response, 'ProcessACHEFTChargeBatchV1Result');
   }
 
   public function processACHEFTRefundBatch($parameters) {
