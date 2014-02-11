@@ -1,6 +1,7 @@
 <?php
 /**
  * ProcessLink class file.
+ * Targeting iATS API version 1.0.
  */
 
 namespace iATS;
@@ -25,6 +26,77 @@ class ProcessLink extends Core {
   public function __construct($agentcode, $password, $serverid = 'NA') {
     parent::__construct($agentcode, $password, $serverid);
     $this->endpoint = '/NetGate/ProcessLink.asmx?WSDL';
+  }
+
+  public function createCustomerCodeAndProcessACHEFT($parameters) {
+
+  }
+
+  /**
+   * Process a credit card transaction and return Customer Code.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'customerIPAddress' => '',
+   *     'invoiceNum' => '00000001',
+   *     'creditCardNum' => '4222222222222220',
+   *     'creditCardExpiry' => '12/17',
+   *     'cvv2' => '000',
+   *     'mop' => 'VISA',
+   *     'firstName' => 'Test',
+   *     'lastName' => 'Account',
+   *     'address' => '1234 Any Street',
+   *     'city' => 'Schenectady',
+   *     'state' => 'NY',
+   *     'zipCode' => '12345',
+   *     'total' => '2',
+   *     'comment' => 'Process CC test.',
+   *     // Not needed for request.
+   *     'currency' => 'USD',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
+  public function createCustomerCodeAndProcessCreditCard($parameters) {
+    $response = $this->apiCall('CreateCustomerCodeAndProcessCreditCard', $parameters);
+    return $this->responseHandler($response, 'CreateCustomerCodeAndProcessCreditCardV1Result');
+  }
+
+  public function getBatchProcessResultFile($parameters) {
+
+  }
+
+  public function processACHEFTChargeBatch($parameters) {
+
+  }
+
+  public function processACHEFTRefundBatch($parameters) {
+
+  }
+
+  public function processACHEFTRefundWithTransactionId($parameters) {
+
+  }
+
+  public function processACHEFT($parameters) {
+
+  }
+
+  public function processACHEFTWithCustomerCode($parameters) {
+
+  }
+
+  public function processCreditCardBatch($parameters) {
+
+  }
+
+  public function processCreditCardRefundWithTransactionId($parameters) {
+
   }
 
   /**
@@ -102,41 +174,6 @@ class ProcessLink extends Core {
   public function processCreditCardWithCustomerCode($parameters) {
     $response = $this->apiCall('ProcessCreditCardWithCustomerCode', $parameters);
     return $this->responseHandler($response, 'ProcessCreditCardWithCustomerCodeV1Result');
-  }
-
-  /**
-   * Process a credit card transaction and return Customer Code.
-   *
-   * @param array $parameters
-   *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'customerIPAddress' => '',
-   *     'invoiceNum' => '00000001',
-   *     'creditCardNum' => '4222222222222220',
-   *     'creditCardExpiry' => '12/17',
-   *     'cvv2' => '000',
-   *     'mop' => 'VISA',
-   *     'firstName' => 'Test',
-   *     'lastName' => 'Account',
-   *     'address' => '1234 Any Street',
-   *     'city' => 'Schenectady',
-   *     'state' => 'NY',
-   *     'zipCode' => '12345',
-   *     'total' => '2',
-   *     'comment' => 'Process CC test.',
-   *     // Not needed for request.
-   *     'currency' => 'USD',
-   *   );
-   * @endcode
-   *
-   * @return mixed
-   *   Client response array or API error.
-   */
-  public function createCustomerCodeAndProcessCreditCard($parameters) {
-    $response = $this->apiCall('CreateCustomerCodeAndProcessCreditCard', $parameters);
-    return $this->responseHandler($response, 'CreateCustomerCodeAndProcessCreditCardV1Result');
   }
 
   /**
