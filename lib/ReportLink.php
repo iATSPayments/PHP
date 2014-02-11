@@ -28,8 +28,29 @@ class ReportLink extends Core {
     $this->endpoint = '/NetGate/ReportLink.asmx?WSDL';
   }
 
+  /**
+   * Get ACH / EFT Bank Reconciliation CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'fromDate' => 946684800,
+   *     'toDate' => 946771200,
+   *     'currency' => 'USD',
+   *     'summaryOnly' => FALSE,
+   *     'customerIPAddress' => '',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
   public function getACHEFTBankReconciliationReportCSV($parameters) {
-
+    $this->restrictedservers = array('UK');
+    $response = $this->apiCall('GetACHEFTBankReconciliationReportCSVV1', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTBankReconciliationReportCSVV1Response', 'CSV');
   }
 
   public function getACHEFTJournalCSV($parameters) {
