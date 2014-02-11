@@ -235,12 +235,49 @@ class ProcessLink extends Core {
     return $this->responseHandler($response, 'ProcessACHEFTWithCustomerCodeV1Result');
   }
 
+  /**
+   * Process multiple credit card transactions from a batch file.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'customerIPAddress' => '',
+   *     'batchFile' => {base64Binary file},
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
   public function processCreditCardBatch($parameters) {
-
+    $response = $this->apiCall('ProcessCreditCardBatch', $parameters);
+    return $this->responseHandler($response, 'ProcessCreditCardBatchV1Result');
   }
 
+  /**
+   * Refund a specific credit card transaction.
+   * Partial refunds are valid.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'customerIPAddress' => '',
+   *     'transactionId' => '0000001',
+   *     'total' => '-10', // Must be a negative number.
+   *     'comment' => 'Credit card refund test.',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
   public function processCreditCardRefundWithTransactionId($parameters) {
-
+    $response = $this->apiCall('ProcessCreditCardRefundWithTransactionId', $parameters);
+    return $this->responseHandler($response, 'ProcessCreditCardRefundWithTransactionIdV1Result');
   }
 
   /**
