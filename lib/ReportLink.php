@@ -350,12 +350,48 @@ class ReportLink extends Core {
     return $this->responseHandler($response, 'GetCreditCardJournalV1Result', 'AR');
   }
 
+  /**
+   * Get Credit Card Payment Box Journal CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'fromDate' => 946684800,
+   *     'toDate' => 946771200,
+   *     'customerIPAddress' => '',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
   public function getCreditCardPaymentBoxJournalCSV($parameters) {
-
+    $response = $this->apiCall('GetCreditCardPaymentBoxJournalCSVV1', $parameters);
+    return $this->responseHandler($response, 'GetCreditCardPaymentBoxJournalCSVV1Result', 'CSV');
   }
 
+  /**
+   * Get Credit Card Payment Box Reject CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'fromDate' => 946684800,
+   *     'toDate' => 946771200,
+   *     'customerIPAddress' => '',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
   public function getCreditCardPaymentBoxRejectCSV($parameters) {
-
+    $response = $this->apiCall('GetCreditCardPaymentBoxRejectCSVV1', $parameters);
+    return $this->responseHandler($response, 'GetCreditCardPaymentBoxRejectCSVV1Result', 'CSV');
   }
 
   /**
