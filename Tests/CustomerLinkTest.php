@@ -12,6 +12,9 @@ namespace iATS;
  * @package IATSAPI\Test
  */
 class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
+  const AGENT_CODE = 'TEST88';
+  const PASSWORD = 'TEST88';
+
   const TEST_CREDIT_CARD_CUSTOMER_CODE = 'A99999990';
   const TEST_ACH_EFT_CUSTOMER_CODE = 'A99999991';
   const TEST_INVALID_CUSTOMER_CODE = 'A00000000';
@@ -20,8 +23,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * Test createCreditCardCustomerCode.
    */
   public function testCustomerLinkcreateCreditCardCustomerCode() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -65,8 +68,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkcreateCreditCardCustomerCode
    */
   public function testCustomerLinkupdateCreditCardCustomerCode() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -109,8 +112,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkcreateCreditCardCustomerCode
    */
   public function testCustomerLinkupdateCreditCardCustomerCodeNewRecurringDate() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -167,8 +170,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkupdateCreditCardCustomerCode
    */
   public function testgetCustomerCodeDetail() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
@@ -186,8 +189,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * Test createACHEFTCustomerCode.
    */
   public function testCustomerLinkcreateACHEFTCustomerCode() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -228,8 +231,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkcreateACHEFTCustomerCode
    */
   public function testCustomerLinkupdateACHEFTCustomerCode() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -271,8 +274,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testgetCustomerCodeDetail
    */
   public function testCustomerLinkdeleteCreditCardCustomerCode() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
@@ -290,8 +293,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkupdateACHEFTCustomerCode
    */
   public function testCustomerLinkdeleteACHEFTCustomerCode() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
@@ -309,8 +312,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testgetCustomerCodeDetail
    */
   public function testgetCustomerCodeDetailInvalidCode() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88';
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
