@@ -145,9 +145,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * Test processCreditCard.
    */
   public function testProcessLinkprocessCreditCard() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
-
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
@@ -166,7 +163,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'comment' => 'Process CC test.',
     );
 
-    $iats = new ProcessLink($agentcode, $password);
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
     $response = $iats->processCreditCard($request);
 
     $this->assertEquals('Success', $response['STATUS']);
@@ -181,9 +178,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testProcessLinkcreateCustomerCodeAndProcessCreditCard
    */
   public function testProcessLinkprocessCreditCardWithCustomerCode() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
-
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
@@ -194,7 +188,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'comment' => 'Process CC test with Customer Code.',
     );
 
-    $iats = new ProcessLink($agentcode, $password);
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
     $response = $iats->processCreditCardWithCustomerCode($request);
 
     $this->assertEquals('Success', $response['STATUS']);
