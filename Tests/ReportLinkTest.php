@@ -383,7 +383,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
   /**
    * Test getCreditCardReject using a date with no data.
    */
-  public function testNoData() {
+  public function testReportLinkgetCreditCardRejectNoData() {
     $agentcode = self::AGENT_CODE;
     $password = self::PASSWORD;
     $date = strtotime('1/1/2025');
@@ -398,13 +398,24 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('No data returned for this date', $response);
   }
 
-//
-//  /**
-//   * No File.
-//   */
-//  public function testNoFile() {
-//    $this->assertTrue(FALSE);
-//  }
+  /**
+   * Test getCreditCardRejectCSV using a date with no data.
+   */
+  public function testReportLinkgetCreditCardRejectCSVNoData() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $date = strtotime('1/1/2025');
+    $request = array(
+      'date' => $date,
+      'customerIPAddress' => '',
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getCreditCardRejectCSV($request);
+
+    $this->assertEquals('', $response);
+  }
+
 //
 //  /**
 //   * Timeout response.
