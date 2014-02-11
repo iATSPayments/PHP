@@ -308,12 +308,46 @@ class ReportLink extends Core {
     return $this->responseHandler($response, 'GetCreditCardBankReconciliationReportCSVV1Result', 'CSV');
   }
 
+  /**
+   * Get Credit Card Journal CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'date' => 946771200,
+   *     'customerIPAddress' => '',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
   public function getCreditCardJournalCSV($parameters) {
-
+    $response = $this->apiCall('GetCreditCardJournalCSVV1', $parameters);
+    return $this->responseHandler($response, 'GetCreditCardJournalCSVV1Result', 'CSV');
   }
 
+  /**
+   * Get Credit Card Journal report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   array(
+   *     'date' => 946771200,
+   *     'customerIPAddress' => '',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report array or API error.
+   */
   public function getCreditCardJournal($parameters) {
-
+    $response = $this->apiCall('GetCreditCardJournalV1', $parameters);
+    return $this->responseHandler($response, 'GetCreditCardJournalV1Result', 'AR');
   }
 
   public function getCreditCardPaymentBoxJournalCSV($parameters) {
