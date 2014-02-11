@@ -21,7 +21,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   public function testCustomerLinkcreateCreditCardCustomerCode() {
     $agentcode = 'TEST88';
     $password = 'TEST88';
-    $date = strtotime('12/17/2011');
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -67,7 +66,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   public function testCustomerLinkupdateCreditCardCustomerCode() {
     $agentcode = 'TEST88';
     $password = 'TEST88';
-    $date = strtotime('12/17/2011');
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -134,7 +132,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   public function testCustomerLinkcreateACHEFTCustomerCode() {
     $agentcode = 'TEST88';
     $password = 'TEST88';
-    $date = strtotime('12/17/2011');
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -177,7 +174,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   public function testCustomerLinkupdateACHEFTCustomerCode() {
     $agentcode = 'TEST88';
     $password = 'TEST88';
-    $date = strtotime('12/17/2011');
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -221,9 +217,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   public function testCustomerLinkdeleteCreditCardCustomerCode() {
     $agentcode = 'TEST88';
     $password = 'TEST88';
-    $date = strtotime('12/17/2011');
-    $beginDate = strtotime('10/23/2011');
-    $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
@@ -243,9 +236,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   public function testCustomerLinkdeleteACHEFTCustomerCode() {
     $agentcode = 'TEST88';
     $password = 'TEST88';
-    $date = strtotime('12/17/2011');
-    $beginDate = strtotime('10/23/2011');
-    $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
