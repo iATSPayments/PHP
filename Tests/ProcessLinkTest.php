@@ -16,9 +16,79 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
   const PASSWORD = 'TEST88';
 
   /**
+   * Test createCustomerCodeAndProcessACHEFT.
+   */
+  public function testProcessLinkcreateCustomerCodeAndProcessACHEFT() {
+
+  }
+
+  /**
+   * Test createCustomerCodeAndProcessCreditCard.
+   */
+  public function testProcessLinkcreateCustomerCodeAndProcessCreditCard() {
+
+  }
+
+  /**
+   * Test getBatchProcessResultFile.
+   */
+  public function testProcessLinkgetBatchProcessResultFile() {
+
+  }
+
+  /**
+   * Test processACHEFTChargeBatch.
+   */
+  public function testProcessLinkprocessACHEFTChargeBatch() {
+
+  }
+
+  /**
+   * Test processACHEFTRefundBatch.
+   */
+  public function testProcessLinkprocessACHEFTRefundBatch() {
+
+  }
+
+  /**
+   * Test processACHEFTRefundWithTransactionId.
+   */
+  public function testProcessLinkprocessACHEFTRefundWithTransactionId() {
+
+  }
+
+  /**
+   * Test processACHEFT.
+   */
+  public function testProcessLinkprocessACHEFT() {
+
+  }
+
+  /**
+   * Test processACHEFTWithCustomerCode.
+   */
+  public function testProcessLinkprocessACHEFTWithCustomerCode() {
+
+  }
+
+  /**
+   * Test processCreditCardBatch.
+   */
+  public function testProcessLinkprocessCreditCardBatch() {
+
+  }
+
+  /**
+   * Test processCreditCardRefundWithTransactionId.
+   */
+  public function testProcessLinkprocessCreditCardRefundWithTransactionId() {
+
+  }
+
+  /**
    * Test processCreditCard.
    */
-  public function testprocessCreditCard() {
+  public function testProcessLinkprocessCreditCard() {
     $agentcode = self::AGENT_CODE;
     $password = self::PASSWORD;
 
@@ -45,6 +115,10 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 //    $clean = trim($response['PROCESSRESULT']['AUTHORIZATIONRESULT']);
 //    $this->assertEquals($clean, 'OK: 678594:');
     $this->assertTrue(TRUE);
+  }
+
+  public function testProcessLinkprocessCreditCardWithCustomerCode() {
+
   }
 
 //  /**
