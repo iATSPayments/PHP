@@ -166,7 +166,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink($agentcode, $password, 'NA');
     $response = $iats->createACHEFTCustomerCode($request);
-    $this->assertTrue(TRUE);
+    $this->assertEquals('OK', $response);
   }
 
   /**
@@ -210,7 +210,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink($agentcode, $password, 'NA');
     $response = $iats->updateACHEFTCustomerCode($request);
-    $this->assertTrue(TRUE);
+    $this->assertEquals('OK', $response);
   }
 
   /**
