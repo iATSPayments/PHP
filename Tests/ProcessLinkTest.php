@@ -16,16 +16,16 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
   const PASSWORD = 'TEST88';
 
   /** @var string $ACHEFTCustomerCode */
-  private $ACHEFTCustomerCode;
+  private static $ACHEFTCustomerCode;
 
   /** @var string $ACHEFTTransationId */
-  private $ACHEFTTransationId;
+  private static $ACHEFTTransationId;
 
   /** @var string $creditCardCustomerCode */
-  private $creditCardCustomerCode;
+  private static $creditCardCustomerCode;
 
   /** @var string $creditCardTransactionId */
-  private $creditCardTransactionId;
+  private static $creditCardTransactionId;
 
   /**
    * Test createCustomerCodeAndProcessACHEFT.
@@ -50,8 +50,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
     $response = $iats->createCustomerCodeAndProcessACHEFT($request);
 
-    $this->ACHEFTCustomerCode = trim($response['PROCESSRESULT']['CUSTOMERCODE']);
-    $this->ACHEFTTransationId = trim($response['PROCESSRESULT']['TRANSACTIONID']);
+    self::$ACHEFTCustomerCode = trim($response['PROCESSRESULT']['CUSTOMERCODE']);
+    self::$ACHEFTTransationId = trim($response['PROCESSRESULT']['TRANSACTIONID']);
 
     $this->assertEquals('Success', $response['STATUS']);
   }
@@ -63,24 +63,24 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
+      'invoiceNum' => '00000001',
+      'ccNum' => '4222222222222220',
+      'ccExp' => '12/17',
       'firstName' => 'Test',
       'lastName' => 'Account',
       'address' => '1234 Any Street',
       'city' => 'Schenectady',
       'state' => 'NY',
       'zipCode' => '12345',
-      'accountNum' => '02100002100000000000000001',
-      'accountType' => 'CHECKING',
-      'invoiceNum' => '00000001',
+      'cvv2' => '000',
       'total' => '5',
-      'comment' => 'Process direct debit test.',
     );
 
     $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
     $response = $iats->createCustomerCodeAndProcessCreditCard($request);
 
-    $this->creditCardCustomerCode = trim($response['PROCESSRESULT']['CUSTOMERCODE']);
-    $this->creditCardTransationId = trim($response['PROCESSRESULT']['TRANSACTIONID']);
+    self::$creditCardCustomerCode = trim($response['PROCESSRESULT']['CUSTOMERCODE']);
+    self::$creditCardTransactionId = trim($response['PROCESSRESULT']['TRANSACTIONID']);
 
     $this->assertEquals('Success', $response['STATUS']);
   }
@@ -175,8 +175,32 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals($clean, 'OK: 678594:');
   }
 
+  /**
+   * Test processCreditCardWithCustomerCode.
+   *
+   * @depends testProcessLinkcreateCustomerCodeAndProcessCreditCard
+   */
   public function testProcessLinkprocessCreditCardWithCustomerCode() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
 
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => self::$creditCardCustomerCode,
+      'invoiceNum' => '00000001',
+      'cvv2' => '000',
+      'total' => '5',
+      'comment' => 'Process CC test with Customer Code.',
+    );
+
+    $iats = new ProcessLink($agentcode, $password);
+    $response = $iats->processCreditCard($request);
+
+    $this->assertEquals('Success', $response['STATUS']);
+
+    //$clean = trim($response['PROCESSRESULT']['AUTHORIZATIONRESULT']);
+    //$this->assertEquals($clean, 'OK: 678594:');
   }
 
 //  /**
