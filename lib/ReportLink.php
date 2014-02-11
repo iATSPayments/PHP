@@ -70,7 +70,7 @@ class ReportLink extends Core {
    *   Report CSV (string) or API error.
    */
   public function getACHEFTJournalCSV($parameters) {
-    $response = $this->apiCall('GetACHEFTJournalCSVV1', $parameters);
+    $response = $this->apiCall('GetACHEFTJournalCSV', $parameters);
     return $this->responseHandler($response, 'GetACHEFTJournalCSVV1Result', 'CSV');
   }
 

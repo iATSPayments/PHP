@@ -34,7 +34,26 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ReportLink($agentcode, $password);
     $response = $iats->getACHEFTBankReconciliationReportCSV($request);
 
-    $this->assertTrue(TRUE);
+    // No data right now. Need to aquire test data for this method.
+    $this->assertEquals('', $response);
+  }
+
+  /**
+   * Test getACHEFTJournalCSV.
+   */
+  public function testReportLinkgetACHEFTJournalCSV() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $date = time();
+    $request = array(
+      'date' => $date,
+      'customerIPAddress' => '',
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getACHEFTJournalCSV($request);
+
+    $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
   }
 
 
