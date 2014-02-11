@@ -107,11 +107,11 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Test updateCreditCardCustomerCode with new recurring schedule date.
+   * Test updateCreditCardCustomerCode by adding a recurring schedule.
    *
    * @depends testCustomerLinkcreateCreditCardCustomerCode
    */
-  public function testCustomerLinkupdateCreditCardCustomerCodeNewRecurringDate() {
+  public function testCustomerLinkupdateCreditCardCustomerCodeNewRecurringSchedule() {
     $agentcode = self::AGENT_CODE;
     $password = self::PASSWORD;
     $beginDate = strtotime('10/23/2011');
