@@ -208,6 +208,24 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('', $response);
   }
 
+  /**
+   * Test getCCJournalCSV.
+   */
+  public function testReportLinkgetCCJournalCSV() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $date = time();
+    $request = array(
+      'date' => $date,
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getCCJournalCSV($request);
+
+    // TODO: Get test data for this method.
+    $this->assertEquals('', $response);
+  }
+
 
 
   /**
