@@ -223,6 +223,64 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
+   * Test updateCreditCardCustomerCode by updating the recurring schedule card details.
+   *
+   * @depends testCustomerLinkupdateCreditCardCustomerCodeNewRecurringScheduleDate
+   */
+  public function testCustomerLinkupdateCreditCardCustomerCodeNewRecurringScheduleCard() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $beginDate = strtotime('10/23/2011');
+    $endDate = strtotime('10/23/2014');
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
+      'firstName' => 'Test',
+      'lastName' => 'Account',
+      'companyName' => 'Test Co.',
+      'address' => '1234 Any Street',
+      'city' => 'Schenectady',
+      'state' => 'NY',
+      'zipCode' => '12345',
+      'phone' => '555-555-1234',
+      'fax' => '555-555-4321',
+      'alternatePhone' => '555-555-5555',
+      'email' => 'email@test.co',
+      'comment' => 'Customer code update test.',
+      'recurring' => TRUE,
+      'amount' => '5',
+      'beginDate' => $beginDate,
+      'endDate' => $endDate,
+      'scheduleType' => 'Weekly',
+      'scheduleDate' => '7', // 7th day of the week.
+      'creditCardCustomerName' => 'Test Account',
+      'creditCardNum' => '4444444444444448',
+      'creditCardExpiry' => '12/20',
+      'mop' => 'VISA',
+      'updateCreditCardNum' => TRUE,
+    );
+
+    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $response = $iats->updateCreditCardCustomerCode($request);
+    $this->assertEquals('OK', $response);
+
+    // Get customer details to confirm update.
+
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
+    );
+
+    $response = $iats->getCustomerCodeDetail($request);
+
+    $this->assertArrayHasKey('CST', $response);
+
+    $this->assertStringEndsWith('4448', $response['CST']['AC1']['CC']['CCN']);
+    $this->assertEquals('12/20', $response['CST']['AC1']['CC']['EXP']);
+  }
+
+  /**
    * Test getCustomerCodeDetail.
    *
    * @depends testCustomerLinkupdateCreditCardCustomerCode
@@ -383,22 +441,4 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $this->assertEquals('Error : The customer code doesn\'t exist!', $response);
   }
-
-
-
-//
-//  /**
-//   * Change recurring schedule frequency.
-//   */
-//  public function testRecurFrequency() {
-//    $this->assertTrue(FALSE);
-//  }
-//
-//  /**
-//   * Change recurring schedule card details.
-//   */
-//  public function testRecurDetails() {
-//    $this->assertTrue(FALSE);
-//  }
-
 }
