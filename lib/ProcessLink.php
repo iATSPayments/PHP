@@ -28,8 +28,35 @@ class ProcessLink extends Core {
     $this->endpoint = '/NetGate/ProcessLink.asmx?WSDL';
   }
 
+  /**
+   * Process a direct debit transaction and return Customer Code.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'customerIPAddress' => '',
+   *     'firstName' => 'Test',
+   *     'lastName' => 'Account',
+   *     'address' => '1234 Any Street',
+   *     'city' => 'Schenectady',
+   *     'state' => 'NY',
+   *     'zipCode' => '12345',
+   *     'accountNum' => '02100002100000000000000001',
+   *     'accountType' => 'CHECKING',
+   *     'invoiceNum' => '00000001',
+   *     'total' => '5',
+   *     'comment' => 'Process direct debit test.',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
   public function createCustomerCodeAndProcessACHEFT($parameters) {
-
+    $response = $this->apiCall('CreateCustomerCodeAndProcessACHEFT', $parameters);
+    return $this->responseHandler($response, 'CreateCustomerCodeAndProcessACHEFTV1Result');
   }
 
   /**
