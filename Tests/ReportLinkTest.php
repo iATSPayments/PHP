@@ -245,6 +245,29 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('', $response);
   }
 
+  /**
+   * Test getCreditCardBankReconciliationReportCSV.
+   */
+  public function testReportLinkgetCreditCardBankReconciliationReportCSV() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $fromDate = strtotime('10/23/2011');
+    $toDate = strtotime('10/23/2014');
+    $request = array(
+      'fromDate' => $fromDate,
+      'toDate' => $toDate,
+      'currency' => 'USD',
+      'summaryOnly' => FALSE,
+      'customerIPAddress' => '',
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getCreditCardBankReconciliationReportCSV($request);
+
+    // TODO: Get test data for this method.
+    $this->assertEquals('', $response);
+  }
+
 
 
   /**

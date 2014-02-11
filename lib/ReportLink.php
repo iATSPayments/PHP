@@ -305,7 +305,7 @@ class ReportLink extends Core {
    *   Report CSV (string) or API error.
    */
   public function getCreditCardBankReconciliationReportCSV($parameters) {
-    $response = $this->apiCall('GetCreditCardBankReconciliationReportCSVV1', $parameters);
+    $response = $this->apiCall('GetCreditCardBankReconciliationReportCSV', $parameters);
     return $this->responseHandler($response, 'GetCreditCardBankReconciliationReportCSVV1Result', 'CSV');
   }
 
