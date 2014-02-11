@@ -14,6 +14,7 @@ namespace iATS;
 class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   const TEST_CREDIT_CARD_CUSTOMER_CODE = 'A99999990';
   const TEST_ACH_EFT_CUSTOMER_CODE = 'A99999991';
+  const TEST_INVALID_CUSTOMER_CODE = 'A00000000';
 
   /**
    * Test createCreditCardCustomerCode.
@@ -247,14 +248,29 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('OK', $response);
   }
 
-//
-//  /**
-//   * Invalid customer code.
-//   */
-//  public function testCustCode() {
-//    $this->assertTrue(FALSE);
-//  }
-//
+  /**
+   * Test getCustomerCodeDetail with an invalid customer code.
+   *
+   * @depends testgetCustomerCodeDetail
+   */
+  public function testgetCustomerCodeDetailInvalidCode() {
+    $agentcode = 'TEST88';
+    $password = 'TEST88';
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => self::TEST_INVALID_CUSTOMER_CODE,
+      // Not required.
+      'mop' => 'VISA',
+      'currency' => 'USD',
+    );
+
+    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $response = $iats->getCustomerCodeDetail($request);
+
+    $this->assertEquals('Error : The customer code doesn\'t exist!', $response);
+  }
+
 //  /**
 //   * Change recurring schedule date.
 //   */
