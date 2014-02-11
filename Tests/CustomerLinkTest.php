@@ -12,6 +12,8 @@ namespace iATS;
  * @package IATSAPI\Test
  */
 class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
+  const TEST_CUSTOMER_CODE = 'A99999999';
+
   /**
    * Test createCreditCardCustomerCode.
    */
@@ -24,7 +26,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => '',
+      'customerCode' => self::TEST_CUSTOMER_CODE,
       'firstName' => 'Test',
       'lastName' => 'Account',
       'companyName' => 'Test Co.',
@@ -53,7 +55,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink($agentcode, $password, 'NA');
     $response = $iats->createCreditCardCustomerCode($request);
-    $this->assertTrue(TRUE);
+    $this->assertEquals('OK', $response);
   }
 
   /**
@@ -70,7 +72,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => '',
+      'customerCode' => self::TEST_CUSTOMER_CODE,
       'firstName' => 'Test',
       'lastName' => 'Account',
       'companyName' => 'Test Co.',
@@ -222,7 +224,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => '',
+      'customerCode' => self::TEST_CUSTOMER_CODE,
     );
 
     $iats = new CustomerLink($agentcode, $password, 'NA');
