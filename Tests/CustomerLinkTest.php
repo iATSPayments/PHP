@@ -12,7 +12,8 @@ namespace iATS;
  * @package IATSAPI\Test
  */
 class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
-  const TEST_CUSTOMER_CODE = 'A99999999';
+  const TEST_CREDIT_CARD_CUSTOMER_CODE = 'A99999990';
+  const TEST_ACH_EFT_CUSTOMER_CODE = 'A99999991';
 
   /**
    * Test createCreditCardCustomerCode.
@@ -139,7 +140,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => '',
+      'customerCode' => self::TEST_ACH_EFT_CUSTOMER_CODE,
       'firstName' => 'Test',
       'lastName' => 'Account',
       'companyName' => 'Test Co.',
@@ -182,7 +183,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => '',
+      'customerCode' => self::TEST_ACH_EFT_CUSTOMER_CODE,
       'firstName' => 'Test',
       'lastName' => 'Account',
       'companyName' => 'Test Co.',
