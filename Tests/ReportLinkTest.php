@@ -198,7 +198,6 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $date = time();
     $request = array(
       'date' => $date,
-      'customerIPAddress' => '',
     );
 
     $iats = new ReportLink($agentcode, $password);
@@ -221,6 +220,26 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new ReportLink($agentcode, $password);
     $response = $iats->getCCJournalCSV($request);
+
+    // TODO: Get test data for this method.
+    $this->assertEquals('', $response);
+  }
+
+  /**
+   * Test getCCPaymentBoxJournalCSV.
+   */
+  public function testReportLinkgetCCPaymentBoxJournalCSV() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $fromDate = strtotime('10/23/2011');
+    $toDate = strtotime('10/23/2014');
+    $request = array(
+      'from' => $fromDate,
+      'to' => $toDate,
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getCCPaymentBoxJournalCSV($request);
 
     // TODO: Get test data for this method.
     $this->assertEquals('', $response);
