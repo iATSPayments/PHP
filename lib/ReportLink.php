@@ -402,8 +402,8 @@ class ReportLink extends Core {
    *
    * @code
    *   array(
-   *     'customerIPAddress' => '',
    *     'date' => 946771200,
+   *     'customerIPAddress' => '',
    *   );
    * @endcode
    *
@@ -423,8 +423,8 @@ class ReportLink extends Core {
    *
    * @code
    *   $request = array(
-   *     'customerIPAddress' => '',
    *     'date' => 946771200,
+   *     'customerIPAddress' => '',
    *   );
    * @endcode
    *
