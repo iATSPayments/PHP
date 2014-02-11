@@ -180,17 +180,67 @@ class ReportLink extends Core {
     return $this->responseHandler($response, 'GetACHEFTRejectV1Result', 'AR');
   }
 
+  /**
+   * Get ACH / EFT Return CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'date' => 946771200,
+   *     'customerIPAddress' => '',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
   public function getACHEFTReturnCSV($parameters) {
-
+    $response = $this->apiCall('GetACHEFTReturnCSVV1', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTReturnCSVV1Result', 'CSV');
   }
 
+  /**
+   * Get ACH / EFT Return report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   array(
+   *     'date' => 946771200,
+   *     'customerIPAddress' => '',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report array or API error.
+   */
   public function getACHEFTReturn($parameters) {
-
+    $response = $this->apiCall('GetACHEFTReturnV1', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTReturnV1Result', 'AR');
   }
 
+  /**
+   * Get ACH / EFT Journal CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'date' => 946771200,
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
   public function getACHJournalCSV($parameters)
   {
-
+    $response = $this->apiCall('GetACHJournalCSV_x0020_V1', $parameters);
+    return $this->responseHandler($response, 'GetACHJournalCSV_x0020_V1Result', 'CSV');
   }
 
   public function getCCJournalCSV($parameters) {
