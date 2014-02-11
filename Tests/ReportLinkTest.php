@@ -363,36 +363,38 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Test no data.
+   * Test getCreditCardRejectCSV.
    */
   public function testReportLinkgetCreditCardRejectCSV() {
     $agentcode = self::AGENT_CODE;
     $password = self::PASSWORD;
     $date = time();
     $request = array(
-      'customerIPAddress' => '',
       'date' => $date,
+      'customerIPAddress' => '',
     );
 
     $iats = new ReportLink($agentcode, $password);
     $response = $iats->getCreditCardRejectCSV($request);
-    $this->assertTrue(TRUE);
+
+    $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
   }
 
   /**
-   * Test no data.
+   * Test getCreditCardReject using a date with no data.
    */
   public function testNoData() {
     $agentcode = self::AGENT_CODE;
     $password = self::PASSWORD;
     $date = strtotime('1/1/2025');
     $request = array(
-      'customerIPAddress' => '',
       'date' => $date,
+      'customerIPAddress' => '',
     );
 
     $iats = new ReportLink($agentcode, $password);
     $response = $iats->getCreditCardReject($request);
+
     $this->assertEquals('No data returned for this date', $response);
   }
 
