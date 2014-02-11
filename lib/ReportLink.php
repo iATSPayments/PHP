@@ -243,16 +243,69 @@ class ReportLink extends Core {
     return $this->responseHandler($response, 'GetACHJournalCSV_x0020_V1Result', 'CSV');
   }
 
+  /**
+   * Get Credit Card Journal CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'date' => 946771200,
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
   public function getCCJournalCSV($parameters) {
-
+    $response = $this->apiCall('GetCCJournalCSV_x0020_V1', $parameters);
+    return $this->responseHandler($response, 'GetCCJournalCSV_x0020_V1Result', 'CSV');
   }
 
+  /**
+   * Get Credit Card Payment Box Journal CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'from' => 946684800,
+   *     'to' => 946771200,
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
   public function getCCPaymentBoxJournalCSV($parameters) {
-
+    $response = $this->apiCall('GetCCPaymentBoxJournalCSV_x0020_V1', $parameters);
+    return $this->responseHandler($response, 'GetCCPaymentBoxJournalCSV_x0020_V1Result', 'CSV');
   }
 
+  /**
+   * Get Credit Card Bank Reconciliation CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'fromDate' => 946684800,
+   *     'toDate' => 946771200,
+   *     'currency' => 'USD',
+   *     'summaryOnly' => FALSE,
+   *     'customerIPAddress' => '',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
   public function getCreditCardBankReconciliationReportCSV($parameters) {
-
+    $response = $this->apiCall('GetCreditCardBankReconciliationReportCSVV1', $parameters);
+    return $this->responseHandler($response, 'GetCreditCardBankReconciliationReportCSVV1Result', 'CSV');
   }
 
   public function getCreditCardJournalCSV($parameters) {
