@@ -96,16 +96,72 @@ class ReportLink extends Core {
     return $this->responseHandler($response, 'GetACHEFTJournalV1Result', 'AR');
   }
 
+  /**
+   * Get ACH / EFT Payment Box Journal CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'fromDate' => 946684800,
+   *     'toDate' => 946771200,
+   *     'customerIPAddress' => '',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
   public function getACHEFTPaymentBoxJournalCSV($parameters) {
-
+    $this->restrictedservers = array('UK');
+    $response = $this->apiCall('GetACHEFTPaymentBoxJournalCSVV1', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTPaymentBoxJournalCSVV1Result', 'CSV');
   }
 
+  /**
+   * Get ACH / EFT Payment Box Reject CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'fromDate' => 946684800,
+   *     'toDate' => 946771200,
+   *     'customerIPAddress' => '',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
   public function getACHEFTPaymentBoxRejectCSV($parameters) {
-
+    $this->restrictedservers = array('UK');
+    $response = $this->apiCall('GetACHEFTPaymentBoxRejectCSVV1', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTPaymentBoxRejectCSVV1Result', 'CSV');
   }
 
+  /**
+   * Get ACH / EFT Reject CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   $request = array(
+   *     'date' => 946771200,
+   *     'customerIPAddress' => '',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
   public function getACHEFTRejectCSV($parameters) {
-
+    $this->restrictedservers = array('UK');
+    $response = $this->apiCall('GetACHEFTRejectCSVV1', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTRejectCSVV1Result', 'CSV');
   }
 
   public function getACHEFTReject($parameters) {
