@@ -96,6 +96,26 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('', $response);
   }
 
+  /**
+   * Test getACHEFTPaymentBoxRejectCSV.
+   */
+  public function testReportLinkgetACHEFTPaymentBoxRejectCSV() {
+    $agentcode = self::AGENT_CODE;
+    $password = self::PASSWORD;
+    $fromDate = strtotime('10/23/2011');
+    $toDate = strtotime('10/23/2014');
+    $request = array(
+      'fromDate' => $fromDate,
+      'toDate' => $toDate,
+      'customerIPAddress' => '',
+    );
+
+    $iats = new ReportLink($agentcode, $password);
+    $response = $iats->getACHEFTPaymentBoxRejectCSV($request);
+
+    $this->assertStringStartsWith('Transaction ID,Invoice Number,Date Time', $response);
+  }
+
 
   /**
    * Test no data.
