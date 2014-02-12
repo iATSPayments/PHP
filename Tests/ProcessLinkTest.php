@@ -89,7 +89,15 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getBatchProcessResultFile.
    */
   public function testProcessLinkgetBatchProcessResultFile() {
-    // TODO: Create batch file for this test.
+    // Create and populate the request object.
+    // TODO: Set up this test to depend on one of the batch job tests.
+    $request = array(
+      'customerIPAddress' => '',
+      'batchId' => '1',
+    );
+
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
+    $response = $iats->processACHEFTRefundWithTransactionId($request);
   }
 
   /**
