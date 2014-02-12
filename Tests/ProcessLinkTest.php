@@ -186,7 +186,21 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * Test processCreditCardBatch.
    */
   public function testProcessLinkprocessCreditCardBatch() {
-    // TODO: Create batch file for this test.
+    $filePath = dirname(__FILE__) . '/batchfiles/CreditCardUSUKBatch.txt';
+    $handle = fopen($filePath, 'r');
+    $fileContents = fread($handle, filesize($filePath));
+    fclose($handle);
+
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'batchFile' => base64_encode($fileContents),
+    );
+
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
+    $response = $iats->processCreditCardBatch($request);
+
+    $this->assertEquals('Success', $response['STATUS']);
   }
 
   /**
