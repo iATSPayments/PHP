@@ -89,21 +89,21 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getBatchProcessResultFile.
    */
   public function testProcessLinkgetBatchProcessResultFile() {
-
+    // TODO: Create batch file for this test.
   }
 
   /**
    * Test processACHEFTChargeBatch.
    */
   public function testProcessLinkprocessACHEFTChargeBatch() {
-
+    // TODO: Create batch file for this test.
   }
 
   /**
    * Test processACHEFTRefundBatch.
    */
   public function testProcessLinkprocessACHEFTRefundBatch() {
-
+    // TODO: Create batch file for this test.
   }
 
   /**
@@ -178,7 +178,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * Test processCreditCardBatch.
    */
   public function testProcessLinkprocessCreditCardBatch() {
-
+    // TODO: Create batch file for this test.
   }
 
   /**
