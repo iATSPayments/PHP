@@ -12,19 +12,27 @@ namespace iATS;
  * @package IATSAPI\Test
  */
 class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
-  const AGENT_CODE = 'TEST88';
-  const PASSWORD = 'TEST88';
 
   const TEST_CREDIT_CARD_CUSTOMER_CODE = 'A99999990';
   const TEST_ACH_EFT_CUSTOMER_CODE = 'A99999991';
   const TEST_INVALID_CUSTOMER_CODE = 'A00000000';
 
+  /** @var string $agentCode */
+  private static $agentCode;
+
+  /** @var string $password */
+  private static $password;
+
+  public function setUp()
+  {
+    self::$agentCode = IATS_AGENT_CODE;
+    self::$password = IATS_PASSWORD;
+  }
+
   /**
    * Test createCreditCardCustomerCode.
    */
   public function testCustomerLinkcreateCreditCardCustomerCode() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -57,7 +65,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'currency' => 'USD',
     );
 
-    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->createCreditCardCustomerCode($request);
     $this->assertEquals('OK', $response);
   }
@@ -68,8 +76,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkcreateCreditCardCustomerCode
    */
   public function testCustomerLinkupdateCreditCardCustomerCode() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -101,7 +107,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'updateCreditCardNum' => FALSE,
     );
 
-    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
     $this->assertEquals('OK', $response);
   }
@@ -112,8 +118,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkcreateCreditCardCustomerCode
    */
   public function testCustomerLinkupdateCreditCardCustomerCodeNewRecurringSchedule() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -145,7 +149,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'updateCreditCardNum' => FALSE,
     );
 
-    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
     $this->assertEquals('OK', $response);
 
@@ -170,8 +174,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkupdateCreditCardCustomerCodeNewRecurringSchedule
    */
   public function testCustomerLinkupdateCreditCardCustomerCodeNewRecurringScheduleDate() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -203,7 +205,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'updateCreditCardNum' => FALSE,
     );
 
-    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
     $this->assertEquals('OK', $response);
 
@@ -228,8 +230,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkupdateCreditCardCustomerCodeNewRecurringScheduleDate
    */
   public function testCustomerLinkupdateCreditCardCustomerCodeNewRecurringScheduleCard() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -261,7 +261,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'updateCreditCardNum' => TRUE,
     );
 
-    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
     $this->assertEquals('OK', $response);
 
@@ -286,15 +286,13 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkupdateCreditCardCustomerCode
    */
   public function testgetCustomerCodeDetail() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
       'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
     );
 
-    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->getCustomerCodeDetail($request);
 
     $this->assertArrayHasKey('CST', $response);
@@ -305,8 +303,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * Test createACHEFTCustomerCode.
    */
   public function testCustomerLinkcreateACHEFTCustomerCode() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -336,7 +332,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'accountType' => 'Checking',
     );
 
-    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->createACHEFTCustomerCode($request);
     $this->assertEquals('OK', $response);
   }
@@ -347,8 +343,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkcreateACHEFTCustomerCode
    */
   public function testCustomerLinkupdateACHEFTCustomerCode() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $beginDate = strtotime('10/23/2011');
     $endDate = strtotime('10/23/2014');
     // Create and populate the request object.
@@ -379,7 +373,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'updateAccountNum' => FALSE,
     );
 
-    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateACHEFTCustomerCode($request);
     $this->assertEquals('OK', $response);
   }
@@ -390,15 +384,13 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testgetCustomerCodeDetail
    */
   public function testCustomerLinkdeleteCreditCardCustomerCode() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
       'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
     );
 
-    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->deleteCustomerCode($request);
     $this->assertEquals('OK', $response);
   }
@@ -409,15 +401,13 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkupdateACHEFTCustomerCode
    */
   public function testCustomerLinkdeleteACHEFTCustomerCode() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
       'customerCode' => self::TEST_ACH_EFT_CUSTOMER_CODE,
     );
 
-    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->deleteCustomerCode($request);
     $this->assertEquals('OK', $response);
   }
@@ -428,15 +418,13 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testgetCustomerCodeDetail
    */
   public function testgetCustomerCodeDetailInvalidCode() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
       'customerCode' => self::TEST_INVALID_CUSTOMER_CODE,
     );
 
-    $iats = new CustomerLink($agentcode, $password, 'NA');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->getCustomerCodeDetail($request);
 
     $this->assertEquals('Error : The customer code doesn\'t exist!', $response);
