@@ -152,7 +152,7 @@ class Core {
       return $soap->$method($parameters);
     }
     catch (\SoapFault $exception) {
-      throw new \SoapFault($exception->getCode(), $exception->getMessage());
+      throw new \SoapFault($exception->faultcode, $exception->getMessage());
     }
   }
 
