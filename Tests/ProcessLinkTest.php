@@ -370,13 +370,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
 //  /**
-//   * Test createCustCodeProcessCC.
-//   */
-//  public function testProcessLinkcreateCustCodeProcessCC() {
-//    $this->assertTrue(TRUE);
-//  }
-//
-//  /**
 //   * Invalid CC.
 //   */
 //  public function testCCInvalidNum() {
@@ -422,13 +415,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 //   * No response to request.
 //   */
 //  public function testCCNoResponse() {
-//    $this->assertTrue(FALSE);
-//  }
-//
-//  /**
-//   * Refunds.
-//   */
-//  public function testCCRefund() {
 //    $this->assertTrue(FALSE);
 //  }
 //
