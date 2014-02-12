@@ -11,7 +11,7 @@
  * credit card or ACH information on local servers.
  *
  * API documentation: https://www.iatspayments.com/NetGate/CustomerLink.asmx
- *
+ *                UK: https://www.uk.iatspayments.com/NetGate/CustomerLink.asmx
  * ACH documentation: http://en.wikipedia.org/wiki/Automated_Clearing_House
  * EFT documentation: http://en.wikipedia.org/wiki/Electronic_funds_transfer
  */
@@ -260,9 +260,163 @@ class CustomerLink extends Core {
   }
 
   /**
+   * Validate direct debit payer information.
+   *
+   * UK clients only.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   array(
+   *     'customerIPAddress' => '',
+   *     'ACHEFTReferenceNum' => '',
+   *     'beginDate' => 946684800,
+   *     'endDate' => 946771200,
+   *     'accountCustomerName' => 'Test Account',
+   *     'accountNum' => '999999999',
+   *     'companyName' => 'Test Company',
+   *     'firstName' => 'Test',
+   *     'lastName' => 'Account',
+   *     'address' => '1234 Any Street',
+   *     'city' => 'Schenectady',
+   *     'state' => 'NY',
+   *     'country' => 'USA',
+   *     'email' => 'email@test.co',
+   *     'zipCode' => '12345',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
+  // TODO: Unit test.
+  public function directDebitACHEFTPayerValidate($parameters) {
+    $this->restrictedservers = array('NA');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else
+    {
+      $response = $this->apiCall('DirectDebitACHEFTPayerValidate', $parameters);
+      return $this->responseHandler($response, 'DirectDebitACHEFTPayerValidateV1Result');
+    }
+  }
+
+  /**
+   * Create a customer code using only direct debit.
+   *
+   * UK clients only.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   array(
+   *     'customerIPAddress' => '',
+   *     'customerCode' => '',
+   *     'ACHEFTReferenceNum' => '',
+   *     'firstName' => 'Test',
+   *     'lastName' => 'Account',
+   *     'companyName' => 'Test Co.',
+   *     'address' => '1234 Any Street',
+   *     'city' => 'Schenectady',
+   *     'state' => 'NY',
+   *     'zipCode' => '12345',
+   *     'phone' => '555-555-1234',
+   *     'fax' => '555-555-4321',
+   *     'alternatePhone' => '555-555-5555',
+   *     'email' => 'email@test.co',
+   *     'comment' => 'Customer code update test.',
+   *     'recurring' => FALSE,
+   *     'amount' => '5',
+   *     'beginDate' => 946684800,
+   *     'endDate' => 946771200,
+   *     'scheduleType' => 'Annually',
+   *     'scheduleDate' => '',
+   *     'accountCustomerName' => 'Test Account',
+   *     'accountNum' => '999999999',
+   *     'accountType' => 'Checking',
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
+  // TODO: Unit test.
+  public function directDebitCreateACHEFTCustomerCode($parameters) {
+    $this->restrictedservers = array('NA');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else
+    {
+      $response = $this->apiCall('DirectDebitCreateACHEFTCustomerCode', $parameters);
+      return $this->responseHandler($response, 'DirectDebitCreateACHEFTCustomerCodeV1Result');
+    }
+  }
+
+  /**
+   * Update a customer code using only direct debit.
+   *
+   * UK clients only.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *
+   * @code
+   *   array(
+   *     'customerIPAddress' => '',
+   *     'customerCode' => '',
+   *     'ACHEFTReferenceNum' => '',
+   *     'firstName' => 'Test',
+   *     'lastName' => 'Account',
+   *     'companyName' => 'Test Co.',
+   *     'address' => '1234 Any Street',
+   *     'city' => 'Schenectady',
+   *     'state' => 'NY',
+   *     'zipCode' => '12345',
+   *     'phone' => '555-555-1234',
+   *     'fax' => '555-555-4321',
+   *     'alternatePhone' => '555-555-5555',
+   *     'email' => 'email@test.co',
+   *     'comment' => 'Customer code update test.',
+   *     'recurring' => FALSE,
+   *     'amount' => '5',
+   *     'beginDate' => 946684800,
+   *     'endDate' => 946771200,
+   *     'scheduleType' => 'Annually',
+   *     'scheduleDate' => '',
+   *     'accountCustomerName' => 'Test Account',
+   *     'accountNum' => '999999999',
+   *     'accountType' => 'Checking',
+   *     'updateAccountNum' => FALSE,
+   *   );
+   * @endcode
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
+  // TODO: Unit test.
+  public function directDebitUpdateACHEFTCustomerCodeV1($parameters) {
+    $this->restrictedservers = array('NA');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else
+    {
+      $response = $this->apiCall('DirectDebitUpdateACHEFTCustomerCode', $parameters);
+      return $this->responseHandler($response, 'DirectDebitUpdateACHEFTCustomerCodeV1Result');
+    }
+  }
+
+  /**
    * Response Handler for CustomerLink calls.
    *
-   * @param array $response
+   * @param object $response
    *   Restriction, error or API result.
    * @param string $result_name
    *   API result name.
