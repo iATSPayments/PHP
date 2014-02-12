@@ -156,6 +156,8 @@ class CustomerLink extends Core {
   /**
    * Create ACH/EFT Customer Code.
    *
+   * North America clients only.
+   *
    * @param array $parameters
    *   An associative array with the following possible values.
    *
@@ -191,12 +193,22 @@ class CustomerLink extends Core {
    *   Client response array or API error.
    */
   public function createACHEFTCustomerCode($parameters) {
-    $response = $this->apiCall('CreateACHEFTCustomerCode', $parameters);
-    return $this->responseHandler($response, 'CreateACHEFTCustomerCodeV1Result');
+    $this->restrictedservers = array('UK');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else
+    {
+      $response = $this->apiCall('CreateACHEFTCustomerCode', $parameters);
+      return $this->responseHandler($response, 'CreateACHEFTCustomerCodeV1Result');
+    }
   }
 
   /**
    * Update ACH/EFT Customer Code.
+   *
+   * North America clients only.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
@@ -234,8 +246,16 @@ class CustomerLink extends Core {
    *   Client response array or API error.
    */
   public function updateACHEFTCustomerCode($parameters) {
-    $response = $this->apiCall('UpdateACHEFTCustomerCode', $parameters);
-    return $this->responseHandler($response, 'UpdateACHEFTCustomerCodeV1Result');
+    $this->restrictedservers = array('UK');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else
+    {
+      $response = $this->apiCall('UpdateACHEFTCustomerCode', $parameters);
+      return $this->responseHandler($response, 'UpdateACHEFTCustomerCodeV1Result');
+    }
   }
 
   /**
