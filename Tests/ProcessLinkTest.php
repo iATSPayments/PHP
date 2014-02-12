@@ -38,8 +38,43 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
   /** @var string $ACHEFTBatchRefundId */
   private static $ACHEFTBatchRefundId;
 
+  /** @var string $ACHEFTInvalidFormatBatchId */
+  private static $ACHEFTInvalidFormatBatchId;
+
+  /**
+   * Test API credentials.
+   */
+  public function testCredentials() {
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'invoiceNum' => '00000001',
+      'creditCardNum' => '4222222222222220',
+      'creditCardExpiry' => '12/17',
+      'cvv2' => '000',
+      'mop' => 'VISA',
+      'firstName' => 'Test',
+      'lastName' => 'Account',
+      'address' => '1234 Any Street',
+      'city' => 'Schenectady',
+      'state' => 'NY',
+      'zipCode' => '12345',
+      'total' => '5',
+      'comment' => 'Process CC test.',
+      // Not required for request
+      'currency' => 'USD',
+    );
+
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
+    $response = $iats->processCreditCard($request);
+
+    $this->assertEquals('Success', $response['STATUS']);
+  }
+
   /**
    * Test createCustomerCodeAndProcessACHEFT.
+   *
+   * @depends testCredentials
    */
   public function testProcessLinkcreateCustomerCodeAndProcessACHEFT() {
     // Create and populate the request object.
@@ -71,6 +106,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test createCustomerCodeAndProcessCreditCard.
+   *
+   * @depends testCredentials
    */
   public function testProcessLinkcreateCustomerCodeAndProcessCreditCard() {
     // Create and populate the request object.
@@ -102,6 +139,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test processACHEFTChargeBatch.
+   *
+   * @depends testCredentials
    */
   public function testProcessLinkprocessACHEFTChargeBatch() {
     $filePath = dirname(__FILE__) . '/batchfiles/ACHEFTBatch.txt';
@@ -141,6 +180,54 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('Success', $response['STATUS']);
     $this->assertEquals(self::$ACHEFTBatchId, $response['BATCHPROCESSRESULT']['BATCHID']);
   }
+
+
+  /**
+   * Test processACHEFTChargeBatch with incorrectly formatted data.
+   *
+   * @depends testCredentials
+   */
+  public function testProcessLinkprocessACHEFTChargeBatchInvalidFormat() {
+    $filePath = dirname(__FILE__) . '/batchfiles/ACHEFTInvalidFormatBatch.txt';
+    $handle = fopen($filePath, 'r');
+    $fileContents = fread($handle, filesize($filePath));
+    fclose($handle);
+
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'batchFile' => base64_encode($fileContents),
+    );
+
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
+    $response = $iats->processACHEFTChargeBatch($request);
+
+    $this->assertEquals('Success', $response['STATUS']);
+
+    self::$ACHEFTInvalidFormatBatchId = $response['BATCHPROCESSRESULT']['BATCHID'];
+  }
+
+  /**
+   * Test getBatchProcessResultFile with an incorrectly formatted
+   * ACH / EFT batch process.
+   *
+   * @depends testProcessLinkprocessACHEFTChargeBatchInvalidFormat
+   */
+  public function testProcessLinkgetBatchProcessResultFileACHEFTInvalidFormat() {
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'batchId' => self::$ACHEFTInvalidFormatBatchId,
+    );
+
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
+    $response = $iats->getBatchProcessResultFile($request);
+
+    $this->assertEquals('Success', $response['STATUS']);
+    $this->assertEquals(self::$ACHEFTInvalidFormatBatchId, $response['BATCHPROCESSRESULT']['BATCHID']);
+  }
+
+
 
   /**
    * Test processACHEFTRefundBatch.
@@ -212,6 +299,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test processACHEFT.
+   *
+   * @depends testCredentials
    */
   public function testProcessLinkprocessACHEFT() {
     // Create and populate the request object.
@@ -240,6 +329,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test processACHEFTWithCustomerCode.
+   *
+   * @depends testCredentials
    */
   public function testProcessLinkprocessACHEFTWithCustomerCode() {
     // Create and populate the request object.
@@ -261,6 +352,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test processCreditCardBatch.
+   *
+   * @depends testCredentials
    */
   public function testProcessLinkprocessCreditCardBatch() {
     $filePath = dirname(__FILE__) . '/batchfiles/CreditCardUSUKBatch.txt';
@@ -326,6 +419,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test processCreditCard.
+   *
+   * @depends testCredentials
    */
   public function testProcessLinkprocessCreditCard() {
     // Create and populate the request object.
@@ -386,6 +481,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test processCreditCard with invalid card number.
+   *
+   * @depends testCredentials
    */
   public function testProcessLinkprocessCreditCardInvalidCardNumber() {
     // Create and populate the request object.
@@ -416,6 +513,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test processCreditCard with invalid credit card expiration date.
+   *
+   * @depends testCredentials
    */
   public function testProcessLinkprocessCreditCardInvalidExp() {
     // Create and populate the request object.
@@ -448,6 +547,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test processCreditCard with invalid address.
+   *
+   * @depends testCredentials
    */
   public function testProcessLinkprocessCreditCardInvalidAddress() {
     // Create and populate the request object.
@@ -480,6 +581,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test processCreditCard with invalid IP address format.
+   *
+   * @depends testCredentials
    */
   public function testProcessLinkprocessCreditCardInvalidIPAddress() {
     // Create and populate the request object.
@@ -511,6 +614,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test processCreditCard with invalid currency for current server.
+   *
+   * @depends testCredentials
    */
   public function testProcessLinkprocessCreditCardInvalidCurrency() {
     // Create and populate the request object.
@@ -541,6 +646,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test processCreditCard with invalid method of payment for current server.
+   *
+   * @depends testCredentials
    */
   public function testProcessLinkprocessCreditCardInvalidMOP() {
     // Create and populate the request object.
