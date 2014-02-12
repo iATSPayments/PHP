@@ -15,7 +15,9 @@ iATS Web Services provide the facility to securely process payments using credit
 
 `
 $ git clone git@github.com:iATSPayments/PHP.git iATSPaymentsPHP
+
 $ cd iATSPaymentsPHP
+
 $ composer install
 `
 
