@@ -2,6 +2,16 @@
 /**
  * ReportLink class file.
  * Targeting iATS API version 1.0.
+ *
+ * The ReportLink service is used to generate reports based on transactions
+ * completed through the other iATS services.
+ *
+ * Reports include credit / debit card transactions, rejected transactions
+ * and returns.
+ *
+ * Reports may be generated in either XML or CSV.
+ *
+ * API documentation: https://www.iatspayments.com/NetGate/ReportLink.asmx
  */
 
 namespace iATS;
