@@ -156,9 +156,6 @@ class CustomerLink extends Core {
   /**
    * Create ACH/EFT Customer Code.
    *
-   * ACH: http://en.wikipedia.org/wiki/Automated_Clearing_House
-   * EFT: http://en.wikipedia.org/wiki/Electronic_funds_transfer
-   *
    * @param array $parameters
    *   An associative array with the following possible values.
    *
@@ -200,9 +197,6 @@ class CustomerLink extends Core {
 
   /**
    * Update ACH/EFT Customer Code.
-   *
-   * ACH: http://en.wikipedia.org/wiki/Automated_Clearing_House
-   * EFT: http://en.wikipedia.org/wiki/Electronic_funds_transfer
    *
    * @param array $parameters
    *   An associative array with the following possible values.
