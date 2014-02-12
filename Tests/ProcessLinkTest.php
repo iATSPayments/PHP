@@ -485,6 +485,36 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertTrue(TRUE);
   }
 
+  /**
+   * Test processCreditCard with invalid currency for current server.
+   */
+  public function testProcessLinkprocessCreditCardInvalidCurrency() {
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'invoiceNum' => '00000001',
+      'creditCardNum' => '4222222222222220',
+      'creditCardExpiry' => '12/17',
+      'cvv2' => '000',
+      'mop' => 'VISA',
+      'firstName' => 'Test',
+      'lastName' => 'Account',
+      'address' => '1234 Any Street',
+      'city' => 'Schenectady',
+      'state' => 'NY',
+      'zipCode' => '12345',
+      'total' => '5',
+      'comment' => 'Process CC test.',
+      // Not required for request
+      'currency' => 'GBP'
+    );
+
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
+    $response = $iats->processCreditCard($request);
+
+    $this->assertEquals('Service cannot be used with this Method of Payment or Currency.', $response);
+  }
+
 //  /**
 //   * Timeout response.
 //   */
