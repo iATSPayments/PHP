@@ -2,6 +2,18 @@
 /**
  * CustomerLink class file.
  * Targeting iATS API version 1.0.
+ *
+ * The CustomerLink service is used to create secure customer codes that may be
+ * used with the ProcessLink service to process single or recurring credit card
+ * or ACH / EFT transactions.
+ *
+ * Once created, customer codes may be reused, removing the need to store sensitive
+ * credit card or ACH information on local servers.
+ *
+ * API documentation: https://www.iatspayments.com/NetGate/CustomerLink.asmx
+ *
+ * ACH documentation: http://en.wikipedia.org/wiki/Automated_Clearing_House
+ * EFT documentation: http://en.wikipedia.org/wiki/Electronic_funds_transfer
  */
 
 namespace iATS;
