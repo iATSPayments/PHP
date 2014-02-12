@@ -10,11 +10,14 @@ iATS Web Services provide the facility to securely process payments using credit
 * PHPUnit (for unit testing) http://phpunit.de/
 * SOAP enabled in your PHP installation
 * phpDocumentor (for generating documentation files) http://www.phpdoc.org/
+* An account with iATS http://www.iatspayments.com/
 
 ## Installation
 
 `$ git clone git@github.com:iATSPayments/PHP.git iATSPaymentsPHP`
+
 `$ cd iATSPaymentsPHP`
+
 `$ composer install`
 
 Open phpunit.xml and set the values of **IATS_AGENT_CODE** and **IATS_PASSWORD** to your iATS API credentials.
