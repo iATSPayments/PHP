@@ -32,6 +32,9 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
   /** @var string $creditCardBatchId */
   private static $creditCardBatchId;
 
+  /** @var string $ACHEFTBatchId */
+  private static $ACHEFTBatchId;
+
   /**
    * Test createCustomerCodeAndProcessACHEFT.
    */
@@ -94,7 +97,42 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * Test processACHEFTChargeBatch.
    */
   public function testProcessLinkprocessACHEFTChargeBatch() {
-    // TODO: Create batch file for this test.
+    $filePath = dirname(__FILE__) . '/batchfiles/ACHEFTBatch.txt';
+    $handle = fopen($filePath, 'r');
+    $fileContents = fread($handle, filesize($filePath));
+    fclose($handle);
+
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'batchFile' => base64_encode($fileContents),
+    );
+
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
+    $response = $iats->processACHEFTChargeBatch($request);
+
+    $this->assertEquals('Success', $response['STATUS']);
+
+    self::$ACHEFTBatchId = $response['BATCHPROCESSRESULT']['BATCHID'];
+  }
+
+  /**
+   * Test getBatchProcessResultFile with an ACH / EFT batch process.
+   *
+   * @depends testProcessLinkprocessACHEFTChargeBatch
+   */
+  public function testProcessLinkgetBatchProcessResultFileACHEFT() {
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'batchId' => self::$ACHEFTBatchId,
+    );
+
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
+    $response = $iats->getBatchProcessResultFile($request);
+
+    $this->assertEquals('Success', $response['STATUS']);
+    $this->assertEquals(self::$ACHEFTBatchId, $response['BATCHPROCESSRESULT']['BATCHID']);
   }
 
   /**
