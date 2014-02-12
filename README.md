@@ -25,12 +25,18 @@ iATS Web Services and this wrapper are broken up into three components.
 
 ### CustomerLink
 
+The CustomerLink service is used to create and update customer records. CustomerLink may be used with the
+ProcessLink service to process single or recurring transactions for customers.
 
 ### ProcessLink
 
+The ProcessLink service is used to process single, recurring and bulk transactions for customers. ProcessLink can
+also be used to refund transactions.
 
 ### ReportLink
 
+The ReportLink service is used to generate transaction reports for the other services. Available reports include
+credit / debit card transactions, rejected transactions and returns.
 
 ## Usage
 
