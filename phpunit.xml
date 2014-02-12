@@ -5,4 +5,8 @@
             <directory>./Tests/</directory>
         </testsuite>
     </testsuites>
+    <php>
+        <const name="IATS_AGENT_CODE" value="TEST88" />
+        <const name="IATS_PASSWORD" value="TEST88" />
+    </php>
 </phpunit>
