@@ -212,17 +212,27 @@ class Core {
   protected function checkMOPCurrencyRestrictions($serverid, $currency, $mop) {
     $restricted = FALSE;
     $matrix = $this->getMOPCurrencyMatrix();
-    if (isset($matrix[$serverid][$currency])) {
-      $filterresult = array_filter($matrix[$serverid][$currency],
-      function ($item) use ($mop) {
-        return $item == $mop;
+    if (!empty($currency))
+    {
+      if (isset($matrix[$serverid][$currency])) {
+        // Validate Method of Payment (MOP) against currency.
+        $filterresult = array_filter($matrix[$serverid][$currency],
+          function ($item) use ($mop) {
+            return $item == $mop;
+          }
+        );
+        if (empty($filterresult)) {
+          // Currency not valid for any Methods of Payment.
+          $restricted = TRUE;
+        }
+        else {
+          $restricted = FALSE;
+        }
       }
-      );
-      if (empty($filterresult)) {
+      else
+      {
+        // Currency not valid for this server.
         $restricted = TRUE;
-      }
-      else {
-        $restricted = FALSE;
       }
     }
     return $restricted;
