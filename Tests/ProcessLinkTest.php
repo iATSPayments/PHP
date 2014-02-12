@@ -56,6 +56,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'invoiceNum' => '00000001',
       'total' => '5',
       'comment' => 'Process direct debit test.',
+      // Not required for request
+      'currency' => 'USD',
     );
 
     $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
@@ -85,6 +87,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '12345',
       'cvv2' => '000',
       'total' => '5',
+      // Not required for request
+      'currency' => 'USD',
     );
 
     $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
@@ -194,6 +198,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'transactionId' => self::$ACHEFTTransationId,
       'total' => '-5',
       'comment' => 'ACH / EFT refund test.',
+      // Not required for request
+      'currency' => 'USD',
     );
 
     // TODO: Find out why this returns "Invalid Customer Code" error.
@@ -222,6 +228,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'accountType' => 'CHECKING',
       'total' => '5',
       'comment' => 'Process direct debit test.',
+      // Not required for request
+      'currency' => 'USD',
     );
 
     $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
@@ -241,6 +249,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'invoiceNum' => '00000001',
       'total' => '5',
       'comment' => 'Process direct debit test with Customer Code.',
+      // Not required for request
+      'currency' => 'USD',
     );
 
     $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
@@ -303,6 +313,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'transactionId' => self::$creditCardTransactionId,
       'total' => '-5',
       'comment' => 'Credit card refund test.',
+      // Not required for request
+      'currency' => 'USD',
     );
 
     $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
@@ -332,6 +344,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '12345',
       'total' => '5',
       'comment' => 'Process CC test.',
+      // Not required for request
+      'currency' => 'USD',
     );
 
     $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
@@ -357,6 +371,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'cvv2' => '000',
       'total' => '5',
       'comment' => 'Process CC test with Customer Code.',
+      // Not required for request
+      'currency' => 'USD',
     );
 
     $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
@@ -388,6 +404,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '12345',
       'total' => '5',
       'comment' => 'Process CC test with invalid CC number.',
+      // Not required for request
+      'currency' => 'USD',
     );
 
     $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
@@ -416,6 +434,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '12345',
       'total' => '5',
       'comment' => 'Process CC test with invalid CC expiration date.',
+      // Not required for request
+      'currency' => 'USD',
     );
 
     $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
@@ -446,6 +466,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '',
       'total' => '5',
       'comment' => 'Process CC test with invalid address.',
+      // Not required for request
+      'currency' => 'USD',
     );
 
     $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
@@ -476,6 +498,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '12345',
       'total' => '5',
       'comment' => 'Process CC test with invalid IP address format.',
+      // Not required for request
+      'currency' => 'USD',
     );
 
     $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
