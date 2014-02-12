@@ -2,6 +2,15 @@
 /**
  * ProcessLink class file.
  * Targeting iATS API version 1.0.
+ *
+ * The ProcessLink service is used to process single, recurring, or batch transactions,
+ * and to process refunds.
+ *
+ * The ProcessLink can process transactions using existing customer codes created via
+ * the CustomerLink service, ProcessLink may also be used to create new customer codes
+ * as part of an initial transaction.
+ *
+ * API documentation: https://www.iatspayments.com/NetGate/ProcessLink.asmx
  */
 
 namespace iATS;
