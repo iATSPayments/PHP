@@ -108,8 +108,24 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test processACHEFTRefundWithTransactionId.
+   *
+   * @depends testProcessLinkcreateCustomerCodeAndProcessACHEFT
    */
   public function testProcessLinkprocessACHEFTRefundWithTransactionId() {
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'transactionId' => self::$ACHEFTTransationId,
+      'total' => '-5',
+      'comment' => 'ACH / EFT refund test.',
+    );
+
+    // TODO: Find out why this returns "Invalid Customer Code" error.
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
+    $response = $iats->processACHEFTRefundWithTransactionId($request);
+
+    //$clean = trim($response['PROCESSRESULT']['AUTHORIZATIONRESULT']);
+    //$this->assertEquals($clean, 'OK: 678594:');
 
   }
 
@@ -143,7 +159,19 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * Test processACHEFTWithCustomerCode.
    */
   public function testProcessLinkprocessACHEFTWithCustomerCode() {
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => self::$ACHEFTCustomerCode,
+      'invoiceNum' => '00000001',
+      'total' => '5',
+      'comment' => 'Process direct debit test with Customer Code.',
+    );
 
+    $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
+    $response = $iats->processACHEFTWithCustomerCode($request);
+
+    $this->assertEquals('Success', $response['STATUS']);
   }
 
   /**
