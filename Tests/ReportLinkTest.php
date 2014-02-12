@@ -12,15 +12,23 @@ namespace iATS;
  * @package IATSAPI\Test
  */
 class ReportLinkTest extends \PHPUnit_Framework_TestCase {
-  const AGENT_CODE = 'TEST88';
-  const PASSWORD = 'TEST88';
+
+  /** @var string $agentCode */
+  private static $agentCode;
+
+  /** @var string $password */
+  private static $password;
+
+  public function setUp()
+  {
+    self::$agentCode = IATS_AGENT_CODE;
+    self::$password = IATS_PASSWORD;
+  }
 
   /**
    * Test getACHEFTBankReconciliationReportCSV.
    */
   public function testReportLinkgetACHEFTBankReconciliationReportCSV() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $fromDate = strtotime('10/23/2011');
     $toDate = strtotime('10/23/2014');
     $request = array(
@@ -31,7 +39,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTBankReconciliationReportCSV($request);
 
     // TODO: Get test data for this method.
@@ -42,15 +50,13 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTJournalCSV.
    */
   public function testReportLinkgetACHEFTJournalCSV() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $date = time();
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTJournalCSV($request);
 
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
@@ -60,15 +66,13 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTJournal.
    */
   public function testReportLinkgetACHEFTJournal() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $date = time();
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTJournal($request);
 
     // TODO: Get test data for this method.
@@ -79,8 +83,6 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTPaymentBoxJournalCSV.
    */
   public function testReportLinkgetACHEFTPaymentBoxJournalCSV() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $fromDate = strtotime('10/23/2011');
     $toDate = strtotime('10/23/2014');
     $request = array(
@@ -89,7 +91,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTPaymentBoxJournalCSV($request);
 
     // TODO: Get test data for this method.
@@ -100,8 +102,6 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTPaymentBoxRejectCSV.
    */
   public function testReportLinkgetACHEFTPaymentBoxRejectCSV() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $fromDate = strtotime('10/23/2011');
     $toDate = strtotime('10/23/2014');
     $request = array(
@@ -110,7 +110,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTPaymentBoxRejectCSV($request);
 
     $this->assertStringStartsWith('Transaction ID,Invoice Number,Date Time', $response);
@@ -120,15 +120,13 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTRejectCSV.
    */
   public function testReportLinkgetACHEFTRejectCSV() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $date = time();
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTRejectCSV($request);
 
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
@@ -138,15 +136,13 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTReject.
    */
   public function testReportLinkgetACHEFTReject() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $date = time();
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTReject($request);
 
     $this->assertArrayHasKey('TNID', $response[0]);
@@ -156,15 +152,13 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTReturnCSV.
    */
   public function testReportLinkgetACHEFTReturnCSV() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $date = time();
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTReturnCSV($request);
 
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
@@ -174,15 +168,13 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTReturn.
    */
   public function testReportLinkgetACHEFTReturn() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $date = time();
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTReturn($request);
 
     // TODO: Get test data for this method.
@@ -193,14 +185,12 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHJournalCSV.
    */
   public function testReportLinkgetACHJournalCSV() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $date = time();
     $request = array(
       'date' => $date,
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHJournalCSV($request);
 
     // TODO: Get test data for this method.
@@ -211,14 +201,12 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCCJournalCSV.
    */
   public function testReportLinkgetCCJournalCSV() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $date = time();
     $request = array(
       'date' => $date,
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCCJournalCSV($request);
 
     // TODO: Get test data for this method.
@@ -229,8 +217,6 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCCPaymentBoxJournalCSV.
    */
   public function testReportLinkgetCCPaymentBoxJournalCSV() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $fromDate = strtotime('10/23/2011');
     $toDate = strtotime('10/23/2014');
     $request = array(
@@ -238,7 +224,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'to' => $toDate,
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCCPaymentBoxJournalCSV($request);
 
     // TODO: Get test data for this method.
@@ -249,8 +235,6 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardBankReconciliationReportCSV.
    */
   public function testReportLinkgetCreditCardBankReconciliationReportCSV() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $fromDate = strtotime('10/23/2011');
     $toDate = strtotime('10/23/2014');
     $request = array(
@@ -261,7 +245,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardBankReconciliationReportCSV($request);
 
     // TODO: Get test data for this method.
@@ -272,15 +256,13 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardJournalCSV.
    */
   public function testReportLinkgetCreditCardJournalCSV() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $date = time();
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardJournalCSV($request);
 
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
@@ -290,15 +272,13 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardJournal.
    */
   public function testReportLinkgetCreditCardJournal() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $date = time();
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardJournal($request);
 
     $this->assertArrayHasKey('TNID', $response[0]);
@@ -308,8 +288,6 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardPaymentBoxJournalCSV.
    */
   public function testReportLinkgetCreditCardPaymentBoxJournalCSV() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $fromDate = strtotime('10/23/2011');
     $toDate = strtotime('10/23/2014');
     $request = array(
@@ -318,7 +296,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardPaymentBoxJournalCSV($request);
 
     $this->assertStringStartsWith('Transaction ID,Invoice Number,Date Time', $response);
@@ -328,8 +306,6 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardPaymentBoxRejectCSV.
    */
   public function testReportLinkgetCreditCardPaymentBoxRejectCSV() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $fromDate = strtotime('10/23/2011');
     $toDate = strtotime('10/23/2014');
     $request = array(
@@ -338,7 +314,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardPaymentBoxRejectCSV($request);
 
     $this->assertStringStartsWith('Transaction ID,Invoice Number,Date Time', $response);
@@ -348,15 +324,13 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardReject.
    */
   public function testReportLinkgetCreditCardReject() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $date = time();
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardReject($request);
 
     $this->assertArrayHasKey('TNID', $response[0]);
@@ -366,15 +340,13 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardRejectCSV.
    */
   public function testReportLinkgetCreditCardRejectCSV() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $date = time();
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardRejectCSV($request);
 
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
@@ -384,15 +356,13 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardReject using a date with no data.
    */
   public function testReportLinkgetCreditCardRejectNoData() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $date = strtotime('1/1/2025');
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardReject($request);
 
     $this->assertEquals('No data returned for this date', $response);
@@ -402,15 +372,13 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardRejectCSV using a date with no data.
    */
   public function testReportLinkgetCreditCardRejectCSVNoData() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
     $date = strtotime('1/1/2025');
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink($agentcode, $password);
+    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardRejectCSV($request);
 
     $this->assertEquals('', $response);
