@@ -13,13 +13,9 @@ iATS Web Services provide the facility to securely process payments using credit
 
 ## Installation
 
-`
-$ git clone git@github.com:iATSPayments/PHP.git iATSPaymentsPHP
-
-$ cd iATSPaymentsPHP
-
-$ composer install
-`
+`$ git clone git@github.com:iATSPayments/PHP.git iATSPaymentsPHP`
+`$ cd iATSPaymentsPHP`
+`$ composer install`
 
 Open phpunit.xml and set the values of **IATS_AGENT_CODE** and **IATS_PASSWORD** to your iATS API credentials.
 
