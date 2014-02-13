@@ -6,11 +6,14 @@ iATS Web Services provide the facility to securely process payments using credit
 
 ## Requirements
 
-* PHP 5.3.0 or greater
-* PHPUnit (for unit testing) http://phpunit.de/
-* SOAP enabled in your PHP installation
-* phpDocumentor (for generating documentation files) http://www.phpdoc.org/
 * An account with iATS http://www.iatspayments.com/
+* PHP 5.3.0 or greater
+* SOAP enabled in your PHP installation
+
+### Optional Requirements
+
+* PHPUnit (for unit testing) http://phpunit.de/
+* phpDocumentor (for generating documentation files) http://www.phpdoc.org/
 
 ## Installation
 
@@ -31,6 +34,9 @@ Unit tests can be run using PHPUnit.
 ## Components
 
 iATS Web Services and this wrapper are broken up into three components.
+
+### Core
+
 
 ### CustomerLink
 
