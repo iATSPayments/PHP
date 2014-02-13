@@ -327,16 +327,34 @@ class ProcessLink extends Core {
     if ($result['STATUS'] == 'Failure') {
       return $result['ERRORS'];
     }
-    // Handle reject codes.
-    else {
-      $authresult = $result['PROCESSRESULT']['AUTHORIZATIONRESULT'];
-      // Process reject codes.
-      if (strpos($authresult, 'REJECT') !== FALSE) {
-        $reject_code = preg_replace("/[^0-9]/", "", $authresult);
+
+    $parsedResult = FALSE;
+
+    // Check for regular process result.
+    if (isset($result['PROCESSRESULT'])) {
+      $parsedResult = $result['PROCESSRESULT'];
+    }
+    // Check for batch process result.
+    else if (isset($result['BATCHPROCESSRESULT']))
+    {
+      $parsedResult = $result['BATCHPROCESSRESULT'];
+    }
+
+    // Check auth result.
+    if ($parsedResult && isset($parsedResult['AUTHORIZATIONRESULT']))
+    {
+      // Handle reject codes.
+      if (strpos($parsedResult['AUTHORIZATIONRESULT'], 'REJECT') !== FALSE) {
+        $reject_code = preg_replace("/[^0-9]/", "", $parsedResult['AUTHORIZATIONRESULT']);
         return $this->reject($reject_code);
       }
     }
+    else
+    {
+      // If result hasn't been parsed, return exactly as returned by the API.
+      $parsedResult = $result;
+    }
 
-    return $result;
+    return $parsedResult;
   }
 }
