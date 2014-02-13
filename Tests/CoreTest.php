@@ -10,15 +10,25 @@ namespace iATS;
  * Class CoreTest
  */
 class CoreTest extends \PHPUnit_Framework_TestCase {
-  const AGENT_CODE = 'TEST88';
-  const PASSWORD = 'TEST88';
+
+  /** @var string $agentCode */
+  private static $agentCode;
+
+  /** @var string $password */
+  private static $password;
+
+  public function setUp()
+  {
+    self::$agentCode = IATS_AGENT_CODE;
+    self::$password = IATS_PASSWORD;
+  }
 
   /**
    * Test bad credentials.
    */
   public function testBadCredentials() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD . 'aa'; // Make password incorrect.
+    $agentcode = self::$agentCode;
+    $password = self::$password . 'aa'; // Make password incorrect.
 
     $date = time();
     $request = array(
@@ -65,9 +75,6 @@ class CoreTest extends \PHPUnit_Framework_TestCase {
    * Test bad request parameters.
    */
   public function testBadParameters() {
-    $agentcode = self::AGENT_CODE;
-    $password = self::PASSWORD;
-
     $request = array(
       'customerIPAddress' => '',
       'invoiceNum' => '00000001',
@@ -88,7 +95,7 @@ class CoreTest extends \PHPUnit_Framework_TestCase {
     );
 
     try {
-      $iats = new ProcessLink(self::AGENT_CODE, self::PASSWORD);
+      $iats = new ProcessLink(self::$agentCode, self::$password);
       $response = $iats->processCreditCard($request);
     }
     catch (\SoapFault $exception)
