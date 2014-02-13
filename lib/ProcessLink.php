@@ -38,27 +38,23 @@ class ProcessLink extends Core {
   }
 
   /**
-   * Process a direct debit transaction and return Customer Code.
+   * Process an ACH / EFT transaction and return Customer Code.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'customerIPAddress' => '',
-   *     'firstName' => 'Test',
-   *     'lastName' => 'Account',
-   *     'address' => '1234 Any Street',
-   *     'city' => 'Schenectady',
-   *     'state' => 'NY',
-   *     'zipCode' => '12345',
-   *     'accountNum' => '02100002100000000000000001',
-   *     'accountType' => 'CHECKING',
-   *     'invoiceNum' => '00000001',
-   *     'total' => '5',
-   *     'comment' => 'Process direct debit test.',
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'firstName' => 'Test' // The customer's first name.
+   *     'lastName' => 'Account' // The customer's last name.
+   *     'address' => '1234 Any Street' // The customer's address.
+   *     'city' => 'Schenectady' // The customer's city.
+   *     'state' => 'NY' // The customer's state or province.
+   *     'zipCode' => '12345' // The customer's ZIP code.
+   *     'accountNum' => '02100002100000000000000001' // The customer's bank account number.
+   *     'accountType' => 'CHECKING' // The customer's bank account type.
+   *      // Options: CHECKING, SAVING (North America only.)
+   *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
+   *     'total' => '5' // The total payment amount.
+   *     'comment' => 'Process ACH / EFT test.' // Optional. A comment describing this transaction.
    *
    * @return mixed
    *   Client response array or API error.
@@ -73,23 +69,18 @@ class ProcessLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'customerIPAddress' => '',
-   *     'invoiceNum' => '00000001',
-   *     'ccNum' => '4222222222222220',
-   *     'ccExp' => '12/17',
-   *     'firstName' => 'Test',
-   *     'lastName' => 'Account',
-   *     'address' => '1234 Any Street',
-   *     'city' => 'Schenectady',
-   *     'state' => 'NY',
-   *     'zipCode' => '12345',
-   *     'cvv2' => '000',
-   *     'total' => '5',
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
+   *     'ccNum' => '4222222222222220' // The customer's credit card number.
+   *     'ccExp' => '12/17' // The customer's credit card expiration date.
+   *     'firstName' => 'Test' // The customer's first name.
+   *     'lastName' => 'Account' // The customer's last name.
+   *     'address' => '1234 Any Street' // The customer's address.
+   *     'city' => 'Schenectady' // The customer's city.
+   *     'state' => 'NY' // The customer's state or province.
+   *     'zipCode' => '12345' // The customer's ZIP code.
+   *     'cvv2' => '000' // Optional. The customer's credit card CVV2 code.
+   *     'total' => '5' // The total payment amount.
    *
    * @return mixed
    *   Client response array or API error.
@@ -104,13 +95,8 @@ class ProcessLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'customerIPAddress' => '',
-   *     'batchId' => '1',
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'batchId' => '1' // The ID of the existing iATS batch process.
    *
    * @return mixed
    *   Client response array or API error.
@@ -121,17 +107,16 @@ class ProcessLink extends Core {
   }
 
   /**
-   * Process a number of direct debit transactions from a batch file.
+   * Process a number of ACH / EFT transactions from a batch file.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'customerIPAddress' => '',
-   *     'batchFile' => {base64Binary file},
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'batchFile' => {base64Binary file} // CSV file encoded using base64_encode.
+   *      File format without Customer Codes:
+   *        Invoice #, First Name, Last Name, Account Type, Account # (no spaces or dashes), Amount (no $), Comment
+   *      File format with Customer Codes:
+   *        Invoice #, Customer Code, Amount, Comment
    *
    * @return mixed
    *   Client response array or API error.
@@ -142,17 +127,16 @@ class ProcessLink extends Core {
   }
 
   /**
-   * Process a number of direct debit refund transactions from a batch file.
+   * Process a number of ACH / EFT refund transactions from a batch file.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'customerIPAddress' => '',
-   *     'batchFile' => {base64Binary file},
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'batchFile' => {base64Binary file} // CSV file encoded using base64_encode.
+   *      File format without Customer Codes:
+   *        Invoice #, First Name, Last Name, Account Type, Account # (no spaces or dashes), Amount (no $), Comment
+   *      File format with Customer Codes:
+   *        Invoice #, Customer Code, Amount, Comment
    *
    * @return mixed
    *   Client response array or API error.
@@ -163,20 +147,15 @@ class ProcessLink extends Core {
   }
 
   /**
-   * Refund a specific direct debit transaction.
+   * Refund a specific ACH / EFT transaction.
    * Partial refunds are valid.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'customerIPAddress' => '',
-   *     'transactionId' => '0000001',
-   *     'total' => '-10', // Must be a negative number.
-   *     'comment' => 'ACH / EFT refund test.',
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'transactionId' => '0000001' // The ID of the transaction to refund.
+   *     'total' => '-10' // The amount to refund. Must be a negative number.
+   *     'comment' => 'ACH / EFT refund test.' // Optional. A comment describing this transaction.
    *
    * @return mixed
    *   Client response array or API error.
@@ -187,29 +166,23 @@ class ProcessLink extends Core {
   }
 
   /**
-   * Process a direct debit transaction using an existing account,
-   * without using a Customer Code.
+   * Process an ACH / EFT transaction using an existing account, without using a Customer Code.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'customerIPAddress' => '',
-   *     'invoiceNum' => '00000001',
-   *     'firstName' => 'Test',
-   *     'lastName' => 'Account',
-   *     'address' => '1234 Any Street',
-   *     'city' => 'Schenectady',
-   *     'state' => 'NY',
-   *     'zipCode' => '12345',
-   *     'accountNum' => '02100002100000000000000001',
-   *     'accountType' => 'CHECKING',
-   *     'invoiceNum' => '00000001',
-   *     'total' => '5',
-   *     'comment' => 'Process direct debit test.',
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
+   *     'accountNum' => '02100002100000000000000001' // The customer's bank account number.
+   *     'accountType' => 'CHECKING' // The customer's bank account type.
+   *      // Options: CHECKING, SAVING (North America only.)
+   *     'firstName' => 'Test' // Optional. The customer's first name.
+   *     'lastName' => 'Account' // Optional. The customer's last name.
+   *     'address' => '1234 Any Street' // Optional. The customer's address.
+   *     'city' => 'Schenectady' // Optional. The customer's city.
+   *     'state' => 'NY' // Optional. The customer's state or province.
+   *     'zipCode' => '12345' // Optional. The customer's ZIP code.
+   *     'total' => '5' // The total payment amount.
+   *     'comment' => 'Process ACH / EFT test.' // Optional. A comment describing this transaction.
    *
    * @return mixed
    *   Client response array or API error.
@@ -220,20 +193,15 @@ class ProcessLink extends Core {
   }
 
   /**
-   * Process a direct debit transaction using an existing account using
-   * a Customer Code.
+   * Process an ACH / EFT transaction using an existing account using a Customer Code.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'customerIPAddress' => '',
-   *     'customerCode' => '',
-   *     'invoiceNum' => '00000001',
-   *     'total' => '5',
-   *     'comment' => 'Process direct debit test.',
-   *   );
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
+   *     'customerCode' => '' // The iATS Customer Code.
+   *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
+   *     'total' => '5' // The total payment amount.
+   *     'comment' => 'Process ACH / EFT test.' // Optional. A comment describing this transaction.
    * @endcode
    *
    * @return mixed
@@ -249,13 +217,14 @@ class ProcessLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'customerIPAddress' => '',
-   *     'batchFile' => {base64Binary file},
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
+   *     'batchFile' => {base64Binary file} // CSV file encoded using base64_encode.
+   *      File format without Customer Codes for US and UK clients:
+   *        Date, Invoice #, First Name, Last Name, Street, City, State, Zip Code, Amount, MOP, Credit Card #, Expiry
+   *      File format without Customer Codes for Canadian clients:
+   *        Date, Invoice #, Full Name, Amount, MOP, Credit Card #, Expiry
+   *      File format with Customer Codes:
+   *        Invoice #, Customer Code, Amount, Comment
    *
    * @return mixed
    *   Client response array or API error.
@@ -271,15 +240,10 @@ class ProcessLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'customerIPAddress' => '',
-   *     'transactionId' => '0000001',
-   *     'total' => '-10', // Must be a negative number.
-   *     'comment' => 'Credit card refund test.',
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
+   *     'transactionId' => '0000001' // The ID of the transaction to refund.
+   *     'total' => '-10' // The total amount to refund. Must be a negative number.
+   *     'comment' => 'Credit card refund test.' // Optional. A comment describing this transaction.
    *
    * @return mixed
    *   Client response array or API error.
@@ -294,25 +258,22 @@ class ProcessLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'customerIPAddress' => '',
-   *     'invoiceNum' => '00000001',
-   *     'creditCardNum' => '4222222222222220',
-   *     'creditCardExpiry' => '12/17',
-   *     'cvv2' => '000',
-   *     'mop' => 'VISA',
-   *     'firstName' => 'Test',
-   *     'lastName' => 'Account',
-   *     'address' => '1234 Any Street',
-   *     'city' => 'Schenectady',
-   *     'state' => 'NY',
-   *     'zipCode' => '12345',
-   *     'total' => '5',
-   *     'comment' => 'Process CC test.',
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
+   *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
+   *     'creditCardNum' => '4222222222222220' // The customer's credit card number.
+   *     'creditCardExpiry' => '12/17' // The customer's credit card expiration date. MM/YY.
+   *     'cvv2' => '000' // The customer's credit card CVV2 code.
+   *     'mop' => 'VISA' // The customer's method of payment.
+   *      North America options: VISA, MC, AMX, DSC
+   *      UK options: VISA, MC, AMX, MAESTR
+   *     'firstName' => 'Test' // The customer's first name.
+   *     'lastName' => 'Account' // The customer's last name.
+   *     'address' => '1234 Any Street' // The customer's address.
+   *     'city' => 'Schenectady' // The customer's city.
+   *     'state' => 'NY' // The customer's state or province.
+   *     'zipCode' => '12345' // The customer's ZIP code.
+   *     'total' => '5' // The total payment amount.
+   *     'comment' => 'Process credit card test.' // Optional. A comment describing this transaction.
    *
    * @return mixed
    *   Client response array or API error.
@@ -334,17 +295,12 @@ class ProcessLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'customerIPAddress' => '',
-   *     'customerCode' => '',
-   *     'invoiceNum' => '00000001',
-   *     'cvv2' => '000',
-   *     'total' => '5',
-   *     'comment' => 'Process CC test with Customer Code.',
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
+   *     'customerCode' => '' // The iATS Customer Code.
+   *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
+   *     'cvv2' => '000' // Optional. The customer's credit card CVV2 code.
+   *     'total' => '5' // The total payment amount.
+   *     'comment' => 'Process credit card test with Customer Code.' // Optional. A comment describing this transaction.
    *
    * @return mixed
    *   Client response array or API error.
