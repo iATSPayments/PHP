@@ -44,16 +44,13 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'fromDate' => 946684800,
-   *     'toDate' => 946771200,
-   *     'currency' => 'USD',
-   *     'summaryOnly' => FALSE,
-   *     'customerIPAddress' => '',
-   *   );
-   * @endcode
+   *     'fromDate' => 946684800 // The earliest date to gather report data for.
+   *     'toDate' => 946771200 // The latest date to gather report data for.
+   *     'currency' => 'USD' // The currency to represent financial data as.
+   *      North America options: CAD, USD
+   *      UK options: USD, EUR, GBP, IEE, CHF, HKD, JPY, SGD, MXN
+   *     'summaryOnly' => FALSE // True when a summerized report is required.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
    *   Report CSV (string) or API error.
@@ -68,13 +65,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'date' => 946771200,
-   *     'customerIPAddress' => '',
-   *   );
-   * @endcode
+   *     'date' => 946771200 // The date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
    *   Report CSV (string) or API error.
@@ -89,13 +81,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'date' => 946771200,
-   *     'customerIPAddress' => '',
-   *   );
-   * @endcode
+   *     'date' => 946771200 // The date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
    *   Report array or API error.
@@ -110,14 +97,11 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'fromDate' => 946684800, // NOTE: Docs say 'fromDate', API says 'from'
-   *     'toDate' => 946771200, // NOTE: Docs say 'toDate', API says 'to'
-   *     'customerIPAddress' => '',
-   *   );
-   * @endcode
+   *     'from' => 946684800 // The earliest date to gather report data for.
+   *      // NOTE: May appear documented as 'fromDate' in the offical docs, but the API will only accept 'from'
+   *     'to' => 946771200 // The latest date to gather report data for.
+   *      // NOTE: May appear documented as 'toDate' in the offical docs, but the API will only accept 'to'
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
    *   Report CSV (string) or API error.
@@ -132,14 +116,9 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'fromDate' => 946684800,
-   *     'toDate' => 946771200,
-   *     'customerIPAddress' => '',
-   *   );
-   * @endcode
+   *     'fromDate' => 946684800 // The earliest date to gather report data for.
+   *     'toDate' => 946771200 // The latest date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
    *   Report CSV (string) or API error.
@@ -154,13 +133,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'date' => 946771200,
-   *     'customerIPAddress' => '',
-   *   );
-   * @endcode
+   *     'date' => 946771200 // The date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
    *   Report CSV (string) or API error.
@@ -175,12 +149,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'date' => 946771200,
-   *     'customerIPAddress' => '',
-   *   );
+   *     'date' => 946771200 // The date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    * @endcode
    *
    * @return mixed
@@ -196,13 +166,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'date' => 946771200,
-   *     'customerIPAddress' => '',
-   *   );
-   * @endcode
+   *     'date' => 946771200 // The date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
    *   Report CSV (string) or API error.
@@ -217,13 +182,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'date' => 946771200,
-   *     'customerIPAddress' => '',
-   *   );
-   * @endcode
+   *     'date' => 946771200 // The date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
    *   Report array or API error.
@@ -238,12 +198,7 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'date' => 946771200,
-   *   );
-   * @endcode
+   *     'date' => 946771200 // The date to gather report data for.
    *
    * @return mixed
    *   Report CSV (string) or API error.
@@ -259,12 +214,7 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'date' => 946771200,
-   *   );
-   * @endcode
+   *     'date' => 946771200 // The date to gather report data for.
    *
    * @return mixed
    *   Report CSV (string) or API error.
@@ -279,13 +229,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'from' => 946684800,
-   *     'to' => 946771200,
-   *   );
-   * @endcode
+   *     'from' => 946684800 // The earliest date to gather report data for.
+   *     'to' => 946771200 // The latest date to gather report data for.
    *
    * @return mixed
    *   Report CSV (string) or API error.
@@ -300,16 +245,13 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'fromDate' => 946684800,
-   *     'toDate' => 946771200,
-   *     'currency' => 'USD',
-   *     'summaryOnly' => FALSE,
-   *     'customerIPAddress' => '',
-   *   );
-   * @endcode
+   *     'fromDate' => 946684800 // The earliest date to gather report data for.
+   *     'toDate' => 946771200 // The latest date to gather report data for.
+   *     'currency' => 'USD' // The currency to represent financial data as.
+   *      North America options: CAD, USD
+   *      UK options: USD, EUR, GBP, IEE, CHF, HKD, JPY, SGD, MXN
+   *     'summaryOnly' => FALSE // True when a summerized report is required.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
    *   Report CSV (string) or API error.
@@ -324,13 +266,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'date' => 946771200,
-   *     'customerIPAddress' => '',
-   *   );
-   * @endcode
+   *     'date' => 946771200 // The date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
    *   Report CSV (string) or API error.
@@ -345,13 +282,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'date' => 946771200,
-   *     'customerIPAddress' => '',
-   *   );
-   * @endcode
+   *     'date' => 946771200 // The date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
    *   Report array or API error.
@@ -366,14 +298,9 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'fromDate' => 946684800,
-   *     'toDate' => 946771200,
-   *     'customerIPAddress' => '',
-   *   );
-   * @endcode
+   *     'fromDate' => 946684800 // The earliest date to gather report data for.
+   *     'toDate' => 946771200 // The latest date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
    *   Report CSV (string) or API error.
@@ -388,14 +315,9 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'fromDate' => 946684800,
-   *     'toDate' => 946771200,
-   *     'customerIPAddress' => '',
-   *   );
-   * @endcode
+   *     'fromDate' => 946684800 // The earliest date to gather report data for.
+   *     'toDate' => 946771200 // The latest date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
    *   Report CSV (string) or API error.
@@ -410,13 +332,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'date' => 946771200,
-   *     'customerIPAddress' => '',
-   *   );
-   * @endcode
+   *     'date' => 946771200 // The date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
    *   Report array or API error.
@@ -431,13 +348,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   $request = array(
-   *     'date' => 946771200,
-   *     'customerIPAddress' => '',
-   *   );
-   * @endcode
+   *     'date' => 946771200 // The date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
    *   Report CSV (string) or API error.
@@ -450,8 +362,8 @@ class ReportLink extends Core {
   /**
    * Response Handler for ReportLink calls.
    *
-   * @param array $response
-   *   Response
+   * @param object $response
+   *   SOAP response
    * @param string $result
    *   Result string
    * @param string  $format
