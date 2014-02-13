@@ -113,10 +113,10 @@ class ProcessLink extends Core {
    *   An associative array with the following possible values.
    *     'customerIPAddress' => '' // Optional. The client IP address.
    *     'batchFile' => {base64Binary file} // CSV file encoded using base64_encode.
-   *      File format without Customer Codes:
-   *        Invoice #, First Name, Last Name, Account Type, Account # (no spaces or dashes), Amount (no $), Comment
-   *      File format with Customer Codes:
-   *        Invoice #, Customer Code, Amount, Comment
+   *      // File format without Customer Codes:
+   *      //  Invoice #, First Name, Last Name, Account Type, Account # (no spaces or dashes), Amount (no $), Comment
+   *      // File format with Customer Codes:
+   *      //  Invoice #, Customer Code, Amount, Comment
    *
    * @return mixed
    *   Client response array or API error.
@@ -133,10 +133,10 @@ class ProcessLink extends Core {
    *   An associative array with the following possible values.
    *     'customerIPAddress' => '' // Optional. The client IP address.
    *     'batchFile' => {base64Binary file} // CSV file encoded using base64_encode.
-   *      File format without Customer Codes:
-   *        Invoice #, First Name, Last Name, Account Type, Account # (no spaces or dashes), Amount (no $), Comment
-   *      File format with Customer Codes:
-   *        Invoice #, Customer Code, Amount, Comment
+   *      // File format without Customer Codes:
+   *      //  Invoice #, First Name, Last Name, Account Type, Account # (no spaces or dashes), Amount (no $), Comment
+   *      // File format with Customer Codes:
+   *      //  Invoice #, Customer Code, Amount, Comment
    *
    * @return mixed
    *   Client response array or API error.
@@ -219,12 +219,12 @@ class ProcessLink extends Core {
    *   An associative array with the following possible values.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *     'batchFile' => {base64Binary file} // CSV file encoded using base64_encode.
-   *      File format without Customer Codes for US and UK clients:
-   *        Date, Invoice #, First Name, Last Name, Street, City, State, Zip Code, Amount, MOP, Credit Card #, Expiry
-   *      File format without Customer Codes for Canadian clients:
-   *        Date, Invoice #, Full Name, Amount, MOP, Credit Card #, Expiry
-   *      File format with Customer Codes:
-   *        Invoice #, Customer Code, Amount, Comment
+   *      // File format without Customer Codes for US and UK clients:
+   *      //  Date, Invoice #, First Name, Last Name, Street, City, State, Zip Code, Amount, MOP, Credit Card #, Expiry
+   *      // File format without Customer Codes for Canadian clients:
+   *      //  Date, Invoice #, Full Name, Amount, MOP, Credit Card #, Expiry
+   *      // File format with Customer Codes:
+   *      //  Invoice #, Customer Code, Amount, Comment
    *
    * @return mixed
    *   Client response array or API error.
@@ -264,8 +264,8 @@ class ProcessLink extends Core {
    *     'creditCardExpiry' => '12/17' // The customer's credit card expiration date. MM/YY.
    *     'cvv2' => '000' // The customer's credit card CVV2 code.
    *     'mop' => 'VISA' // The customer's method of payment.
-   *      North America options: VISA, MC, AMX, DSC
-   *      UK options: VISA, MC, AMX, MAESTR
+   *      // North America options: VISA, MC, AMX, DSC
+   *      // UK options: VISA, MC, AMX, MAESTR
    *     'firstName' => 'Test' // The customer's first name.
    *     'lastName' => 'Account' // The customer's last name.
    *     'address' => '1234 Any Street' // The customer's address.
