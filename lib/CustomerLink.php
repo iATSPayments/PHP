@@ -310,7 +310,6 @@ class CustomerLink extends Core {
    * @return mixed
    *   Client response array or API error.
    */
-  // TODO: Unit test.
   public function directDebitACHEFTPayerValidate($parameters) {
     $this->restrictedservers = array('NA');
     $restricted = $this->checkRestrictions($parameters);
@@ -357,14 +356,13 @@ class CustomerLink extends Core {
    *     'scheduleDate' => '',
    *     'accountCustomerName' => 'Test Account',
    *     'accountNum' => '999999999',
-   *     'accountType' => 'Checking',
+   *     'accountType' => 'CHECKING',
    *   );
    * @endcode
    *
    * @return mixed
    *   Client response array or API error.
    */
-  // TODO: Unit test.
   public function directDebitCreateACHEFTCustomerCode($parameters) {
     $this->restrictedservers = array('NA');
     $restricted = $this->checkRestrictions($parameters);
@@ -411,7 +409,7 @@ class CustomerLink extends Core {
    *     'scheduleDate' => '',
    *     'accountCustomerName' => 'Test Account',
    *     'accountNum' => '999999999',
-   *     'accountType' => 'Checking',
+   *     'accountType' => 'CHECKING',
    *     'updateAccountNum' => FALSE,
    *   );
    * @endcode
@@ -419,8 +417,7 @@ class CustomerLink extends Core {
    * @return mixed
    *   Client response array or API error.
    */
-  // TODO: Unit test.
-  public function directDebitUpdateACHEFTCustomerCodeV1($parameters) {
+  public function directDebitUpdateACHEFTCustomerCode($parameters) {
     $this->restrictedservers = array('NA');
     $restricted = $this->checkRestrictions($parameters);
     if ($restricted) {

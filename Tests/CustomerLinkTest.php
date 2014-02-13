@@ -27,6 +27,12 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   /** @var string $ACHEFTCustomerCode */
   private static $ACHEFTCustomerCode;
 
+  /** @var string $directDebitACHEFTCustomerCode */
+  private static $directDebitACHEFTCustomerCode;
+
+  /** @var string $directDebitACHEFTReferenceNum */
+  private static $directDebitACHEFTReferenceNum;
+
   public function setUp()
   {
     self::$agentCode = IATS_AGENT_CODE;
@@ -445,5 +451,131 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     $response = $iats->getCustomerCodeDetail($request);
 
     $this->assertEquals('Error : The customer code doesn\'t exist!', $response['AUTHORIZATIONRESULT']);
+  }
+
+  /**
+   * Test directDebitACHEFTPayerValidate.
+   */
+  public function testCustomerLinkdirectDebitACHEFTPayerValidate() {
+    $beginDate = strtotime('10/23/2011');
+    $endDate = strtotime('10/23/2014');
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'ACHEFTReferenceNum' => '',
+      'beginDate' => $beginDate,
+      'endDate' => $endDate,
+      'accountCustomerName' => 'Test Account',
+      'accountNum' => '999999999',
+      'companyName' => 'Test Company',
+      'firstName' => 'Test',
+      'lastName' => 'Account',
+      'address' => '1234 Any Street',
+      'city' => 'Schenectady',
+      'state' => 'NY',
+      'country' => 'USA',
+      'email' => 'email@test.co',
+      'zipCode' => '12345',
+    );
+
+    // Test only valid for UK clients.
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'UK');
+    $response = $iats->directDebitACHEFTPayerValidate($request);
+
+    // API responded correctly.
+    $this->assertEquals('Success', $response['STATUS']);
+    // Authorization should fail due to fake account data.
+    $this->assertEquals('REJ', $response['AUTHRESULT']['AUTHSTATUS']);
+  }
+
+  /**
+   * Test directDebitCreateACHEFTCustomerCode.
+   */
+  public function testCustomerLinkdirectDebitCreateACHEFTCustomerCode() {
+    // Start date must be at least 12 days from current date.
+    $beginDate = strtotime(date('m/d/Y', time()) . ' + 12 days');
+    $endDate = strtotime(date('m/d/Y', time()) . ' + 4 years');
+
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => '',
+      'ACHEFTReferenceNum' => '',
+      'firstName' => 'Test',
+      'lastName' => 'Account',
+      'companyName' => 'Test Co.',
+      'address' => '1234 Any Street',
+      'city' => 'Schenectady',
+      'state' => 'NY',
+      'zipCode' => '12345',
+      'phone' => '555-555-1234',
+      'fax' => '555-555-4321',
+      'alternatePhone' => '555-555-5555',
+      'email' => 'email@test.co',
+      'comment' => 'Customer code update test.',
+      'recurring' => FALSE,
+      'amount' => '5',
+      'beginDate' => $beginDate,
+      'endDate' => $endDate,
+      'scheduleType' => 'Annually',
+      'scheduleDate' => '',
+      'accountCustomerName' => 'Test Account',
+      'accountNum' => '999999999',
+      'accountType' => 'CHECKING',
+    );
+
+    // Test only valid for UK clients.
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'UK');
+    $response = $iats->directDebitCreateACHEFTCustomerCode($request);
+
+    // API responded correctly.
+    $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
+
+    self::$directDebitACHEFTCustomerCode = $response['CUSTOMERCODE'];
+    self::$directDebitACHEFTReferenceNum = $response['ACHEFTREFERENCENUM'];
+  }
+
+  /**
+   * Test directDebitUpdateACHEFTCustomerCode.
+   */
+  public function testCustomerLinkdirectDebitUpdateACHEFTCustomerCode() {
+    $beginDate = strtotime('10/23/2011');
+    $endDate = strtotime('10/23/2014');
+
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => self::$directDebitACHEFTCustomerCode,
+      'ACHEFTReferenceNum' => self::$directDebitACHEFTReferenceNum,
+      'firstName' => 'Test',
+      'lastName' => 'Account',
+      'companyName' => 'Test Co.',
+      'address' => '1234 Any Street',
+      'city' => 'Schenectady',
+      'state' => 'NY',
+      'zipCode' => '12345',
+      'phone' => '555-555-1234',
+      'fax' => '555-555-4321',
+      'alternatePhone' => '555-555-5555',
+      'email' => 'email@test.co',
+      'comment' => 'Customer code update test.',
+      'recurring' => FALSE,
+      'amount' => '5',
+      'beginDate' => $beginDate,
+      'endDate' => $endDate,
+      'scheduleType' => 'Annually',
+      'scheduleDate' => '',
+      'accountCustomerName' => 'Test Account',
+      'accountNum' => '999999999',
+      'accountType' => 'CHECKING',
+      'updateAccountNum' => FALSE,
+    );
+
+    // Test only valid for UK clients.
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'UK');
+    $response = $iats->directDebitUpdateACHEFTCustomerCode($request);
+
+    // API responded correctly.
+    $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
   }
 }
