@@ -78,7 +78,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processCreditCard($request);
 
-    $this->assertEquals('Success', $response['STATUS']);
+    $this->assertStringStartsWith('OK', trim($response['AUTHORIZATIONRESULT']));
   }
 
   /**
@@ -108,10 +108,10 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->createCustomerCodeAndProcessACHEFT($request);
 
-    self::$ACHEFTCustomerCode = trim($response['PROCESSRESULT']['CUSTOMERCODE']);
-    self::$ACHEFTTransationId = trim($response['PROCESSRESULT']['TRANSACTIONID']);
+    $this->assertStringStartsWith('OK', trim($response['AUTHORIZATIONRESULT']));
 
-    $this->assertEquals('Success', $response['STATUS']);
+    self::$ACHEFTCustomerCode = trim($response['CUSTOMERCODE']);
+    self::$ACHEFTTransationId = trim($response['TRANSACTIONID']);
   }
 
   /**
@@ -141,10 +141,10 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->createCustomerCodeAndProcessCreditCard($request);
 
-    self::$creditCardCustomerCode = trim($response['PROCESSRESULT']['CUSTOMERCODE']);
-    self::$creditCardTransactionId = trim($response['PROCESSRESULT']['TRANSACTIONID']);
+    $this->assertStringStartsWith('OK', trim($response['AUTHORIZATIONRESULT']));
 
-    $this->assertEquals('Success', $response['STATUS']);
+    self::$creditCardCustomerCode = trim($response['CUSTOMERCODE']);
+    self::$creditCardTransactionId = trim($response['TRANSACTIONID']);
   }
 
   /**
@@ -167,9 +167,9 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processACHEFTChargeBatch($request);
 
-    $this->assertEquals('Success', $response['STATUS']);
+    $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
 
-    self::$ACHEFTBatchId = $response['BATCHPROCESSRESULT']['BATCHID'];
+    self::$ACHEFTBatchId = $response['BATCHID'];
   }
 
   /**
@@ -187,8 +187,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->getBatchProcessResultFile($request);
 
-    $this->assertEquals('Success', $response['STATUS']);
-    $this->assertEquals(self::$ACHEFTBatchId, $response['BATCHPROCESSRESULT']['BATCHID']);
+    $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
+    $this->assertEquals(self::$ACHEFTBatchId, $response['BATCHID']);
   }
 
 
@@ -212,9 +212,9 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processACHEFTChargeBatch($request);
 
-    $this->assertEquals('Success', $response['STATUS']);
+    $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
 
-    self::$ACHEFTInvalidFormatBatchId = $response['BATCHPROCESSRESULT']['BATCHID'];
+    self::$ACHEFTInvalidFormatBatchId = $response['BATCHID'];
   }
 
   /**
@@ -233,11 +233,9 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->getBatchProcessResultFile($request);
 
-    $this->assertEquals('Success', $response['STATUS']);
-    $this->assertEquals(self::$ACHEFTInvalidFormatBatchId, $response['BATCHPROCESSRESULT']['BATCHID']);
+    $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
+    $this->assertEquals(self::$ACHEFTInvalidFormatBatchId, $response['BATCHID']);
   }
-
-
 
   /**
    * Test processACHEFTRefundBatch.
@@ -259,9 +257,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processACHEFTRefundBatch($request);
 
-    $this->assertEquals('Success', $response['STATUS']);
-
-    self::$ACHEFTBatchRefundId = $response['BATCHPROCESSRESULT']['BATCHID'];
+    $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
+    self::$ACHEFTBatchRefundId = $response['BATCHID'];
   }
 
   /**
@@ -279,8 +276,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->getBatchProcessResultFile($request);
 
-    $this->assertEquals('Success', $response['STATUS']);
-    $this->assertEquals(self::$ACHEFTBatchRefundId, $response['BATCHPROCESSRESULT']['BATCHID']);
+    $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
+    $this->assertEquals(self::$ACHEFTBatchRefundId, $response['BATCHID']);
   }
 
   /**
@@ -303,8 +300,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processACHEFTRefundWithTransactionId($request);
 
-    //$clean = trim($response['PROCESSRESULT']['AUTHORIZATIONRESULT']);
-    //$this->assertEquals($clean, 'OK: 678594:');
+    //$this->assertStringStartsWith('OK', trim($response['AUTHORIZATIONRESULT']));
   }
 
   /**
@@ -334,7 +330,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processACHEFT($request);
 
-    $this->assertEquals('Success', $response['STATUS']);
+    $this->assertStringStartsWith('OK', trim($response['AUTHORIZATIONRESULT']));
   }
 
   /**
@@ -357,7 +353,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processACHEFTWithCustomerCode($request);
 
-    $this->assertEquals('Success', $response['STATUS']);
+    $this->assertStringStartsWith('OK', trim($response['AUTHORIZATIONRESULT']));
   }
 
   /**
@@ -380,9 +376,9 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processCreditCardBatch($request);
 
-    $this->assertEquals('Success', $response['STATUS']);
+    $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
 
-    self::$creditCardBatchId = $response['BATCHPROCESSRESULT']['BATCHID'];
+    self::$creditCardBatchId = $response['BATCHID'];
   }
 
   /**
@@ -400,8 +396,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->getBatchProcessResultFile($request);
 
-    $this->assertEquals('Success', $response['STATUS']);
-    $this->assertEquals(self::$creditCardBatchId, $response['BATCHPROCESSRESULT']['BATCHID']);
+    $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
+    $this->assertEquals(self::$creditCardBatchId, $response['BATCHID']);
   }
 
   /**
@@ -423,8 +419,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processCreditCardRefundWithTransactionId($request);
 
-    $clean = trim($response['PROCESSRESULT']['AUTHORIZATIONRESULT']);
-    $this->assertEquals($clean, 'OK: 678594:');
+    $this->assertStringStartsWith('OK', trim($response['AUTHORIZATIONRESULT']));
   }
 
   /**
@@ -456,10 +451,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processCreditCard($request);
 
-    $this->assertEquals('Success', $response['STATUS']);
-
-    $clean = trim($response['PROCESSRESULT']['AUTHORIZATIONRESULT']);
-    $this->assertEquals($clean, 'OK: 678594:');
+    $this->assertStringStartsWith('OK', trim($response['AUTHORIZATIONRESULT']));
   }
 
   /**
@@ -483,10 +475,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processCreditCardWithCustomerCode($request);
 
-    $this->assertEquals('Success', $response['STATUS']);
-
-    $clean = trim($response['PROCESSRESULT']['AUTHORIZATIONRESULT']);
-    $this->assertEquals($clean, 'OK: 678594:');
+    $this->assertStringStartsWith('OK', trim($response['AUTHORIZATIONRESULT']));
   }
 
   /**
