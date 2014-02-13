@@ -47,8 +47,8 @@ class ReportLink extends Core {
    *     'fromDate' => 946684800 // The earliest date to gather report data for.
    *     'toDate' => 946771200 // The latest date to gather report data for.
    *     'currency' => 'USD' // The currency to represent financial data as.
-   *      North America options: CAD, USD
-   *      UK options: USD, EUR, GBP, IEE, CHF, HKD, JPY, SGD, MXN
+   *      // North America options: CAD, USD
+   *      // UK options: USD, EUR, GBP, IEE, CHF, HKD, JPY, SGD, MXN
    *     'summaryOnly' => FALSE // True when a summerized report is required.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
@@ -248,8 +248,8 @@ class ReportLink extends Core {
    *     'fromDate' => 946684800 // The earliest date to gather report data for.
    *     'toDate' => 946771200 // The latest date to gather report data for.
    *     'currency' => 'USD' // The currency to represent financial data as.
-   *      North America options: CAD, USD
-   *      UK options: USD, EUR, GBP, IEE, CHF, HKD, JPY, SGD, MXN
+   *      // North America options: CAD, USD
+   *      // UK options: USD, EUR, GBP, IEE, CHF, HKD, JPY, SGD, MXN
    *     'summaryOnly' => FALSE // True when a summerized report is required.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
