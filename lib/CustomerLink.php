@@ -454,7 +454,7 @@ class CustomerLink extends Core {
 
     // Handle reject codes.
     if (isset($result['PROCESSRESULT'])) {
-      $authresult = $result['PROCESSRESULT']['AUTHORIZATIONRESULT'];
+      $authresult = $result['PROCESSRESULT'];
     }
     else if (isset($result['CUSTOMERS']))
     {
