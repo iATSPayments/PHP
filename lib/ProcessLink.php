@@ -313,7 +313,7 @@ class ProcessLink extends Core {
   /**
    * Response Handler for ProcessLink calls.
    *
-   * @param array|bool $response
+   * @param object $response
    *   SOAP response.
    * @param string $result_name
    *   API result name.
