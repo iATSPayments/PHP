@@ -13,8 +13,6 @@ namespace iATS;
  */
 class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
-  const TEST_CREDIT_CARD_CUSTOMER_CODE = 'A99999990';
-  const TEST_ACH_EFT_CUSTOMER_CODE = 'A99999991';
   const TEST_INVALID_CUSTOMER_CODE = 'A00000000';
 
   /** @var string $agentCode */
@@ -22,6 +20,12 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
   /** @var string $password */
   private static $password;
+
+  /** @var string $creditCardCustomerCode */
+  private static $creditCardCustomerCode;
+
+  /** @var string $ACHEFTCustomerCode */
+  private static $ACHEFTCustomerCode;
 
   public function setUp()
   {
@@ -38,7 +42,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
+      'customerCode' => '',
       'firstName' => 'Test',
       'lastName' => 'Account',
       'companyName' => 'Test Co.',
@@ -67,7 +71,10 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->createCreditCardCustomerCode($request);
+
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
+
+    self::$creditCardCustomerCode = $response['CUSTOMERCODE'];
   }
 
   /**
@@ -81,7 +88,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
+      'customerCode' => self::$creditCardCustomerCode,
       'firstName' => 'Test',
       'lastName' => 'Account',
       'companyName' => 'Test Co.',
@@ -109,6 +116,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
+
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
   }
 
@@ -123,7 +131,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
+      'customerCode' => self::$creditCardCustomerCode,
       'firstName' => 'Test',
       'lastName' => 'Account',
       'companyName' => 'Test Co.',
@@ -151,13 +159,14 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
+
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
 
     // Get customer details to confirm update.
 
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
+      'customerCode' => self::$creditCardCustomerCode,
     );
 
     $response = $iats->getCustomerCodeDetail($request);
@@ -179,7 +188,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
+      'customerCode' => self::$creditCardCustomerCode,
       'firstName' => 'Test',
       'lastName' => 'Account',
       'companyName' => 'Test Co.',
@@ -207,13 +216,14 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
+
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
 
     // Get customer details to confirm update.
 
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
+      'customerCode' => self::$creditCardCustomerCode,
     );
 
     $response = $iats->getCustomerCodeDetail($request);
@@ -235,7 +245,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
+      'customerCode' => self::$creditCardCustomerCode,
       'firstName' => 'Test',
       'lastName' => 'Account',
       'companyName' => 'Test Co.',
@@ -263,13 +273,14 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
+
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
 
     // Get customer details to confirm update.
 
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
+      'customerCode' => self::$creditCardCustomerCode,
     );
 
     $response = $iats->getCustomerCodeDetail($request);
@@ -289,14 +300,14 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
+      'customerCode' => self::$creditCardCustomerCode,
     );
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->getCustomerCodeDetail($request);
 
     $this->assertArrayHasKey('CST', $response);
-    $this->assertEquals(self::TEST_CREDIT_CARD_CUSTOMER_CODE, $response['CST']['CSTC']);
+    $this->assertEquals(self::$creditCardCustomerCode, $response['CST']['CSTC']);
   }
 
   /**
@@ -308,7 +319,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => self::TEST_ACH_EFT_CUSTOMER_CODE,
+      'customerCode' => '',
       'firstName' => 'Test',
       'lastName' => 'Account',
       'companyName' => 'Test Co.',
@@ -334,7 +345,10 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->createACHEFTCustomerCode($request);
+
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
+
+    self::$ACHEFTCustomerCode = $response['CUSTOMERCODE'];
   }
 
   /**
@@ -348,7 +362,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => self::TEST_ACH_EFT_CUSTOMER_CODE,
+      'customerCode' => self::$ACHEFTCustomerCode,
       'firstName' => 'Test',
       'lastName' => 'Account',
       'companyName' => 'Test Co.',
@@ -375,6 +389,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateACHEFTCustomerCode($request);
+
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
   }
 
@@ -387,11 +402,12 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => self::TEST_CREDIT_CARD_CUSTOMER_CODE,
+      'customerCode' => self::$creditCardCustomerCode,
     );
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->deleteCustomerCode($request);
+
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
   }
 
@@ -404,11 +420,12 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'customerCode' => self::TEST_ACH_EFT_CUSTOMER_CODE,
+      'customerCode' => self::$ACHEFTCustomerCode,
     );
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->deleteCustomerCode($request);
+
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
   }
 
