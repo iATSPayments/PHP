@@ -67,7 +67,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->createCreditCardCustomerCode($request);
-    $this->assertEquals('OK', $response);
+    $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
   }
 
   /**
@@ -109,7 +109,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
-    $this->assertEquals('OK', $response);
+    $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
   }
 
   /**
@@ -151,7 +151,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
-    $this->assertEquals('OK', $response);
+    $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
 
     // Get customer details to confirm update.
 
@@ -207,7 +207,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
-    $this->assertEquals('OK', $response);
+    $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
 
     // Get customer details to confirm update.
 
@@ -263,7 +263,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
-    $this->assertEquals('OK', $response);
+    $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
 
     // Get customer details to confirm update.
 
@@ -334,7 +334,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->createACHEFTCustomerCode($request);
-    $this->assertEquals('OK', $response);
+    $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
   }
 
   /**
@@ -375,7 +375,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateACHEFTCustomerCode($request);
-    $this->assertEquals('OK', $response);
+    $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
   }
 
   /**
@@ -392,7 +392,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->deleteCustomerCode($request);
-    $this->assertEquals('OK', $response);
+    $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
   }
 
   /**
@@ -409,7 +409,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->deleteCustomerCode($request);
-    $this->assertEquals('OK', $response);
+    $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
   }
 
   /**
@@ -427,6 +427,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->getCustomerCodeDetail($request);
 
-    $this->assertEquals('Error : The customer code doesn\'t exist!', $response);
+    $this->assertEquals('Error : The customer code doesn\'t exist!', $response['AUTHORIZATIONRESULT']);
   }
 }
