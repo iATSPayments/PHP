@@ -266,20 +266,30 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('Batch Process Has Been Done', trim($response['AUTHORIZATIONRESULT']));
     $this->assertEquals(self::$ACHEFTInvalidFormatBatchId, $response['BATCHID']);
 
+    $originalFileContents = $this->getBatchFile('ACHEFTInvalidFormatBatch.txt');
+    $originalData = explode("\n", $originalFileContents);
+
     $batchResultFileContents = trim(base64_decode($response['BATCHPROCESSRESULTFILE']));
 
     $batchData = explode("\r\n", $batchResultFileContents);
 
-    foreach ($batchData as $row)
+    // Check batch result messages and compare against original batch file.
+    for ($i = 0; $i < count($originalData); $i++)
     {
-      $rowData = str_getcsv($row);
+      $this->assertArrayHasKey($i, $batchData);
 
-      $rowMessage = array_pop($rowData);
+      $batchRowData = str_getcsv($batchData[$i]);
 
-      $this->assertStringStartsWith('Wrong Format', $rowMessage);
+      // Get result message from end of array.
+      $batchRowMessage = array_pop($batchRowData);
+
+      $this->assertStringStartsWith('Wrong Format', $batchRowMessage);
+
+      $cleanBatchRow = implode(',', $batchRowData);
+
+      // Compare original batch file row against batch result row.
+      $this->assertEquals($originalData[$i], $cleanBatchRow);
     }
-
-    // TODO: Compare file contents with original.
   }
 
   /**
@@ -323,20 +333,36 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('Batch Process Has Been Done', trim($response['AUTHORIZATIONRESULT']));
     $this->assertEquals(self::$ACHEFTBatchRefundId, $response['BATCHID']);
 
+    $originalFileContents = $this->getBatchFile('ACHEFTRefundBatch.txt');
+    $originalData = explode("\n", $originalFileContents);
+
     $batchResultFileContents = trim(base64_decode($response['BATCHPROCESSRESULTFILE']));
 
     $batchData = explode("\r\n", $batchResultFileContents);
 
-    foreach ($batchData as $row)
+    // Check batch result messages and compare against original batch file.
+    for ($i = 0; $i < count($originalData); $i++)
     {
-      $rowData = str_getcsv($row);
+      $this->assertArrayHasKey($i, $batchData);
 
-      $rowMessage = array_pop($rowData);
+      $originalRowData = str_getcsv($originalData[$i]);
+      $batchRowData = str_getcsv($batchData[$i]);
 
-      $this->assertStringStartsWith('Received', $rowMessage);
+      // Get result message from end of array.
+      $batchRowMessage = array_pop($batchRowData);
+
+      $this->assertStringStartsWith('Received', $batchRowMessage);
+
+      // iATS API obfuscates bank account numbers. Need to also obfuscate the account
+      // number in the original data for the comparison test to pass.
+      $originalRowData[4] = $batchRowData[4];
+
+      $cleanOriginalRow = implode(',', $originalRowData);
+      $cleanBatchRow = implode(',', $batchRowData);
+
+      // Compare original batch file row against batch result row.
+      $this->assertEquals($cleanOriginalRow, $cleanBatchRow);
     }
-
-    // TODO: Compare file contents with original.
   }
 
   /**
@@ -435,6 +461,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
 
     self::$creditCardBatchId = $response['BATCHID'];
+
+    sleep(3);
   }
 
   /**
@@ -452,8 +480,39 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->getBatchProcessResultFile($request);
 
-    $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
+    $this->assertEquals('Batch Process Has Been Done', trim($response['AUTHORIZATIONRESULT']));
     $this->assertEquals(self::$creditCardBatchId, $response['BATCHID']);
+
+    $originalFileContents = $this->getBatchFile('CreditCardUSUKBatch.txt');
+    $originalData = explode("\n", $originalFileContents);
+
+    $batchResultFileContents = trim(base64_decode($response['BATCHPROCESSRESULTFILE']));
+
+    $batchData = explode("\r\n", $batchResultFileContents);
+
+    // Check batch result messages and compare against original batch file.
+    for ($i = 0; $i < count($originalData); $i++)
+    {
+      $this->assertArrayHasKey($i, $batchData);
+
+      $originalRowData = str_getcsv($originalData[$i]);
+      $batchRowData = str_getcsv($batchData[$i]);
+
+      // Get result message from end of array.
+      $batchRowMessage = array_pop($batchRowData);
+
+      $this->assertStringStartsWith('OK', $batchRowMessage);
+
+      // iATS API obfuscates credit card numbers. Need to also obfuscate the credit
+      // cardnumber in the original data for the comparison test to pass.
+      $originalRowData[10] = $batchRowData[10];
+
+      $cleanOriginalRow = implode(',', $originalRowData);
+      $cleanBatchRow = implode(',', $batchRowData);
+
+      // Compare original batch file row against batch result row.
+      $this->assertEquals($cleanOriginalRow, $cleanBatchRow);
+    }
   }
 
   /**
