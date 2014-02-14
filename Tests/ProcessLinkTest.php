@@ -635,7 +635,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $request = array(
       'customerIPAddress' => '',
       'invoiceNum' => '00000001',
-      'creditCardNum' => '4222222222222220',
+      'creditCardNum' => '4111111111111111',
       'creditCardExpiry' => '01/10',
       'cvv2' => '000',
       'mop' => 'VISA',
@@ -669,7 +669,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $request = array(
       'customerIPAddress' => '',
       'invoiceNum' => '00000001',
-      'creditCardNum' => '4222222222222220',
+      'creditCardNum' => '4111111111111111',
       'creditCardExpiry' => '12/17',
       'cvv2' => '000',
       'mop' => 'VISA',
@@ -688,9 +688,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processCreditCard($request);
 
-    // TODO: Find out why iATS API is accepting this invalid transaction. Ignore test for now.
-    //$this->assertEquals('Error. Please verify and re-enter credit card information.', $response);
-    $this->assertTrue(TRUE);
+    $this->assertEquals('General decline code. Please have client call the number on the back of credit card', $response);
   }
 
   /**
@@ -703,7 +701,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $request = array(
       'customerIPAddress' => '100',
       'invoiceNum' => '00000001',
-      'creditCardNum' => '4222222222222220',
+      'creditCardNum' => '4111111111111111',
       'creditCardExpiry' => '12/17',
       'cvv2' => '000',
       'mop' => 'VISA',
@@ -722,8 +720,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processCreditCard($request);
 
-    // TODO: Find out why iATS API is accepting this invalid transaction. Ignore test for now.
-    $this->assertTrue(TRUE);
+    $this->assertEquals('General decline code. Please have client call the number on the back of credit card', $response);
   }
 
   /**
@@ -736,7 +733,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $request = array(
       'customerIPAddress' => '',
       'invoiceNum' => '00000001',
-      'creditCardNum' => '4222222222222220',
+      'creditCardNum' => '4111111111111111',
       'creditCardExpiry' => '12/17',
       'cvv2' => '000',
       'mop' => 'VISA',
@@ -768,7 +765,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $request = array(
       'customerIPAddress' => '',
       'invoiceNum' => '00000001',
-      'creditCardNum' => '4222222222222220',
+      'creditCardNum' => '4111111111111111',
       'creditCardExpiry' => '12/17',
       'cvv2' => '000',
       'mop' => 'DSC',
