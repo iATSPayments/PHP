@@ -654,9 +654,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processCreditCard($request);
 
-    // TODO: Find out why iATS API is accepting this invalid transaction. Ignore test for now.
-    //$this->assertEquals('Invalid Expiry date.', $response);
-    $this->assertTrue(TRUE);
+    $this->assertEquals('General decline code. Please have client call the number on the back of credit card', $response);
   }
 
   /**
