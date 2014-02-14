@@ -153,10 +153,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCredentials
    */
   public function testProcessLinkprocessACHEFTChargeBatch() {
-    $filePath = dirname(__FILE__) . '/batchfiles/ACHEFTBatch.txt';
-    $handle = fopen($filePath, 'r');
-    $fileContents = fread($handle, filesize($filePath));
-    fclose($handle);
+    $fileContents = $this->getBatchFileWithUpdatedInvoiceNumbers('ACHEFTBatch.txt');
 
     // Create and populate the request object.
     $request = array(
@@ -711,6 +708,62 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $response = $iats->processCreditCard($request);
 
     $this->assertEquals('Service cannot be used with this Method of Payment or Currency.', $response);
+  }
+
+  /**
+   * Sequentially Updates the invoice numbers of rows in a batch file.
+   *
+   * The iATS API will reject duplicate batch transactions. For automated testing,
+   * the records must be automatically updated to make them unique.
+   *
+   * @param string $batchFileName The name of the batch file to open.
+   *  Must exist in Tests/batchfiles/
+   * @return string The contents of the batch file with updated invoice numbers.
+   */
+  private function getBatchFileWithUpdatedInvoiceNumbers($batchFileName)
+  {
+    $filePath = dirname(__FILE__) . '/batchfiles/' . $batchFileName;
+
+    // Open the file with read access.
+    $handle = fopen($filePath, 'r+');
+    $fileContents = fread($handle, filesize($filePath));
+    fclose($handle);
+
+    $fileData = explode("\n", $fileContents);
+
+    // Get the last used invoice number from the rows in the file.
+    foreach ($fileData as $row)
+    {
+      if (!empty($row))
+      {
+        $rowParts = explode(',', $row);
+        $lastInvoiceId = $rowParts[0];
+      }
+    }
+
+    $nextInvoiceId = $lastInvoiceId + 1;
+
+    // Increment the invoice number for each row in the file.
+    $updatedFileContents = '';
+    foreach ($fileData as $row)
+    {
+      if (!empty($row))
+      {
+        $rowParts = explode(',', $row);
+        $rowParts[0] = $nextInvoiceId;
+
+        $updatedFileContents .= implode(',', $rowParts) . "\n";
+
+        $nextInvoiceId++;
+      }
+    }
+
+    // Open the file with write access and overwrite existing data.
+    $handle = fopen($filePath, 'w');
+    fwrite($handle, $updatedFileContents);
+    fclose($handle);
+
+    return $updatedFileContents;
   }
 
 //  /**
