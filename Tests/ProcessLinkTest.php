@@ -193,7 +193,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('Batch Process Has Been Done', trim($response['AUTHORIZATIONRESULT']));
     $this->assertEquals(self::$ACHEFTBatchId, $response['BATCHID']);
 
-    $batchResultFileContents = base64_decode($response['BATCHPROCESSRESULTFILE']);
+    $batchResultFileContents = trim(base64_decode($response['BATCHPROCESSRESULTFILE']));
 
     $batchData = explode("\r\n", $batchResultFileContents);
 
@@ -203,7 +203,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
       $rowMessage = array_pop($rowData);
 
-      $this->assertStringStartsWith('OK', $rowMessage);
+      $this->assertStringStartsWith('Received', $rowMessage);
     }
 
     // TODO: Compare file contents with original.
