@@ -60,11 +60,11 @@ class CoreTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink($agentcode, $password, 'NA');
     $response = $iats->processCreditCard($request);
     $this->assertEquals($response,
-      'Agent code has not been set up on the authorization system. Please call iATS at 1-888-955-5455.');
+      'Agent code has not been set up on the authorization system. Please call iATS at 1-888-955-5455.', $response);
 
     $iats = new CustomerLink($agentcode, $password, 'NA');
     $response = $iats->getCustomerCodeDetail($request);
-    $this->assertEquals('Error : Invalid Username or Password.', $response);
+    $this->assertEquals('Error : Invalid Username or Password.', $response['AUTHORIZATIONRESULT']);
 
     $iats = new ReportLink($agentcode, $password);
     $response = $iats->getCreditCardReject($request);
@@ -78,7 +78,7 @@ class CoreTest extends \PHPUnit_Framework_TestCase {
     $request = array(
       'customerIPAddress' => '',
       'invoiceNum' => '00000001',
-      'creditCardNum' => '4222222222222220',
+      'creditCardNum' => '4111111111111111',
       'creditCardExpiry' => '12/17',
       'cvv2' => '000',
       'mop' => 'VISA',
