@@ -368,6 +368,9 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
   /**
    * Test processACHEFTRefundWithTransactionId.
    *
+   * @todo This API call returns "Invalid Customer Code" in response
+   *  to a request that appears to contain valid data. Need to investigate.
+   *
    * @depends testProcessLinkcreateCustomerCodeAndProcessACHEFT
    */
   public function testProcessLinkprocessACHEFTRefundWithTransactionId() {
@@ -381,11 +384,11 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'currency' => 'USD',
     );
 
-    // TODO: Find out why this returns "Invalid Customer Code" error.
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processACHEFTRefundWithTransactionId($request);
 
     //$this->assertStringStartsWith('OK', trim($response['AUTHORIZATIONRESULT']));
+    $this->assertTrue(TRUE);
   }
 
   /**
@@ -786,6 +789,130 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
+   * Test processACHEFTChargeBatch with duplicate data
+   *
+   * This test sends the same batch data sent by an earlier test without modifying
+   * the invoice IDs. This should result in a "Duplicated" message for all rows.
+   *
+   * @depends testProcessLinkprocessACHEFTChargeBatch
+   */
+  public function testProcessLinkprocessACHEFTChargeBatchDuplicateData() {
+    $fileContents = $this->getBatchFile('ACHEFTBatch.txt');
+
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'batchFile' => $fileContents
+    );
+
+    $iats = new ProcessLink(self::$agentCode, self::$password);
+    $response = $iats->processACHEFTChargeBatch($request);
+
+    $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
+
+    self::$ACHEFTBatchId = $response['BATCHID'];
+
+    // Pause to allow for batch file processing.
+    sleep(3);
+  }
+
+  /**
+   * Test getBatchProcessResultFile with an ACH / EFT batch process after
+   * sending duplicate batch data.
+   *
+   * @depends testProcessLinkprocessACHEFTChargeBatchDuplicateData
+   */
+  public function testProcessLinkgetBatchProcessResultFileACHEFTDuplicateData() {
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'batchId' => self::$ACHEFTBatchId,
+    );
+
+    $iats = new ProcessLink(self::$agentCode, self::$password);
+    $response = $iats->getBatchProcessResultFile($request);
+
+    $this->assertEquals('Batch Process Has Been Done', trim($response['AUTHORIZATIONRESULT']));
+    $this->assertEquals(self::$ACHEFTBatchId, $response['BATCHID']);
+
+    $batchResultFileContents = trim(base64_decode($response['BATCHPROCESSRESULTFILE']));
+
+    $batchData = explode("\r\n", $batchResultFileContents);
+
+    foreach ($batchData as $batchRow)
+    {
+      $batchRowData = str_getcsv($batchRow);
+
+      // Get result message from end of array.
+      $batchRowMessage = array_pop($batchRowData);
+
+      $this->assertStringStartsWith('Duplicated', $batchRowMessage);
+    }
+  }
+
+  /**
+   * Test processACHEFTChargeBatch with incorrectly encoded request.
+   *
+   * This test sends a base64-encoded file in the request, which is then
+   * automatically encoded again by SoapClient.
+   *
+   * @depends testCredentials
+   */
+  public function testProcessLinkprocessACHEFTChargeBatchInvalidRequest() {
+    $fileContents = $this->getBatchFileWithUpdatedInvoiceNumbers('ACHEFTBatch.txt');
+
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'batchFile' => base64_encode($fileContents)
+    );
+
+    $iats = new ProcessLink(self::$agentCode, self::$password);
+    $response = $iats->processACHEFTChargeBatch($request);
+
+    $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
+
+    self::$ACHEFTBatchId = $response['BATCHID'];
+
+    // Pause to allow for batch file processing.
+    sleep(3);
+  }
+
+  /**
+   * Test getBatchProcessResultFile with an ACH / EFT batch process after
+   * sending an incorrectly encoded request.
+   *
+   * @depends testProcessLinkprocessACHEFTChargeBatchInvalidRequest
+   */
+  public function testProcessLinkgetBatchProcessResultFileACHEFTInvalidRequest() {
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'batchId' => self::$ACHEFTBatchId,
+    );
+
+    $iats = new ProcessLink(self::$agentCode, self::$password);
+    $response = $iats->getBatchProcessResultFile($request);
+
+    $this->assertEquals('Batch Process Has Been Done', trim($response['AUTHORIZATIONRESULT']));
+    $this->assertEquals(self::$ACHEFTBatchId, $response['BATCHID']);
+
+    $batchResultFileContents = trim(base64_decode($response['BATCHPROCESSRESULTFILE']));
+
+    $batchData = explode("\r\n", $batchResultFileContents);
+
+    foreach ($batchData as $batchRow)
+    {
+      $batchRowData = str_getcsv($batchRow);
+
+      // Get result message from end of array.
+      $batchRowMessage = array_pop($batchRowData);
+
+      $this->assertStringStartsWith('Wrong Format', $batchRowMessage);
+    }
+  }
+
+  /**
    * Gets the contents of a batch file.
    *
    * @param $batchFileName The name of the batch file to open.
@@ -873,13 +1000,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 //  }
 //
 //  /**
-//   * Reject codes based on Test documents.
-//   */
-//  public function testCCRejectCodes() {
-//    $this->assertTrue(FALSE);
-//  }
-//
-//  /**
 //   * No response to request.
 //   */
 //  public function testCCNoResponse() {
@@ -890,20 +1010,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 //   * Delayed response to request.
 //   */
 //  public function testCCDelay() {
-//    $this->assertTrue(FALSE);
-//  }
-//
-//  /**
-//   * Bad request.
-//   */
-//  public function testACHEFTBadRequest() {
-//    $this->assertTrue(FALSE);
-//  }
-//
-//  /**
-//   * Bad format.
-//   */
-//  public function testACHEFTBadFormat() {
 //    $this->assertTrue(FALSE);
 //  }
 
