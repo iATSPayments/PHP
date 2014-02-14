@@ -198,23 +198,27 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $batchData = explode("\r\n", $batchResultFileContents);
 
     // Check batch result messages and compare against original batch file.
-    for ($i = 0; $i = count($originalData) - 1; $i++)
+    for ($i = 0; $i < count($originalData); $i++)
     {
       $this->assertArrayHasKey($i, $batchData);
 
-      $batchRow = $batchData[$i];
-
-      $batchRowData = str_getcsv($batchRow);
+      $originalRowData = str_getcsv($originalData[$i]);
+      $batchRowData = str_getcsv($batchData[$i]);
 
       // Get result message from end of array.
       $batchRowMessage = array_pop($batchRowData);
 
       $this->assertStringStartsWith('Received', $batchRowMessage);
 
-      $cleanRow = implode(',', $batchRowData);
+      // iATS API obfuscates bank account numbers. Need to also obfuscate the account
+      // number in the original data for the comparison test to pass.
+      $originalRowData[4] = $batchRowData[4];
+
+      $cleanOriginalRow = implode(',', $originalRowData);
+      $cleanBatchRow = implode(',', $batchRowData);
 
       // Compare original batch file row against batch result row.
-      $this->assertEquals($originalData[$i], $cleanRow);
+      $this->assertEquals($cleanOriginalRow, $cleanBatchRow);
     }
   }
 
