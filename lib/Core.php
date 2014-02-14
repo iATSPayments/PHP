@@ -212,7 +212,7 @@ class Core {
   protected function checkMOPCurrencyRestrictions($serverid, $currency, $mop) {
     $restricted = FALSE;
     $matrix = $this->getMOPCurrencyMatrix();
-    if (!empty($currency))
+    if (!empty($currency) && !empty($mop))
     {
       if (isset($matrix[$serverid][$currency])) {
         // Validate Method of Payment (MOP) against currency.
