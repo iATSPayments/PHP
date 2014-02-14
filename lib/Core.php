@@ -190,7 +190,7 @@ class Core {
    *   Result of server restricted check
    */
   protected function checkServerRestrictions($serverid, $restrictedservers) {
-    if (in_array($serverid, $restrictedservers)) {
+    if (is_array($restrictedservers) && in_array($serverid, $restrictedservers)) {
       return TRUE;
     }
     return FALSE;
