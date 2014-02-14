@@ -40,6 +40,8 @@ class ProcessLink extends Core {
   /**
    * Process an ACH / EFT transaction and return Customer Code.
    *
+   * North America clients only.
+   *
    * @param array $parameters
    *   An associative array with the following possible values.
    *     'customerIPAddress' => '' // Optional. The client IP address.
@@ -60,8 +62,15 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function createCustomerCodeAndProcessACHEFT($parameters) {
-    $response = $this->apiCall('CreateCustomerCodeAndProcessACHEFT', $parameters);
-    return $this->responseHandler($response, 'CreateCustomerCodeAndProcessACHEFTV1Result');
+    $this->restrictedservers = array('UK');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else {
+      $response = $this->apiCall('CreateCustomerCodeAndProcessACHEFT', $parameters);
+      return $this->responseHandler($response, 'CreateCustomerCodeAndProcessACHEFTV1Result');
+    }
   }
 
   /**
@@ -109,6 +118,8 @@ class ProcessLink extends Core {
   /**
    * Process a number of ACH / EFT transactions from a batch file.
    *
+   * North America clients only.
+   *
    * @param array $parameters
    *   An associative array with the following possible values.
    *     'customerIPAddress' => '' // Optional. The client IP address.
@@ -122,12 +133,21 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function processACHEFTChargeBatch($parameters) {
-    $response = $this->apiCall('ProcessACHEFTChargeBatch', $parameters);
-    return $this->responseHandler($response, 'ProcessACHEFTChargeBatchV1Result');
+    $this->restrictedservers = array('UK');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else {
+      $response = $this->apiCall('ProcessACHEFTChargeBatch', $parameters);
+      return $this->responseHandler($response, 'ProcessACHEFTChargeBatchV1Result');
+    }
   }
 
   /**
    * Process a number of ACH / EFT refund transactions from a batch file.
+   *
+   * North America clients only.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
@@ -142,13 +162,21 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function processACHEFTRefundBatch($parameters) {
-    $response = $this->apiCall('ProcessACHEFTRefundBatch', $parameters);
-    return $this->responseHandler($response, 'ProcessACHEFTRefundBatchV1Result');
+    $this->restrictedservers = array('UK');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else {
+      $response = $this->apiCall('ProcessACHEFTRefundBatch', $parameters);
+     return $this->responseHandler($response, 'ProcessACHEFTRefundBatchV1Result');
+    }
   }
 
   /**
    * Refund a specific ACH / EFT transaction.
    * Partial refunds are valid.
+   * North America clients only.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
@@ -161,12 +189,21 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function processACHEFTRefundWithTransactionId($parameters) {
-    $response = $this->apiCall('ProcessACHEFTRefundWithTransactionId', $parameters);
-    return $this->responseHandler($response, 'ProcessACHEFTRefundWithTransactionIdV1Result');
+    $this->restrictedservers = array('UK');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else {
+      $response = $this->apiCall('ProcessACHEFTRefundWithTransactionId', $parameters);
+      return $this->responseHandler($response, 'ProcessACHEFTRefundWithTransactionIdV1Result');
+    }
   }
 
   /**
    * Process an ACH / EFT transaction using an existing account, without using a Customer Code.
+   *
+   * North America clients only.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
@@ -188,12 +225,22 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function processACHEFT($parameters) {
-    $response = $this->apiCall('ProcessACHEFT', $parameters);
-    return $this->responseHandler($response, 'ProcessACHEFTV1Result');
+    $this->restrictedservers = array('UK');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else
+    {
+      $response = $this->apiCall('ProcessACHEFT', $parameters);
+      return $this->responseHandler($response, 'ProcessACHEFTV1Result');
+    }
   }
 
   /**
    * Process an ACH / EFT transaction using an existing account using a Customer Code.
+   *
+   * North America clients only.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
@@ -208,8 +255,16 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function processACHEFTWithCustomerCode($parameters) {
-    $response = $this->apiCall('ProcessACHEFTWithCustomerCode', $parameters);
-    return $this->responseHandler($response, 'ProcessACHEFTWithCustomerCodeV1Result');
+    $this->restrictedservers = array('UK');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else
+    {
+      $response = $this->apiCall('ProcessACHEFTWithCustomerCode', $parameters);
+      return $this->responseHandler($response, 'ProcessACHEFTWithCustomerCodeV1Result');
+    }
   }
 
   /**
