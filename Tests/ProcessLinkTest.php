@@ -190,20 +190,32 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('Batch Process Has Been Done', trim($response['AUTHORIZATIONRESULT']));
     $this->assertEquals(self::$ACHEFTBatchId, $response['BATCHID']);
 
+    $originalFileContents = $this->getBatchFile('ACHEFTBatch.txt');
+    $originalData = explode("\n", $originalFileContents);
+
     $batchResultFileContents = trim(base64_decode($response['BATCHPROCESSRESULTFILE']));
 
     $batchData = explode("\r\n", $batchResultFileContents);
 
-    foreach ($batchData as $row)
+    // Check batch result messages and compare against original batch file.
+    for ($i = 0; $i = count($originalData) - 1; $i++)
     {
-      $rowData = str_getcsv($row);
+      $this->assertArrayHasKey($i, $batchData);
 
-      $rowMessage = array_pop($rowData);
+      $batchRow = $batchData[$i];
 
-      $this->assertStringStartsWith('Received', $rowMessage);
+      $batchRowData = str_getcsv($batchRow);
+
+      // Get result message from end of array.
+      $batchRowMessage = array_pop($batchRowData);
+
+      $this->assertStringStartsWith('Received', $batchRowMessage);
+
+      $cleanRow = implode(',', $batchRowData);
+
+      // Compare original batch file row against batch result row.
+      $this->assertEquals($originalData[$i], $cleanRow);
     }
-
-    // TODO: Compare file contents with original.
   }
 
   /**
@@ -716,7 +728,27 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Sequentially updates the invoice numbers of rows in a batch file.
+   * Gets the contents of a batch file.
+   *
+   * @param $batchFileName The name of the batch file to open.
+   *  Must exist in Tests/batchfiles/
+   * @return string The contents of the batch file.
+   */
+  private function getBatchFile($batchFileName)
+  {
+    $filePath = dirname(__FILE__) . '/batchfiles/' . $batchFileName;
+
+    // Open the file with read access.
+    $handle = fopen($filePath, 'r');
+    $fileContents = fread($handle, filesize($filePath));
+    fclose($handle);
+
+    return $fileContents;
+  }
+
+  /**
+   * Sequentially updates the invoice numbers of rows in a batch file and
+   * returns the updated contents of the file.
    *
    * The iATS API will reject duplicate batch transactions. For automated testing,
    * the records must be automatically updated to make them unique.
@@ -731,7 +763,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $filePath = dirname(__FILE__) . '/batchfiles/' . $batchFileName;
 
     // Open the file with read access.
-    $handle = fopen($filePath, 'r+');
+    $handle = fopen($filePath, 'r');
     $fileContents = fread($handle, filesize($filePath));
     fclose($handle);
 
@@ -763,6 +795,9 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
         $nextInvoiceId++;
       }
     }
+
+    // Trim last line break.
+    $updatedFileContents = substr($updatedFileContents, 0, -1);
 
     // Open the file with write access and overwrite existing data.
     $handle = fopen($filePath, 'w');
