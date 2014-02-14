@@ -161,7 +161,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'batchFile' => base64_encode($fileContents),
+      'batchFile' => $fileContents
     );
 
     $iats = new ProcessLink(self::$agentCode, self::$password);
@@ -172,7 +172,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     self::$ACHEFTBatchId = $response['BATCHID'];
 
     // Pause to allow for batch file processing.
-    sleep(2);
+    sleep(3);
   }
 
   /**
@@ -193,6 +193,19 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('Batch Process Has Been Done', trim($response['AUTHORIZATIONRESULT']));
     $this->assertEquals(self::$ACHEFTBatchId, $response['BATCHID']);
 
+    $batchResultFileContents = base64_decode($response['BATCHPROCESSRESULTFILE']);
+
+    $batchData = explode("\r\n", $batchResultFileContents);
+
+    foreach ($batchData as $row)
+    {
+      $rowData = str_getcsv($row);
+
+      $rowMessage = array_pop($rowData);
+
+      $this->assertStringStartsWith('OK', $rowMessage);
+    }
+
     // TODO: Compare file contents with original.
   }
 
@@ -210,7 +223,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'batchFile' => base64_encode($fileContents),
+      'batchFile' => $fileContents,
     );
 
     $iats = new ProcessLink(self::$agentCode, self::$password);
@@ -221,7 +234,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     self::$ACHEFTInvalidFormatBatchId = $response['BATCHID'];
 
     // Pause to allow for batch file processing.
-    sleep(2);
+    sleep(3);
   }
 
   /**
@@ -243,6 +256,12 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('Batch Process Has Been Done', trim($response['AUTHORIZATIONRESULT']));
     $this->assertEquals(self::$ACHEFTInvalidFormatBatchId, $response['BATCHID']);
 
+    $batchResultFileContents = base64_decode($response['BATCHPROCESSRESULTFILE']);
+
+    $batchResultFileParts = explode(',', $batchResultFileContents);
+
+    $this->assertStringStartsWith('OK', $batchResultFileParts[1]);
+
     // TODO: Compare file contents with original.
   }
 
@@ -260,7 +279,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'batchFile' => base64_encode($fileContents),
+      'batchFile' => $fileContents,
     );
 
     $iats = new ProcessLink(self::$agentCode, self::$password);
@@ -268,6 +287,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
     $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
     self::$ACHEFTBatchRefundId = $response['BATCHID'];
+
+    sleep(3);
   }
 
   /**
@@ -287,6 +308,14 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
     $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
     $this->assertEquals(self::$ACHEFTBatchRefundId, $response['BATCHID']);
+
+    $batchResultFileContents = base64_decode($response['BATCHPROCESSRESULTFILE']);
+
+    $batchResultFileParts = explode(',', $batchResultFileContents);
+
+    $this->assertStringStartsWith('OK', $batchResultFileParts[1]);
+
+    // TODO: Compare file contents with original.
   }
 
   /**
@@ -379,7 +408,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
-      'batchFile' => base64_encode($fileContents),
+      'batchFile' => $fileContents,
     );
 
     $iats = new ProcessLink(self::$agentCode, self::$password);
