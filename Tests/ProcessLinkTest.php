@@ -212,10 +212,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCredentials
    */
   public function testProcessLinkprocessACHEFTChargeBatchInvalidFormat() {
-    $filePath = dirname(__FILE__) . '/batchfiles/ACHEFTInvalidFormatBatch.txt';
-    $handle = fopen($filePath, 'r');
-    $fileContents = fread($handle, filesize($filePath));
-    fclose($handle);
+    $fileContents = $this->getBatchFileWithUpdatedInvoiceNumbers('ACHEFTInvalidFormatBatch.txt');
 
     // Create and populate the request object.
     $request = array(
@@ -253,11 +250,18 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('Batch Process Has Been Done', trim($response['AUTHORIZATIONRESULT']));
     $this->assertEquals(self::$ACHEFTInvalidFormatBatchId, $response['BATCHID']);
 
-    $batchResultFileContents = base64_decode($response['BATCHPROCESSRESULTFILE']);
+    $batchResultFileContents = trim(base64_decode($response['BATCHPROCESSRESULTFILE']));
 
-    $batchResultFileParts = explode(',', $batchResultFileContents);
+    $batchData = explode("\r\n", $batchResultFileContents);
 
-    $this->assertStringStartsWith('OK', $batchResultFileParts[1]);
+    foreach ($batchData as $row)
+    {
+      $rowData = str_getcsv($row);
+
+      $rowMessage = array_pop($rowData);
+
+      $this->assertStringStartsWith('Wrong Format', $rowMessage);
+    }
 
     // TODO: Compare file contents with original.
   }
@@ -268,10 +272,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testProcessLinkprocessACHEFTChargeBatch
    */
   public function testProcessLinkprocessACHEFTRefundBatch() {
-    $filePath = dirname(__FILE__) . '/batchfiles/ACHEFTRefundBatch.txt';
-    $handle = fopen($filePath, 'r');
-    $fileContents = fread($handle, filesize($filePath));
-    fclose($handle);
+    $fileContents = $this->getBatchFileWithUpdatedInvoiceNumbers('ACHEFTRefundBatch.txt');
 
     // Create and populate the request object.
     $request = array(
@@ -303,14 +304,21 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->getBatchProcessResultFile($request);
 
-    $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
+    $this->assertEquals('Batch Process Has Been Done', trim($response['AUTHORIZATIONRESULT']));
     $this->assertEquals(self::$ACHEFTBatchRefundId, $response['BATCHID']);
 
-    $batchResultFileContents = base64_decode($response['BATCHPROCESSRESULTFILE']);
+    $batchResultFileContents = trim(base64_decode($response['BATCHPROCESSRESULTFILE']));
 
-    $batchResultFileParts = explode(',', $batchResultFileContents);
+    $batchData = explode("\r\n", $batchResultFileContents);
 
-    $this->assertStringStartsWith('OK', $batchResultFileParts[1]);
+    foreach ($batchData as $row)
+    {
+      $rowData = str_getcsv($row);
+
+      $rowMessage = array_pop($rowData);
+
+      $this->assertStringStartsWith('Received', $rowMessage);
+    }
 
     // TODO: Compare file contents with original.
   }
@@ -397,10 +405,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCredentials
    */
   public function testProcessLinkprocessCreditCardBatch() {
-    $filePath = dirname(__FILE__) . '/batchfiles/CreditCardUSUKBatch.txt';
-    $handle = fopen($filePath, 'r');
-    $fileContents = fread($handle, filesize($filePath));
-    fclose($handle);
+    $fileContents = $this->getBatchFileWithUpdatedInvoiceNumbers('CreditCardUSUKBatch.txt', 1);
 
     // Create and populate the request object.
     $request = array(
@@ -711,16 +716,17 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Sequentially Updates the invoice numbers of rows in a batch file.
+   * Sequentially updates the invoice numbers of rows in a batch file.
    *
    * The iATS API will reject duplicate batch transactions. For automated testing,
    * the records must be automatically updated to make them unique.
    *
    * @param string $batchFileName The name of the batch file to open.
    *  Must exist in Tests/batchfiles/
+   * @param int $invoiceIdIndex The index of the invoice ID in each data row.
    * @return string The contents of the batch file with updated invoice numbers.
    */
-  private function getBatchFileWithUpdatedInvoiceNumbers($batchFileName)
+  private function getBatchFileWithUpdatedInvoiceNumbers($batchFileName, $invoiceIdIndex = 0)
   {
     $filePath = dirname(__FILE__) . '/batchfiles/' . $batchFileName;
 
@@ -737,7 +743,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       if (!empty($row))
       {
         $rowParts = explode(',', $row);
-        $lastInvoiceId = $rowParts[0];
+        $lastInvoiceId = $rowParts[$invoiceIdIndex];
       }
     }
 
@@ -750,7 +756,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       if (!empty($row))
       {
         $rowParts = explode(',', $row);
-        $rowParts[0] = $nextInvoiceId;
+        $rowParts[$invoiceIdIndex] = $nextInvoiceId;
 
         $updatedFileContents .= implode(',', $rowParts) . "\n";
 
