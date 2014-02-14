@@ -95,8 +95,14 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function createCustomerCodeAndProcessCreditCard($parameters) {
-    $response = $this->apiCall('CreateCustomerCodeAndProcessCreditCard', $parameters);
-    return $this->responseHandler($response, 'CreateCustomerCodeAndProcessCreditCardV1Result');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else {
+      $response = $this->apiCall('CreateCustomerCodeAndProcessCreditCard', $parameters);
+      return $this->responseHandler($response, 'CreateCustomerCodeAndProcessCreditCardV1Result');
+    }
   }
 
   /**
@@ -111,8 +117,15 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function getBatchProcessResultFile($parameters) {
-    $response = $this->apiCall('GetBatchProcessResultFile', $parameters);
-    return $this->responseHandler($response, 'GetBatchProcessResultFileV1Result');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else
+    {
+      $response = $this->apiCall('GetBatchProcessResultFile', $parameters);
+     return $this->responseHandler($response, 'GetBatchProcessResultFileV1Result');
+    }
   }
 
   /**
@@ -285,8 +298,14 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function processCreditCardBatch($parameters) {
-    $response = $this->apiCall('ProcessCreditCardBatch', $parameters);
-    return $this->responseHandler($response, 'ProcessCreditCardBatchV1Result');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else {
+     $response = $this->apiCall('ProcessCreditCardBatch', $parameters);
+     return $this->responseHandler($response, 'ProcessCreditCardBatchV1Result');
+    }
   }
 
   /**
@@ -304,8 +323,14 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function processCreditCardRefundWithTransactionId($parameters) {
-    $response = $this->apiCall('ProcessCreditCardRefundWithTransactionId', $parameters);
-    return $this->responseHandler($response, 'ProcessCreditCardRefundWithTransactionIdV1Result');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else {
+     $response = $this->apiCall('ProcessCreditCardRefundWithTransactionId', $parameters);
+     return $this->responseHandler($response, 'ProcessCreditCardRefundWithTransactionIdV1Result');
+    }
   }
 
   /**
@@ -361,8 +386,14 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function processCreditCardWithCustomerCode($parameters) {
-    $response = $this->apiCall('ProcessCreditCardWithCustomerCode', $parameters);
-    return $this->responseHandler($response, 'ProcessCreditCardWithCustomerCodeV1Result');
+    $restricted = $this->checkRestrictions($parameters);
+    if ($restricted) {
+      return $restricted;
+    }
+    else {
+      $response = $this->apiCall('ProcessCreditCardWithCustomerCode', $parameters);
+      return $this->responseHandler($response, 'ProcessCreditCardWithCustomerCodeV1Result');
+    }
   }
 
   /**
