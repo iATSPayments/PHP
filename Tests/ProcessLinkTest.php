@@ -170,6 +170,9 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
 
     self::$ACHEFTBatchId = $response['BATCHID'];
+
+    // Pause to allow for batch file processing.
+    sleep(2);
   }
 
   /**
@@ -187,10 +190,11 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->getBatchProcessResultFile($request);
 
-    $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
+    $this->assertEquals('Batch Process Has Been Done', trim($response['AUTHORIZATIONRESULT']));
     $this->assertEquals(self::$ACHEFTBatchId, $response['BATCHID']);
-  }
 
+    // TODO: Compare file contents with original.
+  }
 
   /**
    * Test processACHEFTChargeBatch with incorrectly formatted data.
@@ -215,6 +219,9 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
 
     self::$ACHEFTInvalidFormatBatchId = $response['BATCHID'];
+
+    // Pause to allow for batch file processing.
+    sleep(2);
   }
 
   /**
@@ -233,8 +240,10 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->getBatchProcessResultFile($request);
 
-    $this->assertEquals('Batch Processing, Please Wait ....', trim($response['AUTHORIZATIONRESULT']));
+    $this->assertEquals('Batch Process Has Been Done', trim($response['AUTHORIZATIONRESULT']));
     $this->assertEquals(self::$ACHEFTInvalidFormatBatchId, $response['BATCHID']);
+
+    // TODO: Compare file contents with original.
   }
 
   /**
