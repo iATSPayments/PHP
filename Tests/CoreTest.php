@@ -77,6 +77,22 @@ class CoreTest extends \PHPUnit_Framework_TestCase {
   public function testBadParameters() {
     $request = array(
       'customerIPAddress' => '',
+      'currency' => 'USD',
+    );
+
+    $iats = new ProcessLink(self::$agentCode, self::$password);
+    $response = $iats->processCreditCard($request);
+
+    $this->assertEquals('Object reference not set to an instance of an object.', $response);
+  }
+
+  /**
+   * Test invalid currency for current server.
+   */
+  public function testProcessLinkprocessCreditCardInvalidCurrency() {
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
       'invoiceNum' => '00000001',
       'creditCardNum' => '4111111111111111',
       'creditCardExpiry' => '12/17',
@@ -91,27 +107,16 @@ class CoreTest extends \PHPUnit_Framework_TestCase {
       'total' => '5',
       'comment' => 'Process CC test.',
       // Not required for request
-      'currency' => 'USD',
+      'currency' => 'GBP'
     );
 
-    try {
-      $iats = new ProcessLink(self::$agentCode, self::$password);
-      $response = $iats->processCreditCard($request);
-    }
-    catch (\SoapFault $exception)
-    {
-      // TODO: Test against exception error message.
-    }
+    $iats = new ProcessLink(self::$agentCode, self::$password);
+    $response = $iats->processCreditCard($request);
+
+    $this->assertEquals('Service cannot be used with this Method of Payment or Currency.', $response);
   }
 
-//
-//  /**
-//   * Test that correct server used for currency.
-//   */
-//  public function testServerCurrency() {
-//    $this->assertTrue(FALSE);
-//  }
-//
+
 //  /**
 //   * Bad request.
 //   */
