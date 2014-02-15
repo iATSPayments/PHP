@@ -82,6 +82,7 @@ class ProcessLink extends Core {
    *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
    *     'ccNum' => '4222222222222220' // The customer's credit card number.
    *     'ccExp' => '12/17' // The customer's credit card expiration date.
+   *     'mop' => 'VISA' // The customer's method of payment.
    *     'firstName' => 'Test' // The customer's first name.
    *     'lastName' => 'Account' // The customer's last name.
    *     'address' => '1234 Any Street' // The customer's address.
@@ -90,6 +91,7 @@ class ProcessLink extends Core {
    *     'zipCode' => '12345' // The customer's ZIP code.
    *     'cvv2' => '000' // Optional. The customer's credit card CVV2 code.
    *     'total' => '5' // The total payment amount.
+   *     'currency' => 'USD' // The currency to process payment in.
    *
    * @return mixed
    *   Client response array or API error.
@@ -316,7 +318,9 @@ class ProcessLink extends Core {
    *   An associative array with the following possible values.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *     'transactionId' => '0000001' // The ID of the transaction to refund.
+   *     'mop' => 'VISA' // The customer's method of payment.
    *     'total' => '-10' // The total amount to refund. Must be a negative number.
+   *     'currency' => 'USD' // The currency to process payment in.
    *     'comment' => 'Credit card refund test.' // Optional. A comment describing this transaction.
    *
    * @return mixed
@@ -354,6 +358,7 @@ class ProcessLink extends Core {
    *     'zipCode' => '12345' // The customer's ZIP code.
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'Process credit card test.' // Optional. A comment describing this transaction.
+   *     'currency' => 'USD' // The currency to process payment in.
    *
    * @return mixed
    *   Client response array or API error.
@@ -379,8 +384,10 @@ class ProcessLink extends Core {
    *     'customerCode' => '' // The iATS Customer Code.
    *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
    *     'cvv2' => '000' // Optional. The customer's credit card CVV2 code.
+   *     'mop' => 'VISA' // The customer's method of payment.
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'Process credit card test with Customer Code.' // Optional. A comment describing this transaction.
+   *     'currency' => 'USD' // The currency to process payment in.
    *
    * @return mixed
    *   Client response array or API error.
