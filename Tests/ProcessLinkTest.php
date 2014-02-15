@@ -71,7 +71,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '12345',
       'total' => '5',
       'comment' => 'Process CC test.',
-      // Not required for request
       'currency' => 'USD',
     );
 
@@ -126,6 +125,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'invoiceNum' => '00000001',
       'ccNum' => '4222222222222220',
       'ccExp' => '12/17',
+      'mop' => 'VISA',
       'firstName' => 'Test',
       'lastName' => 'Account',
       'address' => '1234 Any Street',
@@ -134,7 +134,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '12345',
       'cvv2' => '000',
       'total' => '5',
-      // Not required for request
       'currency' => 'USD',
     );
 
@@ -562,7 +561,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '12345',
       'total' => '5',
       'comment' => 'Process CC test.',
-      // Not required for request
       'currency' => 'USD',
     );
 
@@ -584,9 +582,9 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'customerCode' => self::$creditCardCustomerCode,
       'invoiceNum' => '00000001',
       'cvv2' => '000',
+      'mop' => 'VISA',
       'total' => '5',
       'comment' => 'Process CC test with Customer Code.',
-      // Not required for request
       'currency' => 'USD',
     );
 
@@ -618,7 +616,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '12345',
       'total' => '5',
       'comment' => 'Process CC test with invalid CC number.',
-      // Not required for request
       'currency' => 'USD',
     );
 
@@ -650,7 +647,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '12345',
       'total' => '5',
       'comment' => 'Process CC test with invalid CC expiration date.',
-      // Not required for request
       'currency' => 'USD',
     );
 
@@ -682,7 +678,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '',
       'total' => '5',
       'comment' => 'Process CC test with invalid address.',
-      // Not required for request
       'currency' => 'USD',
     );
 
@@ -714,7 +709,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '12345',
       'total' => '5',
       'comment' => 'Process CC test with invalid IP address format.',
-      // Not required for request
       'currency' => 'USD',
     );
 
@@ -746,7 +740,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '12345',
       'total' => '5',
       'comment' => 'Process CC test.',
-      // Not required for request
       'currency' => 'GBP'
     );
 
@@ -778,7 +771,6 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '12345',
       'total' => '5',
       'comment' => 'Process CC test.',
-      // Not required for request
       'currency' => 'CAN'
     );
 
