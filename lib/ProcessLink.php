@@ -97,7 +97,7 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function createCustomerCodeAndProcessCreditCard($parameters) {
-    $restricted = $this->checkRestrictions($parameters);
+    $restricted = $this->checkRestrictions($parameters, TRUE);
     if ($restricted) {
       return $restricted;
     }
@@ -300,7 +300,7 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function processCreditCardBatch($parameters) {
-    $restricted = $this->checkRestrictions($parameters);
+    $restricted = $this->checkRestrictions($parameters, TRUE);
     if ($restricted) {
       return $restricted;
     }
@@ -327,7 +327,7 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function processCreditCardRefundWithTransactionId($parameters) {
-    $restricted = $this->checkRestrictions($parameters);
+    $restricted = $this->checkRestrictions($parameters, TRUE);
     if ($restricted) {
       return $restricted;
     }
@@ -364,8 +364,7 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function processCreditCard($parameters) {
-    $this->restrictedservers = array('UK');
-    $restricted = $this->checkRestrictions($parameters);
+    $restricted = $this->checkRestrictions($parameters, TRUE);
     if ($restricted) {
       return $restricted;
     }
@@ -393,7 +392,7 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function processCreditCardWithCustomerCode($parameters) {
-    $restricted = $this->checkRestrictions($parameters);
+    $restricted = $this->checkRestrictions($parameters, TRUE);
     if ($restricted) {
       return $restricted;
     }
