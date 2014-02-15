@@ -162,18 +162,26 @@ class Core {
    * @param array $parameters
    *   Request parameters.
    *
+   * @param bool $forceCurrencyCheck
+   *  True to force a currency check even when currency or
+   *  method of payment are missing.
+   *
    * @return bool|string
    *   FALSE if no restrictions. Message if restricted.
    */
-  protected function checkRestrictions($parameters) {
+  protected function checkRestrictions($parameters, $forceCurrencyCheck = FALSE) {
     if ($this->checkServerRestrictions($this->serverid, $this->restrictedservers)) {
       return 'Service cannot be used on this server.';
     }
 
     $currency = isset($parameters['currency']) ? $parameters['currency'] : NULL;
     $mop = isset($parameters['mop']) ? $parameters['mop'] : NULL;
-    if ($this->checkMOPCurrencyRestrictions($this->serverid, $currency, $mop)) {
-      return 'Service cannot be used with this Method of Payment or Currency.';
+
+    if ((($currency != null) && ($mop != null)) || $forceCurrencyCheck)
+    {
+      if ($this->checkMOPCurrencyRestrictions($this->serverid, $currency, $mop)) {
+       return 'Service cannot be used with this Method of Payment or Currency.';
+      }
     }
     return FALSE;
   }
@@ -190,7 +198,7 @@ class Core {
    *   Result of server restricted check
    */
   protected function checkServerRestrictions($serverid, $restrictedservers) {
-    if (in_array($serverid, $restrictedservers)) {
+    if (is_array($restrictedservers) && in_array($serverid, $restrictedservers)) {
       return TRUE;
     }
     return FALSE;
@@ -212,28 +220,25 @@ class Core {
   protected function checkMOPCurrencyRestrictions($serverid, $currency, $mop) {
     $restricted = FALSE;
     $matrix = $this->getMOPCurrencyMatrix();
-    if (!empty($currency))
-    {
-      if (isset($matrix[$serverid][$currency])) {
-        // Validate Method of Payment (MOP) against currency.
-        $filterresult = array_filter($matrix[$serverid][$currency],
-          function ($item) use ($mop) {
-            return $item == $mop;
-          }
-        );
-        if (empty($filterresult)) {
-          // Currency not valid for any Methods of Payment.
-          $restricted = TRUE;
+    if (isset($matrix[$serverid][$currency])) {
+      // Validate Method of Payment (MOP) against currency.
+      $filterresult = array_filter($matrix[$serverid][$currency],
+        function ($item) use ($mop) {
+          return $item == $mop;
         }
-        else {
-          $restricted = FALSE;
-        }
-      }
-      else
-      {
-        // Currency not valid for this server.
+      );
+      if (empty($filterresult)) {
+        // Currency not valid for any Methods of Payment.
         $restricted = TRUE;
       }
+      else {
+        $restricted = FALSE;
+      }
+    }
+    else
+    {
+      // Currency not valid for this server.
+      $restricted = TRUE;
     }
     return $restricted;
   }

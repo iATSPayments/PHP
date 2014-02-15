@@ -33,7 +33,7 @@ class CustomerLink extends Core {
    *   iATS account password.
    * @param string $serverid
    *   Server identifier (Defaults to 'NA')
-   *   \see serServer()
+   *   \see setServer()
    */
   public function __construct($agentcode, $password, $serverid = 'NA') {
     parent::__construct($agentcode, $password, $serverid);
@@ -45,16 +45,8 @@ class CustomerLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'customerIPAddress' => '',
-   *     'customerCode' => 'A10396688',
-   *     // Not needed for request.
-   *     'mop' => 'VISA',
-   *     'currency' => 'USD',
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'customerCode' => 'A10396688' // The iATS Customer Code.
    *
    * @return mixed
    *   Client response array or API error.
@@ -69,37 +61,33 @@ class CustomerLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'customerIPAddress' => '',
-   *     'customerCode' => '',
-   *     'firstName' => 'Test',
-   *     'lastName' => 'Account',
-   *     'companyName' => 'Test Co.',
-   *     'address' => '1234 Any Street',
-   *     'city' => 'Schenectady',
-   *     'state' => 'NY',
-   *     'zipCode' => '12345',
-   *     'phone' => '555-555-1234',
-   *     'fax' => '555-555-4321',
-   *     'alternatePhone' => '555-555-5555',
-   *     'email' => 'email@test.co',
-   *     'comment' => 'Customer code creation test.',
-   *     'recurring' => FALSE,
-   *     'amount' => '5',
-   *     'beginDate' => 946684800,
-   *     'endDate' => 946771200,
-   *     'scheduleType' => 'Annually',
-   *     'scheduleDate' => '',
-   *     'creditCardCustomerName' => 'Test Account',
-   *     'creditCardNum' => '4222222222222220',
-   *     'creditCardExpiry' => '12/17',
-   *     'mop' => 'VISA',
-   *     // Not required.
-   *     'currency' => 'USD',
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // The client IP address.
+   *     'customerCode' => '' // Optional. The iATS Customer Code.
+   *     'firstName' => 'Test' // The customer's first name.
+   *     'lastName' => 'Account' // The customer's last name.
+   *     'companyName' => 'Test Co.' // The customer's company name.
+   *     'address' => '1234 Any Street' // The customer's address.
+   *     'city' => 'Schenectady' // The customer's city.
+   *     'state' => 'NY' // The customer's state or province.
+   *     'zipCode' => '12345' // The customer's ZIP code.
+   *     'phone' => '555-555-1234' // The customer's phone number.
+   *     'fax' => '555-555-4321' // The customer's FAX number.
+   *     'alternatePhone' => '555-555-5555' // The customer's alternate phone number.
+   *     'email' => 'email@test.co' // The customer's email address.
+   *     'comment' => 'Customer code creation test.' // A comment describing this transaction.
+   *     'recurring' => FALSE // TRUE if a recurring payment should be created.
+   *     'amount' => '5' // The payment amount.
+   *     'beginDate' => 946684800 // The begin date of the recurring payment, if used.
+   *     'endDate' => 946771200 // The end date of the recurring payment, if used.
+   *     'scheduleType' => 'Annually' // The recurring payment schedule.
+   *      // Options: Weekly, Monthly, Quarterly, Annually.
+   *     'scheduleDate' => '' // The recurring payment schedule date.
+   *      // Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
+   *     'creditCardCustomerName' => 'Test Account' // The customer's name as appears on the credit card.
+   *     'creditCardNum' => '4222222222222220' // The customer's credit card number.
+   *     'creditCardExpiry' => '12/17' // The customer's credit card expiration date.
+   *     'mop' => 'VISA' // Optional. The customer's method of payment.
+   *     'currency' => 'USD' // Optional. The customer's currency.
    *
    * @return mixed
    *   Client response array or API error.
@@ -114,36 +102,34 @@ class CustomerLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'customerIPAddress' => '',
-   *     'customerCode' => '',
-   *     'firstName' => 'Test',
-   *     'lastName' => 'Account',
-   *     'companyName' => 'Test Co.',
-   *     'address' => '1234 Any Street',
-   *     'city' => 'Schenectady',
-   *     'state' => 'NY',
-   *     'zipCode' => '12345',
-   *     'phone' => '555-555-1234',
-   *     'fax' => '555-555-4321',
-   *     'alternatePhone' => '555-555-5555',
-   *     'email' => 'email@test.co',
-   *     'comment' => 'Customer code update test.',
-   *     'recurring' => FALSE,
-   *     'amount' => '5',
-   *     'beginDate' => 946684800,
-   *     'endDate' => 946771200,
-   *     'scheduleType' => 'Annually',
-   *     'scheduleDate' => '',
-   *     'creditCardCustomerName' => 'Test Account',
-   *     'creditCardNum' => '4222222222222220',
-   *     'creditCardExpiry' => '12/17',
-   *     'mop' => 'VISA',
-   *     'updateCreditCardNum' => FALSE,
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'customerCode' => '' // The iATS Customer Code.
+   *     'firstName' => 'Test' // Optional. The customer's first name.
+   *     'lastName' => 'Account' // Optional. The customer's last name.
+   *     'companyName' => 'Test Co.' // Optional. The customer's company name.
+   *     'address' => '1234 Any Street' // Optional. The customer's address.
+   *     'city' => 'Schenectady' // Optional. The customer's city.
+   *     'state' => 'NY' // Optional. The customer's state or province.
+   *     'zipCode' => '12345' // Optional. The customer's ZIP code.
+   *     'phone' => '555-555-1234' // Optional. Optional. The customer's phone number.
+   *     'fax' => '555-555-4321' // Optional. The customer's FAX number.
+   *     'alternatePhone' => '555-555-5555' // Optional. The customer's alternate phone number.
+   *     'email' => 'email@test.co' // Optional. The customer's email address.
+   *     'comment' => 'Customer code creation test.' // Optional. A comment describing this transaction.
+   *     'recurring' => FALSE // Optional. TRUE if a recurring payment should be created.
+   *     'amount' => '5' // Optional. The payment amount.
+   *     'beginDate' => 946684800 // Optional. The begin date of the recurring payment, if used.
+   *     'endDate' => 946771200 // Optional. The end date of the recurring payment, if used.
+   *     'scheduleType' => 'Annually' // Optional. The recurring payment schedule.
+   *      // Options: Weekly, Monthly, Quarterly, Annually.
+   *     'scheduleDate' => '' // Optional. The recurring payment schedule date.
+   *      // Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
+   *     'creditCardCustomerName' => 'Test Account' // Optional. The customer's name as appears on the credit card.
+   *     'creditCardNum' => '4222222222222220' // Optional. The customer's credit card number.
+   *     'creditCardExpiry' => '12/17' // Optional. The customer's credit card expiration date.
+   *     'mop' => 'VISA' // Optional. The customer's method of payment.
+   *     'currency' => 'USD' // Optional. The customer's currency.
+   *     'updateCreditCardNum' => FALSE // Optional. TRUE when the customer's credit card number should be updated.
    *
    * @return mixed
    *   Client response array or API error.
@@ -154,40 +140,36 @@ class CustomerLink extends Core {
   }
 
   /**
-   * Create ACH/EFT Customer Code.
-   *
-   * North America clients only.
+   * Create ACH/EFT Customer Code. North America clients only.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'customerIPAddress' => '',
-   *     'customerCode' => '',
-   *     'firstName' => 'Test',
-   *     'lastName' => 'Account',
-   *     'companyName' => 'Test Co.',
-   *     'address' => '1234 Any Street',
-   *     'city' => 'Schenectady',
-   *     'state' => 'NY',
-   *     'zipCode' => '12345',
-   *     'phone' => '555-555-1234',
-   *     'fax' => '555-555-4321',
-   *     'alternatePhone' => '555-555-5555',
-   *     'email' => 'email@test.co',
-   *     'comment' => 'Customer code update test.',
-   *     'recurring' => FALSE,
-   *     'amount' => '5',
-   *     'beginDate' => 946684800,
-   *     'endDate' => 946771200,
-   *     'scheduleType' => 'Annually',
-   *     'scheduleDate' => '',
-   *     'accountCustomerName' => 'Test Account',
-   *     'accountNum' => '999999999',
-   *     'accountType' => 'Checking',
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'customerCode' => '' // Optional. The iATS Customer Code.
+   *     'firstName' => 'Test' // The customer's first name.
+   *     'lastName' => 'Account' // The customer's last name.
+   *     'companyName' => 'Test Co.' // Optional. The customer's company name.
+   *     'address' => '1234 Any Street' // The customer's address.
+   *     'city' => 'Schenectady' // The customer's city.
+   *     'state' => 'NY' // The customer's state or province.
+   *     'zipCode' => '12345' // The customer's ZIP code.
+   *     'phone' => '555-555-1234' // Optional. The customer's phone number.
+   *     'fax' => '555-555-4321' // Optional. The customer's FAX number.
+   *     'alternatePhone' => '555-555-5555' // Optional. The customer's alternate phone number.
+   *     'email' => 'email@test.co' // Optional. The customer's email address.
+   *     'comment' => 'Customer code creation test.' // Optional. A comment describing this transaction.
+   *     'recurring' => FALSE // Optional. TRUE if a recurring payment should be created.
+   *     'amount' => '5' // Optional. The payment amount.
+   *     'beginDate' => 946684800 // Optional. The begin date of the recurring payment, if used.
+   *     'endDate' => 946771200 // Optional. The end date of the recurring payment, if used.
+   *     'scheduleType' => 'Annually' // Optional. The recurring payment schedule.
+   *      // Options: Weekly, Monthly Quarterly, Annually.
+   *     'scheduleDate' => '' // Optional. The recurring payment schedule date.
+   *      // Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
+   *     'accountCustomerName' => 'Test Account' // Optional. The customer's name as appears on the bank account.
+   *     'accountNum' => '999999999' // Optional. The customer's bank account number.
+   *     'accountType' => 'CHECKING' // Optional. The customer's bank account type.
+   *      // Options: CHECKING, SAVING (North America only.)
    *
    * @return mixed
    *   Client response array or API error.
@@ -206,41 +188,37 @@ class CustomerLink extends Core {
   }
 
   /**
-   * Update ACH/EFT Customer Code.
-   *
-   * North America clients only.
+   * Update ACH/EFT Customer Code. North America clients only.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'customerIPAddress' => '',
-   *     'customerCode' => '',
-   *     'firstName' => 'Test',
-   *     'lastName' => 'Account',
-   *     'companyName' => 'Test Co.',
-   *     'address' => '1234 Any Street',
-   *     'city' => 'Schenectady',
-   *     'state' => 'NY',
-   *     'zipCode' => '12345',
-   *     'phone' => '555-555-1234',
-   *     'fax' => '555-555-4321',
-   *     'alternatePhone' => '555-555-5555',
-   *     'email' => 'email@test.co',
-   *     'comment' => 'Customer code update test.',
-   *     'recurring' => FALSE,
-   *     'amount' => '5',
-   *     'beginDate' => 946684800,
-   *     'endDate' => 946771200,
-   *     'scheduleType' => 'Annually',
-   *     'scheduleDate' => '',
-   *     'accountCustomerName' => 'Test Account',
-   *     'accountNum' => '999999999',
-   *     'accountType' => 'Checking',
-   *     'updateAccountNum' => FALSE,
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'customerCode' => '' // The iATS Customer Code.
+   *     'firstName' => 'Test' // Optional. The customer's first name.
+   *     'lastName' => 'Account' // Optional. The customer's last name.
+   *     'companyName' => 'Test Co.' // Optional. The customer's company name.
+   *     'address' => '1234 Any Street' // Optional. The customer's address.
+   *     'city' => 'Schenectady' // Optional. The customer's city.
+   *     'state' => 'NY' // Optional. The customer's state or province.
+   *     'zipCode' => '12345' // Optional. The customer's ZIP code.
+   *     'phone' => '555-555-1234' // Optional. The customer's phone number.
+   *     'fax' => '555-555-4321' // Optional. The customer's FAX number.
+   *     'alternatePhone' => '555-555-5555' // Optional. The customer's alternate phone number.
+   *     'email' => 'email@test.co' // Optional. The customer's email address.
+   *     'comment' => 'Customer code creation test.' // Optional. A comment describing this transaction.
+   *     'recurring' => FALSE // Optional. TRUE if a recurring payment should be created.
+   *     'amount' => '5' // Optional. The payment amount.
+   *     'beginDate' => 946684800 // Optional. The begin date of the recurring payment, if used.
+   *     'endDate' => 946771200 // Optional. The end date of the recurring payment, if used.
+   *     'scheduleType' => 'Annually' // Optional. The recurring payment schedule.
+   *      // Options: Weekly, Monthly Quarterly, Annually.
+   *     'scheduleDate' => '' // Optional. The recurring payment schedule date.
+   *      // Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
+   *     'accountCustomerName' => 'Test Account' // Optional. The customer's name as appears on the bank account.
+   *     'accountNum' => '999999999' // Optional. The customer's bank account number.
+   *     'accountType' => 'CHECKING' // Optional. The customer's bank account type.
+   *      // Options: CHECKING, SAVING (North America only.)
+   *     'updateAccountNum' => FALSE // Optional. True if the customer's account number should be updated.
    *
    * @return mixed
    *   Client response array or API error.
@@ -263,13 +241,8 @@ class CustomerLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'customerIPAddress' => '',
-   *     'customerCode' => '',
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'customerCode' => '' // The iATS Customer Code.
    *
    * @return mixed
    *   Client response array or API error.
@@ -280,32 +253,25 @@ class CustomerLink extends Core {
   }
 
   /**
-   * Validate direct debit payer information.
-   *
-   * UK clients only.
+   * Validate direct debit payer information. UK clients only.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'customerIPAddress' => '',
-   *     'ACHEFTReferenceNum' => '',
-   *     'beginDate' => 946684800,
-   *     'endDate' => 946771200,
-   *     'accountCustomerName' => 'Test Account',
-   *     'accountNum' => '999999999',
-   *     'companyName' => 'Test Company',
-   *     'firstName' => 'Test',
-   *     'lastName' => 'Account',
-   *     'address' => '1234 Any Street',
-   *     'city' => 'Schenectady',
-   *     'state' => 'NY',
-   *     'country' => 'USA',
-   *     'email' => 'email@test.co',
-   *     'zipCode' => '12345',
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'ACHEFTReferenceNum' => '' // Optional. The ACH / EFT reference number.
+   *     'beginDate' => 946684800 // The begin date of the direct debit payment.
+   *     'endDate' => 946771200 // The end date of the direct debit payment.
+   *     'accountCustomerName' => 'Test Account' // The customer's name as appears on the bank account.
+   *     'accountNum' => '999999999' // The customer's bank account number.
+   *     'companyName' => 'Test Company' // Optional. The customer's company name.
+   *     'firstName' => 'Test' // The customer's first name.
+   *     'lastName' => 'Account' // The customer's last name.
+   *     'address' => '1234 Any Street' // The customer's address.
+   *     'city' => 'Schenectady' // The customer's city.
+   *     'state' => 'NY' // Optional. The customer's state or province.
+   *     'country' => 'USA' // Optional. The customer's country.
+   *     'email' => 'email@test.co' // The customer's email address.
+   *     'zipCode' => '12345' // The customer's ZIP code.
    *
    * @return mixed
    *   Client response array or API error.
@@ -324,41 +290,37 @@ class CustomerLink extends Core {
   }
 
   /**
-   * Create a customer code using only direct debit.
-   *
-   * UK clients only.
+   * Create a customer code using only direct debit. UK clients only.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'customerIPAddress' => '',
-   *     'customerCode' => '',
-   *     'ACHEFTReferenceNum' => '',
-   *     'firstName' => 'Test',
-   *     'lastName' => 'Account',
-   *     'companyName' => 'Test Co.',
-   *     'address' => '1234 Any Street',
-   *     'city' => 'Schenectady',
-   *     'state' => 'NY',
-   *     'zipCode' => '12345',
-   *     'phone' => '555-555-1234',
-   *     'fax' => '555-555-4321',
-   *     'alternatePhone' => '555-555-5555',
-   *     'email' => 'email@test.co',
-   *     'comment' => 'Customer code update test.',
-   *     'recurring' => FALSE,
-   *     'amount' => '5',
-   *     'beginDate' => 946684800,
-   *     'endDate' => 946771200,
-   *     'scheduleType' => 'Annually',
-   *     'scheduleDate' => '',
-   *     'accountCustomerName' => 'Test Account',
-   *     'accountNum' => '999999999',
-   *     'accountType' => 'CHECKING',
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'customerCode' => '' // Optional. The iATS Customer Code.
+   *     'ACHEFTReferenceNum' => '' // Optional. The ACH / EFT reference number.
+   *     'firstName' => 'Test' // The customer's first name.
+   *     'lastName' => 'Account' // The customer's last name.
+   *     'companyName' => 'Test Co.' // Optional. The customer's company name.
+   *     'address' => '1234 Any Street' // The customer's address.
+   *     'city' => 'Schenectady' // The customer's city.
+   *     'state' => 'NY' // The customer's state or province.
+   *     'zipCode' => '12345' // The customer's ZIP code.
+   *     'phone' => '555-555-1234' // Optional. The customer's phone number.
+   *     'fax' => '555-555-4321' // Optional. The customer's FAX number.
+   *     'alternatePhone' => '555-555-5555' // Optional. The customer's alternate phone number.
+   *     'email' => 'email@test.co' // Optional. The customer's email address.
+   *     'comment' => 'Customer code creation test.' // Optional. A comment describing this transaction.
+   *     'recurring' => FALSE // Optional. TRUE if a recurring payment should be created.
+   *     'amount' => '5' // Optional. The payment amount.
+   *     'beginDate' => 946684800 // The begin date of the recurring payment, if used.
+   *     'endDate' => 946771200 // The end date of the recurring payment, if used.
+   *     'scheduleType' => 'Annually' // Optional. The recurring payment schedule.
+   *      // Options: Weekly, Monthly Quarterly, Annually.
+   *     'scheduleDate' => '' // Optional. The recurring payment schedule date.
+   *      // Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
+   *     'accountCustomerName' => 'Test Account' // Optional. The customer's name as appears on the bank account.
+   *     'accountNum' => '999999999' // Optional. The customer's bank account number.
+   *     'accountType' => 'CHECKING' // Optional. The customer's bank account type.
+   *      // Options: CHECKING, SAVING (North America only.)
    *
    * @return mixed
    *   Client response array or API error.
@@ -377,42 +339,37 @@ class CustomerLink extends Core {
   }
 
   /**
-   * Update a customer code using only direct debit.
-   *
-   * UK clients only.
+   * Update a customer code using only direct debit. UK clients only.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *
-   * @code
-   *   array(
-   *     'customerIPAddress' => '',
-   *     'customerCode' => '',
-   *     'ACHEFTReferenceNum' => '',
-   *     'firstName' => 'Test',
-   *     'lastName' => 'Account',
-   *     'companyName' => 'Test Co.',
-   *     'address' => '1234 Any Street',
-   *     'city' => 'Schenectady',
-   *     'state' => 'NY',
-   *     'zipCode' => '12345',
-   *     'phone' => '555-555-1234',
-   *     'fax' => '555-555-4321',
-   *     'alternatePhone' => '555-555-5555',
-   *     'email' => 'email@test.co',
-   *     'comment' => 'Customer code update test.',
-   *     'recurring' => FALSE,
-   *     'amount' => '5',
-   *     'beginDate' => 946684800,
-   *     'endDate' => 946771200,
-   *     'scheduleType' => 'Annually',
-   *     'scheduleDate' => '',
-   *     'accountCustomerName' => 'Test Account',
-   *     'accountNum' => '999999999',
-   *     'accountType' => 'CHECKING',
-   *     'updateAccountNum' => FALSE,
-   *   );
-   * @endcode
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'customerCode' => '' // The iATS Customer Code.
+   *     'firstName' => 'Test' // Optional. The customer's first name.
+   *     'lastName' => 'Account' // Optional. The customer's last name.
+   *     'companyName' => 'Test Co.' // Optional. The customer's company name.
+   *     'address' => '1234 Any Street' // Optional. The customer's address.
+   *     'city' => 'Schenectady' // Optional. The customer's city.
+   *     'state' => 'NY' // Optional. The customer's state or province.
+   *     'zipCode' => '12345' // Optional. The customer's ZIP code.
+   *     'phone' => '555-555-1234' // Optional. The customer's phone number.
+   *     'fax' => '555-555-4321' // Optional. The customer's FAX number.
+   *     'alternatePhone' => Optional. '555-555-5555' // Optional. The customer's alternate phone number.
+   *     'email' => 'email@test.co' // Optional. The customer's email address.
+   *     'comment' => 'Customer code creation test.' // Optional. A comment describing this transaction.
+   *     'recurring' => FALSE // Optional. TRUE if a recurring payment should be created.
+   *     'amount' => '5' // Optional. The payment amount.
+   *     'beginDate' => 946684800 // Optional. The begin date of the recurring payment, if used.
+   *     'endDate' => 946771200 // Optional. The end date of the recurring payment, if used.
+   *     'scheduleType' => 'Annually' // Optional. The recurring payment schedule.
+   *      // Options: Weekly, Monthly Quarterly, Annually.
+   *     'scheduleDate' => '' // Optional. The recurring payment schedule date.
+   *      // Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
+   *     'accountCustomerName' => 'Test Account' // Optional. The customer's name as appears on the bank account.
+   *     'accountNum' => '999999999' // Optional. The customer's bank account number.
+   *     'accountType' => 'CHECKING' // Optional. The customer's bank account type.
+   *      // Options: CHECKING, SAVING (North America only.)
+   *     'updateAccountNum' => FALSE // Optional. True is the customer's account number should be updated.
    *
    * @return mixed
    *   Client response array or API error.
