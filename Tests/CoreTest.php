@@ -116,12 +116,19 @@ class CoreTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('Service cannot be used with this Method of Payment or Currency.', $response);
   }
 
+  /**
+   * Test bad request.
+   */
+  public function testBadRequest() {
+    $badRequestStr = '<IATSRESPONSE xmlns=""><STATUS>Failure</STATUS><ERRORS>Bad request.</ERRORS><PROCESSRESULT><AUTHORIZATIONRESULT/></PROCESSRESULT></IATSRESPONSE>';
 
-//  /**
-//   * Bad request.
-//   */
-//  public function testBadRequest() {
-//    $this->assertTrue(FALSE);
-//  }
+    $result = new \StdClass();
+    $result->ProcessCreditCardV1Result = new \StdClass();
+    $result->ProcessCreditCardV1Result->any = $badRequestStr;
 
+    $iats = new ProcessLink(self::$agentCode, self::$password);
+    $response = $iats->responseHandler($result, 'ProcessCreditCardV1Result');
+
+    $this->assertEquals('Bad request.', $response);
+  }
 }
