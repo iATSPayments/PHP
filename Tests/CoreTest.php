@@ -120,11 +120,11 @@ class CoreTest extends \PHPUnit_Framework_TestCase {
    * Test bad request.
    */
   public function testBadRequest() {
-    $badRequestStr = '<IATSRESPONSE xmlns=""><STATUS>Failure</STATUS><ERRORS>Bad request.</ERRORS><PROCESSRESULT><AUTHORIZATIONRESULT/></PROCESSRESULT></IATSRESPONSE>';
+    $resultStr = '<IATSRESPONSE xmlns=""><STATUS>Failure</STATUS><ERRORS>Bad request.</ERRORS><PROCESSRESULT><AUTHORIZATIONRESULT/></PROCESSRESULT></IATSRESPONSE>';
 
     $result = new \StdClass();
     $result->ProcessCreditCardV1Result = new \StdClass();
-    $result->ProcessCreditCardV1Result->any = $badRequestStr;
+    $result->ProcessCreditCardV1Result->any = $resultStr;
 
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->responseHandler($result, 'ProcessCreditCardV1Result');
