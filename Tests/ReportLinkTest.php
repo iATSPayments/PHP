@@ -384,28 +384,37 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('', $response);
   }
 
-  // TODO: Address timeout and non-response errors. May be better suited to CoreTest.php
+  /**
+   * Test getCreditCardReject with no response from the API.
+   */
+  public function testReportLinkgetCreditCardRejectNoResponse() {
+    // Simulate no response from server.
+    $resultStr = '';
 
-//
-//  /**
-//   * Timeout response.
-//   */
-//  public function testTimeout() {
-//    $this->assertTrue(FALSE);
-//  }
-//
-//  /**
-//   * No response to request.
-//   */
-//  public function testNoReponse() {
-//    $this->assertTrue(FALSE);
-//  }
-//
-//  /**
-//   * Delayed response to request.
-//   */
-//  public function testDelay() {
-//    $this->assertTrue(FALSE);
-//  }
+    $result = new \StdClass();
+    $result->GetCreditCardRejectV1Result = new \StdClass();
+    $result->GetCreditCardRejectV1Result->any = $resultStr;
 
+    $iats = new ReportLink(self::$agentCode, self::$password);
+    $response = $iats->responseHandler($result, 'GetCreditCardRejectV1Result', 'AR');
+
+    $this->assertEquals('No data returned for this date', $response);
+  }
+
+  /**
+   * Test getCreditCardRejectCSV with no response from the API.
+   */
+  public function testReportLinkgetCreditCardRejectCSVNoResponse() {
+    // Simulate no response from server.
+    $resultStr = '';
+
+    $result = new \StdClass();
+    $result->GetCreditCardRejectCSVV1Result = new \StdClass();
+    $result->GetCreditCardRejectCSVV1Result->any = $resultStr;
+
+    $iats = new ReportLink(self::$agentCode, self::$password);
+    $response = $iats->responseHandler($result, 'GetCreditCardRejectCSVV1Result', 'CSV');
+
+    $this->assertEquals('', $response);
+  }
 }
