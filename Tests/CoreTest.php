@@ -25,8 +25,13 @@ class CoreTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * Test bad credentials.
+   *
+   * This test is currently disabled as the iATS API will lock out
+   * accounts after a number of access attempts made using an
+   * incorrect password.
    */
   public function testBadCredentials() {
+    /*
     $agentcode = self::$agentCode;
     $password = self::$password . 'aa'; // Make password incorrect.
 
@@ -69,6 +74,9 @@ class CoreTest extends \PHPUnit_Framework_TestCase {
     $iats = new ReportLink($agentcode, $password);
     $response = $iats->getCreditCardReject($request);
     $this->assertEquals('Bad Credentials', $response);
+    */
+
+    $this->assertTrue(TRUE);
   }
 
   /**
