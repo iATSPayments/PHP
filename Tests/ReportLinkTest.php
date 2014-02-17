@@ -29,8 +29,8 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTBankReconciliationReportCSV.
    */
   public function testReportLinkgetACHEFTBankReconciliationReportCSV() {
-    $fromDate = strtotime('10/23/2011');
-    $toDate = strtotime('10/23/2014');
+    $fromDate = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $toDate = strtotime(date('m/d/Y', time()) . '23:59:59');
     $request = array(
       'fromDate' => $fromDate,
       'toDate' => $toDate,
@@ -83,8 +83,8 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTPaymentBoxJournalCSV.
    */
   public function testReportLinkgetACHEFTPaymentBoxJournalCSV() {
-    $fromDate = strtotime('10/23/2011');
-    $toDate = strtotime('10/23/2014');
+    $fromDate = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $toDate = strtotime(date('m/d/Y', time()) . '23:59:59');
     $request = array(
       'from' => $fromDate, // NOTE: Docs say 'fromDate', API says 'from'
       'to' => $toDate, // NOTE: Docs say 'toDate', API says 'to'
@@ -102,8 +102,8 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTPaymentBoxRejectCSV.
    */
   public function testReportLinkgetACHEFTPaymentBoxRejectCSV() {
-    $fromDate = strtotime('10/23/2011');
-    $toDate = strtotime('10/23/2014');
+    $fromDate = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $toDate = strtotime(date('m/d/Y', time()) . '23:59:59');
     $request = array(
       'fromDate' => $fromDate,
       'toDate' => $toDate,
@@ -217,8 +217,8 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCCPaymentBoxJournalCSV.
    */
   public function testReportLinkgetCCPaymentBoxJournalCSV() {
-    $fromDate = strtotime('10/23/2011');
-    $toDate = strtotime('10/23/2014');
+    $fromDate = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $toDate = strtotime(date('m/d/Y', time()) . '23:59:59');
     $request = array(
       'from' => $fromDate,
       'to' => $toDate,
@@ -235,8 +235,8 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardBankReconciliationReportCSV.
    */
   public function testReportLinkgetCreditCardBankReconciliationReportCSV() {
-    $fromDate = strtotime('10/23/2011');
-    $toDate = strtotime('10/23/2014');
+    $fromDate = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $toDate = strtotime(date('m/d/Y', time()) . '23:59:59');
     $request = array(
       'fromDate' => $fromDate,
       'toDate' => $toDate,
@@ -288,8 +288,8 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardPaymentBoxJournalCSV.
    */
   public function testReportLinkgetCreditCardPaymentBoxJournalCSV() {
-    $fromDate = strtotime('10/23/2011');
-    $toDate = strtotime('10/23/2014');
+    $fromDate = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $toDate = strtotime(date('m/d/Y', time()) . '23:59:59');
     $request = array(
       'fromDate' => $fromDate,
       'toDate' => $toDate,
@@ -306,8 +306,8 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardPaymentBoxRejectCSV.
    */
   public function testReportLinkgetCreditCardPaymentBoxRejectCSV() {
-    $fromDate = strtotime('10/23/2011');
-    $toDate = strtotime('10/23/2014');
+    $fromDate = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $toDate = strtotime(date('m/d/Y', time()) . '23:59:59');
     $request = array(
       'fromDate' => $fromDate,
       'toDate' => $toDate,
