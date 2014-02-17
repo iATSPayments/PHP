@@ -85,6 +85,7 @@ class CoreTest extends \PHPUnit_Framework_TestCase {
   public function testBadParameters() {
     $request = array(
       'customerIPAddress' => '',
+      'mop' => 'VISA',
       'currency' => 'USD',
     );
 
