@@ -983,38 +983,4 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
     return $updatedFileContents;
   }
-
-  /**
-   * Test processCreditCard with no response.
-   */
-  public function testProcessCreditCardNoResponse() {
-    // Simulate no response from server.
-    $resultStr = '';
-
-    $result = new \StdClass();
-    $result->ProcessCreditCardV1Result = new \StdClass();
-    $result->ProcessCreditCardV1Result->any = $resultStr;
-
-    $iats = new ProcessLink(self::$agentCode, self::$password);
-    $response = $iats->responseHandler($result, 'ProcessCreditCardV1Result');
-
-    $this->assertFalse($response);
-  }
-
-  /**
-   * Test processCreditCard with general failure.
-   */
-  public function testProcessCreditCardFailure() {
-    // Simulate no response from server.
-    $resultStr = '<IATSRESPONSE xmlns=""><STATUS>Failure</STATUS><ERRORS>Unable to process credit card transaction.</ERRORS><PROCESSRESULT><AUTHORIZATIONRESULT/></PROCESSRESULT></IATSRESPONSE>';
-
-    $result = new \StdClass();
-    $result->ProcessCreditCardV1Result = new \StdClass();
-    $result->ProcessCreditCardV1Result->any = $resultStr;
-
-    $iats = new ProcessLink(self::$agentCode, self::$password);
-    $response = $iats->responseHandler($result, 'ProcessCreditCardV1Result');
-
-    $this->assertEquals('Unable to process credit card transaction.', $response);
-  }
 }
