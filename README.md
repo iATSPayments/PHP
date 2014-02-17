@@ -37,6 +37,9 @@ iATS Web Services and this wrapper are broken up into three components.
 
 ### Core
 
+The core represents the base of all other services. It is responsible for connecting to the iATS API, making API calls,
+and error handling. The core also handles API restrictions on location-specific services and currency, preventing
+invalid calls being made to the API.
 
 ### CustomerLink
 
