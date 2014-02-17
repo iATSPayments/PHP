@@ -182,56 +182,6 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Test getACHJournalCSV.
-   */
-  public function testReportLinkgetACHJournalCSV() {
-    $date = time();
-    $request = array(
-      'date' => $date,
-    );
-
-    $iats = new ReportLink(self::$agentCode, self::$password);
-    $response = $iats->getACHJournalCSV($request);
-
-    // TODO: Get test data for this method.
-    $this->assertEquals('', $response);
-  }
-
-  /**
-   * Test getCCJournalCSV.
-   */
-  public function testReportLinkgetCCJournalCSV() {
-    $date = time();
-    $request = array(
-      'date' => $date,
-    );
-
-    $iats = new ReportLink(self::$agentCode, self::$password);
-    $response = $iats->getCCJournalCSV($request);
-
-    // TODO: Get test data for this method.
-    $this->assertEquals('', $response);
-  }
-
-  /**
-   * Test getCCPaymentBoxJournalCSV.
-   */
-  public function testReportLinkgetCCPaymentBoxJournalCSV() {
-    $fromDate = strtotime(date('m/d/Y', time()) . '00:00:00');
-    $toDate = strtotime(date('m/d/Y', time()) . '23:59:59');
-    $request = array(
-      'from' => $fromDate,
-      'to' => $toDate,
-    );
-
-    $iats = new ReportLink(self::$agentCode, self::$password);
-    $response = $iats->getCCPaymentBoxJournalCSV($request);
-
-    // TODO: Get test data for this method.
-    $this->assertEquals('', $response);
-  }
-
-  /**
    * Test getCreditCardBankReconciliationReportCSV.
    */
   public function testReportLinkgetCreditCardBankReconciliationReportCSV() {

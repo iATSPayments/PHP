@@ -12,6 +12,8 @@
  * Reports may be generated in either XML or CSV.
  *
  * API documentation: https://www.iatspayments.com/NetGate/ReportLink.asmx
+ * Note: API methods with responses containing the string "x0020" are
+ * depreciated and not supported by this class.
  */
 
 namespace iATS;
@@ -191,53 +193,6 @@ class ReportLink extends Core {
   public function getACHEFTReturn($parameters) {
     $response = $this->apiCall('GetACHEFTReturn', $parameters);
     return $this->responseHandler($response, 'GetACHEFTReturnV1Result', 'AR');
-  }
-
-  /**
-   * Get ACH / EFT Journal CSV report.
-   *
-   * @param array $parameters
-   *   An associative array with the following possible values.
-   *     'date' => 946771200 // The date to gather report data for.
-   *
-   * @return mixed
-   *   Report CSV (string) or API error.
-   */
-  public function getACHJournalCSV($parameters)
-  {
-    $response = $this->apiCall('GetACHJournalCSV', $parameters);
-    return $this->responseHandler($response, 'GetACHJournalCSV_x0020_V1Result', 'CSV');
-  }
-
-  /**
-   * Get Credit Card Journal CSV report.
-   *
-   * @param array $parameters
-   *   An associative array with the following possible values.
-   *     'date' => 946771200 // The date to gather report data for.
-   *
-   * @return mixed
-   *   Report CSV (string) or API error.
-   */
-  public function getCCJournalCSV($parameters) {
-    $response = $this->apiCall('GetCCJournalCSV', $parameters);
-    return $this->responseHandler($response, 'GetCCJournalCSV_x0020_V1Result', 'CSV');
-  }
-
-  /**
-   * Get Credit Card Payment Box Journal CSV report.
-   *
-   * @param array $parameters
-   *   An associative array with the following possible values.
-   *     'from' => 946684800 // The earliest date to gather report data for.
-   *     'to' => 946771200 // The latest date to gather report data for.
-   *
-   * @return mixed
-   *   Report CSV (string) or API error.
-   */
-  public function getCCPaymentBoxJournalCSV($parameters) {
-    $response = $this->apiCall('GetCCPaymentBoxJournalCSV', $parameters);
-    return $this->responseHandler($response, 'GetCCPaymentBoxJournalCSV_x0020_V1Result', 'CSV');
   }
 
   /**
