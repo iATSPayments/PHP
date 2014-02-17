@@ -60,7 +60,7 @@ credit / debit card transactions, rejected transactions and returns.
 
 ### Use Case 1 - CustomerLink - Creating a new Customer Code for credit card transactions
 
-`
+```php
 $beginDate = strtotime('01/01/2014');
 $endDate = strtotime('01/31/2014');
 
@@ -105,11 +105,11 @@ if (trim($response['AUTHORIZATIONRESULT']) == 'OK')
 
   // Perform successful call logic.
 }
-`
+```
 
 ### Use Case 2 - CustomerLink - Processing a credit card transation with an existing Customer Code
 
-`
+```php
 // Create and populate the request object.
 $request = array(
   'customerIPAddress' => '',
@@ -131,11 +131,11 @@ if (trim($response['AUTHORIZATIONRESULT']) == 'OK')
 {
   // Perform successful call logic.
 }
-`
+```
 
 ### Use Case 3 - ReportLink - Get credit card transation history report as CSV
 
-`
+```php
 $beginDate = strtotime('01/01/2014');
 $endDate = strtotime('01/31/2014');
 
@@ -151,4 +151,4 @@ $iats = new ReportLink(self::$agentCode, self::$password);
 $response = $iats->getCreditCardPaymentBoxJournalCSV($request);
 
 // Response should be CSV data starting with "Transaction ID,Invoice Number,Date Time"
-`
+```
