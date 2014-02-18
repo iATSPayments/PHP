@@ -63,7 +63,7 @@ class ReportLink extends Core {
   }
 
   /**
-   * Get ACH / EFT Journal CSV report.
+   * Get ACH / EFT approved transactions CSV report.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
@@ -79,7 +79,7 @@ class ReportLink extends Core {
   }
 
   /**
-   * Get ACH / EFT Journal report.
+   * Get ACH / EFT approved transactions report.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
@@ -198,7 +198,7 @@ class ReportLink extends Core {
   }
 
   /**
-   * Get Credit Card Journal CSV report.
+   * Get Credit Card approved transactions CSV report.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
@@ -214,7 +214,7 @@ class ReportLink extends Core {
   }
 
   /**
-   * Get Credit Card Journal report.
+   * Get Credit Card approved transactions report.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
@@ -230,7 +230,7 @@ class ReportLink extends Core {
   }
 
   /**
-   * Get Credit Card Payment Box Journal CSV report.
+   * Get Credit Card Payment Box approved transactions CSV report.
    *
    * @param array $parameters
    *   An associative array with the following possible values.
