@@ -43,6 +43,7 @@ class ReportLink extends Core {
 
   /**
    * Get ACH / EFT Bank Reconciliation CSV report.
+   * Provides a report of the bank balance of ACHEFT transactions.
    *
    * @param array $parameters
    *   An associative array with the following possible values.

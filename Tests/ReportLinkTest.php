@@ -42,7 +42,8 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTBankReconciliationReportCSV($request);
 
-    // TODO: Get test data for this method.
+    // Test server doesn't provide access to bank balance data, so
+    // a successful request is made without returning report data.
     $this->assertEquals('', $response);
   }
 
@@ -75,7 +76,8 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTJournal($request);
 
-    // TODO: Get test data for this method.
+    // ACH / EFT transactions are never processed when using the
+    // test server, so a successful request is made without returning report data.
     $this->assertEquals('No data returned for this date', $response);
   }
 
@@ -158,7 +160,8 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTReturn($request);
 
-    // TODO: Get test data for this method.
+    // ACH / EFT refunds are not processed when using the test server,
+    // so a successful request is made without returning report data.
     $this->assertEquals('No data returned for this date', $response);
   }
 
@@ -179,7 +182,8 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardBankReconciliationReportCSV($request);
 
-    // TODO: Get test data for this method.
+    // Test server does not provide real account balance information,
+    // so a successful request is made without returning report data.
     $this->assertEquals('', $response);
   }
 
