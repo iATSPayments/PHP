@@ -50,7 +50,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTJournalCSV.
    */
   public function testReportLinkgetACHEFTJournalCSV() {
-    $date = time();
+    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
@@ -66,7 +66,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTJournal.
    */
   public function testReportLinkgetACHEFTJournal() {
-    $date = time();
+    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
@@ -101,7 +101,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTRejectCSV.
    */
   public function testReportLinkgetACHEFTRejectCSV() {
-    $date = time();
+    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
@@ -117,7 +117,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTReject.
    */
   public function testReportLinkgetACHEFTReject() {
-    $date = time();
+    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
@@ -133,7 +133,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTReturnCSV.
    */
   public function testReportLinkgetACHEFTReturnCSV() {
-    $date = time();
+    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
@@ -149,7 +149,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTReturn.
    */
   public function testReportLinkgetACHEFTReturn() {
-    $date = time();
+    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
@@ -187,7 +187,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardJournalCSV.
    */
   public function testReportLinkgetCreditCardJournalCSV() {
-    $date = time();
+    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
@@ -203,7 +203,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardJournal.
    */
   public function testReportLinkgetCreditCardJournal() {
-    $date = time();
+    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
@@ -255,7 +255,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardReject.
    */
   public function testReportLinkgetCreditCardReject() {
-    $date = time();
+    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
@@ -271,7 +271,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardRejectCSV.
    */
   public function testReportLinkgetCreditCardRejectCSV() {
-    $date = time();
+    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
     $request = array(
       'date' => $date,
       'customerIPAddress' => '',
