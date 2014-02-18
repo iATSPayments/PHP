@@ -368,7 +368,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
    * Test processACHEFTRefundWithTransactionId.
    *
    * @todo This API call returns "Invalid Customer Code" in response
-   *  to a request that appears to contain valid data. Need to investigate.
+   *  to a request that appears to contain valid data.
+   *  Need to investigate with iATS.
    *
    * @depends testProcessLinkcreateCustomerCodeAndProcessACHEFT
    */
