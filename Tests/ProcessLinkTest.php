@@ -529,7 +529,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
       'transactionId' => self::$creditCardTransactionId,
       'total' => '-5',
       'comment' => 'Credit card refund test.',
-      // Not required for request
+      'mop' => 'VISA',
       'currency' => 'USD',
     );
 
