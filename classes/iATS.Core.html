@@ -381,7 +381,7 @@
                                             <a id="method_checkRestrictions"></a>
                         <div class="element clickable method protected  method_checkRestrictions" data-toggle="collapse" data-target=".method_checkRestrictions .collapse">
                             <h2>Check restrictions for service.</h2>
-                            <pre>checkRestrictions(array $parameters) : bool|string</pre>
+                            <pre>checkRestrictions(array $parameters, bool $forceCurrencyCheck = FALSE) : bool|string</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
                             <div class="row collapse">
@@ -402,6 +402,11 @@
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
                                                 <code>array</code><p><p>Request parameters.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$forceCurrencyCheck</h4>
+                                                <code>bool</code><p><p>True to force a currency check even when currency or
+ method of payment are missing.</p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -966,7 +971,7 @@
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Thu, 13 Feb 2014 20:58:13 +0000.<br/>
+            generated on Tue, 18 Feb 2014 08:15:46 +0000.<br/>
     </footer>
     </body>
 </html>

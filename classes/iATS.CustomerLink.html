@@ -144,14 +144,14 @@
     </li>
 
                                                                                                         <li class="method public">
-        <a href="#method_createACHEFTCustomerCode" title="createACHEFTCustomerCode :: Create ACH/EFT Customer Code.">
-            <span class="description">Create ACH/EFT Customer Code.</span><pre>createACHEFTCustomerCode</pre>
+        <a href="#method_createACHEFTCustomerCode" title="createACHEFTCustomerCode :: Create ACH/EFT Customer Code. North America clients only.">
+            <span class="description">Create ACH/EFT Customer Code. North America clients only.</span><pre>createACHEFTCustomerCode</pre>
         </a>
     </li>
 
                                                                                                         <li class="method public">
-        <a href="#method_updateACHEFTCustomerCode" title="updateACHEFTCustomerCode :: Update ACH/EFT Customer Code.">
-            <span class="description">Update ACH/EFT Customer Code.</span><pre>updateACHEFTCustomerCode</pre>
+        <a href="#method_updateACHEFTCustomerCode" title="updateACHEFTCustomerCode :: Update ACH/EFT Customer Code. North America clients only.">
+            <span class="description">Update ACH/EFT Customer Code. North America clients only.</span><pre>updateACHEFTCustomerCode</pre>
         </a>
     </li>
 
@@ -162,20 +162,20 @@
     </li>
 
                                                                                                         <li class="method public">
-        <a href="#method_directDebitACHEFTPayerValidate" title="directDebitACHEFTPayerValidate :: Validate direct debit payer information.">
-            <span class="description">Validate direct debit payer information.</span><pre>directDebitACHEFTPayerValidate</pre>
+        <a href="#method_directDebitACHEFTPayerValidate" title="directDebitACHEFTPayerValidate :: Validate direct debit payer information. UK clients only.">
+            <span class="description">Validate direct debit payer information. UK clients only.</span><pre>directDebitACHEFTPayerValidate</pre>
         </a>
     </li>
 
                                                                                                         <li class="method public">
-        <a href="#method_directDebitCreateACHEFTCustomerCode" title="directDebitCreateACHEFTCustomerCode :: Create a customer code using only direct debit.">
-            <span class="description">Create a customer code using only direct debit.</span><pre>directDebitCreateACHEFTCustomerCode</pre>
+        <a href="#method_directDebitCreateACHEFTCustomerCode" title="directDebitCreateACHEFTCustomerCode :: Create a customer code using only direct debit. UK clients only.">
+            <span class="description">Create a customer code using only direct debit. UK clients only.</span><pre>directDebitCreateACHEFTCustomerCode</pre>
         </a>
     </li>
 
                                                                                                         <li class="method public">
-        <a href="#method_directDebitUpdateACHEFTCustomerCode" title="directDebitUpdateACHEFTCustomerCode :: Update a customer code using only direct debit.">
-            <span class="description">Update a customer code using only direct debit.</span><pre>directDebitUpdateACHEFTCustomerCode</pre>
+        <a href="#method_directDebitUpdateACHEFTCustomerCode" title="directDebitUpdateACHEFTCustomerCode :: Update a customer code using only direct debit. UK clients only.">
+            <span class="description">Update a customer code using only direct debit. UK clients only.</span><pre>directDebitUpdateACHEFTCustomerCode</pre>
         </a>
     </li>
 
@@ -334,30 +334,6 @@
                                     <table class="table">
                                                                                     <tr>
                                                 <th>
-                                                    code
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>array(</p>
-<pre><code>'customerIPAddress' =&gt; '',
-'customerCode' =&gt; 'A10396688',
-// Not needed for request.
-'mop' =&gt; 'VISA',
-'currency' =&gt; 'USD',</code></pre>
-<p>  );</p>
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    endcode
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
                                                     
                                                 </th>
                                                 <td>
@@ -368,7 +344,9 @@
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p></p>
+                                                <code>array</code><p><p>An associative array with the following possible values.</p>
+<pre><code>'customerIPAddress' =&gt; '' // Optional. The client IP address.
+'customerCode' =&gt; 'A10396688' // The iATS Customer Code.</code></pre></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -389,51 +367,6 @@
                                     <table class="table">
                                                                                     <tr>
                                                 <th>
-                                                    code
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>array(</p>
-<pre><code>'customerIPAddress' =&gt; '',
-'customerCode' =&gt; '',
-'firstName' =&gt; 'Test',
-'lastName' =&gt; 'Account',
-'companyName' =&gt; 'Test Co.',
-'address' =&gt; '1234 Any Street',
-'city' =&gt; 'Schenectady',
-'state' =&gt; 'NY',
-'zipCode' =&gt; '12345',
-'phone' =&gt; '555-555-1234',
-'fax' =&gt; '555-555-4321',
-'alternatePhone' =&gt; '555-555-5555',
-'email' =&gt; 'email@test.co',
-'comment' =&gt; 'Customer code creation test.',
-'recurring' =&gt; FALSE,
-'amount' =&gt; '5',
-'beginDate' =&gt; 946684800,
-'endDate' =&gt; 946771200,
-'scheduleType' =&gt; 'Annually',
-'scheduleDate' =&gt; '',
-'creditCardCustomerName' =&gt; 'Test Account',
-'creditCardNum' =&gt; '4222222222222220',
-'creditCardExpiry' =&gt; '12/17',
-'mop' =&gt; 'VISA',
-// Not required.
-'currency' =&gt; 'USD',</code></pre>
-<p>  );</p>
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    endcode
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
                                                     
                                                 </th>
                                                 <td>
@@ -444,7 +377,34 @@
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p></p>
+                                                <code>array</code><p><p>An associative array with the following possible values.</p>
+<pre><code>'customerIPAddress' =&gt; '' // The client IP address.
+'customerCode' =&gt; '' // Optional. The iATS Customer Code.
+'firstName' =&gt; 'Test' // The customer's first name.
+'lastName' =&gt; 'Account' // The customer's last name.
+'companyName' =&gt; 'Test Co.' // The customer's company name.
+'address' =&gt; '1234 Any Street' // The customer's address.
+'city' =&gt; 'Schenectady' // The customer's city.
+'state' =&gt; 'NY' // The customer's state or province.
+'zipCode' =&gt; '12345' // The customer's ZIP code.
+'phone' =&gt; '555-555-1234' // The customer's phone number.
+'fax' =&gt; '555-555-4321' // The customer's FAX number.
+'alternatePhone' =&gt; '555-555-5555' // The customer's alternate phone number.
+'email' =&gt; 'email@test.co' // The customer's email address.
+'comment' =&gt; 'Customer code creation test.' // A comment describing this transaction.
+'recurring' =&gt; FALSE // TRUE if a recurring payment should be created.
+'amount' =&gt; '5' // The payment amount.
+'beginDate' =&gt; 946684800 // The begin date of the recurring payment, if used.
+'endDate' =&gt; 946771200 // The end date of the recurring payment, if used.
+'scheduleType' =&gt; 'Annually' // The recurring payment schedule.
+ // Options: Weekly, Monthly, Quarterly, Annually.
+'scheduleDate' =&gt; '' // The recurring payment schedule date.
+ // Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
+'creditCardCustomerName' =&gt; 'Test Account' // The customer's name as appears on the credit card.
+'creditCardNum' =&gt; '4222222222222220' // The customer's credit card number.
+'creditCardExpiry' =&gt; '12/17' // The customer's credit card expiration date.
+'mop' =&gt; 'VISA' // Optional. The customer's method of payment.
+'currency' =&gt; 'USD' // Optional. The customer's currency.</code></pre></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -465,50 +425,6 @@
                                     <table class="table">
                                                                                     <tr>
                                                 <th>
-                                                    code
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>array(</p>
-<pre><code>'customerIPAddress' =&gt; '',
-'customerCode' =&gt; '',
-'firstName' =&gt; 'Test',
-'lastName' =&gt; 'Account',
-'companyName' =&gt; 'Test Co.',
-'address' =&gt; '1234 Any Street',
-'city' =&gt; 'Schenectady',
-'state' =&gt; 'NY',
-'zipCode' =&gt; '12345',
-'phone' =&gt; '555-555-1234',
-'fax' =&gt; '555-555-4321',
-'alternatePhone' =&gt; '555-555-5555',
-'email' =&gt; 'email@test.co',
-'comment' =&gt; 'Customer code update test.',
-'recurring' =&gt; FALSE,
-'amount' =&gt; '5',
-'beginDate' =&gt; 946684800,
-'endDate' =&gt; 946771200,
-'scheduleType' =&gt; 'Annually',
-'scheduleDate' =&gt; '',
-'creditCardCustomerName' =&gt; 'Test Account',
-'creditCardNum' =&gt; '4222222222222220',
-'creditCardExpiry' =&gt; '12/17',
-'mop' =&gt; 'VISA',
-'updateCreditCardNum' =&gt; FALSE,</code></pre>
-<p>  );</p>
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    endcode
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
                                                     
                                                 </th>
                                                 <td>
@@ -519,7 +435,35 @@
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p></p>
+                                                <code>array</code><p><p>An associative array with the following possible values.</p>
+<pre><code>'customerIPAddress' =&gt; '' // Optional. The client IP address.
+'customerCode' =&gt; '' // The iATS Customer Code.
+'firstName' =&gt; 'Test' // Optional. The customer's first name.
+'lastName' =&gt; 'Account' // Optional. The customer's last name.
+'companyName' =&gt; 'Test Co.' // Optional. The customer's company name.
+'address' =&gt; '1234 Any Street' // Optional. The customer's address.
+'city' =&gt; 'Schenectady' // Optional. The customer's city.
+'state' =&gt; 'NY' // Optional. The customer's state or province.
+'zipCode' =&gt; '12345' // Optional. The customer's ZIP code.
+'phone' =&gt; '555-555-1234' // Optional. Optional. The customer's phone number.
+'fax' =&gt; '555-555-4321' // Optional. The customer's FAX number.
+'alternatePhone' =&gt; '555-555-5555' // Optional. The customer's alternate phone number.
+'email' =&gt; 'email@test.co' // Optional. The customer's email address.
+'comment' =&gt; 'Customer code creation test.' // Optional. A comment describing this transaction.
+'recurring' =&gt; FALSE // Optional. TRUE if a recurring payment should be created.
+'amount' =&gt; '5' // Optional. The payment amount.
+'beginDate' =&gt; 946684800 // Optional. The begin date of the recurring payment, if used.
+'endDate' =&gt; 946771200 // Optional. The end date of the recurring payment, if used.
+'scheduleType' =&gt; 'Annually' // Optional. The recurring payment schedule.
+ // Options: Weekly, Monthly, Quarterly, Annually.
+'scheduleDate' =&gt; '' // Optional. The recurring payment schedule date.
+ // Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
+'creditCardCustomerName' =&gt; 'Test Account' // Optional. The customer's name as appears on the credit card.
+'creditCardNum' =&gt; '4222222222222220' // Optional. The customer's credit card number.
+'creditCardExpiry' =&gt; '12/17' // Optional. The customer's credit card expiration date.
+'mop' =&gt; 'VISA' // Optional. The customer's method of payment.
+'currency' =&gt; 'USD' // Optional. The customer's currency.
+'updateCreditCardNum' =&gt; FALSE // Optional. TRUE when the customer's credit card number should be updated.</code></pre></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -529,57 +473,15 @@
                         </div>
                                             <a id="method_createACHEFTCustomerCode"></a>
                         <div class="element clickable method public  method_createACHEFTCustomerCode" data-toggle="collapse" data-target=".method_createACHEFTCustomerCode .collapse">
-                            <h2>Create ACH/EFT Customer Code.</h2>
+                            <h2>Create ACH/EFT Customer Code. North America clients only.</h2>
                             <pre>createACHEFTCustomerCode(array $parameters) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
                             <div class="row collapse">
                                 <div class="detail-description">
-                                    <div class="long_description"><p>North America clients only.</p></div>
+                                    <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    code
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>array(</p>
-<pre><code>'customerIPAddress' =&gt; '',
-'customerCode' =&gt; '',
-'firstName' =&gt; 'Test',
-'lastName' =&gt; 'Account',
-'companyName' =&gt; 'Test Co.',
-'address' =&gt; '1234 Any Street',
-'city' =&gt; 'Schenectady',
-'state' =&gt; 'NY',
-'zipCode' =&gt; '12345',
-'phone' =&gt; '555-555-1234',
-'fax' =&gt; '555-555-4321',
-'alternatePhone' =&gt; '555-555-5555',
-'email' =&gt; 'email@test.co',
-'comment' =&gt; 'Customer code update test.',
-'recurring' =&gt; FALSE,
-'amount' =&gt; '5',
-'beginDate' =&gt; 946684800,
-'endDate' =&gt; 946771200,
-'scheduleType' =&gt; 'Annually',
-'scheduleDate' =&gt; '',
-'accountCustomerName' =&gt; 'Test Account',
-'accountNum' =&gt; '999999999',
-'accountType' =&gt; 'Checking',</code></pre>
-<p>  );</p>
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    endcode
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        
-                                                                                                    </td>
-                                            </tr>
                                                                                     <tr>
                                                 <th>
                                                     
@@ -592,7 +494,33 @@
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p></p>
+                                                <code>array</code><p><p>An associative array with the following possible values.</p>
+<pre><code>'customerIPAddress' =&gt; '' // Optional. The client IP address.
+'customerCode' =&gt; '' // Optional. The iATS Customer Code.
+'firstName' =&gt; 'Test' // The customer's first name.
+'lastName' =&gt; 'Account' // The customer's last name.
+'companyName' =&gt; 'Test Co.' // Optional. The customer's company name.
+'address' =&gt; '1234 Any Street' // The customer's address.
+'city' =&gt; 'Schenectady' // The customer's city.
+'state' =&gt; 'NY' // The customer's state or province.
+'zipCode' =&gt; '12345' // The customer's ZIP code.
+'phone' =&gt; '555-555-1234' // Optional. The customer's phone number.
+'fax' =&gt; '555-555-4321' // Optional. The customer's FAX number.
+'alternatePhone' =&gt; '555-555-5555' // Optional. The customer's alternate phone number.
+'email' =&gt; 'email@test.co' // Optional. The customer's email address.
+'comment' =&gt; 'Customer code creation test.' // Optional. A comment describing this transaction.
+'recurring' =&gt; FALSE // Optional. TRUE if a recurring payment should be created.
+'amount' =&gt; '5' // Optional. The payment amount.
+'beginDate' =&gt; 946684800 // Optional. The begin date of the recurring payment, if used.
+'endDate' =&gt; 946771200 // Optional. The end date of the recurring payment, if used.
+'scheduleType' =&gt; 'Annually' // Optional. The recurring payment schedule.
+ // Options: Weekly, Monthly Quarterly, Annually.
+'scheduleDate' =&gt; '' // Optional. The recurring payment schedule date.
+ // Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
+'accountCustomerName' =&gt; 'Test Account' // Optional. The customer's name as appears on the bank account.
+'accountNum' =&gt; '999999999' // Optional. The customer's bank account number.
+'accountType' =&gt; 'CHECKING' // Optional. The customer's bank account type.
+ // Options: CHECKING, SAVING (North America only.)</code></pre></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -602,58 +530,15 @@
                         </div>
                                             <a id="method_updateACHEFTCustomerCode"></a>
                         <div class="element clickable method public  method_updateACHEFTCustomerCode" data-toggle="collapse" data-target=".method_updateACHEFTCustomerCode .collapse">
-                            <h2>Update ACH/EFT Customer Code.</h2>
+                            <h2>Update ACH/EFT Customer Code. North America clients only.</h2>
                             <pre>updateACHEFTCustomerCode(array $parameters) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
                             <div class="row collapse">
                                 <div class="detail-description">
-                                    <div class="long_description"><p>North America clients only.</p></div>
+                                    <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    code
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>array(</p>
-<pre><code>'customerIPAddress' =&gt; '',
-'customerCode' =&gt; '',
-'firstName' =&gt; 'Test',
-'lastName' =&gt; 'Account',
-'companyName' =&gt; 'Test Co.',
-'address' =&gt; '1234 Any Street',
-'city' =&gt; 'Schenectady',
-'state' =&gt; 'NY',
-'zipCode' =&gt; '12345',
-'phone' =&gt; '555-555-1234',
-'fax' =&gt; '555-555-4321',
-'alternatePhone' =&gt; '555-555-5555',
-'email' =&gt; 'email@test.co',
-'comment' =&gt; 'Customer code update test.',
-'recurring' =&gt; FALSE,
-'amount' =&gt; '5',
-'beginDate' =&gt; 946684800,
-'endDate' =&gt; 946771200,
-'scheduleType' =&gt; 'Annually',
-'scheduleDate' =&gt; '',
-'accountCustomerName' =&gt; 'Test Account',
-'accountNum' =&gt; '999999999',
-'accountType' =&gt; 'Checking',
-'updateAccountNum' =&gt; FALSE,</code></pre>
-<p>  );</p>
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    endcode
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        
-                                                                                                    </td>
-                                            </tr>
                                                                                     <tr>
                                                 <th>
                                                     
@@ -666,7 +551,34 @@
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p></p>
+                                                <code>array</code><p><p>An associative array with the following possible values.</p>
+<pre><code>'customerIPAddress' =&gt; '' // Optional. The client IP address.
+'customerCode' =&gt; '' // The iATS Customer Code.
+'firstName' =&gt; 'Test' // Optional. The customer's first name.
+'lastName' =&gt; 'Account' // Optional. The customer's last name.
+'companyName' =&gt; 'Test Co.' // Optional. The customer's company name.
+'address' =&gt; '1234 Any Street' // Optional. The customer's address.
+'city' =&gt; 'Schenectady' // Optional. The customer's city.
+'state' =&gt; 'NY' // Optional. The customer's state or province.
+'zipCode' =&gt; '12345' // Optional. The customer's ZIP code.
+'phone' =&gt; '555-555-1234' // Optional. The customer's phone number.
+'fax' =&gt; '555-555-4321' // Optional. The customer's FAX number.
+'alternatePhone' =&gt; '555-555-5555' // Optional. The customer's alternate phone number.
+'email' =&gt; 'email@test.co' // Optional. The customer's email address.
+'comment' =&gt; 'Customer code creation test.' // Optional. A comment describing this transaction.
+'recurring' =&gt; FALSE // Optional. TRUE if a recurring payment should be created.
+'amount' =&gt; '5' // Optional. The payment amount.
+'beginDate' =&gt; 946684800 // Optional. The begin date of the recurring payment, if used.
+'endDate' =&gt; 946771200 // Optional. The end date of the recurring payment, if used.
+'scheduleType' =&gt; 'Annually' // Optional. The recurring payment schedule.
+ // Options: Weekly, Monthly Quarterly, Annually.
+'scheduleDate' =&gt; '' // Optional. The recurring payment schedule date.
+ // Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
+'accountCustomerName' =&gt; 'Test Account' // Optional. The customer's name as appears on the bank account.
+'accountNum' =&gt; '999999999' // Optional. The customer's bank account number.
+'accountType' =&gt; 'CHECKING' // Optional. The customer's bank account type.
+ // Options: CHECKING, SAVING (North America only.)
+'updateAccountNum' =&gt; FALSE // Optional. True if the customer's account number should be updated.</code></pre></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -687,27 +599,6 @@
                                     <table class="table">
                                                                                     <tr>
                                                 <th>
-                                                    code
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>array(</p>
-<pre><code>'customerIPAddress' =&gt; '',
-'customerCode' =&gt; '',</code></pre>
-<p>  );</p>
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    endcode
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
                                                     
                                                 </th>
                                                 <td>
@@ -718,7 +609,9 @@
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p></p>
+                                                <code>array</code><p><p>An associative array with the following possible values.</p>
+<pre><code>'customerIPAddress' =&gt; '' // Optional. The client IP address.
+'customerCode' =&gt; '' // The iATS Customer Code.</code></pre></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -728,49 +621,15 @@
                         </div>
                                             <a id="method_directDebitACHEFTPayerValidate"></a>
                         <div class="element clickable method public  method_directDebitACHEFTPayerValidate" data-toggle="collapse" data-target=".method_directDebitACHEFTPayerValidate .collapse">
-                            <h2>Validate direct debit payer information.</h2>
+                            <h2>Validate direct debit payer information. UK clients only.</h2>
                             <pre>directDebitACHEFTPayerValidate(array $parameters) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
                             <div class="row collapse">
                                 <div class="detail-description">
-                                    <div class="long_description"><p>UK clients only.</p></div>
+                                    <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    code
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>array(</p>
-<pre><code>'customerIPAddress' =&gt; '',
-'ACHEFTReferenceNum' =&gt; '',
-'beginDate' =&gt; 946684800,
-'endDate' =&gt; 946771200,
-'accountCustomerName' =&gt; 'Test Account',
-'accountNum' =&gt; '999999999',
-'companyName' =&gt; 'Test Company',
-'firstName' =&gt; 'Test',
-'lastName' =&gt; 'Account',
-'address' =&gt; '1234 Any Street',
-'city' =&gt; 'Schenectady',
-'state' =&gt; 'NY',
-'country' =&gt; 'USA',
-'email' =&gt; 'email@test.co',
-'zipCode' =&gt; '12345',</code></pre>
-<p>  );</p>
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    endcode
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        
-                                                                                                    </td>
-                                            </tr>
                                                                                     <tr>
                                                 <th>
                                                     
@@ -783,7 +642,22 @@
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p></p>
+                                                <code>array</code><p><p>An associative array with the following possible values.</p>
+<pre><code>'customerIPAddress' =&gt; '' // Optional. The client IP address.
+'ACHEFTReferenceNum' =&gt; '' // Optional. The ACH / EFT reference number.
+'beginDate' =&gt; 946684800 // The begin date of the direct debit payment.
+'endDate' =&gt; 946771200 // The end date of the direct debit payment.
+'accountCustomerName' =&gt; 'Test Account' // The customer's name as appears on the bank account.
+'accountNum' =&gt; '999999999' // The customer's bank account number.
+'companyName' =&gt; 'Test Company' // Optional. The customer's company name.
+'firstName' =&gt; 'Test' // The customer's first name.
+'lastName' =&gt; 'Account' // The customer's last name.
+'address' =&gt; '1234 Any Street' // The customer's address.
+'city' =&gt; 'Schenectady' // The customer's city.
+'state' =&gt; 'NY' // Optional. The customer's state or province.
+'country' =&gt; 'USA' // Optional. The customer's country.
+'email' =&gt; 'email@test.co' // The customer's email address.
+'zipCode' =&gt; '12345' // The customer's ZIP code.</code></pre></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -793,58 +667,15 @@
                         </div>
                                             <a id="method_directDebitCreateACHEFTCustomerCode"></a>
                         <div class="element clickable method public  method_directDebitCreateACHEFTCustomerCode" data-toggle="collapse" data-target=".method_directDebitCreateACHEFTCustomerCode .collapse">
-                            <h2>Create a customer code using only direct debit.</h2>
+                            <h2>Create a customer code using only direct debit. UK clients only.</h2>
                             <pre>directDebitCreateACHEFTCustomerCode(array $parameters) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
                             <div class="row collapse">
                                 <div class="detail-description">
-                                    <div class="long_description"><p>UK clients only.</p></div>
+                                    <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    code
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>array(</p>
-<pre><code>'customerIPAddress' =&gt; '',
-'customerCode' =&gt; '',
-'ACHEFTReferenceNum' =&gt; '',
-'firstName' =&gt; 'Test',
-'lastName' =&gt; 'Account',
-'companyName' =&gt; 'Test Co.',
-'address' =&gt; '1234 Any Street',
-'city' =&gt; 'Schenectady',
-'state' =&gt; 'NY',
-'zipCode' =&gt; '12345',
-'phone' =&gt; '555-555-1234',
-'fax' =&gt; '555-555-4321',
-'alternatePhone' =&gt; '555-555-5555',
-'email' =&gt; 'email@test.co',
-'comment' =&gt; 'Customer code update test.',
-'recurring' =&gt; FALSE,
-'amount' =&gt; '5',
-'beginDate' =&gt; 946684800,
-'endDate' =&gt; 946771200,
-'scheduleType' =&gt; 'Annually',
-'scheduleDate' =&gt; '',
-'accountCustomerName' =&gt; 'Test Account',
-'accountNum' =&gt; '999999999',
-'accountType' =&gt; 'CHECKING',</code></pre>
-<p>  );</p>
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    endcode
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        
-                                                                                                    </td>
-                                            </tr>
                                                                                     <tr>
                                                 <th>
                                                     
@@ -857,7 +688,34 @@
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p></p>
+                                                <code>array</code><p><p>An associative array with the following possible values.</p>
+<pre><code>'customerIPAddress' =&gt; '' // Optional. The client IP address.
+'customerCode' =&gt; '' // Optional. The iATS Customer Code.
+'ACHEFTReferenceNum' =&gt; '' // Optional. The ACH / EFT reference number.
+'firstName' =&gt; 'Test' // The customer's first name.
+'lastName' =&gt; 'Account' // The customer's last name.
+'companyName' =&gt; 'Test Co.' // Optional. The customer's company name.
+'address' =&gt; '1234 Any Street' // The customer's address.
+'city' =&gt; 'Schenectady' // The customer's city.
+'state' =&gt; 'NY' // The customer's state or province.
+'zipCode' =&gt; '12345' // The customer's ZIP code.
+'phone' =&gt; '555-555-1234' // Optional. The customer's phone number.
+'fax' =&gt; '555-555-4321' // Optional. The customer's FAX number.
+'alternatePhone' =&gt; '555-555-5555' // Optional. The customer's alternate phone number.
+'email' =&gt; 'email@test.co' // Optional. The customer's email address.
+'comment' =&gt; 'Customer code creation test.' // Optional. A comment describing this transaction.
+'recurring' =&gt; FALSE // Optional. TRUE if a recurring payment should be created.
+'amount' =&gt; '5' // Optional. The payment amount.
+'beginDate' =&gt; 946684800 // The begin date of the recurring payment, if used.
+'endDate' =&gt; 946771200 // The end date of the recurring payment, if used.
+'scheduleType' =&gt; 'Annually' // Optional. The recurring payment schedule.
+ // Options: Weekly, Monthly Quarterly, Annually.
+'scheduleDate' =&gt; '' // Optional. The recurring payment schedule date.
+ // Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
+'accountCustomerName' =&gt; 'Test Account' // Optional. The customer's name as appears on the bank account.
+'accountNum' =&gt; '999999999' // Optional. The customer's bank account number.
+'accountType' =&gt; 'CHECKING' // Optional. The customer's bank account type.
+ // Options: CHECKING, SAVING (North America only.)</code></pre></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -867,59 +725,15 @@
                         </div>
                                             <a id="method_directDebitUpdateACHEFTCustomerCode"></a>
                         <div class="element clickable method public  method_directDebitUpdateACHEFTCustomerCode" data-toggle="collapse" data-target=".method_directDebitUpdateACHEFTCustomerCode .collapse">
-                            <h2>Update a customer code using only direct debit.</h2>
+                            <h2>Update a customer code using only direct debit. UK clients only.</h2>
                             <pre>directDebitUpdateACHEFTCustomerCode(array $parameters) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
                             <div class="row collapse">
                                 <div class="detail-description">
-                                    <div class="long_description"><p>UK clients only.</p></div>
+                                    <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    code
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>array(</p>
-<pre><code>'customerIPAddress' =&gt; '',
-'customerCode' =&gt; '',
-'ACHEFTReferenceNum' =&gt; '',
-'firstName' =&gt; 'Test',
-'lastName' =&gt; 'Account',
-'companyName' =&gt; 'Test Co.',
-'address' =&gt; '1234 Any Street',
-'city' =&gt; 'Schenectady',
-'state' =&gt; 'NY',
-'zipCode' =&gt; '12345',
-'phone' =&gt; '555-555-1234',
-'fax' =&gt; '555-555-4321',
-'alternatePhone' =&gt; '555-555-5555',
-'email' =&gt; 'email@test.co',
-'comment' =&gt; 'Customer code update test.',
-'recurring' =&gt; FALSE,
-'amount' =&gt; '5',
-'beginDate' =&gt; 946684800,
-'endDate' =&gt; 946771200,
-'scheduleType' =&gt; 'Annually',
-'scheduleDate' =&gt; '',
-'accountCustomerName' =&gt; 'Test Account',
-'accountNum' =&gt; '999999999',
-'accountType' =&gt; 'CHECKING',
-'updateAccountNum' =&gt; FALSE,</code></pre>
-<p>  );</p>
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    endcode
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        
-                                                                                                    </td>
-                                            </tr>
                                                                                     <tr>
                                                 <th>
                                                     
@@ -932,7 +746,34 @@
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p></p>
+                                                <code>array</code><p><p>An associative array with the following possible values.</p>
+<pre><code>'customerIPAddress' =&gt; '' // Optional. The client IP address.
+'customerCode' =&gt; '' // The iATS Customer Code.
+'firstName' =&gt; 'Test' // Optional. The customer's first name.
+'lastName' =&gt; 'Account' // Optional. The customer's last name.
+'companyName' =&gt; 'Test Co.' // Optional. The customer's company name.
+'address' =&gt; '1234 Any Street' // Optional. The customer's address.
+'city' =&gt; 'Schenectady' // Optional. The customer's city.
+'state' =&gt; 'NY' // Optional. The customer's state or province.
+'zipCode' =&gt; '12345' // Optional. The customer's ZIP code.
+'phone' =&gt; '555-555-1234' // Optional. The customer's phone number.
+'fax' =&gt; '555-555-4321' // Optional. The customer's FAX number.
+'alternatePhone' =&gt; Optional. '555-555-5555' // Optional. The customer's alternate phone number.
+'email' =&gt; 'email@test.co' // Optional. The customer's email address.
+'comment' =&gt; 'Customer code creation test.' // Optional. A comment describing this transaction.
+'recurring' =&gt; FALSE // Optional. TRUE if a recurring payment should be created.
+'amount' =&gt; '5' // Optional. The payment amount.
+'beginDate' =&gt; 946684800 // Optional. The begin date of the recurring payment, if used.
+'endDate' =&gt; 946771200 // Optional. The end date of the recurring payment, if used.
+'scheduleType' =&gt; 'Annually' // Optional. The recurring payment schedule.
+ // Options: Weekly, Monthly Quarterly, Annually.
+'scheduleDate' =&gt; '' // Optional. The recurring payment schedule date.
+ // Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
+'accountCustomerName' =&gt; 'Test Account' // Optional. The customer's name as appears on the bank account.
+'accountNum' =&gt; '999999999' // Optional. The customer's bank account number.
+'accountType' =&gt; 'CHECKING' // Optional. The customer's bank account type.
+ // Options: CHECKING, SAVING (North America only.)
+'updateAccountNum' =&gt; FALSE // Optional. True is the customer's account number should be updated.</code></pre></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -1096,7 +937,7 @@
                                             <a id="method_checkRestrictions"></a>
                         <div class="element clickable method protected  method_checkRestrictions inherited" data-toggle="collapse" data-target=".method_checkRestrictions .collapse">
                             <h2>Check restrictions for service.</h2>
-                            <pre>checkRestrictions(array $parameters) : bool|string</pre>
+                            <pre>checkRestrictions(array $parameters, bool $forceCurrencyCheck = FALSE) : bool|string</pre>
                             <div class="labels">
                                 <span class="label">inherited</span>                                                                                                                                                            </div>
                             <div class="row collapse">
@@ -1117,6 +958,11 @@
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
                                                 <code>array</code><p><p>Request parameters.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$forceCurrencyCheck</h4>
+                                                <code>bool</code><p><p>True to force a currency check even when currency or
+ method of payment are missing.</p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -1681,7 +1527,7 @@
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Thu, 13 Feb 2014 20:58:14 +0000.<br/>
+            generated on Tue, 18 Feb 2014 08:15:46 +0000.<br/>
     </footer>
     </body>
 </html>

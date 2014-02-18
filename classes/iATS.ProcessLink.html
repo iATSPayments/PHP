@@ -347,7 +347,7 @@
                                                                                                                                                                                             </div>
                             <div class="row collapse">
                                 <div class="detail-description">
-                                    <div class="long_description"></div>
+                                    <div class="long_description"><p>North America clients only.</p></div>
 
                                     <table class="table">
                                                                                     <tr>
@@ -411,6 +411,7 @@
 'invoiceNum' =&gt; '00000001' // Optional. The invoice number for this transaction.
 'ccNum' =&gt; '4222222222222220' // The customer's credit card number.
 'ccExp' =&gt; '12/17' // The customer's credit card expiration date.
+'mop' =&gt; 'VISA' // The customer's method of payment.
 'firstName' =&gt; 'Test' // The customer's first name.
 'lastName' =&gt; 'Account' // The customer's last name.
 'address' =&gt; '1234 Any Street' // The customer's address.
@@ -418,7 +419,8 @@
 'state' =&gt; 'NY' // The customer's state or province.
 'zipCode' =&gt; '12345' // The customer's ZIP code.
 'cvv2' =&gt; '000' // Optional. The customer's credit card CVV2 code.
-'total' =&gt; '5' // The total payment amount.</code></pre></p>
+'total' =&gt; '5' // The total payment amount.
+'currency' =&gt; 'USD' // The currency to process payment in.</code></pre></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -467,7 +469,7 @@
                                                                                                                                                                                             </div>
                             <div class="row collapse">
                                 <div class="detail-description">
-                                    <div class="long_description"></div>
+                                    <div class="long_description"><p>North America clients only.</p></div>
 
                                     <table class="table">
                                                                                     <tr>
@@ -504,7 +506,7 @@
                                                                                                                                                                                             </div>
                             <div class="row collapse">
                                 <div class="detail-description">
-                                    <div class="long_description"></div>
+                                    <div class="long_description"><p>North America clients only.</p></div>
 
                                     <table class="table">
                                                                                     <tr>
@@ -541,7 +543,8 @@
                                                                                                                                                                                             </div>
                             <div class="row collapse">
                                 <div class="detail-description">
-                                    <div class="long_description"><p>Partial refunds are valid.</p></div>
+                                    <div class="long_description"><p>Partial refunds are valid.
+North America clients only.</p></div>
 
                                     <table class="table">
                                                                                     <tr>
@@ -576,7 +579,7 @@
                                                                                                                                                                                             </div>
                             <div class="row collapse">
                                 <div class="detail-description">
-                                    <div class="long_description"></div>
+                                    <div class="long_description"><p>North America clients only.</p></div>
 
                                     <table class="table">
                                                                                     <tr>
@@ -620,7 +623,7 @@
                                                                                                                                                                                             </div>
                             <div class="row collapse">
                                 <div class="detail-description">
-                                    <div class="long_description"></div>
+                                    <div class="long_description"><p>North America clients only.</p></div>
 
                                     <table class="table">
                                                                                     <tr>
@@ -722,7 +725,9 @@
                                                 <code>array</code><p><p>An associative array with the following possible values.</p>
 <pre><code>'customerIPAddress' =&gt; '' // Optional. The client's IP address.
 'transactionId' =&gt; '0000001' // The ID of the transaction to refund.
+'mop' =&gt; 'VISA' // The customer's method of payment.
 'total' =&gt; '-10' // The total amount to refund. Must be a negative number.
+'currency' =&gt; 'USD' // The currency to process payment in.
 'comment' =&gt; 'Credit card refund test.' // Optional. A comment describing this transaction.</code></pre></p>
                                             </div>
                                                                             
@@ -770,7 +775,8 @@
 'state' =&gt; 'NY' // The customer's state or province.
 'zipCode' =&gt; '12345' // The customer's ZIP code.
 'total' =&gt; '5' // The total payment amount.
-'comment' =&gt; 'Process credit card test.' // Optional. A comment describing this transaction.</code></pre></p>
+'comment' =&gt; 'Process credit card test.' // Optional. A comment describing this transaction.
+'currency' =&gt; 'USD' // The currency to process payment in.</code></pre></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -806,8 +812,10 @@
 'customerCode' =&gt; '' // The iATS Customer Code.
 'invoiceNum' =&gt; '00000001' // Optional. The invoice number for this transaction.
 'cvv2' =&gt; '000' // Optional. The customer's credit card CVV2 code.
+'mop' =&gt; 'VISA' // The customer's method of payment.
 'total' =&gt; '5' // The total payment amount.
-'comment' =&gt; 'Process credit card test with Customer Code.' // Optional. A comment describing this transaction.</code></pre></p>
+'comment' =&gt; 'Process credit card test with Customer Code.' // Optional. A comment describing this transaction.
+'currency' =&gt; 'USD' // The currency to process payment in.</code></pre></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -818,7 +826,7 @@
                                             <a id="method_responseHandler"></a>
                         <div class="element clickable method public  method_responseHandler" data-toggle="collapse" data-target=".method_responseHandler .collapse">
                             <h2>Response Handler for ProcessLink calls.</h2>
-                            <pre>responseHandler(array|bool $response, string $result_name) : mixed</pre>
+                            <pre>responseHandler(object $response, string $result_name) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
                             <div class="row collapse">
@@ -838,7 +846,7 @@
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$response</h4>
-                                                <code>array|bool</code><p><p>SOAP response.</p></p>
+                                                <code>object</code><p><p>SOAP response.</p></p>
                                             </div>
                                                                                     <div class="subelement argument">
                                                 <h4>$result_name</h4>
@@ -971,7 +979,7 @@
                                             <a id="method_checkRestrictions"></a>
                         <div class="element clickable method protected  method_checkRestrictions inherited" data-toggle="collapse" data-target=".method_checkRestrictions .collapse">
                             <h2>Check restrictions for service.</h2>
-                            <pre>checkRestrictions(array $parameters) : bool|string</pre>
+                            <pre>checkRestrictions(array $parameters, bool $forceCurrencyCheck = FALSE) : bool|string</pre>
                             <div class="labels">
                                 <span class="label">inherited</span>                                                                                                                                                            </div>
                             <div class="row collapse">
@@ -992,6 +1000,11 @@
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
                                                 <code>array</code><p><p>Request parameters.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$forceCurrencyCheck</h4>
+                                                <code>bool</code><p><p>True to force a currency check even when currency or
+ method of payment are missing.</p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -1556,7 +1569,7 @@
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Thu, 13 Feb 2014 20:58:14 +0000.<br/>
+            generated on Tue, 18 Feb 2014 08:15:46 +0000.<br/>
     </footer>
     </body>
 </html>
