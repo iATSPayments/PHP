@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * File description.
+ * Unit tests for the core iATS API.
  */
 
 namespace iATS;
@@ -11,12 +11,30 @@ namespace iATS;
  */
 class CoreTest extends \PHPUnit_Framework_TestCase {
 
+  /** @var string $agentCode */
+  private static $agentCode;
+
+  /** @var string $password */
+  private static $password;
+
+  public function setUp()
+  {
+    self::$agentCode = IATS_AGENT_CODE;
+    self::$password = IATS_PASSWORD;
+  }
+
   /**
-   * Bad credentials.
+   * Test bad credentials.
+   *
+   * This test is currently disabled as the iATS API will lock out
+   * accounts after a number of access attempts made using an
+   * incorrect password.
    */
   public function testBadCredentials() {
-    $agentcode = 'TEST88';
-    $password = 'TEST88aa';
+    /*
+    $agentcode = self::$agentCode;
+    $password = self::$password . 'aa'; // Make password incorrect.
+
     $date = time();
     $request = array(
       'customerIPAddress' => '',
@@ -47,76 +65,79 @@ class CoreTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink($agentcode, $password, 'NA');
     $response = $iats->processCreditCard($request);
     $this->assertEquals($response,
-      'Agent code has not been set up on the authorization system. Please call iATS at 1-888-955-5455.');
+      'Agent code has not been set up on the authorization system. Please call iATS at 1-888-955-5455.', $response);
 
     $iats = new CustomerLink($agentcode, $password, 'NA');
     $response = $iats->getCustomerCodeDetail($request);
-    $this->assertEquals('Error : Invalid Username or Password.', $response);
+    $this->assertEquals('Error : Invalid Username or Password.', $response['AUTHORIZATIONRESULT']);
 
     $iats = new ReportLink($agentcode, $password);
     $response = $iats->getCreditCardReject($request);
     $this->assertEquals('Bad Credentials', $response);
+    */
 
+    $this->assertTrue(TRUE);
   }
-//
-//  /**
-//   * Bad params.
-//   */
-//  public function testBadParams() {
-//    $agentcode = 'TEST88';
-//    $password = 'TEST88';
-//    $date = strtotime('12/17/2011') + 'a';
-//    // Create and populate the request object.
-//    $request = array(
-//     'customerIPAddress'=>'',
-//     'customerCode'=>'(*&(*%&#(*&#',
-//     'firstName'=>'Test',
-//     'lastName'=>'Account',
-//     'companyName'=>'',
-//     'address'=>'1234 Any Street',
-//     'city'=>'Schenectady',
-//     'state'=>'NY',
-//     'zipCode'=>'12345',
-//     'phone'=>'',
-//     'fax'=>'',
-//     'alternatePhone'=>'',
-//     'email'=>'',
-//     'comment'=>'',
-// //    'recurring'=>FALSE,
-// //    'amount'=>'10',
-// //    'beginDate'=>$beginDate,
-// //    'endDate'=>$endDate,
-// //    'scheduleType'=>'',
-// //    'scheduleDate'=>'',
-//     'creditCardCustomerName'=>'Test Account',
-//     'creditCardNum'=>'4111111111111111a',
-//     'cvv2'=>'000',
-//     'invoiceNum' => '00000001',
-//     'creditCardExpiry'=>'12/17',
-//     'mop'=>'VISA',
-//     'total' => '2.00',
-//    'date' => '',
-//    );
-//
-//    $iats = new iATS($agentcode, $password);
-//    $service = new ProcessLink();
-//    $service->processCCwithCustCode();
-//    $response = $iats->getSoapResponse('NA', $service, $request);
-//    $this->assertEquals('Bad Credentials', $response);
-//  }
-//
-//  /**
-//   * Test that correct server used for currency.
-//   */
-//  public function testServerCurrency() {
-//    $this->assertTrue(FALSE);
-//  }
-//
-//  /**
-//   * Bad request.
-//   */
-//  public function testBadRequest() {
-//    $this->assertTrue(FALSE);
-//  }
 
+  /**
+   * Test bad request parameters.
+   */
+  public function testBadParameters() {
+    $request = array(
+      'customerIPAddress' => '',
+      'mop' => 'VISA',
+      'currency' => 'USD',
+    );
+
+    $iats = new ProcessLink(self::$agentCode, self::$password);
+    $response = $iats->processCreditCard($request);
+
+    $this->assertEquals('Object reference not set to an instance of an object.', $response);
+  }
+
+  /**
+   * Test invalid currency for current server.
+   */
+  public function testProcessLinkprocessCreditCardInvalidCurrency() {
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'invoiceNum' => '00000001',
+      'creditCardNum' => '4111111111111111',
+      'creditCardExpiry' => '12/17',
+      'cvv2' => '000',
+      'mop' => 'VISA',
+      'firstName' => 'Test',
+      'lastName' => 'Account',
+      'address' => '1234 Any Street',
+      'city' => 'Schenectady',
+      'state' => 'NY',
+      'zipCode' => '12345',
+      'total' => '5',
+      'comment' => 'Process CC test.',
+      // Not required for request
+      'currency' => 'GBP'
+    );
+
+    $iats = new ProcessLink(self::$agentCode, self::$password);
+    $response = $iats->processCreditCard($request);
+
+    $this->assertEquals('Service cannot be used with this Method of Payment or Currency.', $response);
+  }
+
+  /**
+   * Test bad request.
+   */
+  public function testBadRequest() {
+    $resultStr = '<IATSRESPONSE xmlns=""><STATUS>Failure</STATUS><ERRORS>Bad request.</ERRORS><PROCESSRESULT><AUTHORIZATIONRESULT/></PROCESSRESULT></IATSRESPONSE>';
+
+    $result = new \StdClass();
+    $result->ProcessCreditCardV1Result = new \StdClass();
+    $result->ProcessCreditCardV1Result->any = $resultStr;
+
+    $iats = new ProcessLink(self::$agentCode, self::$password);
+    $response = $iats->responseHandler($result, 'ProcessCreditCardV1Result');
+
+    $this->assertEquals('Bad request.', $response);
+  }
 }
