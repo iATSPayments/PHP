@@ -300,7 +300,7 @@ class ProcessLink extends Core {
    *   Client response array or API error.
    */
   public function processCreditCardBatch($parameters) {
-    $restricted = $this->checkRestrictions($parameters, TRUE);
+    $restricted = $this->checkRestrictions($parameters);
     if ($restricted) {
       return $restricted;
     }
