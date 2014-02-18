@@ -80,25 +80,6 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Test getACHEFTPaymentBoxJournalCSV.
-   */
-  public function testReportLinkgetACHEFTPaymentBoxJournalCSV() {
-    $fromDate = strtotime(date('m/d/Y', time()) . '00:00:00');
-    $toDate = strtotime(date('m/d/Y', time()) . '23:59:59');
-    $request = array(
-      'from' => $fromDate, // NOTE: Docs say 'fromDate', API says 'from'
-      'to' => $toDate, // NOTE: Docs say 'toDate', API says 'to'
-      'customerIPAddress' => '',
-    );
-
-    $iats = new ReportLink(self::$agentCode, self::$password);
-    $response = $iats->getACHEFTPaymentBoxJournalCSV($request);
-
-    // TODO: Get test data for this method.
-    $this->assertEquals('', $response);
-  }
-
-  /**
    * Test getACHEFTPaymentBoxRejectCSV.
    */
   public function testReportLinkgetACHEFTPaymentBoxRejectCSV() {
