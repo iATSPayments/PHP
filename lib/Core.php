@@ -87,7 +87,7 @@ class Core {
    * @param string $password
    *   iATS account password.
    * @param string $serverid
-   *   Server indentifier. (Defaults to 'NA')
+   *   Server identifier. (Defaults to 'NA')
    *
    * @see setServer() For options
    *
@@ -120,7 +120,7 @@ class Core {
    * Set the server to use based on a server id.
    *
    * @param string $serverid
-   *   Server identifider ('UK' or 'NA'.)
+   *   Server identifier ('UK' or 'NA'.)
    *
    * @throws \Exception
    */
