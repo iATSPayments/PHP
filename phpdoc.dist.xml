@@ -11,6 +11,6 @@
         <directory>lib</directory>
     </files>
     <transformations>
-        <template name="clean" />
+        <template name="responsive-twig" />
     </transformations>
 </phpdoc>
