@@ -39,7 +39,8 @@ class Core {
   /**
    * @var string $serverid
    *   Server identifier.
-   *   \see setServer()
+   *
+   *   @see Core::setServer()
    */
   protected $serverid = '';
 
@@ -89,7 +90,7 @@ class Core {
    * @param string $serverid
    *   Server identifier. (Defaults to 'NA')
    *
-   * @see setServer() For options
+   * @see \iATS\Core::setServer() For options
    *
    */
   public function __construct($agentcode, $password, $serverid = 'NA') {
@@ -105,7 +106,7 @@ class Core {
    *   Service endpoint
    * @param array $options
    *   SoapClient options
-   *  \see http://www.php.net/manual/en/soapclient.soapclient.php
+   *   @see http://www.php.net/manual/en/soapclient.soapclient.php
    *
    * @return \SoapClient
    *   Returns IATS SoapClient object
@@ -284,7 +285,7 @@ class Core {
   }
 
   /**
-   * Create array from XML string.
+   * Convert an XML string to an array.
    *
    * @param string $xmlstring
    *   An XML string to be processed.

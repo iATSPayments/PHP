@@ -30,7 +30,7 @@ class ProcessLink extends Core {
    *   iATS account password.
    * @param string $serverid
    *   Server identifier (Defaults to 'NA').
-   *   \see setServer()
+   *   @see setServer()
    */
   public function __construct($agentcode, $password, $serverid = 'NA') {
     parent::__construct($agentcode, $password, $serverid);
