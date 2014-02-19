@@ -299,15 +299,15 @@ class Core {
   }
 
   /**
-   * Reject code lookup array.
+   * Return a rejection message for a given code.
    *
-   * @param int $rejectcode
-   *   Reject codes and their meaning.
+   * @param int $reject_code
+   *   iATS rejection code.
    *
    * @return mixed
-   *   Returns reject code meaning.
+   *   Rejection message for a given code.
    */
-  protected function reject($rejectcode) {
+  protected function reject($reject_code) {
     $rejects = array(
       1 => 'Agent code has not been set up on the authorization system. Please call iATS at 1-888-955-5455.',
       2 => 'Unable to process transaction. Verify and re-enter credit card information.',
@@ -349,7 +349,8 @@ class Core {
       52 => 'Credit card BIN country blocked. Call iATS at 1-888-955-5455.',
       100 => 'DO NOT REPROCESS. Call iATS at 1-888-955-5455.',
     );
-    return $rejects[$rejectcode];
+
+    return isset($rejects[$reject_code]) ? $rejects[$reject_code] : '';
   }
 
 }
