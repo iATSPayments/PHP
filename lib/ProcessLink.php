@@ -438,7 +438,7 @@ class ProcessLink extends Core {
       // Handle reject codes.
       if (strpos($parsedResult['AUTHORIZATIONRESULT'], 'REJECT') !== FALSE) {
         $reject_code = preg_replace("/[^0-9]/", "", $parsedResult['AUTHORIZATIONRESULT']);
-        return $this->reject($reject_code);
+        return $this->rejectMessage($reject_code);
       }
     }
     else

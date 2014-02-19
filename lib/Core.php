@@ -308,7 +308,7 @@ class Core {
    * @return mixed
    *   Rejection message for a given code.
    */
-  protected function reject($reject_code) {
+  protected function rejectMessage($reject_code) {
     $rejects = array(
       1 => 'Agent code has not been set up on the authorization system. Please call iATS at 1-888-955-5455.',
       2 => 'Unable to process transaction. Verify and re-enter credit card information.',
