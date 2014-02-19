@@ -11,11 +11,13 @@ namespace iATS;
  * @package iATS
  */
 class Core {
+
   /**
    * @var string $na_server
    *   North America server url.
    */
   private $na_server = 'https://www.iatspayments.com';
+
   /**
    * @var string $uk_server
    *   UK server url.
@@ -27,27 +29,32 @@ class Core {
    *   iATS account agent code.
    */
   protected $agentcode = '';
+
   /**
    * @var string $password
    *   iATS account password.
    */
   protected $password = '';
+
   /**
    * @var string $serverid
    *   Server identifier.
    *   \see setServer()
    */
   protected $serverid = '';
+
   /**
    * @var string $server
    *   Server url.
    */
   protected $server = '';
+
   /**
    * @var string $endpoint
    *   Service endpoint
    */
   protected $endpoint = '';
+
   /**
    * @var string $params
    *   Requrest parameters
@@ -59,11 +66,13 @@ class Core {
    *   The result name
    */
   public $resultname = '';
+
   /**
    * @var string $format
    *   Format
    */
   public $format = '';
+
   /**
    * @var array $restrictedservers
    *   Restricted servers array
