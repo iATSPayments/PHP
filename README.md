@@ -43,15 +43,21 @@ invalid calls being made to the API.
 
 ### CustomerLink
 
+iATS CustomerLink service documentation: https://www.iatspayments.com/NetGate/CustomerLink.asmx
+
 The CustomerLink service is used to create and update customer records. CustomerLink may be used with the
 ProcessLink service to process single or recurring transactions for customers.
 
 ### ProcessLink
 
+iATS ProcessLink service documentation: https://www.iatspayments.com/NetGate/ProcessLink.asmx
+
 The ProcessLink service is used to process single, recurring and bulk transactions for customers. ProcessLink can
 also be used to refund transactions.
 
 ### ReportLink
+
+iATS ReportLink service documentation: https://www.iatspayments.com/NetGate/ReportLink.asmx
 
 The ReportLink service is used to generate transaction reports for the other services. Available reports include
 credit / debit card transactions, rejected transactions and returns.
