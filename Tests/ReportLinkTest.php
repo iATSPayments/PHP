@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Unit tests for Report Link element of the iATS API.
+ * Unit tests for Report Link component of the iATS API.
  */
 
 namespace iATS;
