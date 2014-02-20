@@ -11,6 +11,7 @@
  *
  * Reports may be generated in either XML or CSV.
  *
+ * Service guide: http://home.iatspayments.com/sites/default/files/iats_webservices_reportlink_version_4.0.pdf
  * API documentation: https://www.iatspayments.com/NetGate/ReportLink.asmx
  * Note: API methods with responses containing the string "x0020" are
  * depreciated and not supported by this class.

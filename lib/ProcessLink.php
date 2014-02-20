@@ -10,6 +10,7 @@
  * the CustomerLink service, ProcessLink may also be used to create new customer codes
  * as part of an initial transaction.
  *
+ * Service guide: http://home.iatspayments.com/sites/default/files/iats_webservices_processlink_version_4.0.pdf
  * API documentation: https://www.iatspayments.com/NetGate/ProcessLink.asmx
  */
 

@@ -10,6 +10,7 @@
  * Once created, customer codes may be reused, removing the need to store sensitive
  * credit card or ACH information on local servers.
  *
+ * Service guide: http://home.iatspayments.com/sites/default/files/iats_webservices_customerlink_version_4.0.pdf
  * API documentation: https://www.iatspayments.com/NetGate/CustomerLink.asmx
  *                UK: https://www.uk.iatspayments.com/NetGate/CustomerLink.asmx
  * ACH documentation: http://en.wikipedia.org/wiki/Automated_Clearing_House
