@@ -55,6 +55,7 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
 
     self::$batchFilePath = dirname(__FILE__) . '/batchfiles/';
 
+    // Create temporary batch files.
     self::createACHEFTBatchFile();
     self::createACHEFTBatchFileInvalidFormat();
     self::createACHEFTRefundBatchFile();
