@@ -160,13 +160,13 @@
                             </a>
                         </li>
                                                                                 <li class="method protected">
-                            <a href="#method_xml2array" title="xml2array :: Create array from XML string.">
-                                <span class="description">Create array from XML string.</span><pre>xml2array</pre>
+                            <a href="#method_xml2array" title="xml2array :: Convert an XML string to an array.">
+                                <span class="description">Convert an XML string to an array.</span><pre>xml2array</pre>
                             </a>
                         </li>
                                                                                 <li class="method protected">
-                            <a href="#method_reject" title="reject :: Reject code lookup array.">
-                                <span class="description">Reject code lookup array.</span><pre>reject</pre>
+                            <a href="#method_rejectMessage" title="rejectMessage :: Return a rejection message for a given code.">
+                                <span class="description">Return a rejection message for a given code.</span><pre>rejectMessage</pre>
                             </a>
                         </li>
                                                 </ul>
@@ -230,7 +230,7 @@
                                                 </th>
                                                 <td>
                                                                                                                                                                         
-                                                                                                                                                                            \iATS\setServer()
+                                                                                                                                                                            <a href="../classes/iATS.Core.html#method_setServer">\iATS\Core::setServer()</a>
                                                                                                                 <p>For options</p>
                                                                                                     </td>
                                             </tr>
@@ -254,7 +254,7 @@
                                             </div>
                                                                                     <div class="subelement argument">
                                                 <h4>$serverid</h4>
-                                                <code>string</code><p><p>Server indentifier. (Defaults to 'NA')</p></p>
+                                                <code>string</code><p><p>Server identifier. (Defaults to 'NA')</p></p>
                                             </div>
                                                                             
                                                                     </div>
@@ -288,7 +288,7 @@
                                                                                     <div class="subelement argument">
                                                 <h4>$options</h4>
                                                 <code>array</code><p><p>SoapClient options
- \see <a href="http://www.php.net/manual/en/soapclient.soapclient.php">http://www.php.net/manual/en/soapclient.soapclient.php</a></p></p>
+  @see <a href="http://www.php.net/manual/en/soapclient.soapclient.php">http://www.php.net/manual/en/soapclient.soapclient.php</a></p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -328,7 +328,7 @@
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$serverid</h4>
-                                                <code>string</code><p><p>Server identifider ('UK' or 'NA'.)</p></p>
+                                                <code>string</code><p><p>Server identifier ('UK' or 'NA'.)</p></p>
                                             </div>
                                                                             
                                                                     </div>
@@ -523,7 +523,7 @@
                         </div>
                                             <a id="method_xml2array"></a>
                         <div class="element clickable method protected  method_xml2array" data-toggle="collapse" data-target=".method_xml2array .collapse">
-                            <h2>Create array from XML string.</h2>
+                            <h2>Convert an XML string to an array.</h2>
                             <pre>xml2array(string $xmlstring) : array</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
@@ -552,10 +552,10 @@
                                                                     </div>
                             </div>
                         </div>
-                                            <a id="method_reject"></a>
-                        <div class="element clickable method protected  method_reject" data-toggle="collapse" data-target=".method_reject .collapse">
-                            <h2>Reject code lookup array.</h2>
-                            <pre>reject(int $rejectcode) : mixed</pre>
+                                            <a id="method_rejectMessage"></a>
+                        <div class="element clickable method protected  method_rejectMessage" data-toggle="collapse" data-target=".method_rejectMessage .collapse">
+                            <h2>Return a rejection message for a given code.</h2>
+                            <pre>rejectMessage(int $reject_code) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
                             <div class="row collapse">
@@ -574,12 +574,12 @@
 
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
-                                                <h4>$rejectcode</h4>
-                                                <code>int</code><p><p>Reject codes and their meaning.</p></p>
+                                                <h4>$reject_code</h4>
+                                                <code>int</code><p><p>iATS rejection code.</p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
-                                        <code>mixed</code><p><p>Returns reject code meaning.</p></p>
+                                        <code>mixed</code><p><p>Rejection message for a given code.</p></p>
                                                                     </div>
                             </div>
                         </div>
@@ -721,7 +721,7 @@
                                                     <a id="property_serverid"> </a>
                             <div class="element clickable property  protected property_serverid" data-toggle="collapse" data-target=".property_serverid .collapse">
                                 <h2>Server identifier.
-  \see setServer()</h2>
+  @see Core::setServer()</h2>
                                 <pre>serverid : string</pre>
                                 <div class="labels">
                                                                                                         </div>
@@ -736,7 +736,7 @@
                                                     </th>
                                                     <td>
                                                                                                                     <p>Server identifier.
-  \see setServer()</p>
+  @see Core::setServer()</p>
                                                                                                             </td>
                                                 </tr>
                                                                                             <tr>
@@ -971,7 +971,7 @@
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Tue, 18 Feb 2014 08:15:46 +0000.<br/>
+            generated on Thu, 20 Feb 2014 17:38:27 +0000.<br/>
     </footer>
     </body>
 </html>
