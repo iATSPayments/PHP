@@ -11,7 +11,10 @@ iATS Web Services overview: http://home.iatspayments.com/sites/default/files/iat
 ## Requirements
 
 * An account with iATS Payments http://www.iatspayments.com/
-    * To request an account http://home.iatspayments.com/iats-php-wrapper/
+* To request an account http://home.iatspayments.com/iats-php-wrapper
+* NB! If you are already an iATS customer, please contact us to verify your Account settings
+    * The PHP wrapper requires certain features to be set up to your existing account
+    * Please contact us http://home.iatspayments.com/iats-php-wrapper with your Client Code
 * PHP 5.3.0 or greater
 * SOAP enabled in your PHP installation
 
