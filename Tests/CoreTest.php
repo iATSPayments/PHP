@@ -24,62 +24,6 @@ class CoreTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Test bad credentials.
-   *
-   * This test is currently disabled as the iATS API will lock out
-   * accounts after a number of access attempts made using an
-   * incorrect password.
-   */
-  public function testBadCredentials() {
-    /*
-    $agentcode = self::$agentCode;
-    $password = self::$password . 'aa'; // Make password incorrect.
-
-    $date = time();
-    $request = array(
-      'customerIPAddress' => '',
-      'customerCode' => '',
-      'firstName' => 'Test',
-      'lastName' => 'Account',
-      'companyName' => '',
-      'address' => '1234 Any Street',
-      'city' => 'Schenectady',
-      'state' => 'NY',
-      'zipCode' => '12345',
-      'phone' => '',
-      'fax' => '',
-      'alternatePhone' => '',
-      'email' => '',
-      'comment' => '',
-      'creditCardCustomerName' => 'Test Account',
-      'creditCardNum' => '4222222222222220',
-      'cvv2' => '000',
-      'invoiceNum' => '00000001',
-      'creditCardExpiry' => '12/17',
-      'mop' => 'VISA',
-      'total' => '15',
-      'date' => $date,
-      'currency' => 'USD',
-    );
-
-    $iats = new ProcessLink($agentcode, $password, 'NA');
-    $response = $iats->processCreditCard($request);
-    $this->assertEquals($response,
-      'Agent code has not been set up on the authorization system. Please call iATS at 1-888-955-5455.', $response);
-
-    $iats = new CustomerLink($agentcode, $password, 'NA');
-    $response = $iats->getCustomerCodeDetail($request);
-    $this->assertEquals('Error : Invalid Username or Password.', $response['AUTHORIZATIONRESULT']);
-
-    $iats = new ReportLink($agentcode, $password);
-    $response = $iats->getCreditCardReject($request);
-    $this->assertEquals('Bad Credentials', $response);
-    */
-
-    $this->assertTrue(TRUE);
-  }
-
-  /**
    * Test bad request parameters.
    */
   public function testBadParameters() {
