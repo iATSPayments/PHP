@@ -319,16 +319,14 @@ class ProcessLink extends Core {
    *   An associative array with the following possible values.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *     'transactionId' => '0000001' // The ID of the transaction to refund.
-   *     'mop' => 'VISA' // The customer's method of payment.
    *     'total' => '-10' // The total amount to refund. Must be a negative number.
-   *     'currency' => 'USD' // The currency to process payment in.
    *     'comment' => 'Credit card refund test.' // Optional. A comment describing this transaction.
    *
    * @return mixed
    *   Client response array or API error.
    */
   public function processCreditCardRefundWithTransactionId($parameters) {
-    $restricted = $this->checkRestrictions($parameters, TRUE);
+    $restricted = $this->checkRestrictions($parameters);
     if ($restricted) {
       return $restricted;
     }
