@@ -266,7 +266,7 @@ class Core {
           'VISA','MC', 'AMX', 'DSC',
           'VISA DEBIT', 'MC DEBIT',
         ),
-        'CDN' => array(
+        'CAD' => array(
           'VISA', 'MC', 'AMX',
           'VISA DEBIT',
         ),
