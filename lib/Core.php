@@ -111,7 +111,7 @@ class Core {
    * @return \SoapClient
    *   Returns IATS SoapClient object
    */
-  protected function getSoapClient($endpoint, $options = array('trace' => TRUE)) {
+  protected function getSoapClient($endpoint, $options = array()) {
     $this->setServer($this->serverid);
     $wsdl = $this->server . $endpoint;
     return new \SoapClient($wsdl, $options);
@@ -158,7 +158,12 @@ class Core {
       $parameters['agentCode'] = $this->agentcode;
       $parameters['password'] = $this->password;
 
-      $soap = $this->getSoapClient($this->endpoint);
+      $soap_options = array(
+        'trace' => TRUE,
+        'soap_version' => SOAP_1_2
+      );
+
+      $soap = $this->getSoapClient($this->endpoint, $soap_options);
       return $soap->$method($parameters);
     }
     catch (\SoapFault $exception) {
