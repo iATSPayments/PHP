@@ -1,4 +1,11 @@
 {
+    "name": "iatspayments/php",
+    "version": "1.0",
+    "type": "library",
+    "description": "iATS Payments API PHP wrapper library.",
+    "keywords": ["payment processing", "api"],
+    "homepage": "https://github.com/iatspayments/php",
+    "license": "GPL-3.0+",
     "require": {
         "php": ">=5.3.3"
     },
