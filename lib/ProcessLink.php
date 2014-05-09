@@ -1,7 +1,6 @@
 <?php
 /**
  * ProcessLink class file.
- * Targeting iATS API version 1.0.
  *
  * The ProcessLink service is used to process single, recurring, or batch transactions,
  * and to process refunds.

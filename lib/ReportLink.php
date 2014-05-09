@@ -1,7 +1,6 @@
 <?php
 /**
  * ReportLink class file.
- * Targeting iATS API version 1.0.
  *
  * The ReportLink service is used to generate reports based on transactions
  * completed through the other iATS services.

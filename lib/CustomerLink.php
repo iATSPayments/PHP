@@ -1,7 +1,6 @@
 <?php
 /**
  * CustomerLink class file.
- * Targeting iATS API version 1.0.
  *
  * The CustomerLink service is used to create secure customer codes that may be
  * used with the ProcessLink service to process single or recurring credit card
