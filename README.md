@@ -20,26 +20,45 @@ iATS Web Services [overview](https://na10.salesforce.com/sfc/p/#A0000000ZyVz/a/F
 
 ### Optional Requirements
 
-* PHPUnit (for unit testing) http://phpunit.de/
-* phpDocumentor (for generating documentation files) http://www.phpdoc.org/
+Optional requirements can be installed using Composer.
+
+* [PHPUnit](http://phpunit.de/) (for unit testing)
+* [phpDocumentor](http://www.phpdoc.org/) (for generating documentation files)
 
 ## Installation
 
-`$ git clone git@github.com:iATSPayments/PHP.git iATSPaymentsPHP`
+### Using Git
 
-`$ cd iATSPaymentsPHP`
+* Clone the Git repository
 
-`$ composer install`
+  `$ git clone git@github.com:iATSPayments/PHP.git iATSPaymentsPHP`
 
-Open phpunit.xml and set the values of **IATS_AGENT_CODE** and **IATS_PASSWORD** to your iATS API credentials.
+### Downloading Directly
 
-## Tests
+* Download the latest [PHP wrapper release](https://github.com/iATSPayments/PHP/releases)
+* Extract the archive to a local directory (e.g. iATSPaymentsPHP)
+
+### Installing Optional Requirements
+
+* Run the Composer installation to retrieve optional requirements for unit testing and documentation generation.
+
+  `$ cd iATSPaymentsPHP`
+
+  `$ composer install`
+
+See the **Usage Examples** section for help integrating the wrapper in your application.
+
+## Running PHPUnit Tests
 
 Unit tests can be run using PHPUnit.
 
-`$ ./vendor/bin/phpunit`
+* Open `phpunit.xml` and set the values of **IATS_AGENT_CODE** and **IATS_PASSWORD** to your iATS API credentials.
 
-## Components
+* After installing PHPUnit via Composer, tests can be run using the following command in the wrapper root directory:
+
+  `$ ./vendor/bin/phpunit`
+
+## Wrapper Components
 
 iATS Web Services and this wrapper are broken up into three components.
 
@@ -76,11 +95,14 @@ credit / debit card transactions, rejected transactions and returns.
 * Request / response overview: https://www.iatspayments.com/NetGate/ReportLink.asmx
 * Detailed service [guide](https://na10.salesforce.com/sfc/p/#A0000000ZyVz/a/F00000008Qfp/68aOuqxOzcey6QbODvM9qyHG9fVgDtuWrkCDr84._WY=)
 
-## Usage
+## Usage Examples
 
 ### Use Case 1 - CustomerLink - Creating a new Customer Code for credit card transactions
 
 ```php
+include '/path/to/wrapper/lib/Core.php';
+include '/path/to/wrapper/lib/CustomerLink.php';
+
 // Create and populate the request object.
 $request = array(
   'customerIPAddress' => '',
@@ -127,6 +149,9 @@ if (trim($response['AUTHORIZATIONRESULT']) == 'OK')
 ### Use Case 2 - CustomerLink - Processing a credit card transation with an existing Customer Code
 
 ```php
+include '/path/to/wrapper/lib/Core.php';
+include '/path/to/wrapper/lib/ProcessLink.php';
+
 // Create and populate the request object.
 $request = array(
   'customerIPAddress' => '',
@@ -153,6 +178,9 @@ if (trim($response['AUTHORIZATIONRESULT']) == 'OK')
 ### Use Case 3 - ReportLink - Get credit card transation history report as CSV
 
 ```php
+include '/path/to/wrapper/lib/Core.php';
+include '/path/to/wrapper/lib/ReportLink.php';
+
 // Create and populate the request object.
 $request = array(
   'fromDate' => '2014-07-01T00:00:00+00:00',
