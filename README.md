@@ -6,7 +6,7 @@ iATS Web Services provide the facility to securely process payments using credit
 
 Full wrapper documentation: http://iatspayments.github.io/PHP/
 
-iATS Web Services overview: http://home.iatspayments.com/sites/default/files/iats_webservices_overview_version_4.0_0.pdf
+iATS Web Services [overview](https://na10.salesforce.com/sfc/p/#A0000000ZyVz/a/F00000008Qfp/68aOuqxOzcey6QbODvM9qyHG9fVgDtuWrkCDr84._WY=)
 
 ## Requirements
 
