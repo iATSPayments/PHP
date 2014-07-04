@@ -56,7 +56,7 @@ ProcessLink service to process single or recurring transactions for customers.
 
 **iATS documentation**
 * Request / response overview: https://www.iatspayments.com/NetGate/CustomerLink.asmx
-* Detailed service guide: http://home.iatspayments.com/sites/default/files/iats_webservices_customerlink_version_4.0.pdf
+* Detailed service [guide](https://na10.salesforce.com/sfc/p/#A0000000ZyVz/a/F00000008Qfp/68aOuqxOzcey6QbODvM9qyHG9fVgDtuWrkCDr84._WY=)
 
 ### ProcessLink
 
@@ -65,7 +65,7 @@ also be used to refund transactions.
 
 **iATS documentation**
 * Request / response overview: https://www.iatspayments.com/NetGate/ProcessLink.asmx
-* Detailed service guide: http://home.iatspayments.com/sites/default/files/iats_webservices_processlink_version_4.0.pdf
+* Detailed service [guide](https://na10.salesforce.com/sfc/p/#A0000000ZyVz/a/F00000008Qfp/68aOuqxOzcey6QbODvM9qyHG9fVgDtuWrkCDr84._WY=)
 
 ### ReportLink
 
@@ -74,7 +74,7 @@ credit / debit card transactions, rejected transactions and returns.
 
 **iATS documentation**
 * Request / response overview: https://www.iatspayments.com/NetGate/ReportLink.asmx
-* Detailed service guide: http://home.iatspayments.com/sites/default/files/iats_webservices_reportlink_version_4.0.pdf
+* Detailed service [guide](https://na10.salesforce.com/sfc/p/#A0000000ZyVz/a/F00000008Qfp/68aOuqxOzcey6QbODvM9qyHG9fVgDtuWrkCDr84._WY=)
 
 ## Usage
 
