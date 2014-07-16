@@ -158,6 +158,12 @@ class Core {
       $parameters['agentCode'] = $this->agentcode;
       $parameters['password'] = $this->password;
 
+      // The iATS API does not support IPv6 IP addresses.
+      // Detect anything longer than an IPv4 address and remove it here.
+      if (isset($parameters['customerIPAddress']) && (strlen($parameters['customerIPAddress']) > 15)) {
+        $parameters['customerIPAddress'] = '';
+      }
+
       $soap_options = array(
         'trace' => TRUE,
         'soap_version' => SOAP_1_2
