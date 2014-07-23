@@ -96,6 +96,23 @@ class ReportLink extends Core {
   }
 
   /**
+   * Get ACH/EFT Payment Box approved transactions CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *     'fromDate' => 946684800 // The earliest date to gather report data for.
+   *     'toDate' => 946771200 // The latest date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
+  public function getACHEFTPaymentBoxJournalCSV($parameters) {
+    $response = $this->apiCall('GetACHEFTPaymentBoxJournalCSVV2', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTPaymentBoxJournalCSVV2Result', 'CSV');
+  }
+
+  /**
    * Get ACH / EFT Payment Box Reject CSV report.
    *
    * @param array $parameters
