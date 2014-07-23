@@ -29,17 +29,19 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTBankReconciliationReportCSV.
    */
   public function testReportLinkgetACHEFTBankReconciliationReportCSV() {
-    $fromDate = strtotime(date('m/d/Y', time()) . '00:00:00');
-    $toDate = strtotime(date('m/d/Y', time()) . '23:59:59');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $fromTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $toTime = mktime(23, 59, 59, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'fromDate' => $fromDate,
-      'toDate' => $toDate,
+      'fromDate' => $iats->getFormattedDate($fromTime),
+      'toDate' => $iats->getFormattedDate($toTime),
       'currency' => 'USD',
       'summaryOnly' => FALSE,
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTBankReconciliationReportCSV($request);
 
     // Test server doesn't provide access to bank balance data, so
@@ -51,13 +53,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTJournalCSV.
    */
   public function testReportLinkgetACHEFTJournalCSV() {
-    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'date' => $date,
+      'date' => $iats->getFormattedDate($time),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTJournalCSV($request);
 
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
@@ -67,13 +71,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTJournal.
    */
   public function testReportLinkgetACHEFTJournal() {
-    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'date' => $date,
+      'date' => $iats->getFormattedDate($time),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTJournal($request);
 
     // ACH / EFT transactions are never processed when using the
@@ -85,15 +91,17 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTPaymentBoxJournalCSV.
    */
   public function testReportLinkgetACHEFTPaymentBoxJournalCSV() {
-    $fromDate = strtotime(date('m/d/Y', time()) . '00:00:00');
-    $toDate = strtotime(date('m/d/Y', time()) . '23:59:59');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $fromTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $toTime = mktime(23, 59, 59, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'fromDate' => $fromDate,
-      'toDate' => $toDate,
+      'fromDate' => $iats->getFormattedDate($fromTime),
+      'toDate' => $iats->getFormattedDate($toTime),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTPaymentBoxJournalCSV($request);
 
     $this->assertStringStartsWith('Transaction ID,Invoice Number,Date Time', $response);
@@ -103,15 +111,17 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTPaymentBoxRejectCSV.
    */
   public function testReportLinkgetACHEFTPaymentBoxRejectCSV() {
-    $fromDate = strtotime(date('m/d/Y', time()) . '00:00:00');
-    $toDate = strtotime(date('m/d/Y', time()) . '23:59:59');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $fromTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $toTime = mktime(23, 59, 59, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'fromDate' => $fromDate,
-      'toDate' => $toDate,
+      'fromDate' => $iats->getFormattedDate($fromTime),
+      'toDate' => $iats->getFormattedDate($toTime),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTPaymentBoxRejectCSV($request);
 
     $this->assertStringStartsWith('Transaction ID,Invoice Number,Date Time', $response);
@@ -121,13 +131,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTRejectCSV.
    */
   public function testReportLinkgetACHEFTRejectCSV() {
-    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'date' => $date,
+      'date' => $iats->getFormattedDate($time),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTRejectCSV($request);
 
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
@@ -137,13 +149,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTReject.
    */
   public function testReportLinkgetACHEFTReject() {
-    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'date' => $date,
+      'date' => $iats->getFormattedDate($time),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTReject($request);
 
     $this->assertArrayHasKey('TNID', $response[0]);
@@ -153,13 +167,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTReturnCSV.
    */
   public function testReportLinkgetACHEFTReturnCSV() {
-    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'date' => $date,
+      'date' => $iats->getFormattedDate($time),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTReturnCSV($request);
 
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
@@ -169,13 +185,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getACHEFTReturn.
    */
   public function testReportLinkgetACHEFTReturn() {
-    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'date' => $date,
+      'date' => $iats->getFormattedDate($time),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getACHEFTReturn($request);
 
     // ACH / EFT refunds are not processed when using the test server,
@@ -187,17 +205,19 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardBankReconciliationReportCSV.
    */
   public function testReportLinkgetCreditCardBankReconciliationReportCSV() {
-    $fromDate = strtotime(date('m/d/Y', time()) . '00:00:00');
-    $toDate = strtotime(date('m/d/Y', time()) . '23:59:59');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $fromTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $toTime = mktime(23, 59, 59, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'fromDate' => $fromDate,
-      'toDate' => $toDate,
+      'fromDate' => $iats->getFormattedDate($fromTime),
+      'toDate' => $iats->getFormattedDate($toTime),
       'currency' => 'USD',
       'summaryOnly' => FALSE,
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardBankReconciliationReportCSV($request);
 
     // Test server does not provide real account balance information,
@@ -209,13 +229,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardJournalCSV.
    */
   public function testReportLinkgetCreditCardJournalCSV() {
-    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'date' => $date,
+      'date' => $iats->getFormattedDate($time),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardJournalCSV($request);
 
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
@@ -225,13 +247,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardJournal.
    */
   public function testReportLinkgetCreditCardJournal() {
-    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'date' => $date,
+      'date' => $iats->getFormattedDate($time),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardJournal($request);
 
     $this->assertArrayHasKey('TNID', $response[0]);
@@ -241,15 +265,17 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardPaymentBoxJournalCSV.
    */
   public function testReportLinkgetCreditCardPaymentBoxJournalCSV() {
-    $fromDate = strtotime(date('m/d/Y', time()) . '00:00:00');
-    $toDate = strtotime(date('m/d/Y', time()) . '23:59:59');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $fromTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $toTime = mktime(23, 59, 59, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'fromDate' => $fromDate,
-      'toDate' => $toDate,
+      'fromDate' => $iats->getFormattedDate($fromTime),
+      'toDate' => $iats->getFormattedDate($toTime),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardPaymentBoxJournalCSV($request);
 
     $this->assertStringStartsWith('Transaction ID,Invoice Number,Date Time', $response);
@@ -259,15 +285,17 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardPaymentBoxRejectCSV.
    */
   public function testReportLinkgetCreditCardPaymentBoxRejectCSV() {
-    $fromDate = strtotime(date('m/d/Y', time()) . '00:00:00');
-    $toDate = strtotime(date('m/d/Y', time()) . '23:59:59');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $fromTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $toTime = mktime(23, 59, 59, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'fromDate' => $fromDate,
-      'toDate' => $toDate,
+      'fromDate' => $iats->getFormattedDate($fromTime),
+      'toDate' => $iats->getFormattedDate($toTime),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardPaymentBoxRejectCSV($request);
 
     $this->assertStringStartsWith('Transaction ID,Invoice Number,Date Time', $response);
@@ -277,13 +305,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardReject.
    */
   public function testReportLinkgetCreditCardReject() {
-    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'date' => $date,
+      'date' => $iats->getFormattedDate($time),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardReject($request);
 
     $this->assertArrayHasKey('TNID', $response[0]);
@@ -293,13 +323,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardRejectCSV.
    */
   public function testReportLinkgetCreditCardRejectCSV() {
-    $date = strtotime(date('m/d/Y', time()) . '00:00:00');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+
     $request = array(
-      'date' => $date,
+      'date' => $iats->getFormattedDate($time),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardRejectCSV($request);
 
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
@@ -309,13 +341,16 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardReject using a date with no data.
    */
   public function testReportLinkgetCreditCardRejectNoData() {
-    $date = strtotime('1/1/2025');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    // Use a distant time in the future.
+    $time = mktime(0, 0, 0, 1, 1, 2050);
+
     $request = array(
-      'date' => $date,
+      'date' => $iats->getFormattedDate($time),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardReject($request);
 
     $this->assertEquals('No data returned for this date', $response);
@@ -325,13 +360,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
    * Test getCreditCardRejectCSV using a date with no data.
    */
   public function testReportLinkgetCreditCardRejectCSVNoData() {
-    $date = strtotime('1/1/2025');
+    $iats = new ReportLink(self::$agentCode, self::$password);
+
+    $time = mktime(0, 0, 0, 1, 1, 2050);
+
     $request = array(
-      'date' => $date,
+      'date' => $iats->getFormattedDate($time),
       'customerIPAddress' => '',
     );
 
-    $iats = new ReportLink(self::$agentCode, self::$password);
     $response = $iats->getCreditCardRejectCSV($request);
 
     $this->assertEquals('', $response);

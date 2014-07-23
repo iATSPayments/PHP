@@ -81,9 +81,6 @@ credit / debit card transactions, rejected transactions and returns.
 ### Use Case 1 - CustomerLink - Creating a new Customer Code for credit card transactions
 
 ```php
-$beginDate = strtotime('01/01/2014');
-$endDate = strtotime('01/31/2014');
-
 // Create and populate the request object.
 $request = array(
   'customerIPAddress' => '',
@@ -102,8 +99,8 @@ $request = array(
   'comment' => 'Customer code creation test.',
   'recurring' => FALSE,
   'amount' => '5',
-  'beginDate' => $beginDate,
-  'endDate' => $endDate,
+  'beginDate' => '2014-07-01T00:00:00+00:00',
+  'endDate' => '2014-08-01T00:00:00+00:00',
   'scheduleType' => 'Annually',
   'scheduleDate' => '',
   'creditCardCustomerName' => 'Test Account',
@@ -156,13 +153,10 @@ if (trim($response['AUTHORIZATIONRESULT']) == 'OK')
 ### Use Case 3 - ReportLink - Get credit card transation history report as CSV
 
 ```php
-$beginDate = strtotime('01/01/2014');
-$endDate = strtotime('01/31/2014');
-
 // Create and populate the request object.
 $request = array(
-  'fromDate' => $fromDate,
-  'toDate' => $toDate,
+  'fromDate' => '2014-07-01T00:00:00+00:00',
+  'toDate' => '2014-08-01T00:00:00+00:00',
   'customerIPAddress' => '',
 );
 

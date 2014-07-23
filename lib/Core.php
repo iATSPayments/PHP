@@ -100,6 +100,19 @@ class Core {
   }
 
   /**
+   * Converts a UNIX timestamp to a date string formatted for SOAP requests.
+   *
+   * @param int $timestamp
+   *   The timestamp to convert.
+   *
+   * @return string
+   *   The formatted date string.
+   */
+  function getFormattedDate($timestamp) {
+    return date('c', $timestamp);
+  }
+
+  /**
    * Create SoapClient object.
    *
    * @param string $endpoint

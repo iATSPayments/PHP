@@ -43,8 +43,11 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * Test createCreditCardCustomerCode.
    */
   public function testCustomerLinkcreateCreditCardCustomerCode() {
-    $beginDate = strtotime('10/23/2011');
-    $endDate = strtotime('10/23/2014');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
+
+    $beginTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
@@ -63,8 +66,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'comment' => 'Customer code creation test.',
       'recurring' => FALSE,
       'amount' => '5',
-      'beginDate' => $beginDate,
-      'endDate' => $endDate,
+      'beginDate' => $iats->getFormattedDate($beginTime),
+      'endDate' => $iats->getFormattedDate($endTime),
       'scheduleType' => 'Annually',
       'scheduleDate' => '',
       'creditCardCustomerName' => 'Test Account',
@@ -75,7 +78,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'currency' => 'USD',
     );
 
-    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->createCreditCardCustomerCode($request);
 
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
@@ -89,8 +91,11 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkcreateCreditCardCustomerCode
    */
   public function testCustomerLinkupdateCreditCardCustomerCode() {
-    $beginDate = strtotime('10/23/2011');
-    $endDate = strtotime('10/23/2014');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
+
+    $beginTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
@@ -109,8 +114,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'comment' => 'Customer code update test.',
       'recurring' => FALSE,
       'amount' => '5',
-      'beginDate' => $beginDate,
-      'endDate' => $endDate,
+      'beginDate' => $iats->getFormattedDate($beginTime),
+      'endDate' => $iats->getFormattedDate($endTime),
       'scheduleType' => 'Annually',
       'scheduleDate' => '',
       'creditCardCustomerName' => 'Test Account',
@@ -120,7 +125,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'updateCreditCardNum' => FALSE,
     );
 
-    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
 
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
@@ -132,8 +136,11 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkcreateCreditCardCustomerCode
    */
   public function testCustomerLinkupdateCreditCardCustomerCodeNewRecurringSchedule() {
-    $beginDate = strtotime('10/23/2011');
-    $endDate = strtotime('10/23/2014');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
+
+    $beginTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
@@ -152,8 +159,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'comment' => 'Customer code update test.',
       'recurring' => TRUE,
       'amount' => '5',
-      'beginDate' => $beginDate,
-      'endDate' => $endDate,
+      'beginDate' => $iats->getFormattedDate($beginTime),
+      'endDate' => $iats->getFormattedDate($endTime),
       'scheduleType' => 'Monthly',
       'scheduleDate' => '1', // 1st of every month.
       'creditCardCustomerName' => 'Test Account',
@@ -163,7 +170,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'updateCreditCardNum' => FALSE,
     );
 
-    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
 
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
@@ -189,8 +195,11 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkupdateCreditCardCustomerCodeNewRecurringSchedule
    */
   public function testCustomerLinkupdateCreditCardCustomerCodeNewRecurringScheduleDate() {
-    $beginDate = strtotime('10/23/2011');
-    $endDate = strtotime('10/23/2014');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
+
+    $beginTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
@@ -209,8 +218,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'comment' => 'Customer code update test.',
       'recurring' => TRUE,
       'amount' => '5',
-      'beginDate' => $beginDate,
-      'endDate' => $endDate,
+      'beginDate' => $iats->getFormattedDate($beginTime),
+      'endDate' => $iats->getFormattedDate($endTime),
       'scheduleType' => 'Weekly',
       'scheduleDate' => '7', // 7th day of the week.
       'creditCardCustomerName' => 'Test Account',
@@ -220,7 +229,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'updateCreditCardNum' => FALSE,
     );
 
-    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
 
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
@@ -246,8 +254,11 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkupdateCreditCardCustomerCodeNewRecurringScheduleDate
    */
   public function testCustomerLinkupdateCreditCardCustomerCodeNewRecurringScheduleCard() {
-    $beginDate = strtotime('10/23/2011');
-    $endDate = strtotime('10/23/2014');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
+
+    $beginTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
@@ -266,8 +277,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'comment' => 'Customer code update test.',
       'recurring' => TRUE,
       'amount' => '5',
-      'beginDate' => $beginDate,
-      'endDate' => $endDate,
+      'beginDate' => $iats->getFormattedDate($beginTime),
+      'endDate' => $iats->getFormattedDate($endTime),
       'scheduleType' => 'Weekly',
       'scheduleDate' => '7', // 7th day of the week.
       'creditCardCustomerName' => 'Test Account',
@@ -277,7 +288,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'updateCreditCardNum' => TRUE,
     );
 
-    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateCreditCardCustomerCode($request);
 
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
@@ -320,8 +330,11 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * Test createACHEFTCustomerCode.
    */
   public function testCustomerLinkcreateACHEFTCustomerCode() {
-    $beginDate = strtotime('10/23/2011');
-    $endDate = strtotime('10/23/2014');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
+
+    $beginTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
@@ -340,8 +353,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'comment' => 'Customer code update test.',
       'recurring' => FALSE,
       'amount' => '5',
-      'beginDate' => $beginDate,
-      'endDate' => $endDate,
+      'beginDate' => $iats->getFormattedDate($beginTime),
+      'endDate' => $iats->getFormattedDate($endTime),
       'scheduleType' => 'Annually',
       'scheduleDate' => '',
       'accountCustomerName' => 'Test Account',
@@ -349,7 +362,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'accountType' => 'Checking',
     );
 
-    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->createACHEFTCustomerCode($request);
 
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
@@ -363,8 +375,11 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * @depends testCustomerLinkcreateACHEFTCustomerCode
    */
   public function testCustomerLinkupdateACHEFTCustomerCode() {
-    $beginDate = strtotime('10/23/2011');
-    $endDate = strtotime('10/23/2014');
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
+
+    $beginTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
@@ -383,8 +398,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'comment' => 'Customer code update test.',
       'recurring' => FALSE,
       'amount' => '5',
-      'beginDate' => $beginDate,
-      'endDate' => $endDate,
+      'beginDate' => $iats->getFormattedDate($beginTime),
+      'endDate' => $iats->getFormattedDate($endTime),
       'scheduleType' => 'Annually',
       'scheduleDate' => '',
       'accountCustomerName' => 'Test Account',
@@ -393,7 +408,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'updateAccountNum' => FALSE,
     );
 
-    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
     $response = $iats->updateACHEFTCustomerCode($request);
 
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
@@ -457,14 +471,18 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * Test directDebitACHEFTPayerValidate.
    */
   public function testCustomerLinkdirectDebitACHEFTPayerValidate() {
-    $beginDate = strtotime('10/23/2011');
-    $endDate = strtotime('10/23/2014');
+    // Test only valid for UK clients.
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'UK');
+
+    $beginTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
       'ACHEFTReferenceNum' => '',
-      'beginDate' => $beginDate,
-      'endDate' => $endDate,
+      'beginDate' => $iats->getFormattedDate($beginTime),
+      'endDate' => $iats->getFormattedDate($endTime),
       'accountCustomerName' => 'Test Account',
       'accountNum' => '999999999',
       'companyName' => 'Test Company',
@@ -478,8 +496,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'zipCode' => '12345',
     );
 
-    // Test only valid for UK clients.
-    $iats = new CustomerLink(self::$agentCode, self::$password, 'UK');
     $response = $iats->directDebitACHEFTPayerValidate($request);
 
     // API responded correctly.
@@ -492,15 +508,18 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * Test directDebitCreateACHEFTCustomerCode.
    */
   public function testCustomerLinkdirectDebitCreateACHEFTCustomerCode() {
-    // Start date must be at least 12 days from current date.
-    $beginDate = strtotime(date('m/d/Y', time()) . ' + 12 days');
-    $endDate = strtotime(date('m/d/Y', time()) . ' + 4 years');
+    // Test only valid for UK clients.
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'UK');
+
+    // Begin date must be at least 12 days from current date.
+    $beginTime = mktime(0, 0, 0, date('n'), date('j') + 12, date('Y'));
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
 
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
       'customerCode' => '',
-      'ACHEFTReferenceNum' => '',
+      'ACHEFTReferenceNum' => 'UDDDA14D86',
       'firstName' => 'Test',
       'lastName' => 'Account',
       'companyName' => 'Test Co.',
@@ -512,11 +531,11 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'fax' => '555-555-4321',
       'alternatePhone' => '555-555-5555',
       'email' => 'email@test.co',
-      'comment' => 'Customer code update test.',
+      'comment' => 'Direct debit customer code creation test.',
       'recurring' => FALSE,
       'amount' => '5',
-      'beginDate' => $beginDate,
-      'endDate' => $endDate,
+      'beginDate' => $iats->getFormattedDate($beginTime),
+      'endDate' => $iats->getFormattedDate($endTime),
       'scheduleType' => 'Annually',
       'scheduleDate' => '',
       'accountCustomerName' => 'Test Account',
@@ -524,8 +543,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'accountType' => 'CHECKING',
     );
 
-    // Test only valid for UK clients.
-    $iats = new CustomerLink(self::$agentCode, self::$password, 'UK');
     $response = $iats->directDebitCreateACHEFTCustomerCode($request);
 
     // API responded correctly.
@@ -539,8 +556,11 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * Test directDebitUpdateACHEFTCustomerCode.
    */
   public function testCustomerLinkdirectDebitUpdateACHEFTCustomerCode() {
-    $beginDate = strtotime('10/23/2011');
-    $endDate = strtotime('10/23/2014');
+    // Test only valid for UK clients.
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'UK');
+
+    $beginTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
 
     // Create and populate the request object.
     $request = array(
@@ -561,8 +581,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'comment' => 'Customer code update test.',
       'recurring' => FALSE,
       'amount' => '5',
-      'beginDate' => $beginDate,
-      'endDate' => $endDate,
+      'beginDate' => $iats->getFormattedDate($beginTime),
+      'endDate' => $iats->getFormattedDate($endTime),
       'scheduleType' => 'Annually',
       'scheduleDate' => '',
       'accountCustomerName' => 'Test Account',
@@ -571,8 +591,6 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
       'updateAccountNum' => FALSE,
     );
 
-    // Test only valid for UK clients.
-    $iats = new CustomerLink(self::$agentCode, self::$password, 'UK');
     $response = $iats->directDebitUpdateACHEFTCustomerCode($request);
 
     // API responded correctly.

@@ -77,8 +77,8 @@ class CustomerLink extends Core {
    *     'comment' => 'Customer code creation test.' // A comment describing this transaction.
    *     'recurring' => FALSE // TRUE if a recurring payment should be created.
    *     'amount' => '5' // The payment amount.
-   *     'beginDate' => 946684800 // The begin date of the recurring payment, if used.
-   *     'endDate' => 946771200 // The end date of the recurring payment, if used.
+   *     'beginDate' => '2014-07-23T00:00:00+00:00' // The begin date of the recurring payment, if used.
+   *     'endDate' => '2024-07-23T23:59:59+00:00' // The end date of the recurring payment, if used.
    *     'scheduleType' => 'Annually' // The recurring payment schedule.
    *      // Options: Weekly, Monthly, Quarterly, Annually.
    *     'scheduleDate' => '' // The recurring payment schedule date.
@@ -118,8 +118,8 @@ class CustomerLink extends Core {
    *     'comment' => 'Customer code creation test.' // Optional. A comment describing this transaction.
    *     'recurring' => FALSE // Optional. TRUE if a recurring payment should be created.
    *     'amount' => '5' // Optional. The payment amount.
-   *     'beginDate' => 946684800 // Optional. The begin date of the recurring payment, if used.
-   *     'endDate' => 946771200 // Optional. The end date of the recurring payment, if used.
+   *     'beginDate' => '2014-07-23T00:00:00+00:00' // Optional. The begin date of the recurring payment, if used.
+   *     'endDate' => '2024-07-23T23:59:59+00:00' // Optional. The end date of the recurring payment, if used.
    *     'scheduleType' => 'Annually' // Optional. The recurring payment schedule.
    *      // Options: Weekly, Monthly, Quarterly, Annually.
    *     'scheduleDate' => '' // Optional. The recurring payment schedule date.
@@ -160,8 +160,8 @@ class CustomerLink extends Core {
    *     'comment' => 'Customer code creation test.' // Optional. A comment describing this transaction.
    *     'recurring' => FALSE // Optional. TRUE if a recurring payment should be created.
    *     'amount' => '5' // Optional. The payment amount.
-   *     'beginDate' => 946684800 // Optional. The begin date of the recurring payment, if used.
-   *     'endDate' => 946771200 // Optional. The end date of the recurring payment, if used.
+   *     'beginDate' => '2014-07-23T00:00:00+00:00' // Optional. The begin date of the recurring payment, if used.
+   *     'endDate' => '2024-07-23T23:59:59+00:00' // Optional. The end date of the recurring payment, if used.
    *     'scheduleType' => 'Annually' // Optional. The recurring payment schedule.
    *      // Options: Weekly, Monthly Quarterly, Annually.
    *     'scheduleDate' => '' // Optional. The recurring payment schedule date.
@@ -208,8 +208,8 @@ class CustomerLink extends Core {
    *     'comment' => 'Customer code creation test.' // Optional. A comment describing this transaction.
    *     'recurring' => FALSE // Optional. TRUE if a recurring payment should be created.
    *     'amount' => '5' // Optional. The payment amount.
-   *     'beginDate' => 946684800 // Optional. The begin date of the recurring payment, if used.
-   *     'endDate' => 946771200 // Optional. The end date of the recurring payment, if used.
+   *     'beginDate' => '2014-07-23T00:00:00+00:00' // Optional. The begin date of the recurring payment, if used.
+   *     'endDate' => '2024-07-23T23:59:59+00:00' // Optional. The end date of the recurring payment, if used.
    *     'scheduleType' => 'Annually' // Optional. The recurring payment schedule.
    *      // Options: Weekly, Monthly Quarterly, Annually.
    *     'scheduleDate' => '' // Optional. The recurring payment schedule date.
@@ -259,8 +259,8 @@ class CustomerLink extends Core {
    *   An associative array with the following possible values.
    *     'customerIPAddress' => '' // Optional. The client IP address.
    *     'ACHEFTReferenceNum' => '' // Optional. The ACH / EFT reference number.
-   *     'beginDate' => 946684800 // The begin date of the direct debit payment.
-   *     'endDate' => 946771200 // The end date of the direct debit payment.
+   *     'beginDate' => '2014-07-23T00:00:00+00:00' // The begin date of the direct debit payment.
+   *     'endDate' => '2024-07-23T23:59:59+00:00' // The end date of the direct debit payment.
    *     'accountCustomerName' => 'Test Account' // The customer's name as appears on the bank account.
    *     'accountNum' => '999999999' // The customer's bank account number.
    *     'companyName' => 'Test Company' // Optional. The customer's company name.
@@ -311,8 +311,8 @@ class CustomerLink extends Core {
    *     'comment' => 'Customer code creation test.' // Optional. A comment describing this transaction.
    *     'recurring' => FALSE // Optional. TRUE if a recurring payment should be created.
    *     'amount' => '5' // Optional. The payment amount.
-   *     'beginDate' => 946684800 // The begin date of the recurring payment, if used.
-   *     'endDate' => 946771200 // The end date of the recurring payment, if used.
+   *     'beginDate' => '2014-07-23T00:00:00+00:00' // The begin date of the recurring payment, if used.
+   *     'endDate' => '2024-07-23T23:59:59+00:00' // The end date of the recurring payment, if used.
    *     'scheduleType' => 'Annually' // Optional. The recurring payment schedule.
    *      // Options: Weekly, Monthly Quarterly, Annually.
    *     'scheduleDate' => '' // Optional. The recurring payment schedule date.
@@ -359,8 +359,8 @@ class CustomerLink extends Core {
    *     'comment' => 'Customer code creation test.' // Optional. A comment describing this transaction.
    *     'recurring' => FALSE // Optional. TRUE if a recurring payment should be created.
    *     'amount' => '5' // Optional. The payment amount.
-   *     'beginDate' => 946684800 // Optional. The begin date of the recurring payment, if used.
-   *     'endDate' => 946771200 // Optional. The end date of the recurring payment, if used.
+   *     'beginDate' => '2014-07-23T00:00:00+00:00' // Optional. The begin date of the recurring payment, if used.
+   *     'endDate' => '2024-07-23T23:59:59+00:00' // Optional. The end date of the recurring payment, if used.
    *     'scheduleType' => 'Annually' // Optional. The recurring payment schedule.
    *      // Options: Weekly, Monthly Quarterly, Annually.
    *     'scheduleDate' => '' // Optional. The recurring payment schedule date.

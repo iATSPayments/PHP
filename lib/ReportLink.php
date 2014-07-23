@@ -47,8 +47,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'fromDate' => 946684800 // The earliest date to gather report data for.
-   *     'toDate' => 946771200 // The latest date to gather report data for.
+   *     'fromDate' => '2014-07-23T00:00:00+00:00' // The earliest date to gather report data for.
+   *     'toDate' => '2024-07-23T23:59:59+00:00' // The latest date to gather report data for.
    *     'currency' => 'USD' // The currency to represent financial data as.
    *      // North America options: CAD, USD
    *      // UK options: USD, EUR, GBP, IEE, CHF, HKD, JPY, SGD, MXN
@@ -68,7 +68,7 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'date' => 946771200 // The date to gather report data for.
+   *     'date' => '2014-07-23T00:00:00+00:00' // The date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
@@ -84,7 +84,7 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'date' => 946771200 // The date to gather report data for.
+   *     'date' => '2014-07-23T00:00:00+00:00' // The date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
@@ -100,8 +100,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'fromDate' => 946684800 // The earliest date to gather report data for.
-   *     'toDate' => 946771200 // The latest date to gather report data for.
+   *     'fromDate' => '2014-07-23T00:00:00+00:00' // The earliest date to gather report data for.
+   *     'toDate' => '2024-07-23T23:59:59+00:00' // The latest date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
@@ -117,8 +117,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'fromDate' => 946684800 // The earliest date to gather report data for.
-   *     'toDate' => 946771200 // The latest date to gather report data for.
+   *     'fromDate' => '2014-07-23T00:00:00+00:00' // The earliest date to gather report data for.
+   *     'toDate' => '2024-07-23T23:59:59+00:00' // The latest date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
@@ -134,7 +134,7 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'date' => 946771200 // The date to gather report data for.
+   *     'date' => '2014-07-23T00:00:00+00:00' // The date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
@@ -150,7 +150,7 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'date' => 946771200 // The date to gather report data for.
+   *     'date' => '2014-07-23T00:00:00+00:00' // The date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    * @endcode
    *
@@ -167,7 +167,7 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'date' => 946771200 // The date to gather report data for.
+   *     'date' => '2014-07-23T00:00:00+00:00' // The date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
@@ -183,7 +183,7 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'date' => 946771200 // The date to gather report data for.
+   *     'date' => '2014-07-23T00:00:00+00:00' // The date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
@@ -199,8 +199,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'fromDate' => 946684800 // The earliest date to gather report data for.
-   *     'toDate' => 946771200 // The latest date to gather report data for.
+   *     'fromDate' => '2014-07-23T00:00:00+00:00' // The earliest date to gather report data for.
+   *     'toDate' => '2024-07-23T23:59:59+00:00' // The latest date to gather report data for.
    *     'currency' => 'USD' // The currency to represent financial data as.
    *      // North America options: CAD, USD
    *      // UK options: USD, EUR, GBP, IEE, CHF, HKD, JPY, SGD, MXN
@@ -220,7 +220,7 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'date' => 946771200 // The date to gather report data for.
+   *     'date' => '2014-07-23T00:00:00+00:00' // The date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
@@ -236,7 +236,7 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'date' => 946771200 // The date to gather report data for.
+   *     'date' => '2014-07-23T00:00:00+00:00' // The date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
@@ -252,8 +252,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'fromDate' => 946684800 // The earliest date to gather report data for.
-   *     'toDate' => 946771200 // The latest date to gather report data for.
+   *     'fromDate' => '2014-07-23T00:00:00+00:00' // The earliest date to gather report data for.
+   *     'toDate' => '2024-07-23T23:59:59+00:00' // The latest date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
@@ -269,8 +269,8 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'fromDate' => 946684800 // The earliest date to gather report data for.
-   *     'toDate' => 946771200 // The latest date to gather report data for.
+   *     'fromDate' => '2014-07-23T00:00:00+00:00' // The earliest date to gather report data for.
+   *     'toDate' => '2024-07-23T23:59:59+00:00' // The latest date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
@@ -286,7 +286,7 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'date' => 946771200 // The date to gather report data for.
+   *     'date' => '2014-07-23T00:00:00+00:00' // The date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
@@ -302,7 +302,7 @@ class ReportLink extends Core {
    *
    * @param array $parameters
    *   An associative array with the following possible values.
-   *     'date' => 946771200 // The date to gather report data for.
+   *     'date' => '2014-07-23T00:00:00+00:00' // The date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
