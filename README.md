@@ -52,8 +52,9 @@ See the **Usage Examples** section for help integrating the wrapper in your appl
 
 Unit tests can be run using PHPUnit.
 
-* Open `phpunit.xml` and set the values of **IATS_AGENT_CODE** and **IATS_PASSWORD** to your iATS API credentials.
-
+* In the wrapper root directory, edit `phpunit.xml`.
+  * Set **IATS_AGENT_CODE** to `TEST88`.
+  * Set **IATS_PASSWORD** to `TEST88`.
 * After installing PHPUnit via Composer, tests can be run using the following command in the wrapper root directory:
 
   `$ ./vendor/bin/phpunit`
@@ -132,8 +133,12 @@ $request = array(
   'currency' => 'USD',
 );
 
+// Replace with your iATS API credentials.
+$agentCode = 'TEST88';
+$password = 'TEST88';
+
 // Make the API call using the CustomerLink service.
-$iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
+$iats = new CustomerLink($agentCode, $password, 'NA');
 $response = $iats->createCreditCardCustomerCode($request);
 
 // Verify successful call.
@@ -164,8 +169,12 @@ $request = array(
   'currency' => 'USD',
 );
 
+// Replace with your iATS API credentials.
+$agentCode = 'TEST88';
+$password = 'TEST88';
+
 // Make the API call using the ProcessLink service.
-$iats = new ProcessLink(self::$agentCode, self::$password);
+$iats = new ProcessLink($agentCode, $password);
 $response = $iats->processCreditCardWithCustomerCode($request);
 
 // Verify successful call.
@@ -188,8 +197,12 @@ $request = array(
   'customerIPAddress' => '',
 );
 
+// Replace with your iATS API credentials.
+$agentCode = 'TEST88';
+$password = 'TEST88';
+
 // Make the API call using the ReportLink service.
-$iats = new ReportLink(self::$agentCode, self::$password);
+$iats = new ReportLink($agentCode, $password);
 $response = $iats->getCreditCardPaymentBoxJournalCSV($request);
 
 // Response should be CSV data starting with "Transaction ID,Invoice Number,Date Time"
