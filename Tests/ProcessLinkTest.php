@@ -643,7 +643,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processCreditCard($request);
 
-    $this->assertEquals('Invalid card number. Card not supported by IATS.', $response);
+    $this->assertTrue(is_array($response));
+    $this->assertEquals($response['message'], 'Invalid card number. Card not supported by IATS.');
   }
 
   /**
@@ -674,7 +675,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processCreditCard($request);
 
-    $this->assertEquals('General decline code. Please have client call the number on the back of credit card', $response);
+    $this->assertTrue(is_array($response));
+    $this->assertEquals($response['message'], 'General decline code. Please have client call the number on the back of credit card');
   }
 
   /**
@@ -705,7 +707,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processCreditCard($request);
 
-    $this->assertEquals('General decline code. Please have client call the number on the back of credit card', $response);
+    $this->assertTrue(is_array($response));
+    $this->assertEquals($response['message'], 'General decline code. Please have client call the number on the back of credit card');
   }
 
   /**
@@ -736,7 +739,8 @@ class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new ProcessLink(self::$agentCode, self::$password);
     $response = $iats->processCreditCard($request);
 
-    $this->assertEquals('General decline code. Please have client call the number on the back of credit card', $response);
+    $this->assertTrue(is_array($response));
+    $this->assertEquals($response['message'], 'General decline code. Please have client call the number on the back of credit card');
   }
 
   /**
