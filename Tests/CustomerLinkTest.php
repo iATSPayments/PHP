@@ -511,8 +511,8 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     // Test only valid for UK clients.
     $iats = new CustomerLink(self::$agentCode, self::$password, 'UK');
 
-    // Begin date must be at least 12 days from current date.
-    $beginTime = mktime(0, 0, 0, date('n'), date('j') + 12, date('Y'));
+    // Begin date must be more than 12 days from current date.
+    $beginTime = mktime(0, 0, 0, date('n'), date('j') + 13, date('Y'));
     $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
 
     // Create and populate the request object.

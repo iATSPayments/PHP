@@ -329,8 +329,12 @@ class Core {
    * @param int $reject_code
    *   iATS rejection code.
    *
-   * @return mixed
-   *   Rejection message for a given code.
+   * @return array
+   *   Rejection code and message as in array in the format:
+   *   [
+   *     'code' => 19,
+   *     'message' => 'Incorrect CVV2 security code',
+   *   ]
    */
   protected function rejectMessage($reject_code) {
     $rejects = array(
@@ -375,7 +379,12 @@ class Core {
       100 => 'DO NOT REPROCESS. Call iATS at 1-888-955-5455.',
     );
 
-    return isset($rejects[$reject_code]) ? $rejects[$reject_code] : '';
+    $result = array(
+      'code' => $reject_code,
+      'message' => isset($rejects[$reject_code]) ? $rejects[$reject_code] : '',
+    );
+
+    return $result;
   }
 
 }
