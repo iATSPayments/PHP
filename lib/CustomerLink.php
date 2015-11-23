@@ -53,7 +53,7 @@ class CustomerLink extends Core {
    */
   public function getCustomerCodeDetail($parameters) {
     $response = $this->apiCall('GetCustomerCodeDetail', $parameters);
-    return $this->responseHandler($response, 'GetCustomerCodeDetailV1Result');
+    return $this->responseHandler($response, 'GetCustomerCodeDetailResult');
   }
 
   /**
@@ -94,7 +94,7 @@ class CustomerLink extends Core {
    */
   public function createCreditCardCustomerCode($parameters) {
     $response = $this->apiCall('CreateCreditCardCustomerCode', $parameters);
-    return $this->responseHandler($response, 'CreateCreditCardCustomerCodeV1Result');
+    return $this->responseHandler($response, 'CreateCreditCardCustomerCodeResult');
   }
 
   /**
@@ -136,7 +136,7 @@ class CustomerLink extends Core {
    */
   public function updateCreditCardCustomerCode($parameters) {
     $response = $this->apiCall('UpdateCreditCardCustomerCode', $parameters);
-    return $this->responseHandler($response, 'UpdateCreditCardCustomerCodeV1Result');
+    return $this->responseHandler($response, 'UpdateCreditCardCustomerCodeResult');
   }
 
   /**
@@ -183,7 +183,7 @@ class CustomerLink extends Core {
     else
     {
       $response = $this->apiCall('CreateACHEFTCustomerCode', $parameters);
-      return $this->responseHandler($response, 'CreateACHEFTCustomerCodeV1Result');
+      return $this->responseHandler($response, 'CreateACHEFTCustomerCodeResult');
     }
   }
 
@@ -232,7 +232,7 @@ class CustomerLink extends Core {
     else
     {
       $response = $this->apiCall('UpdateACHEFTCustomerCode', $parameters);
-      return $this->responseHandler($response, 'UpdateACHEFTCustomerCodeV1Result');
+      return $this->responseHandler($response, 'UpdateACHEFTCustomerCodeResult');
     }
   }
 
@@ -249,7 +249,7 @@ class CustomerLink extends Core {
    */
   public function deleteCustomerCode($parameters) {
     $response = $this->apiCall('DeleteCustomerCode', $parameters);
-    return $this->responseHandler($response, 'DeleteCustomerCodeV1Result');
+    return $this->responseHandler($response, 'DeleteCustomerCodeResult');
   }
 
   /**
@@ -285,7 +285,7 @@ class CustomerLink extends Core {
     else
     {
       $response = $this->apiCall('DirectDebitACHEFTPayerValidate', $parameters);
-      return $this->responseHandler($response, 'DirectDebitACHEFTPayerValidateV1Result');
+      return $this->responseHandler($response, 'DirectDebitACHEFTPayerValidateResult');
     }
   }
 
@@ -334,7 +334,7 @@ class CustomerLink extends Core {
     else
     {
       $response = $this->apiCall('DirectDebitCreateACHEFTCustomerCode', $parameters);
-      return $this->responseHandler($response, 'DirectDebitCreateACHEFTCustomerCodeV1Result');
+      return $this->responseHandler($response, 'DirectDebitCreateACHEFTCustomerCodeResult');
     }
   }
 
@@ -383,7 +383,7 @@ class CustomerLink extends Core {
     else
     {
       $response = $this->apiCall('DirectDebitUpdateACHEFTCustomerCode', $parameters);
-      return $this->responseHandler($response, 'DirectDebitUpdateACHEFTCustomerCodeV1Result');
+      return $this->responseHandler($response, 'DirectDebitUpdateACHEFTCustomerCodeResult');
     }
   }
 

@@ -60,7 +60,7 @@ class ReportLink extends Core {
    */
   public function getACHEFTBankReconciliationReportCSV($parameters) {
     $response = $this->apiCall('GetACHEFTBankReconciliationReportCSV', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTBankReconciliationReportCSVV1Result', 'CSV');
+    return $this->responseHandler($response, 'GetACHEFTBankReconciliationReportCSVResult', 'CSV');
   }
 
   /**
@@ -76,7 +76,7 @@ class ReportLink extends Core {
    */
   public function getACHEFTJournalCSV($parameters) {
     $response = $this->apiCall('GetACHEFTJournalCSV', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTJournalCSVV1Result', 'CSV');
+    return $this->responseHandler($response, 'GetACHEFTJournalCSVResult', 'CSV');
   }
 
   /**
@@ -92,7 +92,7 @@ class ReportLink extends Core {
    */
   public function GetACHEFTJournal($parameters) {
     $response = $this->apiCall('GetACHEFTJournal', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTJournalV1Result', 'AR');
+    return $this->responseHandler($response, 'GetACHEFTJournalResult', 'AR');
   }
 
   /**
@@ -126,7 +126,7 @@ class ReportLink extends Core {
    */
   public function getACHEFTPaymentBoxRejectCSV($parameters) {
     $response = $this->apiCall('GetACHEFTPaymentBoxRejectCSV', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTPaymentBoxRejectCSVV1Result', 'CSV');
+    return $this->responseHandler($response, 'GetACHEFTPaymentBoxRejectCSVResult', 'CSV');
   }
 
   /**
@@ -142,7 +142,7 @@ class ReportLink extends Core {
    */
   public function getACHEFTRejectCSV($parameters) {
     $response = $this->apiCall('GetACHEFTRejectCSV', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTRejectCSVV1Result', 'CSV');
+    return $this->responseHandler($response, 'GetACHEFTRejectCSVResult', 'CSV');
   }
 
   /**
@@ -159,7 +159,7 @@ class ReportLink extends Core {
    */
   public function getACHEFTReject($parameters) {
     $response = $this->apiCall('GetACHEFTReject', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTRejectV1Result', 'AR');
+    return $this->responseHandler($response, 'GetACHEFTRejectResult', 'AR');
   }
 
   /**
@@ -175,7 +175,7 @@ class ReportLink extends Core {
    */
   public function getACHEFTReturnCSV($parameters) {
     $response = $this->apiCall('GetACHEFTReturnCSV', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTReturnCSVV1Result', 'CSV');
+    return $this->responseHandler($response, 'GetACHEFTReturnCSVResult', 'CSV');
   }
 
   /**
@@ -191,7 +191,7 @@ class ReportLink extends Core {
    */
   public function getACHEFTReturn($parameters) {
     $response = $this->apiCall('GetACHEFTReturn', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTReturnV1Result', 'AR');
+    return $this->responseHandler($response, 'GetACHEFTReturnResult', 'AR');
   }
 
   /**
@@ -212,7 +212,7 @@ class ReportLink extends Core {
    */
   public function getCreditCardBankReconciliationReportCSV($parameters) {
     $response = $this->apiCall('GetCreditCardBankReconciliationReportCSV', $parameters);
-    return $this->responseHandler($response, 'GetCreditCardBankReconciliationReportCSVV1Result', 'CSV');
+    return $this->responseHandler($response, 'GetCreditCardBankReconciliationReportCSVResult', 'CSV');
   }
 
   /**
@@ -228,7 +228,7 @@ class ReportLink extends Core {
    */
   public function getCreditCardJournalCSV($parameters) {
     $response = $this->apiCall('GetCreditCardJournalCSV', $parameters);
-    return $this->responseHandler($response, 'GetCreditCardJournalCSVV1Result', 'CSV');
+    return $this->responseHandler($response, 'GetCreditCardJournalCSVResult', 'CSV');
   }
 
   /**
@@ -244,7 +244,7 @@ class ReportLink extends Core {
    */
   public function getCreditCardJournal($parameters) {
     $response = $this->apiCall('GetCreditCardJournal', $parameters);
-    return $this->responseHandler($response, 'GetCreditCardJournalV1Result', 'AR');
+    return $this->responseHandler($response, 'GetCreditCardJournalResult', 'AR');
   }
 
   /**
@@ -261,7 +261,7 @@ class ReportLink extends Core {
    */
   public function getCreditCardPaymentBoxJournalCSV($parameters) {
     $response = $this->apiCall('GetCreditCardPaymentBoxJournalCSV', $parameters);
-    return $this->responseHandler($response, 'GetCreditCardPaymentBoxJournalCSVV1Result', 'CSV');
+    return $this->responseHandler($response, 'GetCreditCardPaymentBoxJournalCSVResult', 'CSV');
   }
 
   /**
@@ -278,7 +278,7 @@ class ReportLink extends Core {
    */
   public function getCreditCardPaymentBoxRejectCSV($parameters) {
     $response = $this->apiCall('GetCreditCardPaymentBoxRejectCSV', $parameters);
-    return $this->responseHandler($response, 'GetCreditCardPaymentBoxRejectCSVV1Result', 'CSV');
+    return $this->responseHandler($response, 'GetCreditCardPaymentBoxRejectCSVResult', 'CSV');
   }
 
   /**
@@ -294,7 +294,7 @@ class ReportLink extends Core {
    */
   public function getCreditCardReject($parameters) {
     $response = $this->apiCall('GetCreditCardReject', $parameters);
-    return $this->responseHandler($response, 'GetCreditCardRejectV1Result', 'AR');
+    return $this->responseHandler($response, 'GetCreditCardRejectResult', 'AR');
   }
 
   /**
@@ -310,7 +310,7 @@ class ReportLink extends Core {
    */
   public function getCreditCardRejectCSV($parameters) {
     $response = $this->apiCall('GetCreditCardRejectCSV', $parameters);
-    return $this->responseHandler($response, 'GetCreditCardRejectCSVV1Result', 'CSV');
+    return $this->responseHandler($response, 'GetCreditCardRejectCSVResult', 'CSV');
   }
 
   /**

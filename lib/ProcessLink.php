@@ -69,7 +69,7 @@ class ProcessLink extends Core {
     }
     else {
       $response = $this->apiCall('CreateCustomerCodeAndProcessACHEFT', $parameters);
-      return $this->responseHandler($response, 'CreateCustomerCodeAndProcessACHEFTV1Result');
+      return $this->responseHandler($response, 'CreateCustomerCodeAndProcessACHEFTResult');
     }
   }
 
@@ -103,7 +103,7 @@ class ProcessLink extends Core {
     }
     else {
       $response = $this->apiCall('CreateCustomerCodeAndProcessCreditCard', $parameters);
-      return $this->responseHandler($response, 'CreateCustomerCodeAndProcessCreditCardV1Result');
+      return $this->responseHandler($response, 'CreateCustomerCodeAndProcessCreditCardResult');
     }
   }
 
@@ -126,7 +126,7 @@ class ProcessLink extends Core {
     else
     {
       $response = $this->apiCall('GetBatchProcessResultFile', $parameters);
-     return $this->responseHandler($response, 'GetBatchProcessResultFileV1Result');
+     return $this->responseHandler($response, 'GetBatchProcessResultFileResult');
     }
   }
 
@@ -155,7 +155,7 @@ class ProcessLink extends Core {
     }
     else {
       $response = $this->apiCall('ProcessACHEFTChargeBatch', $parameters);
-      return $this->responseHandler($response, 'ProcessACHEFTChargeBatchV1Result');
+      return $this->responseHandler($response, 'ProcessACHEFTChargeBatchResult');
     }
   }
 
@@ -184,7 +184,7 @@ class ProcessLink extends Core {
     }
     else {
       $response = $this->apiCall('ProcessACHEFTRefundBatch', $parameters);
-     return $this->responseHandler($response, 'ProcessACHEFTRefundBatchV1Result');
+     return $this->responseHandler($response, 'ProcessACHEFTRefundBatchResult');
     }
   }
 
@@ -211,7 +211,7 @@ class ProcessLink extends Core {
     }
     else {
       $response = $this->apiCall('ProcessACHEFTRefundWithTransactionId', $parameters);
-      return $this->responseHandler($response, 'ProcessACHEFTRefundWithTransactionIdV1Result');
+      return $this->responseHandler($response, 'ProcessACHEFTRefundWithTransactionIdResult');
     }
   }
 
@@ -248,7 +248,7 @@ class ProcessLink extends Core {
     else
     {
       $response = $this->apiCall('ProcessACHEFT', $parameters);
-      return $this->responseHandler($response, 'ProcessACHEFTV1Result');
+      return $this->responseHandler($response, 'ProcessACHEFTResult');
     }
   }
 
@@ -278,7 +278,7 @@ class ProcessLink extends Core {
     else
     {
       $response = $this->apiCall('ProcessACHEFTWithCustomerCode', $parameters);
-      return $this->responseHandler($response, 'ProcessACHEFTWithCustomerCodeV1Result');
+      return $this->responseHandler($response, 'ProcessACHEFTWithCustomerCodeResult');
     }
   }
 
@@ -306,7 +306,7 @@ class ProcessLink extends Core {
     }
     else {
      $response = $this->apiCall('ProcessCreditCardBatch', $parameters);
-     return $this->responseHandler($response, 'ProcessCreditCardBatchV1Result');
+     return $this->responseHandler($response, 'ProcessCreditCardBatchResult');
     }
   }
 
@@ -331,7 +331,7 @@ class ProcessLink extends Core {
     }
     else {
      $response = $this->apiCall('ProcessCreditCardRefundWithTransactionId', $parameters);
-     return $this->responseHandler($response, 'ProcessCreditCardRefundWithTransactionIdV1Result');
+     return $this->responseHandler($response, 'ProcessCreditCardRefundWithTransactionIdResult');
     }
   }
 
@@ -368,7 +368,7 @@ class ProcessLink extends Core {
     }
     else {
       $response = $this->apiCall('ProcessCreditCard', $parameters);
-      return $this->responseHandler($response, 'ProcessCreditCardV1Result');
+      return $this->responseHandler($response, 'ProcessCreditCardResult');
     }
   }
 
@@ -396,7 +396,7 @@ class ProcessLink extends Core {
     }
     else {
       $response = $this->apiCall('ProcessCreditCardWithCustomerCode', $parameters);
-      return $this->responseHandler($response, 'ProcessCreditCardWithCustomerCodeV1Result');
+      return $this->responseHandler($response, 'ProcessCreditCardWithCustomerCodeResult');
     }
   }
 
