@@ -34,7 +34,7 @@ class ProcessLink extends Core {
    */
   public function __construct($agentcode, $password, $serverid = 'NA') {
     parent::__construct($agentcode, $password, $serverid);
-    $this->endpoint = '/NetGate/ProcessLink.asmx?WSDL';
+    $this->endpoint = '/NetGate/ProcessLinkv2.asmx?WSDL';
   }
 
   /**

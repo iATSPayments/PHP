@@ -38,7 +38,7 @@ class ReportLink extends Core {
    */
   public function __construct($agentcode, $password, $serverid = 'NA') {
     parent::__construct($agentcode, $password, $serverid);
-    $this->endpoint = '/NetGate/ReportLink.asmx?WSDL';
+    $this->endpoint = '/NetGate/ReportLinkv2.asmx?WSDL';
   }
 
   /**

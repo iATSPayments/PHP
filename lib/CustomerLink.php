@@ -37,7 +37,7 @@ class CustomerLink extends Core {
    */
   public function __construct($agentcode, $password, $serverid = 'NA') {
     parent::__construct($agentcode, $password, $serverid);
-    $this->endpoint = '/NetGate/CustomerLink.asmx?WSDL';
+    $this->endpoint = '/NetGate/CustomerLinkv2.asmx?WSDL';
   }
 
   /**
