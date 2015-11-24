@@ -88,6 +88,14 @@ class CustomerLink extends Core {
    *     'creditCardExpiry' => '12/17' // The customer's credit card expiration date.
    *     'mop' => 'VISA' // Optional. The customer's method of payment.
    *     'currency' => 'USD' // Optional. The customer's currency.
+   *     'title' => 'string'
+   *     'country' => 'string'
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
@@ -130,6 +138,14 @@ class CustomerLink extends Core {
    *     'mop' => 'VISA' // Optional. The customer's method of payment.
    *     'currency' => 'USD' // Optional. The customer's currency.
    *     'updateCreditCardNum' => FALSE // Optional. TRUE when the customer's credit card number should be updated.
+   *     'title' => 'string'
+   *     'country' => 'string'
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
@@ -170,6 +186,14 @@ class CustomerLink extends Core {
    *     'accountNum' => '999999999' // Optional. The customer's bank account number.
    *     'accountType' => 'CHECKING' // Optional. The customer's bank account type.
    *      // Options: CHECKING, SAVING (North America only.)
+   *       'title' => 'string'
+   *       'country' => 'string'
+   *       'item1' => 'string'
+   *       'item2' => 'string'
+   *       'item3' => 'string'
+   *       'item4' => 'string'
+   *       'item5' => 'string'
+   *       'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
@@ -219,6 +243,14 @@ class CustomerLink extends Core {
    *     'accountType' => 'CHECKING' // Optional. The customer's bank account type.
    *      // Options: CHECKING, SAVING (North America only.)
    *     'updateAccountNum' => FALSE // Optional. True if the customer's account number should be updated.
+   *     'title' => 'string'
+   *     'country' => 'string'
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
