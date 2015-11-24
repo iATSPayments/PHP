@@ -91,6 +91,19 @@ class ProcessLink extends Core {
    *     'zipCode' => '12345' // The customer's ZIP code.
    *     'cvv2' => '000' // Optional. The customer's credit card CVV2 code.
    *     'total' => '5' // The total payment amount.
+   *     'comment' => 'string'
+   *     'title' => 'string'
+   *     'phone' => 'string'
+   *     'phone2' => 'string'
+   *     'fax' => 'string'
+   *     'email' => 'string'
+   *     'country' => 'string'
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *     'currency' => 'USD' // The currency to process payment in.
    *
    * @return mixed
@@ -235,6 +248,18 @@ class ProcessLink extends Core {
    *     'zipCode' => '12345' // Optional. The customer's ZIP code.
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'Process ACH / EFT test.' // Optional. A comment describing this transaction.
+   *     'title' => 'string'
+   *     'phone' => 'string'
+   *     'phone2' => 'string'
+   *     'fax' => 'string'
+   *     'email' => 'string'
+   *     'country' => 'string'
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
@@ -264,6 +289,12 @@ class ProcessLink extends Core {
    *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'Process ACH / EFT test.' // Optional. A comment describing this transaction.
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    * @endcode
    *
    * @return mixed
@@ -356,6 +387,18 @@ class ProcessLink extends Core {
    *     'zipCode' => '12345' // The customer's ZIP code.
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'Process credit card test.' // Optional. A comment describing this transaction.
+   *     'title' => 'string'
+   *     'phone' => 'string'
+   *     'phone2' => 'string'
+   *     'fax' => 'string'
+   *     'email' => 'string'
+   *     'country' => 'string'
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *     'currency' => 'USD' // The currency to process payment in.
    *
    * @return mixed
@@ -385,6 +428,12 @@ class ProcessLink extends Core {
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'Process credit card test with Customer Code.' // Optional. A comment describing this transaction.
    *     'currency' => 'USD' // The currency to process payment in.
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
