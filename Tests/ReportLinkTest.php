@@ -50,9 +50,9 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Test getACHEFTJournalCSV.
+   * Test getACHEFTApprovedSpecificDateCSV.
    */
-  public function testReportLinkgetACHEFTJournalCSV() {
+  public function testReportLinkgetACHEFTApprovedSpecificDateCSV() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
@@ -62,15 +62,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $response = $iats->getACHEFTJournalCSV($request);
+    $response = $iats->getACHEFTApprovedSpecificDateCSV($request);
 
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
   }
 
   /**
-   * Test getACHEFTJournal.
+   * Test getACHEFTApprovedSpecificDateXML.
    */
-  public function testReportLinkgetACHEFTJournal() {
+  public function testReportLinkgetACHEFTApprovedSpecificDateXML() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
@@ -80,7 +80,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $response = $iats->getACHEFTJournal($request);
+    $response = $iats->getACHEFTApprovedSpecificDateXML($request);
 
     // ACH / EFT transactions are never processed when using the
     // test server, so a successful request is made without returning report data.
@@ -88,9 +88,9 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Test getACHEFTPaymentBoxJournalCSV.
+   * Test getACHEFTApprovedDateRangeCSV.
    */
-  public function testReportLinkgetACHEFTPaymentBoxJournalCSV() {
+  public function testReportLinkgetACHEFTApprovedDateRangeCSV() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     $fromTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
@@ -100,17 +100,19 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'fromDate' => $iats->getFormattedDate($fromTime),
       'toDate' => $iats->getFormattedDate($toTime),
       'customerIPAddress' => '',
+      'startIndex' => '',
+      'endIndex' => '',
     );
 
-    $response = $iats->getACHEFTPaymentBoxJournalCSV($request);
+    $response = $iats->getACHEFTApprovedDateRangeCSV($request);
 
     $this->assertStringStartsWith('Transaction ID,Invoice Number,Date Time', $response);
   }
 
   /**
-   * Test getACHEFTPaymentBoxRejectCSV.
+   * Test getACHEFTRejectDateRangeCSV.
    */
-  public function testReportLinkgetACHEFTPaymentBoxRejectCSV() {
+  public function testReportLinkgetACHEFTRejectDateRangeCSV() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     $fromTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
@@ -120,17 +122,19 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'fromDate' => $iats->getFormattedDate($fromTime),
       'toDate' => $iats->getFormattedDate($toTime),
       'customerIPAddress' => '',
+      'startIndex' => '',
+      'endIndex' => '',
     );
 
-    $response = $iats->getACHEFTPaymentBoxRejectCSV($request);
+    $response = $iats->getACHEFTRejectDateRangeCSV($request);
 
     $this->assertStringStartsWith('Transaction ID,Invoice Number,Date Time', $response);
   }
 
   /**
-   * Test getACHEFTRejectCSV.
+   * Test getACHEFTRejectSpecificDateCSV.
    */
-  public function testReportLinkgetACHEFTRejectCSV() {
+  public function testReportLinkgetACHEFTRejectSpecificDateCSV() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
@@ -140,15 +144,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $response = $iats->getACHEFTRejectCSV($request);
+    $response = $iats->getACHEFTRejectSpecificDateCSV($request);
 
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
   }
 
   /**
-   * Test getACHEFTReject.
+   * Test getACHEFTRejectSpecificDateXML.
    */
-  public function testReportLinkgetACHEFTReject() {
+  public function testReportLinkgetACHEFTRejectSpecificDateXML() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
@@ -158,15 +162,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $response = $iats->getACHEFTReject($request);
+    $response = $iats->getACHEFTRejectSpecificDateXML($request);
 
     $this->assertArrayHasKey('TNID', $response[0]);
   }
 
   /**
-   * Test getACHEFTReturnCSV.
+   * Test getACHEFTReturnSpecificDateCSV.
    */
-  public function testReportLinkgetACHEFTReturnCSV() {
+  public function testReportLinkgetACHEFTReturnSpecificDateCSV() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
@@ -176,15 +180,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $response = $iats->getACHEFTReturnCSV($request);
+    $response = $iats->getACHEFTReturnSpecificDateCSV($request);
 
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
   }
 
   /**
-   * Test getACHEFTReturn.
+   * Test getACHEFTReturnSpecificDateXML.
    */
-  public function testReportLinkgetACHEFTReturn() {
+  public function testReportLinkgetACHEFTReturnSpecificDateXML() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
@@ -194,7 +198,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $response = $iats->getACHEFTReturn($request);
+    $response = $iats->getACHEFTReturnSpecificDateXML($request);
 
     // ACH / EFT refunds are not processed when using the test server,
     // so a successful request is made without returning report data.
@@ -226,9 +230,9 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Test getCreditCardJournalCSV.
+   * Test getCreditCardApprovedSpecificDateCSV.
    */
-  public function testReportLinkgetCreditCardJournalCSV() {
+  public function testReportLinkgetCreditCardApprovedSpecificDateCSV() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
@@ -238,15 +242,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $response = $iats->getCreditCardJournalCSV($request);
+    $response = $iats->getCreditCardApprovedSpecificDateCSV($request);
 
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
   }
 
   /**
-   * Test getCreditCardJournal.
+   * Test getCreditCardApprovedSpecificDateXML.
    */
-  public function testReportLinkgetCreditCardJournal() {
+  public function testReportLinkgetCreditCardApprovedSpecificDateXML() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
@@ -256,15 +260,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $response = $iats->getCreditCardJournal($request);
+    $response = $iats->getCreditCardApprovedSpecificDateXML($request);
 
     $this->assertArrayHasKey('TNID', $response[0]);
   }
 
   /**
-   * Test getCreditCardPaymentBoxJournalCSV.
+   * Test getCreditCardApprovedDateRangeCSV.
    */
-  public function testReportLinkgetCreditCardPaymentBoxJournalCSV() {
+  public function testReportLinkgetCreditCardApprovedDateRangeCSV() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     $fromTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
@@ -274,17 +278,19 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'fromDate' => $iats->getFormattedDate($fromTime),
       'toDate' => $iats->getFormattedDate($toTime),
       'customerIPAddress' => '',
+      'startIndex' => '',
+      'endIndex' => '',
     );
 
-    $response = $iats->getCreditCardPaymentBoxJournalCSV($request);
+    $response = $iats->getCreditCardApprovedDateRangeCSV($request);
 
     $this->assertStringStartsWith('Transaction ID,Invoice Number,Date Time', $response);
   }
 
   /**
-   * Test getCreditCardPaymentBoxRejectCSV.
+   * Test getCreditCardRejectDateRangeCSV.
    */
-  public function testReportLinkgetCreditCardPaymentBoxRejectCSV() {
+  public function testReportLinkgetCreditCardRejectDateRangeCSV() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     $fromTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
@@ -294,17 +300,19 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'fromDate' => $iats->getFormattedDate($fromTime),
       'toDate' => $iats->getFormattedDate($toTime),
       'customerIPAddress' => '',
+      'startIndex' => '',
+      'endIndex' => '',
     );
 
-    $response = $iats->getCreditCardPaymentBoxRejectCSV($request);
+    $response = $iats->getCreditCardRejectDateRangeCSV($request);
 
     $this->assertStringStartsWith('Transaction ID,Invoice Number,Date Time', $response);
   }
 
   /**
-   * Test getCreditCardReject.
+   * Test getCreditCardRejectSpecificDateXML.
    */
-  public function testReportLinkgetCreditCardReject() {
+  public function testReportLinkgetCreditCardRejectSpecificDateXML() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
@@ -314,15 +322,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $response = $iats->getCreditCardReject($request);
+    $response = $iats->getCreditCardRejectSpecificDateXML($request);
 
     $this->assertArrayHasKey('TNID', $response[0]);
   }
 
   /**
-   * Test getCreditCardRejectCSV.
+   * Test getCreditCardRejectSpecificDateCSV.
    */
-  public function testReportLinkgetCreditCardRejectCSV() {
+  public function testReportLinkgetCreditCardRejectSpecificDateCSV() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
@@ -332,15 +340,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $response = $iats->getCreditCardRejectCSV($request);
+    $response = $iats->getCreditCardRejectSpecificDateCSV($request);
 
     $this->assertStringStartsWith('Invoice,Date,Agent,Customer Code', $response);
   }
 
   /**
-   * Test getCreditCardReject using a date with no data.
+   * Test getCreditCardRejectSpecificDateXML using a date with no data.
    */
-  public function testReportLinkgetCreditCardRejectNoData() {
+  public function testReportLinkgetCreditCardRejectSpecificDateXMLNoData() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     // Use a distant time in the future.
@@ -351,15 +359,15 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $response = $iats->getCreditCardReject($request);
+    $response = $iats->getCreditCardRejectSpecificDateXML($request);
 
     $this->assertEquals('No data returned for this date', $response);
   }
 
   /**
-   * Test getCreditCardRejectCSV using a date with no data.
+   * Test getCreditCardRejectSpecificDateCSV using a date with no data.
    */
-  public function testReportLinkgetCreditCardRejectCSVNoData() {
+  public function testReportLinkgetCreditCardRejectSpecificDateCSVNoData() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
     $time = mktime(0, 0, 0, 1, 1, 2050);
@@ -369,41 +377,43 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
       'customerIPAddress' => '',
     );
 
-    $response = $iats->getCreditCardRejectCSV($request);
+    $response = $iats->getCreditCardRejectSpecificDateCSV($request);
 
     $this->assertEquals('', $response);
   }
 
   /**
-   * Test getCreditCardReject with no response from the API.
+   * Test getCreditCardRejectSpecificDateXML with no response from the API.
    */
-  public function testReportLinkgetCreditCardRejectNoResponse() {
+  public function testReportLinkgetCreditCardRejectSpecificDateXMLNoResponse() {
+
     // Simulate no response from server.
     $resultStr = '';
 
     $result = new \StdClass();
-    $result->GetCreditCardRejectV1Result = new \StdClass();
-    $result->GetCreditCardRejectV1Result->any = $resultStr;
+    $result->GetCreditCardRejectSpecificDateXMLResult = new \StdClass();
+    $result->GetCreditCardRejectSpecificDateXMLResult->any = $resultStr;
 
     $iats = new ReportLink(self::$agentCode, self::$password);
-    $response = $iats->responseHandler($result, 'GetCreditCardRejectV1Result', 'AR');
+    $response = $iats->responseHandler($result, 'GetCreditCardRejectSpecificDateXMLResult', 'AR');
 
     $this->assertEquals('No data returned for this date', $response);
   }
 
   /**
-   * Test getCreditCardRejectCSV with no response from the API.
+   * Test getCreditCardRejectSpecificDateCSV with no response from the API.
    */
-  public function testReportLinkgetCreditCardRejectCSVNoResponse() {
+  public function testReportLinkgetCreditCardRejectSpecificDateCSVNoResponse() {
+
     // Simulate no response from server.
     $resultStr = '';
 
     $result = new \StdClass();
-    $result->GetCreditCardRejectCSVV1Result = new \StdClass();
-    $result->GetCreditCardRejectCSVV1Result->any = $resultStr;
+    $result->GetCreditCardRejectSpecificDateCSVResult = new \StdClass();
+    $result->GetCreditCardRejectSpecificDateCSVResult->any = $resultStr;
 
     $iats = new ReportLink(self::$agentCode, self::$password);
-    $response = $iats->responseHandler($result, 'GetCreditCardRejectCSVV1Result', 'CSV');
+    $response = $iats->responseHandler($result, 'GetCreditCardRejectSpecificDateCSVResult', 'CSV');
 
     $this->assertEquals('', $response);
   }
