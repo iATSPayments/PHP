@@ -104,6 +104,7 @@ class ProcessLink extends Core {
    *     'item4' => 'string'
    *     'item5' => 'string'
    *     'item6' => 'string'
+   *     'currency' => 'USD' // The currency to process payment in.
    *
    * @return mixed
    *   Client response array or API error.
@@ -398,6 +399,7 @@ class ProcessLink extends Core {
    *     'item4' => 'string'
    *     'item5' => 'string'
    *     'item6' => 'string'
+   *     'currency' => 'USD' // The currency to process payment in.
    *
    * @return mixed
    *   Client response array or API error.
@@ -425,6 +427,7 @@ class ProcessLink extends Core {
    *     'mop' => 'VISA' // The customer's method of payment.
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'Process credit card test with Customer Code.' // Optional. A comment describing this transaction.
+   *     'currency' => 'USD' // The currency to process payment in.
    *     'item1' => 'string'
    *     'item2' => 'string'
    *     'item3' => 'string'
