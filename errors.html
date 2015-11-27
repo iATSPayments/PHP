@@ -11,7 +11,7 @@
             <link href="css/template.css" rel="stylesheet" media="all"/>
     
             <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
         <![endif]-->
         <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
         <script src="js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
@@ -115,7 +115,7 @@
 
         <div class="span8">
             <ul class="breadcrumb">
-                <li><a href=""><i class="icon-remove-sign"></i></a><span class="divider">\</span></li>
+                <li><a href="?"><i class="icon-remove-sign"></i></a><span class="divider">\</span></li>
                 <li>Compilation Errors</li>
             </ul>
 
@@ -137,7 +137,41 @@
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Thu, 20 Feb 2014 17:38:27 +0000.<br/>
+            generated on 
+Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
+
+Call Stack:
+    0.0002     235112   1. {main}() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/bin/phpdoc:0
+    0.1164   10066376   2. phpDocumentor\Application->run() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/bin/phpdoc:24
+    0.1183   10336896   3. Symfony\Component\Console\Application->run() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Application.php:183
+    0.1185   10337848   4. Symfony\Component\Console\Application->doRun() /Users/gregboggs/Sites/wrapper/iATS/vendor/symfony/console/Application.php:120
+    0.1186   10338768   5. Symfony\Component\Console\Application->doRunCommand() /Users/gregboggs/Sites/wrapper/iATS/vendor/symfony/console/Application.php:189
+    0.1187   10339344   6. Symfony\Component\Console\Command\Command->run() /Users/gregboggs/Sites/wrapper/iATS/vendor/symfony/console/Application.php:838
+    0.1191   10346224   7. phpDocumentor\Command\Project\RunCommand->execute() /Users/gregboggs/Sites/wrapper/iATS/vendor/symfony/console/Command/Command.php:256
+    0.4400   19408304   8. Symfony\Component\Console\Command\Command->run() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Command/Project/RunCommand.php:275
+    0.4403   19412360   9. phpDocumentor\Transformer\Command\Project\TransformCommand->execute() /Users/gregboggs/Sites/wrapper/iATS/vendor/symfony/console/Command/Command.php:256
+    0.4791   19703656  10. phpDocumentor\Console\Output\Output->writeTimedLog() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Transformer/Command/Project/TransformCommand.php:206
+    0.4791   19703752  11. call_user_func_array:{/Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Console/Output/Output.php:59}() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Console/Output/Output.php:59
+    0.4791   19704328  12. phpDocumentor\Transformer\Transformer->execute() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Console/Output/Output.php:59
+    0.4800   19725232  13. phpDocumentor\Transformer\Transformer->transformProject() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Transformer/Transformer.php:141
+    0.8039   24911536  14. phpDocumentor\Transformer\Transformer->applyTransformationToProject() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Transformer/Transformer.php:275
+    0.8041   24911792  15. phpDocumentor\Plugin\Twig\Writer\Twig->transform() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Transformer/Transformer.php:312
+    0.8043   24917056  16. Twig_Environment->render() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Plugin/Twig/Writer/Twig.php:116
+    0.8048   24996848  17. Twig_Template->render() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Environment.php:347
+    0.8048   25013560  18. Twig_Template->display() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:366
+    0.8049   25015064  19. Twig_Template->displayWithErrorHandling() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:355
+    0.8049   25015136  20. __TwigTemplate_8e1cc0363cb7dcafd2f798f874986218eef41ebcd17e0a00e11c0c544f0eb110->doDisplay() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:381
+    0.8049   25015528  21. Twig_Template->display() /private/var/folders/dy/ytdh7sq11lgcxfhfphjk825w0000gn/T/phpdoc-twig-cache/a7/a7941c5e4da53138678f969f05e99abf68992ff2aca4900951c3de69ba67c4b3.php:25
+    0.8049   25016512  22. Twig_Template->displayWithErrorHandling() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:355
+    0.8049   25016512  23. __TwigTemplate_9efbff20e978636c42adcb85329c96e13102b6d0300e28de62b7824de6515653->doDisplay() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:381
+    0.8080   25166344  24. Twig_Template->displayBlock() /private/var/folders/dy/ytdh7sq11lgcxfhfphjk825w0000gn/T/phpdoc-twig-cache/19/19a9350bdcd1364cc4b290a7112ccb254784dc4682a6d0249fe9b1ef76ff2c50.php:84
+    0.8080   25166472  25. __TwigTemplate_9efbff20e978636c42adcb85329c96e13102b6d0300e28de62b7824de6515653->block_footer() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:167
+    0.8080   25166568  26. twig_date_format_filter() /private/var/folders/dy/ytdh7sq11lgcxfhfphjk825w0000gn/T/phpdoc-twig-cache/19/19a9350bdcd1364cc4b290a7112ccb254784dc4682a6d0249fe9b1ef76ff2c50.php:301
+    0.8080   25166616  27. twig_date_converter() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Extension/Core.php:440
+    0.8081   25166616  28. Twig_Extension_Core->getTimezone() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Extension/Core.php:487
+    0.8081   25166800  29. date_default_timezone_get() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Extension/Core.php:89
+
+Fri, 27 Nov 2015 17:52:11 +0000.<br/>
     </footer>
     </body>
 </html>
