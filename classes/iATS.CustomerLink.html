@@ -144,26 +144,20 @@
     </li>
 
                                                                                                         <li class="method public">
-        <a href="#method_directDebitACHEFTPayerValidate" title="directDebitACHEFTPayerValidate :: Validate direct debit payer information. UK clients only.">
-            <span class="description">Validate direct debit payer information. UK clients only.</span><pre>directDebitACHEFTPayerValidate</pre>
-        </a>
-    </li>
-
-                                                                                                        <li class="method public">
-        <a href="#method_directDebitCreateACHEFTCustomerCode" title="directDebitCreateACHEFTCustomerCode :: Create a customer code using only direct debit. UK clients only.">
-            <span class="description">Create a customer code using only direct debit. UK clients only.</span><pre>directDebitCreateACHEFTCustomerCode</pre>
-        </a>
-    </li>
-
-                                                                                                        <li class="method public">
-        <a href="#method_directDebitUpdateACHEFTCustomerCode" title="directDebitUpdateACHEFTCustomerCode :: Update a customer code using only direct debit. UK clients only.">
-            <span class="description">Update a customer code using only direct debit. UK clients only.</span><pre>directDebitUpdateACHEFTCustomerCode</pre>
-        </a>
-    </li>
-
-                                                                                                        <li class="method public">
         <a href="#method_getCustomerCodeDetail" title="getCustomerCodeDetail :: Get Customer Code Detail.">
             <span class="description">Get Customer Code Detail.</span><pre>getCustomerCodeDetail</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCustomerListByCreationTimeCSV" title="getCustomerListByCreationTimeCSV :: Get Customer List By Creation Time CSV.">
+            <span class="description">Get Customer List By Creation Time CSV.</span><pre>getCustomerListByCreationTimeCSV</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCustomerListByCreationTimeXML" title="getCustomerListByCreationTimeXML :: Get Customer List By Creation Time XML.">
+            <span class="description">Get Customer List By Creation Time XML.</span><pre>getCustomerListByCreationTimeXML</pre>
         </a>
     </li>
 
@@ -215,7 +209,7 @@
                                 <span class="description">Check server restrictions.</span><pre>checkServerRestrictions</pre>
                             </a>
                         </li>
-                                                                                                                                                                                                                                                                                                                                                                                <li class="method protected inherited">
+                                                                                                                                                                                                                                                                                                                                            <li class="method protected inherited">
                             <a href="#method_getMOPCurrencyMatrix" title="getMOPCurrencyMatrix :: MOP Currency matrix.">
                                 <span class="description">MOP Currency matrix.</span><pre>getMOPCurrencyMatrix</pre>
                             </a>
@@ -239,7 +233,7 @@
         </li>
         <li class="nav-header private">» Private
             <ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="method private inherited">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <li class="method private inherited">
                             <a href="#method_setServer" title="setServer :: Set the server to use based on a server id.">
                                 <span class="description">Set the server to use based on a server id.</span><pre>setServer</pre>
                             </a>
@@ -620,156 +614,6 @@ method of payment are missing.</p></p>
                             </div>
 
                         </div>
-                                            <a id="method_directDebitACHEFTPayerValidate"></a>
-                        <div class="element clickable method public  method_directDebitACHEFTPayerValidate" data-toggle="collapse" data-target=".method_directDebitACHEFTPayerValidate .collapse">
-                            <h2>Validate direct debit payer information. UK clients only.</h2>
-                            <pre>directDebitACHEFTPayerValidate(array $parameters) : mixed</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-
-                            
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.
-'customerIPAddress' =&gt; '' // Optional. The client IP address.
-'ACHEFTReferenceNum' =&gt; '' // Optional. The ACH / EFT reference number.
-'beginDate' =&gt; '2014-07-23T00:00:00+00:00' // The begin date of the direct debit payment.
-'endDate' =&gt; '2024-07-23T23:59:59+00:00' // The end date of the direct debit payment.
-'accountCustomerName' =&gt; 'Test Account' // The customer's name as appears on the bank account.
-'accountNum' =&gt; '999999999' // The customer's bank account number.
-'companyName' =&gt; 'Test Company' // Optional. The customer's company name.
-'firstName' =&gt; 'Test' // The customer's first name.
-'lastName' =&gt; 'Account' // The customer's last name.
-'address' =&gt; '1234 Any Street' // The customer's address.
-'city' =&gt; 'Schenectady' // The customer's city.
-'state' =&gt; 'NY' // Optional. The customer's state or province.
-'country' =&gt; 'USA' // Optional. The customer's country.
-'email' =&gt; 'email@test.co' // The customer's email address.
-'zipCode' =&gt; '12345' // The customer's ZIP code.</p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
-                                                                    </div>
-                            </div>
-
-                        </div>
-                                            <a id="method_directDebitCreateACHEFTCustomerCode"></a>
-                        <div class="element clickable method public  method_directDebitCreateACHEFTCustomerCode" data-toggle="collapse" data-target=".method_directDebitCreateACHEFTCustomerCode .collapse">
-                            <h2>Create a customer code using only direct debit. UK clients only.</h2>
-                            <pre>directDebitCreateACHEFTCustomerCode(array $parameters) : mixed</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-
-                            
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.
-'customerIPAddress' =&gt; '' // Optional. The client IP address.
-'customerCode' =&gt; '' // Optional. The iATS Customer Code.
-'ACHEFTReferenceNum' =&gt; '' // Optional. The ACH / EFT reference number.
-'firstName' =&gt; 'Test' // The customer's first name.
-'lastName' =&gt; 'Account' // The customer's last name.
-'companyName' =&gt; 'Test Co.' // Optional. The customer's company name.
-'address' =&gt; '1234 Any Street' // The customer's address.
-'city' =&gt; 'Schenectady' // The customer's city.
-'state' =&gt; 'NY' // The customer's state or province.
-'zipCode' =&gt; '12345' // The customer's ZIP code.
-'phone' =&gt; '555-555-1234' // Optional. The customer's phone number.
-'fax' =&gt; '555-555-4321' // Optional. The customer's FAX number.
-'alternatePhone' =&gt; '555-555-5555' // Optional. The customer's alternate phone number.
-'email' =&gt; 'email@test.co' // Optional. The customer's email address.
-'comment' =&gt; 'Customer code creation test.' // Optional. A comment describing this transaction.
-'recurring' =&gt; FALSE // Optional. TRUE if a recurring payment should be created.
-'amount' =&gt; '5' // Optional. The payment amount.
-'beginDate' =&gt; '2014-07-23T00:00:00+00:00' // The begin date of the recurring payment, if used.
-'endDate' =&gt; '2024-07-23T23:59:59+00:00' // The end date of the recurring payment, if used.
-'scheduleType' =&gt; 'Annually' // Optional. The recurring payment schedule.
-// Options: Weekly, Monthly Quarterly, Annually.
-'scheduleDate' =&gt; '' // Optional. The recurring payment schedule date.
-// Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
-'accountCustomerName' =&gt; 'Test Account' // Optional. The customer's name as appears on the bank account.
-'accountNum' =&gt; '999999999' // Optional. The customer's bank account number.
-'accountType' =&gt; 'CHECKING' // Optional. The customer's bank account type.
-// Options: CHECKING, SAVING (North America only.)</p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
-                                                                    </div>
-                            </div>
-
-                        </div>
-                                            <a id="method_directDebitUpdateACHEFTCustomerCode"></a>
-                        <div class="element clickable method public  method_directDebitUpdateACHEFTCustomerCode" data-toggle="collapse" data-target=".method_directDebitUpdateACHEFTCustomerCode .collapse">
-                            <h2>Update a customer code using only direct debit. UK clients only.</h2>
-                            <pre>directDebitUpdateACHEFTCustomerCode(array $parameters) : mixed</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-
-                            
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.
-'customerIPAddress' =&gt; '' // Optional. The client IP address.
-'customerCode' =&gt; '' // The iATS Customer Code.
-'firstName' =&gt; 'Test' // Optional. The customer's first name.
-'lastName' =&gt; 'Account' // Optional. The customer's last name.
-'companyName' =&gt; 'Test Co.' // Optional. The customer's company name.
-'address' =&gt; '1234 Any Street' // Optional. The customer's address.
-'city' =&gt; 'Schenectady' // Optional. The customer's city.
-'state' =&gt; 'NY' // Optional. The customer's state or province.
-'zipCode' =&gt; '12345' // Optional. The customer's ZIP code.
-'phone' =&gt; '555-555-1234' // Optional. The customer's phone number.
-'fax' =&gt; '555-555-4321' // Optional. The customer's FAX number.
-'alternatePhone' =&gt; Optional. '555-555-5555' // Optional. The customer's alternate phone number.
-'email' =&gt; 'email@test.co' // Optional. The customer's email address.
-'comment' =&gt; 'Customer code creation test.' // Optional. A comment describing this transaction.
-'recurring' =&gt; FALSE // Optional. TRUE if a recurring payment should be created.
-'amount' =&gt; '5' // Optional. The payment amount.
-'beginDate' =&gt; '2014-07-23T00:00:00+00:00' // Optional. The begin date of the recurring payment, if used.
-'endDate' =&gt; '2024-07-23T23:59:59+00:00' // Optional. The end date of the recurring payment, if used.
-'scheduleType' =&gt; 'Annually' // Optional. The recurring payment schedule.
-// Options: Weekly, Monthly Quarterly, Annually.
-'scheduleDate' =&gt; '' // Optional. The recurring payment schedule date.
-// Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
-'accountCustomerName' =&gt; 'Test Account' // Optional. The customer's name as appears on the bank account.
-'accountNum' =&gt; '999999999' // Optional. The customer's bank account number.
-'accountType' =&gt; 'CHECKING' // Optional. The customer's bank account type.
-// Options: CHECKING, SAVING (North America only.)
-'updateAccountNum' =&gt; FALSE // Optional. True is the customer's account number should be updated.</p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
-                                                                    </div>
-                            </div>
-
-                        </div>
                                             <a id="method_getCustomerCodeDetail"></a>
                         <div class="element clickable method public  method_getCustomerCodeDetail" data-toggle="collapse" data-target=".method_getCustomerCodeDetail .collapse">
                             <h2>Get Customer Code Detail.</h2>
@@ -791,6 +635,68 @@ method of payment are missing.</p></p>
                                                 <code>array</code><p><p>An associative array with the following possible values.
 'customerIPAddress' =&gt; '' // Optional. The client IP address.
 'customerCode' =&gt; 'A10396688' // The iATS Customer Code.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getCustomerListByCreationTimeCSV"></a>
+                        <div class="element clickable method public  method_getCustomerListByCreationTimeCSV" data-toggle="collapse" data-target=".method_getCustomerListByCreationTimeCSV .collapse">
+                            <h2>Get Customer List By Creation Time CSV.</h2>
+                            <pre>getCustomerListByCreationTimeCSV(array $parameters) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>An associative array with the following possible values.
+'customerIPAddress' =&gt; '' // Optional. The client IP address.
+'customerCode' =&gt; 'A10396688' // The iATS Customer Code.
+'fromDate =&gt; '2014-07-23T00:00:00+00:00' // Customer creation start date
+'toDate' =&gt; '2024-07-23T23:59:59+00:00'  // Customer creation to date</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getCustomerListByCreationTimeXML"></a>
+                        <div class="element clickable method public  method_getCustomerListByCreationTimeXML" data-toggle="collapse" data-target=".method_getCustomerListByCreationTimeXML .collapse">
+                            <h2>Get Customer List By Creation Time XML.</h2>
+                            <pre>getCustomerListByCreationTimeXML(array $parameters) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>An associative array with the following possible values.
+'customerIPAddress' =&gt; '' // Optional. The client IP address.
+'customerCode' =&gt; 'A10396688' // The iATS Customer Code.
+'fromDate =&gt; '2014-07-23T00:00:00+00:00' // Customer creation start date
+'toDate' =&gt; '2024-07-23T23:59:59+00:00'  // Customer creation to date</p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -1454,41 +1360,7 @@ method of payment are missing.</p></p>
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on 
-Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
-
-Call Stack:
-    0.0002     235112   1. {main}() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/bin/phpdoc:0
-    0.1164   10066376   2. phpDocumentor\Application->run() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/bin/phpdoc:24
-    0.1183   10336896   3. Symfony\Component\Console\Application->run() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Application.php:183
-    0.1185   10337848   4. Symfony\Component\Console\Application->doRun() /Users/gregboggs/Sites/wrapper/iATS/vendor/symfony/console/Application.php:120
-    0.1186   10338768   5. Symfony\Component\Console\Application->doRunCommand() /Users/gregboggs/Sites/wrapper/iATS/vendor/symfony/console/Application.php:189
-    0.1187   10339344   6. Symfony\Component\Console\Command\Command->run() /Users/gregboggs/Sites/wrapper/iATS/vendor/symfony/console/Application.php:838
-    0.1191   10346224   7. phpDocumentor\Command\Project\RunCommand->execute() /Users/gregboggs/Sites/wrapper/iATS/vendor/symfony/console/Command/Command.php:256
-    0.4400   19408304   8. Symfony\Component\Console\Command\Command->run() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Command/Project/RunCommand.php:275
-    0.4403   19412360   9. phpDocumentor\Transformer\Command\Project\TransformCommand->execute() /Users/gregboggs/Sites/wrapper/iATS/vendor/symfony/console/Command/Command.php:256
-    0.4791   19703656  10. phpDocumentor\Console\Output\Output->writeTimedLog() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Transformer/Command/Project/TransformCommand.php:206
-    0.4791   19703752  11. call_user_func_array:{/Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Console/Output/Output.php:59}() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Console/Output/Output.php:59
-    0.4791   19704328  12. phpDocumentor\Transformer\Transformer->execute() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Console/Output/Output.php:59
-    0.4800   19725232  13. phpDocumentor\Transformer\Transformer->transformProject() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Transformer/Transformer.php:141
-    0.5723   23200168  14. phpDocumentor\Transformer\Transformer->applyTransformationToProject() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Transformer/Transformer.php:275
-    0.5725   23200424  15. phpDocumentor\Plugin\Twig\Writer\Twig->transform() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Transformer/Transformer.php:312
-    0.6134   23982120  16. Twig_Environment->render() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Plugin/Twig/Writer/Twig.php:116
-    0.6137   23995968  17. Twig_Template->render() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Environment.php:347
-    0.6137   24012592  18. Twig_Template->display() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:366
-    0.6138   24014312  19. Twig_Template->displayWithErrorHandling() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:355
-    0.6138   24014312  20. __TwigTemplate_584b203fd5c14674390c986efaecc72fd3d4723cb53697001d4967597565a5ea->doDisplay() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:381
-    0.6139   24016400  21. Twig_Template->display() /private/var/folders/dy/ytdh7sq11lgcxfhfphjk825w0000gn/T/phpdoc-twig-cache/80/80ce8a6872445584dd63121283f9749b9d5004272f8a4014380af7cb9ef99fda.php:41
-    0.6139   24017856  22. Twig_Template->displayWithErrorHandling() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:355
-    0.6139   24017856  23. __TwigTemplate_9efbff20e978636c42adcb85329c96e13102b6d0300e28de62b7824de6515653->doDisplay() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:381
-    0.6727   24266824  24. Twig_Template->displayBlock() /private/var/folders/dy/ytdh7sq11lgcxfhfphjk825w0000gn/T/phpdoc-twig-cache/19/19a9350bdcd1364cc4b290a7112ccb254784dc4682a6d0249fe9b1ef76ff2c50.php:84
-    0.6727   24266952  25. __TwigTemplate_9efbff20e978636c42adcb85329c96e13102b6d0300e28de62b7824de6515653->block_footer() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:167
-    0.6727   24267048  26. twig_date_format_filter() /private/var/folders/dy/ytdh7sq11lgcxfhfphjk825w0000gn/T/phpdoc-twig-cache/19/19a9350bdcd1364cc4b290a7112ccb254784dc4682a6d0249fe9b1ef76ff2c50.php:301
-    0.6727   24267096  27. twig_date_converter() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Extension/Core.php:440
-    0.6727   24267096  28. Twig_Extension_Core->getTimezone() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Extension/Core.php:487
-    0.6727   24267280  29. date_default_timezone_get() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Extension/Core.php:89
-
-Fri, 27 Nov 2015 17:52:11 +0000.<br/>
+            generated on Tue, 08 Dec 2015 23:07:37 +0000.<br/>
     </footer>
     </body>
 </html>

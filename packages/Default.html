@@ -143,41 +143,7 @@
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on 
-Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
-
-Call Stack:
-    0.0002     235112   1. {main}() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/bin/phpdoc:0
-    0.1164   10066376   2. phpDocumentor\Application->run() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/bin/phpdoc:24
-    0.1183   10336896   3. Symfony\Component\Console\Application->run() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Application.php:183
-    0.1185   10337848   4. Symfony\Component\Console\Application->doRun() /Users/gregboggs/Sites/wrapper/iATS/vendor/symfony/console/Application.php:120
-    0.1186   10338768   5. Symfony\Component\Console\Application->doRunCommand() /Users/gregboggs/Sites/wrapper/iATS/vendor/symfony/console/Application.php:189
-    0.1187   10339344   6. Symfony\Component\Console\Command\Command->run() /Users/gregboggs/Sites/wrapper/iATS/vendor/symfony/console/Application.php:838
-    0.1191   10346224   7. phpDocumentor\Command\Project\RunCommand->execute() /Users/gregboggs/Sites/wrapper/iATS/vendor/symfony/console/Command/Command.php:256
-    0.4400   19408304   8. Symfony\Component\Console\Command\Command->run() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Command/Project/RunCommand.php:275
-    0.4403   19412360   9. phpDocumentor\Transformer\Command\Project\TransformCommand->execute() /Users/gregboggs/Sites/wrapper/iATS/vendor/symfony/console/Command/Command.php:256
-    0.4791   19703656  10. phpDocumentor\Console\Output\Output->writeTimedLog() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Transformer/Command/Project/TransformCommand.php:206
-    0.4791   19703752  11. call_user_func_array:{/Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Console/Output/Output.php:59}() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Console/Output/Output.php:59
-    0.4791   19704328  12. phpDocumentor\Transformer\Transformer->execute() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Console/Output/Output.php:59
-    0.4800   19725232  13. phpDocumentor\Transformer\Transformer->transformProject() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Transformer/Transformer.php:141
-    0.5551   22551872  14. phpDocumentor\Transformer\Transformer->applyTransformationToProject() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Transformer/Transformer.php:275
-    0.5553   22552128  15. phpDocumentor\Plugin\Twig\Writer\Twig->transform() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Transformer/Transformer.php:312
-    0.5646   22898528  16. Twig_Environment->render() /Users/gregboggs/Sites/wrapper/iATS/vendor/phpdocumentor/phpdocumentor/src/phpDocumentor/Plugin/Twig/Writer/Twig.php:116
-    0.5648   22906584  17. Twig_Template->render() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Environment.php:347
-    0.5648   22923208  18. Twig_Template->display() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:366
-    0.5649   22924520  19. Twig_Template->displayWithErrorHandling() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:355
-    0.5649   22924520  20. __TwigTemplate_852876187bc4bd6c52b36227eec032df3bd48e63afc93d5876d8da959cecc70e->doDisplay() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:381
-    0.5649   22924912  21. Twig_Template->display() /private/var/folders/dy/ytdh7sq11lgcxfhfphjk825w0000gn/T/phpdoc-twig-cache/b0/b0bbcf0a238ff76e46f9f0b8d00ebf3931f08da1052f95887b50d890deecf087.php:25
-    0.5649   22925896  22. Twig_Template->displayWithErrorHandling() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:355
-    0.5649   22925896  23. __TwigTemplate_9efbff20e978636c42adcb85329c96e13102b6d0300e28de62b7824de6515653->doDisplay() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:381
-    0.5674   23074304  24. Twig_Template->displayBlock() /private/var/folders/dy/ytdh7sq11lgcxfhfphjk825w0000gn/T/phpdoc-twig-cache/19/19a9350bdcd1364cc4b290a7112ccb254784dc4682a6d0249fe9b1ef76ff2c50.php:84
-    0.5674   23074432  25. __TwigTemplate_9efbff20e978636c42adcb85329c96e13102b6d0300e28de62b7824de6515653->block_footer() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Template.php:167
-    0.5674   23074528  26. twig_date_format_filter() /private/var/folders/dy/ytdh7sq11lgcxfhfphjk825w0000gn/T/phpdoc-twig-cache/19/19a9350bdcd1364cc4b290a7112ccb254784dc4682a6d0249fe9b1ef76ff2c50.php:301
-    0.5674   23074576  27. twig_date_converter() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Extension/Core.php:440
-    0.5674   23074576  28. Twig_Extension_Core->getTimezone() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Extension/Core.php:487
-    0.5674   23074760  29. date_default_timezone_get() /Users/gregboggs/Sites/wrapper/iATS/vendor/twig/twig/lib/Twig/Extension/Core.php:89
-
-Fri, 27 Nov 2015 17:52:11 +0000.<br/>
+            generated on Tue, 08 Dec 2015 23:07:37 +0000.<br/>
     </footer>
     </body>
 </html>
