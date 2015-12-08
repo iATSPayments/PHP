@@ -163,6 +163,23 @@ class ReportLink extends Core {
   }
 
   /**
+   * Get ACH / EFT Payment Return Date Range CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *     'fromDate' => '2014-07-23T00:00:00+00:00' // The earliest date to gather report data for.
+   *     'toDate' => '2024-07-23T23:59:59+00:00' // The latest date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
+  public function getACHEFTReturnDateRangeCSV($parameters) {
+    $response = $this->apiCall('GetACHEFTReturnDateRangeCSV', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTReturnDateRangeCSVResult', 'CSV');
+  }
+
+  /**
    * Get ACH / EFT Return CSV report.
    *
    * @param array $parameters
