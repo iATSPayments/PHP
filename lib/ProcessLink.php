@@ -94,7 +94,6 @@ class ProcessLink extends Core {
    *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
    *     'ccNum' => '4222222222222220' // The customer's credit card number.
    *     'ccExp' => '12/17' // The customer's credit card expiration date.
-   *     'mop' => 'VISA' // The customer's method of payment.
    *     'firstName' => 'Test' // The customer's first name.
    *     'lastName' => 'Account' // The customer's last name.
    *     'address' => '1234 Any Street' // The customer's address.
@@ -105,10 +104,10 @@ class ProcessLink extends Core {
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'string'
    *     'title' => 'string'
-   *     'phone' => 'string'
-   *     'phone2' => 'string'
-   *     'fax' => 'string'
-   *     'email' => 'string'
+   *     'phone' => '1234567890'
+   *     'phone2' => '1234567890'
+   *     'fax' => '1234567890'
+   *     'email' => 'email@example.com'
    *     'country' => 'string'
    *     'item1' => 'string'
    *     'item2' => 'string'
@@ -116,7 +115,6 @@ class ProcessLink extends Core {
    *     'item4' => 'string'
    *     'item5' => 'string'
    *     'item6' => 'string'
-   *     'currency' => 'USD' // The currency to process payment in.
    *
    * @return mixed
    *   Client response array or API error.
