@@ -123,7 +123,6 @@ class CustomerLink extends Core {
    *     'creditCardNum' => '4222222222222220' // The customer's credit card number.
    *     'creditCardExpiry' => '12/17' // The customer's credit card expiration date.
    *     'mop' => 'VISA' // Optional. The customer's method of payment.
-   *     'currency' => 'USD' // Optional. The customer's currency.
    *     'title' => 'string'
    *     'country' => 'string'
    *     'item1' => 'string'
