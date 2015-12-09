@@ -103,6 +103,8 @@ class ReportLink extends Core {
    *     'fromDate' => '2014-07-23T00:00:00+00:00' // The earliest date to gather report data for.
    *     'toDate' => '2024-07-23T23:59:59+00:00' // The latest date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
+   *     'startIndex' => '0'
+   *     'endIndex' => '1'
    *
    * @return mixed
    *   Report CSV (string) or API error.
