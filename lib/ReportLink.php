@@ -52,7 +52,7 @@ class ReportLink extends Core {
    *     'currency' => 'USD' // The currency to represent financial data as.
    *      // North America options: CAD, USD
    *      // UK options: USD, EUR, GBP, IEE, CHF, HKD, JPY, SGD, MXN
-   *     'summaryOnly' => FALSE // True when a summerized report is required.
+   *     'summaryOnly' => FALSE // True when a summarized report is required.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
