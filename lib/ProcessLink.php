@@ -433,10 +433,8 @@ class ProcessLink extends Core {
    *     'customerCode' => '' // The iATS Customer Code.
    *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
    *     'cvv2' => '000' // Optional. The customer's credit card CVV2 code.
-   *     'mop' => 'VISA' // The customer's method of payment.
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'Process credit card test with Customer Code.' // Optional. A comment describing this transaction.
-   *     'currency' => 'USD' // The currency to process payment in.
    *     'item1' => 'string'
    *     'item2' => 'string'
    *     'item3' => 'string'
