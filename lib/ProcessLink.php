@@ -398,10 +398,10 @@ class ProcessLink extends Core {
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'Process credit card test.' // Optional. A comment describing this transaction.
    *     'title' => 'string'
-   *     'phone' => 'string'
-   *     'phone2' => 'string'
-   *     'fax' => 'string'
-   *     'email' => 'string'
+   *     'phone' => '1234567890'
+   *     'phone2' => '1234567890'
+   *     'fax' => '1234567890'
+   *     'email' => 'email@example.com'
    *     'country' => 'string'
    *     'item1' => 'string'
    *     'item2' => 'string'
@@ -409,7 +409,6 @@ class ProcessLink extends Core {
    *     'item4' => 'string'
    *     'item5' => 'string'
    *     'item6' => 'string'
-   *     'currency' => 'USD' // The currency to process payment in.
    *
    * @return mixed
    *   Client response array or API error.
