@@ -57,6 +57,18 @@ class ProcessLink extends Core {
    *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'Process ACH / EFT test.' // Optional. A comment describing this transaction.
+   *     'title' => 'string'
+   *     'phone' => '1234567890'
+   *     'phone2' => '1234567890'
+   *     'fax' => '1234567890'
+   *     'email' => 'email@example.com'
+   *     'country' => 'string'
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
