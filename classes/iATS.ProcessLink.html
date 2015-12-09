@@ -517,7 +517,19 @@ method of payment are missing.</p></p>
 // Options: CHECKING, SAVING (North America only.)
 'invoiceNum' =&gt; '00000001' // Optional. The invoice number for this transaction.
 'total' =&gt; '5' // The total payment amount.
-'comment' =&gt; 'Process ACH / EFT test.' // Optional. A comment describing this transaction.</p></p>
+'comment' =&gt; 'Process ACH / EFT test.' // Optional. A comment describing this transaction.
+'title' =&gt; 'string'
+'phone' =&gt; '1234567890'
+'phone2' =&gt; '1234567890'
+'fax' =&gt; '1234567890'
+'email' =&gt; 'email@example.com'
+'country' =&gt; 'string'
+'item1' =&gt; 'string'
+'item2' =&gt; 'string'
+'item3' =&gt; 'string'
+'item4' =&gt; 'string'
+'item5' =&gt; 'string'
+'item6' =&gt; 'string'</p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -549,7 +561,6 @@ method of payment are missing.</p></p>
 'invoiceNum' =&gt; '00000001' // Optional. The invoice number for this transaction.
 'ccNum' =&gt; '4222222222222220' // The customer's credit card number.
 'ccExp' =&gt; '12/17' // The customer's credit card expiration date.
-'mop' =&gt; 'VISA' // The customer's method of payment.
 'firstName' =&gt; 'Test' // The customer's first name.
 'lastName' =&gt; 'Account' // The customer's last name.
 'address' =&gt; '1234 Any Street' // The customer's address.
@@ -560,18 +571,17 @@ method of payment are missing.</p></p>
 'total' =&gt; '5' // The total payment amount.
 'comment' =&gt; 'string'
 'title' =&gt; 'string'
-'phone' =&gt; 'string'
-'phone2' =&gt; 'string'
-'fax' =&gt; 'string'
-'email' =&gt; 'string'
+'phone' =&gt; '1234567890'
+'phone2' =&gt; '1234567890'
+'fax' =&gt; '1234567890'
+'email' =&gt; 'email@example.com'
 'country' =&gt; 'string'
 'item1' =&gt; 'string'
 'item2' =&gt; 'string'
 'item3' =&gt; 'string'
 'item4' =&gt; 'string'
 'item5' =&gt; 'string'
-'item6' =&gt; 'string'
-'currency' =&gt; 'USD' // The currency to process payment in.</p></p>
+'item6' =&gt; 'string'</p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -730,10 +740,10 @@ method of payment are missing.</p></p>
 'total' =&gt; '5' // The total payment amount.
 'comment' =&gt; 'Process ACH / EFT test.' // Optional. A comment describing this transaction.
 'title' =&gt; 'string'
-'phone' =&gt; 'string'
-'phone2' =&gt; 'string'
-'fax' =&gt; 'string'
-'email' =&gt; 'string'
+'phone' =&gt; '1234567890'
+'phone2' =&gt; '1234567890'
+'fax' =&gt; '1234567890'
+'email' =&gt; 'email@example.com'
 'country' =&gt; 'string'
 'item1' =&gt; 'string'
 'item2' =&gt; 'string'
@@ -930,18 +940,17 @@ North America clients only.</p></div>
 'total' =&gt; '5' // The total payment amount.
 'comment' =&gt; 'Process credit card test.' // Optional. A comment describing this transaction.
 'title' =&gt; 'string'
-'phone' =&gt; 'string'
-'phone2' =&gt; 'string'
-'fax' =&gt; 'string'
-'email' =&gt; 'string'
+'phone' =&gt; '1234567890'
+'phone2' =&gt; '1234567890'
+'fax' =&gt; '1234567890'
+'email' =&gt; 'email@example.com'
 'country' =&gt; 'string'
 'item1' =&gt; 'string'
 'item2' =&gt; 'string'
 'item3' =&gt; 'string'
 'item4' =&gt; 'string'
 'item5' =&gt; 'string'
-'item6' =&gt; 'string'
-'currency' =&gt; 'USD' // The currency to process payment in.</p></p>
+'item6' =&gt; 'string'</p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -1039,10 +1048,8 @@ North America clients only.</p></div>
 'customerCode' =&gt; '' // The iATS Customer Code.
 'invoiceNum' =&gt; '00000001' // Optional. The invoice number for this transaction.
 'cvv2' =&gt; '000' // Optional. The customer's credit card CVV2 code.
-'mop' =&gt; 'VISA' // The customer's method of payment.
 'total' =&gt; '5' // The total payment amount.
 'comment' =&gt; 'Process credit card test with Customer Code.' // Optional. A comment describing this transaction.
-'currency' =&gt; 'USD' // The currency to process payment in.
 'item1' =&gt; 'string'
 'item2' =&gt; 'string'
 'item3' =&gt; 'string'
@@ -1499,7 +1506,7 @@ North America clients only.</p></div>
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Tue, 08 Dec 2015 23:07:37 +0000.<br/>
+            generated on Wed, 09 Dec 2015 21:48:40 +0000.<br/>
     </footer>
     </body>
 </html>
