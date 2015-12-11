@@ -138,7 +138,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   public function testCustomerLinkupdateCreditCardCustomerCodeNewRecurringSchedule() {
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
 
-    $beginTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $beginTime = mktime(0, 0, 0, date('n'), date('j') + 1, date('Y'));
     $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
 
     // Create and populate the request object.
@@ -508,6 +508,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
    * Test directDebitCreateACHEFTCustomerCode.
    */
   public function testCustomerLinkdirectDebitCreateACHEFTCustomerCode() {
+
     // Test only valid for UK clients.
     $iats = new CustomerLink(self::$agentCode, self::$password, 'UK');
 

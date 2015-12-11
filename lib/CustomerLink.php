@@ -37,7 +37,7 @@ class CustomerLink extends Core {
    */
   public function __construct($agentcode, $password, $serverid = 'NA') {
     parent::__construct($agentcode, $password, $serverid);
-    $this->endpoint = '/NetGate/CustomerLink.asmx?WSDL';
+    $this->endpoint = '/NetGate/CustomerLinkv2.asmx?WSDL';
   }
 
   /**
@@ -53,10 +53,46 @@ class CustomerLink extends Core {
    */
   public function getCustomerCodeDetail($parameters) {
     $response = $this->apiCall('GetCustomerCodeDetail', $parameters);
-    return $this->responseHandler($response, 'GetCustomerCodeDetailV1Result');
+    return $this->responseHandler($response, 'GetCustomerCodeDetailResult');
   }
 
   /**
+   * Get Customer List By Creation Time CSV.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'customerCode' => 'A10396688' // The iATS Customer Code.
+   *     'fromDate => '2014-07-23T00:00:00+00:00' // Customer creation start date
+   *     'toDate' => '2024-07-23T23:59:59+00:00'  // Customer creation to date
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
+  public function getCustomerListByCreationTimeCSV($parameters) {
+    $response = $this->apiCall('GetCustomerListByCreationTimeCSV', $parameters);
+    return $this->responseHandler($response, 'GetCustomerListByCreationTimeCSVResult');
+  }
+
+  /**
+   * Get Customer List By Creation Time XML.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *     'customerIPAddress' => '' // Optional. The client IP address.
+   *     'customerCode' => 'A10396688' // The iATS Customer Code.
+   *     'fromDate => '2014-07-23T00:00:00+00:00' // Customer creation start date
+   *     'toDate' => '2024-07-23T23:59:59+00:00'  // Customer creation to date
+   *
+   * @return mixed
+   *   Client response array or API error.
+   */
+  public function getCustomerListByCreationTimeXML($parameters) {
+    $response = $this->apiCall('GetCustomerListByCreationTimeXML', $parameters);
+    return $this->responseHandler($response, 'GetCustomerListByCreationTimeXMLResult');
+  }
+
+   /**
    * Create Credit Card Customer Code.
    *
    * @param array $parameters
@@ -87,14 +123,21 @@ class CustomerLink extends Core {
    *     'creditCardNum' => '4222222222222220' // The customer's credit card number.
    *     'creditCardExpiry' => '12/17' // The customer's credit card expiration date.
    *     'mop' => 'VISA' // Optional. The customer's method of payment.
-   *     'currency' => 'USD' // Optional. The customer's currency.
+   *     'title' => 'string'
+   *     'country' => 'string'
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
    */
   public function createCreditCardCustomerCode($parameters) {
     $response = $this->apiCall('CreateCreditCardCustomerCode', $parameters);
-    return $this->responseHandler($response, 'CreateCreditCardCustomerCodeV1Result');
+    return $this->responseHandler($response, 'CreateCreditCardCustomerCodeResult');
   }
 
   /**
@@ -128,15 +171,22 @@ class CustomerLink extends Core {
    *     'creditCardNum' => '4222222222222220' // Optional. The customer's credit card number.
    *     'creditCardExpiry' => '12/17' // Optional. The customer's credit card expiration date.
    *     'mop' => 'VISA' // Optional. The customer's method of payment.
-   *     'currency' => 'USD' // Optional. The customer's currency.
    *     'updateCreditCardNum' => FALSE // Optional. TRUE when the customer's credit card number should be updated.
+   *     'title' => 'string'
+   *     'country' => 'string'
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
    */
   public function updateCreditCardCustomerCode($parameters) {
     $response = $this->apiCall('UpdateCreditCardCustomerCode', $parameters);
-    return $this->responseHandler($response, 'UpdateCreditCardCustomerCodeV1Result');
+    return $this->responseHandler($response, 'UpdateCreditCardCustomerCodeResult');
   }
 
   /**
@@ -170,6 +220,14 @@ class CustomerLink extends Core {
    *     'accountNum' => '999999999' // Optional. The customer's bank account number.
    *     'accountType' => 'CHECKING' // Optional. The customer's bank account type.
    *      // Options: CHECKING, SAVING (North America only.)
+   *       'title' => 'string'
+   *       'country' => 'string'
+   *       'item1' => 'string'
+   *       'item2' => 'string'
+   *       'item3' => 'string'
+   *       'item4' => 'string'
+   *       'item5' => 'string'
+   *       'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
@@ -183,7 +241,7 @@ class CustomerLink extends Core {
     else
     {
       $response = $this->apiCall('CreateACHEFTCustomerCode', $parameters);
-      return $this->responseHandler($response, 'CreateACHEFTCustomerCodeV1Result');
+      return $this->responseHandler($response, 'CreateACHEFTCustomerCodeResult');
     }
   }
 
@@ -219,6 +277,14 @@ class CustomerLink extends Core {
    *     'accountType' => 'CHECKING' // Optional. The customer's bank account type.
    *      // Options: CHECKING, SAVING (North America only.)
    *     'updateAccountNum' => FALSE // Optional. True if the customer's account number should be updated.
+   *     'title' => 'string'
+   *     'country' => 'string'
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
@@ -232,7 +298,7 @@ class CustomerLink extends Core {
     else
     {
       $response = $this->apiCall('UpdateACHEFTCustomerCode', $parameters);
-      return $this->responseHandler($response, 'UpdateACHEFTCustomerCodeV1Result');
+      return $this->responseHandler($response, 'UpdateACHEFTCustomerCodeResult');
     }
   }
 
@@ -249,142 +315,7 @@ class CustomerLink extends Core {
    */
   public function deleteCustomerCode($parameters) {
     $response = $this->apiCall('DeleteCustomerCode', $parameters);
-    return $this->responseHandler($response, 'DeleteCustomerCodeV1Result');
-  }
-
-  /**
-   * Validate direct debit payer information. UK clients only.
-   *
-   * @param array $parameters
-   *   An associative array with the following possible values.
-   *     'customerIPAddress' => '' // Optional. The client IP address.
-   *     'ACHEFTReferenceNum' => '' // Optional. The ACH / EFT reference number.
-   *     'beginDate' => '2014-07-23T00:00:00+00:00' // The begin date of the direct debit payment.
-   *     'endDate' => '2024-07-23T23:59:59+00:00' // The end date of the direct debit payment.
-   *     'accountCustomerName' => 'Test Account' // The customer's name as appears on the bank account.
-   *     'accountNum' => '999999999' // The customer's bank account number.
-   *     'companyName' => 'Test Company' // Optional. The customer's company name.
-   *     'firstName' => 'Test' // The customer's first name.
-   *     'lastName' => 'Account' // The customer's last name.
-   *     'address' => '1234 Any Street' // The customer's address.
-   *     'city' => 'Schenectady' // The customer's city.
-   *     'state' => 'NY' // Optional. The customer's state or province.
-   *     'country' => 'USA' // Optional. The customer's country.
-   *     'email' => 'email@test.co' // The customer's email address.
-   *     'zipCode' => '12345' // The customer's ZIP code.
-   *
-   * @return mixed
-   *   Client response array or API error.
-   */
-  public function directDebitACHEFTPayerValidate($parameters) {
-    $this->restrictedservers = array('NA');
-    $restricted = $this->checkRestrictions($parameters);
-    if ($restricted) {
-      return $restricted;
-    }
-    else
-    {
-      $response = $this->apiCall('DirectDebitACHEFTPayerValidate', $parameters);
-      return $this->responseHandler($response, 'DirectDebitACHEFTPayerValidateV1Result');
-    }
-  }
-
-  /**
-   * Create a customer code using only direct debit. UK clients only.
-   *
-   * @param array $parameters
-   *   An associative array with the following possible values.
-   *     'customerIPAddress' => '' // Optional. The client IP address.
-   *     'customerCode' => '' // Optional. The iATS Customer Code.
-   *     'ACHEFTReferenceNum' => '' // Optional. The ACH / EFT reference number.
-   *     'firstName' => 'Test' // The customer's first name.
-   *     'lastName' => 'Account' // The customer's last name.
-   *     'companyName' => 'Test Co.' // Optional. The customer's company name.
-   *     'address' => '1234 Any Street' // The customer's address.
-   *     'city' => 'Schenectady' // The customer's city.
-   *     'state' => 'NY' // The customer's state or province.
-   *     'zipCode' => '12345' // The customer's ZIP code.
-   *     'phone' => '555-555-1234' // Optional. The customer's phone number.
-   *     'fax' => '555-555-4321' // Optional. The customer's FAX number.
-   *     'alternatePhone' => '555-555-5555' // Optional. The customer's alternate phone number.
-   *     'email' => 'email@test.co' // Optional. The customer's email address.
-   *     'comment' => 'Customer code creation test.' // Optional. A comment describing this transaction.
-   *     'recurring' => FALSE // Optional. TRUE if a recurring payment should be created.
-   *     'amount' => '5' // Optional. The payment amount.
-   *     'beginDate' => '2014-07-23T00:00:00+00:00' // The begin date of the recurring payment, if used.
-   *     'endDate' => '2024-07-23T23:59:59+00:00' // The end date of the recurring payment, if used.
-   *     'scheduleType' => 'Annually' // Optional. The recurring payment schedule.
-   *      // Options: Weekly, Monthly Quarterly, Annually.
-   *     'scheduleDate' => '' // Optional. The recurring payment schedule date.
-   *      // Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
-   *     'accountCustomerName' => 'Test Account' // Optional. The customer's name as appears on the bank account.
-   *     'accountNum' => '999999999' // Optional. The customer's bank account number.
-   *     'accountType' => 'CHECKING' // Optional. The customer's bank account type.
-   *      // Options: CHECKING, SAVING (North America only.)
-   *
-   * @return mixed
-   *   Client response array or API error.
-   */
-  public function directDebitCreateACHEFTCustomerCode($parameters) {
-    $this->restrictedservers = array('NA');
-    $restricted = $this->checkRestrictions($parameters);
-    if ($restricted) {
-      return $restricted;
-    }
-    else
-    {
-      $response = $this->apiCall('DirectDebitCreateACHEFTCustomerCode', $parameters);
-      return $this->responseHandler($response, 'DirectDebitCreateACHEFTCustomerCodeV1Result');
-    }
-  }
-
-  /**
-   * Update a customer code using only direct debit. UK clients only.
-   *
-   * @param array $parameters
-   *   An associative array with the following possible values.
-   *     'customerIPAddress' => '' // Optional. The client IP address.
-   *     'customerCode' => '' // The iATS Customer Code.
-   *     'firstName' => 'Test' // Optional. The customer's first name.
-   *     'lastName' => 'Account' // Optional. The customer's last name.
-   *     'companyName' => 'Test Co.' // Optional. The customer's company name.
-   *     'address' => '1234 Any Street' // Optional. The customer's address.
-   *     'city' => 'Schenectady' // Optional. The customer's city.
-   *     'state' => 'NY' // Optional. The customer's state or province.
-   *     'zipCode' => '12345' // Optional. The customer's ZIP code.
-   *     'phone' => '555-555-1234' // Optional. The customer's phone number.
-   *     'fax' => '555-555-4321' // Optional. The customer's FAX number.
-   *     'alternatePhone' => Optional. '555-555-5555' // Optional. The customer's alternate phone number.
-   *     'email' => 'email@test.co' // Optional. The customer's email address.
-   *     'comment' => 'Customer code creation test.' // Optional. A comment describing this transaction.
-   *     'recurring' => FALSE // Optional. TRUE if a recurring payment should be created.
-   *     'amount' => '5' // Optional. The payment amount.
-   *     'beginDate' => '2014-07-23T00:00:00+00:00' // Optional. The begin date of the recurring payment, if used.
-   *     'endDate' => '2024-07-23T23:59:59+00:00' // Optional. The end date of the recurring payment, if used.
-   *     'scheduleType' => 'Annually' // Optional. The recurring payment schedule.
-   *      // Options: Weekly, Monthly Quarterly, Annually.
-   *     'scheduleDate' => '' // Optional. The recurring payment schedule date.
-   *      // Options: Monthly: 1-28,29,30 or 31; Weekly: 1-7; Quarterly or Annually: empty string.
-   *     'accountCustomerName' => 'Test Account' // Optional. The customer's name as appears on the bank account.
-   *     'accountNum' => '999999999' // Optional. The customer's bank account number.
-   *     'accountType' => 'CHECKING' // Optional. The customer's bank account type.
-   *      // Options: CHECKING, SAVING (North America only.)
-   *     'updateAccountNum' => FALSE // Optional. True is the customer's account number should be updated.
-   *
-   * @return mixed
-   *   Client response array or API error.
-   */
-  public function directDebitUpdateACHEFTCustomerCode($parameters) {
-    $this->restrictedservers = array('NA');
-    $restricted = $this->checkRestrictions($parameters);
-    if ($restricted) {
-      return $restricted;
-    }
-    else
-    {
-      $response = $this->apiCall('DirectDebitUpdateACHEFTCustomerCode', $parameters);
-      return $this->responseHandler($response, 'DirectDebitUpdateACHEFTCustomerCodeV1Result');
-    }
+    return $this->responseHandler($response, 'DeleteCustomerCodeResult');
   }
 
   /**
@@ -422,5 +353,4 @@ class CustomerLink extends Core {
 
     return $authresult;
   }
-
 }

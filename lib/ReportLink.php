@@ -38,7 +38,7 @@ class ReportLink extends Core {
    */
   public function __construct($agentcode, $password, $serverid = 'NA') {
     parent::__construct($agentcode, $password, $serverid);
-    $this->endpoint = '/NetGate/ReportLink.asmx?WSDL';
+    $this->endpoint = '/NetGate/ReportLinkv2.asmx?WSDL';
   }
 
   /**
@@ -52,7 +52,7 @@ class ReportLink extends Core {
    *     'currency' => 'USD' // The currency to represent financial data as.
    *      // North America options: CAD, USD
    *      // UK options: USD, EUR, GBP, IEE, CHF, HKD, JPY, SGD, MXN
-   *     'summaryOnly' => FALSE // True when a summerized report is required.
+   *     'summaryOnly' => FALSE // True when a summarized report is required.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *
    * @return mixed
@@ -60,7 +60,7 @@ class ReportLink extends Core {
    */
   public function getACHEFTBankReconciliationReportCSV($parameters) {
     $response = $this->apiCall('GetACHEFTBankReconciliationReportCSV', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTBankReconciliationReportCSVV1Result', 'CSV');
+    return $this->responseHandler($response, 'GetACHEFTBankReconciliationReportCSVResult', 'CSV');
   }
 
   /**
@@ -74,9 +74,9 @@ class ReportLink extends Core {
    * @return mixed
    *   Report CSV (string) or API error.
    */
-  public function getACHEFTJournalCSV($parameters) {
-    $response = $this->apiCall('GetACHEFTJournalCSV', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTJournalCSVV1Result', 'CSV');
+  public function getACHEFTApprovedSpecificDateCSV($parameters) {
+    $response = $this->apiCall('GetACHEFTApprovedSpecificDateCSV', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTApprovedSpecificDateCSVResult', 'CSV');
   }
 
   /**
@@ -90,9 +90,9 @@ class ReportLink extends Core {
    * @return mixed
    *   Report array or API error.
    */
-  public function GetACHEFTJournal($parameters) {
-    $response = $this->apiCall('GetACHEFTJournal', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTJournalV1Result', 'AR');
+  public function getACHEFTApprovedSpecificDateXML($parameters) {
+    $response = $this->apiCall('GetACHEFTApprovedSpecificDateXML', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTApprovedSpecificDateXMLResult', 'AR');
   }
 
   /**
@@ -103,13 +103,15 @@ class ReportLink extends Core {
    *     'fromDate' => '2014-07-23T00:00:00+00:00' // The earliest date to gather report data for.
    *     'toDate' => '2024-07-23T23:59:59+00:00' // The latest date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
+   *     'startIndex' => '0' // Optional.
+   *     'endIndex' => '1' // Optional.
    *
    * @return mixed
    *   Report CSV (string) or API error.
    */
-  public function getACHEFTPaymentBoxJournalCSV($parameters) {
-    $response = $this->apiCall('GetACHEFTPaymentBoxJournalCSVV2', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTPaymentBoxJournalCSVV2Result', 'CSV');
+  public function getACHEFTApprovedDateRangeCSV($parameters) {
+    $response = $this->apiCall('GetACHEFTApprovedDateRangeCSV', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTApprovedDateRangeCSVResult', 'CSV');
   }
 
   /**
@@ -120,13 +122,15 @@ class ReportLink extends Core {
    *     'fromDate' => '2014-07-23T00:00:00+00:00' // The earliest date to gather report data for.
    *     'toDate' => '2024-07-23T23:59:59+00:00' // The latest date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
+   *     'startIndex' => '0' // Optional.
+   *     'endIndex' => '1' // Optional.
    *
    * @return mixed
    *   Report CSV (string) or API error.
    */
-  public function getACHEFTPaymentBoxRejectCSV($parameters) {
-    $response = $this->apiCall('GetACHEFTPaymentBoxRejectCSV', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTPaymentBoxRejectCSVV1Result', 'CSV');
+  public function getACHEFTRejectDateRangeCSV($parameters) {
+    $response = $this->apiCall('GetACHEFTRejectDateRangeCSV', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTRejectDateRangeCSVResult', 'CSV');
   }
 
   /**
@@ -140,9 +144,9 @@ class ReportLink extends Core {
    * @return mixed
    *   Report CSV (string) or API error.
    */
-  public function getACHEFTRejectCSV($parameters) {
-    $response = $this->apiCall('GetACHEFTRejectCSV', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTRejectCSVV1Result', 'CSV');
+  public function getACHEFTRejectSpecificDateCSV($parameters) {
+    $response = $this->apiCall('GetACHEFTRejectSpecificDateCSV', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTRejectSpecificDateCSVResult', 'CSV');
   }
 
   /**
@@ -157,9 +161,26 @@ class ReportLink extends Core {
    * @return mixed
    *   Report array or API error.
    */
-  public function getACHEFTReject($parameters) {
-    $response = $this->apiCall('GetACHEFTReject', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTRejectV1Result', 'AR');
+  public function getACHEFTRejectSpecificDateXML($parameters) {
+    $response = $this->apiCall('GetACHEFTRejectSpecificDateXML', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTRejectSpecificDateXMLResult', 'AR');
+  }
+
+  /**
+   * Get ACH / EFT Payment Return Date Range CSV report.
+   *
+   * @param array $parameters
+   *   An associative array with the following possible values.
+   *     'fromDate' => '2014-07-23T00:00:00+00:00' // The earliest date to gather report data for.
+   *     'toDate' => '2024-07-23T23:59:59+00:00' // The latest date to gather report data for.
+   *     'customerIPAddress' => '' // Optional. The client's IP address.
+   *
+   * @return mixed
+   *   Report CSV (string) or API error.
+   */
+  public function getACHEFTReturnDateRangeCSV($parameters) {
+    $response = $this->apiCall('GetACHEFTReturnDateRangeCSV', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTReturnDateRangeCSVResult', 'CSV');
   }
 
   /**
@@ -173,9 +194,9 @@ class ReportLink extends Core {
    * @return mixed
    *   Report CSV (string) or API error.
    */
-  public function getACHEFTReturnCSV($parameters) {
-    $response = $this->apiCall('GetACHEFTReturnCSV', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTReturnCSVV1Result', 'CSV');
+  public function getACHEFTReturnSpecificDateCSV($parameters) {
+    $response = $this->apiCall('GetACHEFTReturnSpecificDateCSV', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTReturnSpecificDateCSVResult', 'CSV');
   }
 
   /**
@@ -189,9 +210,9 @@ class ReportLink extends Core {
    * @return mixed
    *   Report array or API error.
    */
-  public function getACHEFTReturn($parameters) {
-    $response = $this->apiCall('GetACHEFTReturn', $parameters);
-    return $this->responseHandler($response, 'GetACHEFTReturnV1Result', 'AR');
+  public function getACHEFTReturnSpecificDateXML($parameters) {
+    $response = $this->apiCall('GetACHEFTReturnSpecificDateXML', $parameters);
+    return $this->responseHandler($response, 'GetACHEFTReturnSpecificDateXMLResult', 'AR');
   }
 
   /**
@@ -212,7 +233,7 @@ class ReportLink extends Core {
    */
   public function getCreditCardBankReconciliationReportCSV($parameters) {
     $response = $this->apiCall('GetCreditCardBankReconciliationReportCSV', $parameters);
-    return $this->responseHandler($response, 'GetCreditCardBankReconciliationReportCSVV1Result', 'CSV');
+    return $this->responseHandler($response, 'GetCreditCardBankReconciliationReportCSVResult', 'CSV');
   }
 
   /**
@@ -226,9 +247,9 @@ class ReportLink extends Core {
    * @return mixed
    *   Report CSV (string) or API error.
    */
-  public function getCreditCardJournalCSV($parameters) {
-    $response = $this->apiCall('GetCreditCardJournalCSV', $parameters);
-    return $this->responseHandler($response, 'GetCreditCardJournalCSVV1Result', 'CSV');
+  public function getCreditCardApprovedSpecificDateCSV($parameters) {
+    $response = $this->apiCall('GetCreditCardApprovedSpecificDateCSV', $parameters);
+    return $this->responseHandler($response, 'GetCreditCardApprovedSpecificDateCSVResult', 'CSV');
   }
 
   /**
@@ -242,9 +263,9 @@ class ReportLink extends Core {
    * @return mixed
    *   Report array or API error.
    */
-  public function getCreditCardJournal($parameters) {
-    $response = $this->apiCall('GetCreditCardJournal', $parameters);
-    return $this->responseHandler($response, 'GetCreditCardJournalV1Result', 'AR');
+  public function getCreditCardApprovedSpecificDateXML($parameters) {
+    $response = $this->apiCall('GetCreditCardApprovedSpecificDateXML', $parameters);
+    return $this->responseHandler($response, 'GetCreditCardApprovedSpecificDateXMLResult', 'AR');
   }
 
   /**
@@ -255,13 +276,15 @@ class ReportLink extends Core {
    *     'fromDate' => '2014-07-23T00:00:00+00:00' // The earliest date to gather report data for.
    *     'toDate' => '2024-07-23T23:59:59+00:00' // The latest date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
+   *     'startIndex' => '0' // Optional.
+   *     'endIndex' => '1' // Optional.
    *
    * @return mixed
    *   Report CSV (string) or API error.
    */
-  public function getCreditCardPaymentBoxJournalCSV($parameters) {
-    $response = $this->apiCall('GetCreditCardPaymentBoxJournalCSV', $parameters);
-    return $this->responseHandler($response, 'GetCreditCardPaymentBoxJournalCSVV1Result', 'CSV');
+  public function getCreditCardApprovedDateRangeCSV($parameters) {
+    $response = $this->apiCall('GetCreditCardApprovedDateRangeCSV', $parameters);
+    return $this->responseHandler($response, 'GetCreditCardApprovedDateRangeCSVResult', 'CSV');
   }
 
   /**
@@ -272,13 +295,15 @@ class ReportLink extends Core {
    *     'fromDate' => '2014-07-23T00:00:00+00:00' // The earliest date to gather report data for.
    *     'toDate' => '2024-07-23T23:59:59+00:00' // The latest date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
+   *     'startIndex' => '0' // Optional.
+   8     'endIndex' => '1' // Optional.
    *
    * @return mixed
    *   Report CSV (string) or API error.
    */
-  public function getCreditCardPaymentBoxRejectCSV($parameters) {
-    $response = $this->apiCall('GetCreditCardPaymentBoxRejectCSV', $parameters);
-    return $this->responseHandler($response, 'GetCreditCardPaymentBoxRejectCSVV1Result', 'CSV');
+  public function getCreditCardRejectDateRangeCSV($parameters) {
+    $response = $this->apiCall('GetCreditCardRejectDateRangeCSV', $parameters);
+    return $this->responseHandler($response, 'GetCreditCardRejectDateRangeCSVResult', 'CSV');
   }
 
   /**
@@ -292,9 +317,9 @@ class ReportLink extends Core {
    * @return mixed
    *   Report array or API error.
    */
-  public function getCreditCardReject($parameters) {
-    $response = $this->apiCall('GetCreditCardReject', $parameters);
-    return $this->responseHandler($response, 'GetCreditCardRejectV1Result', 'AR');
+  public function getCreditCardRejectSpecificDateXML($parameters) {
+    $response = $this->apiCall('GetCreditCardRejectSpecificDateXML', $parameters);
+    return $this->responseHandler($response, 'GetCreditCardRejectSpecificDateXMLResult', 'AR');
   }
 
   /**
@@ -308,9 +333,9 @@ class ReportLink extends Core {
    * @return mixed
    *   Report CSV (string) or API error.
    */
-  public function getCreditCardRejectCSV($parameters) {
-    $response = $this->apiCall('GetCreditCardRejectCSV', $parameters);
-    return $this->responseHandler($response, 'GetCreditCardRejectCSVV1Result', 'CSV');
+  public function getCreditCardRejectSpecificDateCSV($parameters) {
+    $response = $this->apiCall('GetCreditCardRejectSpecificDateCSV', $parameters);
+    return $this->responseHandler($response, 'GetCreditCardRejectSpecificDateCSVResult', 'CSV');
   }
 
   /**
@@ -353,6 +378,7 @@ class ReportLink extends Core {
           $xml_element = new \SimpleXMLElement($return);
           return base64_decode($xml_element->FILE);
         }
+
         // Account for null being returned in a CSV request.
         return '';
     }

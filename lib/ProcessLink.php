@@ -34,7 +34,7 @@ class ProcessLink extends Core {
    */
   public function __construct($agentcode, $password, $serverid = 'NA') {
     parent::__construct($agentcode, $password, $serverid);
-    $this->endpoint = '/NetGate/ProcessLink.asmx?WSDL';
+    $this->endpoint = '/NetGate/ProcessLinkv2.asmx?WSDL';
   }
 
   /**
@@ -57,6 +57,18 @@ class ProcessLink extends Core {
    *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'Process ACH / EFT test.' // Optional. A comment describing this transaction.
+   *     'title' => 'string'
+   *     'phone' => '1234567890'
+   *     'phone2' => '1234567890'
+   *     'fax' => '1234567890'
+   *     'email' => 'email@example.com'
+   *     'country' => 'string'
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
@@ -69,7 +81,7 @@ class ProcessLink extends Core {
     }
     else {
       $response = $this->apiCall('CreateCustomerCodeAndProcessACHEFT', $parameters);
-      return $this->responseHandler($response, 'CreateCustomerCodeAndProcessACHEFTV1Result');
+      return $this->responseHandler($response, 'CreateCustomerCodeAndProcessACHEFTResult');
     }
   }
 
@@ -82,7 +94,6 @@ class ProcessLink extends Core {
    *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
    *     'ccNum' => '4222222222222220' // The customer's credit card number.
    *     'ccExp' => '12/17' // The customer's credit card expiration date.
-   *     'mop' => 'VISA' // The customer's method of payment.
    *     'firstName' => 'Test' // The customer's first name.
    *     'lastName' => 'Account' // The customer's last name.
    *     'address' => '1234 Any Street' // The customer's address.
@@ -91,7 +102,19 @@ class ProcessLink extends Core {
    *     'zipCode' => '12345' // The customer's ZIP code.
    *     'cvv2' => '000' // Optional. The customer's credit card CVV2 code.
    *     'total' => '5' // The total payment amount.
-   *     'currency' => 'USD' // The currency to process payment in.
+   *     'comment' => 'string'
+   *     'title' => 'string'
+   *     'phone' => '1234567890'
+   *     'phone2' => '1234567890'
+   *     'fax' => '1234567890'
+   *     'email' => 'email@example.com'
+   *     'country' => 'string'
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
@@ -103,7 +126,7 @@ class ProcessLink extends Core {
     }
     else {
       $response = $this->apiCall('CreateCustomerCodeAndProcessCreditCard', $parameters);
-      return $this->responseHandler($response, 'CreateCustomerCodeAndProcessCreditCardV1Result');
+      return $this->responseHandler($response, 'CreateCustomerCodeAndProcessCreditCardResult');
     }
   }
 
@@ -126,7 +149,7 @@ class ProcessLink extends Core {
     else
     {
       $response = $this->apiCall('GetBatchProcessResultFile', $parameters);
-     return $this->responseHandler($response, 'GetBatchProcessResultFileV1Result');
+     return $this->responseHandler($response, 'GetBatchProcessResultFileResult');
     }
   }
 
@@ -155,7 +178,7 @@ class ProcessLink extends Core {
     }
     else {
       $response = $this->apiCall('ProcessACHEFTChargeBatch', $parameters);
-      return $this->responseHandler($response, 'ProcessACHEFTChargeBatchV1Result');
+      return $this->responseHandler($response, 'ProcessACHEFTChargeBatchResult');
     }
   }
 
@@ -184,7 +207,7 @@ class ProcessLink extends Core {
     }
     else {
       $response = $this->apiCall('ProcessACHEFTRefundBatch', $parameters);
-     return $this->responseHandler($response, 'ProcessACHEFTRefundBatchV1Result');
+     return $this->responseHandler($response, 'ProcessACHEFTRefundBatchResult');
     }
   }
 
@@ -211,7 +234,7 @@ class ProcessLink extends Core {
     }
     else {
       $response = $this->apiCall('ProcessACHEFTRefundWithTransactionId', $parameters);
-      return $this->responseHandler($response, 'ProcessACHEFTRefundWithTransactionIdV1Result');
+      return $this->responseHandler($response, 'ProcessACHEFTRefundWithTransactionIdResult');
     }
   }
 
@@ -235,6 +258,18 @@ class ProcessLink extends Core {
    *     'zipCode' => '12345' // Optional. The customer's ZIP code.
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'Process ACH / EFT test.' // Optional. A comment describing this transaction.
+   *     'title' => 'string'
+   *     'phone' => '1234567890'
+   *     'phone2' => '1234567890'
+   *     'fax' => '1234567890'
+   *     'email' => 'email@example.com'
+   *     'country' => 'string'
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
@@ -248,7 +283,7 @@ class ProcessLink extends Core {
     else
     {
       $response = $this->apiCall('ProcessACHEFT', $parameters);
-      return $this->responseHandler($response, 'ProcessACHEFTV1Result');
+      return $this->responseHandler($response, 'ProcessACHEFTResult');
     }
   }
 
@@ -264,6 +299,12 @@ class ProcessLink extends Core {
    *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'Process ACH / EFT test.' // Optional. A comment describing this transaction.
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    * @endcode
    *
    * @return mixed
@@ -278,7 +319,7 @@ class ProcessLink extends Core {
     else
     {
       $response = $this->apiCall('ProcessACHEFTWithCustomerCode', $parameters);
-      return $this->responseHandler($response, 'ProcessACHEFTWithCustomerCodeV1Result');
+      return $this->responseHandler($response, 'ProcessACHEFTWithCustomerCodeResult');
     }
   }
 
@@ -306,7 +347,7 @@ class ProcessLink extends Core {
     }
     else {
      $response = $this->apiCall('ProcessCreditCardBatch', $parameters);
-     return $this->responseHandler($response, 'ProcessCreditCardBatchV1Result');
+     return $this->responseHandler($response, 'ProcessCreditCardBatchResult');
     }
   }
 
@@ -331,7 +372,7 @@ class ProcessLink extends Core {
     }
     else {
      $response = $this->apiCall('ProcessCreditCardRefundWithTransactionId', $parameters);
-     return $this->responseHandler($response, 'ProcessCreditCardRefundWithTransactionIdV1Result');
+     return $this->responseHandler($response, 'ProcessCreditCardRefundWithTransactionIdResult');
     }
   }
 
@@ -356,7 +397,18 @@ class ProcessLink extends Core {
    *     'zipCode' => '12345' // The customer's ZIP code.
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'Process credit card test.' // Optional. A comment describing this transaction.
-   *     'currency' => 'USD' // The currency to process payment in.
+   *     'title' => 'string'
+   *     'phone' => '1234567890'
+   *     'phone2' => '1234567890'
+   *     'fax' => '1234567890'
+   *     'email' => 'email@example.com'
+   *     'country' => 'string'
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
@@ -368,7 +420,7 @@ class ProcessLink extends Core {
     }
     else {
       $response = $this->apiCall('ProcessCreditCard', $parameters);
-      return $this->responseHandler($response, 'ProcessCreditCardV1Result');
+      return $this->responseHandler($response, 'ProcessCreditCardResult');
     }
   }
 
@@ -381,10 +433,14 @@ class ProcessLink extends Core {
    *     'customerCode' => '' // The iATS Customer Code.
    *     'invoiceNum' => '00000001' // Optional. The invoice number for this transaction.
    *     'cvv2' => '000' // Optional. The customer's credit card CVV2 code.
-   *     'mop' => 'VISA' // The customer's method of payment.
    *     'total' => '5' // The total payment amount.
    *     'comment' => 'Process credit card test with Customer Code.' // Optional. A comment describing this transaction.
-   *     'currency' => 'USD' // The currency to process payment in.
+   *     'item1' => 'string'
+   *     'item2' => 'string'
+   *     'item3' => 'string'
+   *     'item4' => 'string'
+   *     'item5' => 'string'
+   *     'item6' => 'string'
    *
    * @return mixed
    *   Client response array or API error.
@@ -396,7 +452,7 @@ class ProcessLink extends Core {
     }
     else {
       $response = $this->apiCall('ProcessCreditCardWithCustomerCode', $parameters);
-      return $this->responseHandler($response, 'ProcessCreditCardWithCustomerCodeV1Result');
+      return $this->responseHandler($response, 'ProcessCreditCardWithCustomerCodeResult');
     }
   }
 
