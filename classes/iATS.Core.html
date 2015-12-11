@@ -11,7 +11,7 @@
             <link href="../css/template.css" rel="stylesheet" media="all"/>
     
             <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
         <![endif]-->
         <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
         <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
@@ -125,18 +125,24 @@
         </a>
     </li>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+                                                                                                                                                                                                                                                                                                                                        <li class="method public">
+        <a href="#method_getFormattedDate" title="getFormattedDate :: Converts a UNIX timestamp to a date string formatted for SOAP requests.">
+            <span class="description">Converts a UNIX timestamp to a date string formatted for SOAP requests.</span><pre>getFormattedDate</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                                                        </ul>
         </li>
         <li class="nav-header protected">» Protected
             <ul>
                                                                                                                 <li class="method protected">
-                            <a href="#method_getSoapClient" title="getSoapClient :: Create SoapClient object.">
-                                <span class="description">Create SoapClient object.</span><pre>getSoapClient</pre>
-                            </a>
-                        </li>
-                                                                                                                    <li class="method protected">
                             <a href="#method_apiCall" title="apiCall :: Make web service requests to the iATS API.">
                                 <span class="description">Make web service requests to the iATS API.</span><pre>apiCall</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method_checkMOPCurrencyRestrictions" title="checkMOPCurrencyRestrictions :: Check Method of Payment (MOP) is available based on server and currency.">
+                                <span class="description">Check Method of Payment (MOP) is available based on server and currency.</span><pre>checkMOPCurrencyRestrictions</pre>
                             </a>
                         </li>
                                                                                 <li class="method protected">
@@ -149,19 +155,14 @@
                                 <span class="description">Check server restrictions.</span><pre>checkServerRestrictions</pre>
                             </a>
                         </li>
-                                                                                <li class="method protected">
-                            <a href="#method_checkMOPCurrencyRestrictions" title="checkMOPCurrencyRestrictions :: Check Method of Payment (MOP) is available based on server and currency.">
-                                <span class="description">Check Method of Payment (MOP) is available based on server and currency.</span><pre>checkMOPCurrencyRestrictions</pre>
-                            </a>
-                        </li>
-                                                                                <li class="method protected">
+                                                                                                                    <li class="method protected">
                             <a href="#method_getMOPCurrencyMatrix" title="getMOPCurrencyMatrix :: MOP Currency matrix.">
                                 <span class="description">MOP Currency matrix.</span><pre>getMOPCurrencyMatrix</pre>
                             </a>
                         </li>
                                                                                 <li class="method protected">
-                            <a href="#method_xml2array" title="xml2array :: Convert an XML string to an array.">
-                                <span class="description">Convert an XML string to an array.</span><pre>xml2array</pre>
+                            <a href="#method_getSoapClient" title="getSoapClient :: Create SoapClient object.">
+                                <span class="description">Create SoapClient object.</span><pre>getSoapClient</pre>
                             </a>
                         </li>
                                                                                 <li class="method protected">
@@ -169,16 +170,21 @@
                                 <span class="description">Return a rejection message for a given code.</span><pre>rejectMessage</pre>
                             </a>
                         </li>
+                                                                                                                    <li class="method protected">
+                            <a href="#method_xml2array" title="xml2array :: Convert an XML string to an array.">
+                                <span class="description">Convert an XML string to an array.</span><pre>xml2array</pre>
+                            </a>
+                        </li>
                                                 </ul>
         </li>
         <li class="nav-header private">» Private
             <ul>
-                                                                                                                                                    <li class="method private">
+                                                                                                                                                                                                                                                                                                                                                                                                                <li class="method private">
                             <a href="#method_setServer" title="setServer :: Set the server to use based on a server id.">
                                 <span class="description">Set the server to use based on a server id.</span><pre>setServer</pre>
                             </a>
                         </li>
-                                                                                                                                                                                                                                                                                                            </ul>
+                                                                                    </ul>
         </li>
         <li class="nav-header">
             <i class="icon-custom icon-constant"></i> Constants
@@ -210,7 +216,7 @@
                                                                                 <p>iATS</p>
                                     </td>
                                 </tr>
-                                                                                                                                                                                                                                                                                                                                                                                                </table>
+                                                                                                                                                                                                                                                                                                                                            </table>
 
                     <h3><i class="icon-custom icon-method"></i> Methods</h3>
                                                                 <a id="method___construct"></a>
@@ -219,6 +225,8 @@
                             <pre>__construct(string $agentcode, string $password, string $serverid = &#039;NA&#039;) </pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
                                     <div class="long_description"></div>
@@ -259,13 +267,181 @@
                                                                             
                                                                     </div>
                             </div>
+
                         </div>
-                                            <a id="method_getSoapClient"></a>
-                        <div class="element clickable method protected  method_getSoapClient" data-toggle="collapse" data-target=".method_getSoapClient .collapse">
-                            <h2>Create SoapClient object.</h2>
-                            <pre>getSoapClient(string $endpoint, array $options = array(&#039;trace&#039; =&gt; TRUE)) : \SoapClient</pre>
+                                            <a id="method_apiCall"></a>
+                        <div class="element clickable method protected  method_apiCall" data-toggle="collapse" data-target=".method_apiCall .collapse">
+                            <h2>Make web service requests to the iATS API.</h2>
+                            <pre>apiCall(string $method, array $parameters) : object</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$method</h4>
+                                                <code>string</code><p><p>The name of the method to call.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>Parameters to pass the API.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>object</code><p><p>XML object or boolean.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_checkMOPCurrencyRestrictions"></a>
+                        <div class="element clickable method protected  method_checkMOPCurrencyRestrictions" data-toggle="collapse" data-target=".method_checkMOPCurrencyRestrictions .collapse">
+                            <h2>Check Method of Payment (MOP) is available based on server and currency.</h2>
+                            <pre>checkMOPCurrencyRestrictions(string $serverid, string $currency, string $mop) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$serverid</h4>
+                                                <code>string</code><p><p>Server identifier</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$currency</h4>
+                                                <code>string</code><p><p>Currency</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$mop</h4>
+                                                <code>string</code><p><p>Method of Payment</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>Result of check</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_checkRestrictions"></a>
+                        <div class="element clickable method protected  method_checkRestrictions" data-toggle="collapse" data-target=".method_checkRestrictions .collapse">
+                            <h2>Check restrictions for service.</h2>
+                            <pre>checkRestrictions(array $parameters, boolean $forceCurrencyCheck = FALSE) : boolean|string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>Request parameters.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$forceCurrencyCheck</h4>
+                                                <code>boolean</code><p><p>True to force a currency check even when currency or
+method of payment are missing.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean|string</code><p><p>FALSE if no restrictions. Message if restricted.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_checkServerRestrictions"></a>
+                        <div class="element clickable method protected  method_checkServerRestrictions" data-toggle="collapse" data-target=".method_checkServerRestrictions .collapse">
+                            <h2>Check server restrictions.</h2>
+                            <pre>checkServerRestrictions(string $serverid, array $restrictedservers) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$serverid</h4>
+                                                <code>string</code><p><p>Server identifier</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$restrictedservers</h4>
+                                                <code>array</code><p><p>Restricted servers array</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>Result of server restricted check</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getFormattedDate"></a>
+                        <div class="element clickable method public  method_getFormattedDate" data-toggle="collapse" data-target=".method_getFormattedDate .collapse">
+                            <h2>Converts a UNIX timestamp to a date string formatted for SOAP requests.</h2>
+                            <pre>getFormattedDate(integer $timestamp) : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$timestamp</h4>
+                                                <code>integer</code><p><p>The timestamp to convert.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p><p>The formatted date string.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getMOPCurrencyMatrix"></a>
+                        <div class="element clickable method protected  method_getMOPCurrencyMatrix" data-toggle="collapse" data-target=".method_getMOPCurrencyMatrix .collapse">
+                            <h2>MOP Currency matrix.</h2>
+                            <pre>getMOPCurrencyMatrix() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
                                     <div class="long_description"></div>
@@ -280,6 +456,28 @@
                                             </tr>
                                                                             </table>
 
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Array of Server/Currency/MOP</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getSoapClient"></a>
+                        <div class="element clickable method protected  method_getSoapClient" data-toggle="collapse" data-target=".method_getSoapClient .collapse">
+                            <h2>Create SoapClient object.</h2>
+                            <pre>getSoapClient(string $endpoint, array $options = array()) : \SoapClient</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$endpoint</h4>
@@ -288,13 +486,45 @@
                                                                                     <div class="subelement argument">
                                                 <h4>$options</h4>
                                                 <code>array</code><p><p>SoapClient options
-  @see <a href="http://www.php.net/manual/en/soapclient.soapclient.php">http://www.php.net/manual/en/soapclient.soapclient.php</a></p></p>
+@see <a href="http://www.php.net/manual/en/soapclient.soapclient.php">http://www.php.net/manual/en/soapclient.soapclient.php</a></p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
                                         <code>\SoapClient</code><p><p>Returns IATS SoapClient object</p></p>
                                                                     </div>
                             </div>
+
+                        </div>
+                                            <a id="method_rejectMessage"></a>
+                        <div class="element clickable method protected  method_rejectMessage" data-toggle="collapse" data-target=".method_rejectMessage .collapse">
+                            <h2>Return a rejection message for a given code.</h2>
+                            <pre>rejectMessage(integer $reject_code) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$reject_code</h4>
+                                                <code>integer</code><p><p>iATS rejection code.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Rejection code and message as in array in the format:
+[
+'code' =&gt; 19,
+'message' =&gt; 'Incorrect CVV2 security code',
+]</p></p>
+                                                                    </div>
+                            </div>
+
                         </div>
                                             <a id="method_setServer"></a>
                         <div class="element clickable method private  method_setServer" data-toggle="collapse" data-target=".method_setServer .collapse">
@@ -302,6 +532,8 @@
                             <pre>setServer(string $serverid) </pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
                                     <div class="long_description"></div>
@@ -333,193 +565,7 @@
                                                                             
                                                                     </div>
                             </div>
-                        </div>
-                                            <a id="method_apiCall"></a>
-                        <div class="element clickable method protected  method_apiCall" data-toggle="collapse" data-target=".method_apiCall .collapse">
-                            <h2>Make web service requests to the iATS API.</h2>
-                            <pre>apiCall(string $method, array $parameters) : object</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
 
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    throws
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$method</h4>
-                                                <code>string</code><p><p>The name of the method to call.</p></p>
-                                            </div>
-                                                                                    <div class="subelement argument">
-                                                <h4>$parameters</h4>
-                                                <code>array</code><p><p>Parameters to pass the API.</p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>object</code><p><p>XML object or boolean.</p></p>
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_checkRestrictions"></a>
-                        <div class="element clickable method protected  method_checkRestrictions" data-toggle="collapse" data-target=".method_checkRestrictions .collapse">
-                            <h2>Check restrictions for service.</h2>
-                            <pre>checkRestrictions(array $parameters, bool $forceCurrencyCheck = FALSE) : bool|string</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$parameters</h4>
-                                                <code>array</code><p><p>Request parameters.</p></p>
-                                            </div>
-                                                                                    <div class="subelement argument">
-                                                <h4>$forceCurrencyCheck</h4>
-                                                <code>bool</code><p><p>True to force a currency check even when currency or
- method of payment are missing.</p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>bool|string</code><p><p>FALSE if no restrictions. Message if restricted.</p></p>
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_checkServerRestrictions"></a>
-                        <div class="element clickable method protected  method_checkServerRestrictions" data-toggle="collapse" data-target=".method_checkServerRestrictions .collapse">
-                            <h2>Check server restrictions.</h2>
-                            <pre>checkServerRestrictions(string $serverid, array $restrictedservers) : bool</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$serverid</h4>
-                                                <code>string</code><p><p>Server identifier</p></p>
-                                            </div>
-                                                                                    <div class="subelement argument">
-                                                <h4>$restrictedservers</h4>
-                                                <code>array</code><p><p>Restricted servers array</p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>bool</code><p><p>Result of server restricted check</p></p>
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_checkMOPCurrencyRestrictions"></a>
-                        <div class="element clickable method protected  method_checkMOPCurrencyRestrictions" data-toggle="collapse" data-target=".method_checkMOPCurrencyRestrictions .collapse">
-                            <h2>Check Method of Payment (MOP) is available based on server and currency.</h2>
-                            <pre>checkMOPCurrencyRestrictions(string $serverid, string $currency, string $mop) : bool</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$serverid</h4>
-                                                <code>string</code><p><p>Server identifier</p></p>
-                                            </div>
-                                                                                    <div class="subelement argument">
-                                                <h4>$currency</h4>
-                                                <code>string</code><p><p>Currency</p></p>
-                                            </div>
-                                                                                    <div class="subelement argument">
-                                                <h4>$mop</h4>
-                                                <code>string</code><p><p>Method of Payment</p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>bool</code><p><p>Result of check</p></p>
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_getMOPCurrencyMatrix"></a>
-                        <div class="element clickable method protected  method_getMOPCurrencyMatrix" data-toggle="collapse" data-target=".method_getMOPCurrencyMatrix .collapse">
-                            <h2>MOP Currency matrix.</h2>
-                            <pre>getMOPCurrencyMatrix() : array</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                    
-                                                                            <h3>Response</h3>
-                                        <code>array</code><p><p>Array of Server/Currency/MOP</p></p>
-                                                                    </div>
-                            </div>
                         </div>
                                             <a id="method_xml2array"></a>
                         <div class="element clickable method protected  method_xml2array" data-toggle="collapse" data-target=".method_xml2array .collapse">
@@ -527,18 +573,13 @@
                             <pre>xml2array(string $xmlstring) : array</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
                                     <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
                                                                             </table>
 
                                                                             <h3>Arguments</h3>
@@ -551,37 +592,7 @@
                                         <code>array</code><p><p>Array.</p></p>
                                                                     </div>
                             </div>
-                        </div>
-                                            <a id="method_rejectMessage"></a>
-                        <div class="element clickable method protected  method_rejectMessage" data-toggle="collapse" data-target=".method_rejectMessage .collapse">
-                            <h2>Return a rejection message for a given code.</h2>
-                            <pre>rejectMessage(int $reject_code) : mixed</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
 
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$reject_code</h4>
-                                                <code>int</code><p><p>iATS rejection code.</p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>mixed</code><p><p>Rejection message for a given code.</p></p>
-                                                                    </div>
-                            </div>
                         </div>
                     
                     
@@ -603,13 +614,6 @@
                                                     </th>
                                                     <td>
                                                                                                                     <p>North America server url.</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
                                                                                                             </td>
                                                 </tr>
                                                                                     </table>
@@ -638,13 +642,6 @@
                                                                                                                     <p>UK server url.</p>
                                                                                                             </td>
                                                 </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
-                                                                                                            </td>
-                                                </tr>
                                                                                     </table>
 
                                                                                     <h3>Type(s)</h3>
@@ -669,13 +666,6 @@
                                                     </th>
                                                     <td>
                                                                                                                     <p>iATS account agent code.</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
                                                                                                             </td>
                                                 </tr>
                                                                                     </table>
@@ -704,13 +694,6 @@
                                                                                                                     <p>iATS account password.</p>
                                                                                                             </td>
                                                 </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
-                                                                                                            </td>
-                                                </tr>
                                                                                     </table>
 
                                                                                     <h3>Type(s)</h3>
@@ -721,6 +704,7 @@
                                                     <a id="property_serverid"> </a>
                             <div class="element clickable property  protected property_serverid" data-toggle="collapse" data-target=".property_serverid .collapse">
                                 <h2>Server identifier.
+
   @see Core::setServer()</h2>
                                 <pre>serverid : string</pre>
                                 <div class="labels">
@@ -735,15 +719,8 @@
                                                         var
                                                     </th>
                                                     <td>
-                                                                                                                    <p>Server identifier.
-  @see Core::setServer()</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
+                                                                                                                    <p>Server identifier.</p>
+<p>@see Core::setServer()</p>
                                                                                                             </td>
                                                 </tr>
                                                                                     </table>
@@ -772,13 +749,6 @@
                                                                                                                     <p>Server url.</p>
                                                                                                             </td>
                                                 </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
-                                                                                                            </td>
-                                                </tr>
                                                                                     </table>
 
                                                                                     <h3>Type(s)</h3>
@@ -803,13 +773,6 @@
                                                     </th>
                                                     <td>
                                                                                                                     <p>Service endpoint</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
                                                                                                             </td>
                                                 </tr>
                                                                                     </table>
@@ -838,13 +801,6 @@
                                                                                                                     <p>Requrest parameters</p>
                                                                                                             </td>
                                                 </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
-                                                                                                            </td>
-                                                </tr>
                                                                                     </table>
 
                                                                                     <h3>Type(s)</h3>
@@ -869,13 +825,6 @@
                                                     </th>
                                                     <td>
                                                                                                                     <p>The result name</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
                                                                                                             </td>
                                                 </tr>
                                                                                     </table>
@@ -904,13 +853,6 @@
                                                                                                                     <p>Format</p>
                                                                                                             </td>
                                                 </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
-                                                                                                            </td>
-                                                </tr>
                                                                                     </table>
 
                                                                                     <h3>Type(s)</h3>
@@ -935,13 +877,6 @@
                                                     </th>
                                                     <td>
                                                                                                                     <p>Restricted servers array</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
                                                                                                             </td>
                                                 </tr>
                                                                                     </table>
@@ -971,7 +906,7 @@
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Thu, 20 Feb 2014 17:38:27 +0000.<br/>
+            generated on Wed, 09 Dec 2015 21:48:40 +0000.<br/>
     </footer>
     </body>
 </html>

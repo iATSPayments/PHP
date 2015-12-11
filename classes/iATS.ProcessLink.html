@@ -11,7 +11,7 @@
             <link href="../css/template.css" rel="stylesheet" media="all"/>
     
             <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
         <![endif]-->
         <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
         <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
@@ -125,7 +125,7 @@
         </a>
     </li>
 
-                                                                                                        <li class="method public">
+                                                                                                                                                                                                                                                                                                                                        <li class="method public">
         <a href="#method_createCustomerCodeAndProcessACHEFT" title="createCustomerCodeAndProcessACHEFT :: Process an ACH / EFT transaction and return Customer Code.">
             <span class="description">Process an ACH / EFT transaction and return Customer Code.</span><pre>createCustomerCodeAndProcessACHEFT</pre>
         </a>
@@ -140,6 +140,18 @@
                                                                                                         <li class="method public">
         <a href="#method_getBatchProcessResultFile" title="getBatchProcessResultFile :: Get the results of a preview batch request.">
             <span class="description">Get the results of a preview batch request.</span><pre>getBatchProcessResultFile</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_getFormattedDate" title="getFormattedDate :: Converts a UNIX timestamp to a date string formatted for SOAP requests.">
+            <span class="description">Converts a UNIX timestamp to a date string formatted for SOAP requests.</span><pre>getFormattedDate</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                                                                        <li class="method public">
+        <a href="#method_processACHEFT" title="processACHEFT :: Process an ACH / EFT transaction using an existing account, without using a Customer Code.">
+            <span class="description">Process an ACH / EFT transaction using an existing account, without using a Customer Code.</span><pre>processACHEFT</pre>
         </a>
     </li>
 
@@ -162,14 +174,14 @@
     </li>
 
                                                                                                         <li class="method public">
-        <a href="#method_processACHEFT" title="processACHEFT :: Process an ACH / EFT transaction using an existing account, without using a Customer Code.">
-            <span class="description">Process an ACH / EFT transaction using an existing account, without using a Customer Code.</span><pre>processACHEFT</pre>
+        <a href="#method_processACHEFTWithCustomerCode" title="processACHEFTWithCustomerCode :: Process an ACH / EFT transaction using an existing account using a Customer Code.">
+            <span class="description">Process an ACH / EFT transaction using an existing account using a Customer Code.</span><pre>processACHEFTWithCustomerCode</pre>
         </a>
     </li>
 
                                                                                                         <li class="method public">
-        <a href="#method_processACHEFTWithCustomerCode" title="processACHEFTWithCustomerCode :: Process an ACH / EFT transaction using an existing account using a Customer Code.">
-            <span class="description">Process an ACH / EFT transaction using an existing account using a Customer Code.</span><pre>processACHEFTWithCustomerCode</pre>
+        <a href="#method_processCreditCard" title="processCreditCard :: Process a credit card transaction.">
+            <span class="description">Process a credit card transaction.</span><pre>processCreditCard</pre>
         </a>
     </li>
 
@@ -186,35 +198,29 @@
     </li>
 
                                                                                                         <li class="method public">
-        <a href="#method_processCreditCard" title="processCreditCard :: Process a credit card transaction.">
-            <span class="description">Process a credit card transaction.</span><pre>processCreditCard</pre>
-        </a>
-    </li>
-
-                                                                                                        <li class="method public">
         <a href="#method_processCreditCardWithCustomerCode" title="processCreditCardWithCustomerCode :: Process a credit card transaction with Customer Code.">
             <span class="description">Process a credit card transaction with Customer Code.</span><pre>processCreditCardWithCustomerCode</pre>
         </a>
     </li>
 
-                                                                                                        <li class="method public">
+                                                                                                                                                                <li class="method public">
         <a href="#method_responseHandler" title="responseHandler :: Response Handler for ProcessLink calls.">
             <span class="description">Response Handler for ProcessLink calls.</span><pre>responseHandler</pre>
         </a>
     </li>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+                                                                                                                                                                </ul>
         </li>
         <li class="nav-header protected">» Protected
             <ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <li class="method protected inherited">
-                            <a href="#method_getSoapClient" title="getSoapClient :: Create SoapClient object.">
-                                <span class="description">Create SoapClient object.</span><pre>getSoapClient</pre>
-                            </a>
-                        </li>
-                                                                                                                    <li class="method protected inherited">
+                                                                                                                <li class="method protected inherited">
                             <a href="#method_apiCall" title="apiCall :: Make web service requests to the iATS API.">
                                 <span class="description">Make web service requests to the iATS API.</span><pre>apiCall</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected inherited">
+                            <a href="#method_checkMOPCurrencyRestrictions" title="checkMOPCurrencyRestrictions :: Check Method of Payment (MOP) is available based on server and currency.">
+                                <span class="description">Check Method of Payment (MOP) is available based on server and currency.</span><pre>checkMOPCurrencyRestrictions</pre>
                             </a>
                         </li>
                                                                                 <li class="method protected inherited">
@@ -227,36 +233,36 @@
                                 <span class="description">Check server restrictions.</span><pre>checkServerRestrictions</pre>
                             </a>
                         </li>
-                                                                                <li class="method protected inherited">
-                            <a href="#method_checkMOPCurrencyRestrictions" title="checkMOPCurrencyRestrictions :: Check Method of Payment (MOP) is available based on server and currency.">
-                                <span class="description">Check Method of Payment (MOP) is available based on server and currency.</span><pre>checkMOPCurrencyRestrictions</pre>
-                            </a>
-                        </li>
-                                                                                <li class="method protected inherited">
+                                                                                                                                                                                                                                <li class="method protected inherited">
                             <a href="#method_getMOPCurrencyMatrix" title="getMOPCurrencyMatrix :: MOP Currency matrix.">
                                 <span class="description">MOP Currency matrix.</span><pre>getMOPCurrencyMatrix</pre>
                             </a>
                         </li>
                                                                                 <li class="method protected inherited">
-                            <a href="#method_xml2array" title="xml2array :: Convert an XML string to an array.">
-                                <span class="description">Convert an XML string to an array.</span><pre>xml2array</pre>
+                            <a href="#method_getSoapClient" title="getSoapClient :: Create SoapClient object.">
+                                <span class="description">Create SoapClient object.</span><pre>getSoapClient</pre>
                             </a>
                         </li>
-                                                                                <li class="method protected inherited">
+                                                                                                                                                                                                                                                                                                                                                                                                                    <li class="method protected inherited">
                             <a href="#method_rejectMessage" title="rejectMessage :: Return a rejection message for a given code.">
                                 <span class="description">Return a rejection message for a given code.</span><pre>rejectMessage</pre>
+                            </a>
+                        </li>
+                                                                                                                                                        <li class="method protected inherited">
+                            <a href="#method_xml2array" title="xml2array :: Convert an XML string to an array.">
+                                <span class="description">Convert an XML string to an array.</span><pre>xml2array</pre>
                             </a>
                         </li>
                                                 </ul>
         </li>
         <li class="nav-header private">» Private
             <ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li class="method private inherited">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <li class="method private inherited">
                             <a href="#method_setServer" title="setServer :: Set the server to use based on a server id.">
                                 <span class="description">Set the server to use based on a server id.</span><pre>setServer</pre>
                             </a>
                         </li>
-                                                                                                                                                                                                                                                                                                            </ul>
+                                                                                    </ul>
         </li>
         <li class="nav-header">
             <i class="icon-custom icon-constant"></i> Constants
@@ -289,7 +295,7 @@
                                                                                 <p>iATS</p>
                                     </td>
                                 </tr>
-                                                                                                                                                                                                                                    </table>
+                                                                                                                                                                                </table>
 
                     <h3><i class="icon-custom icon-method"></i> Methods</h3>
                                                                 <a id="method___construct"></a>
@@ -298,6 +304,8 @@
                             <pre>__construct(string $agentcode, string $password, string $serverid = &#039;NA&#039;) </pre>
                             <div class="labels">
                                 <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
                                     <div class="long_description"></div>
@@ -338,6 +346,145 @@
                                                                             
                                                                     </div>
                             </div>
+
+                        </div>
+                                            <a id="method_apiCall"></a>
+                        <div class="element clickable method protected  method_apiCall inherited" data-toggle="collapse" data-target=".method_apiCall .collapse">
+                            <h2>Make web service requests to the iATS API.</h2>
+                            <pre>apiCall(string $method, array $parameters) : object</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$method</h4>
+                                                <code>string</code><p><p>The name of the method to call.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>Parameters to pass the API.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>object</code><p><p>XML object or boolean.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_checkMOPCurrencyRestrictions"></a>
+                        <div class="element clickable method protected  method_checkMOPCurrencyRestrictions inherited" data-toggle="collapse" data-target=".method_checkMOPCurrencyRestrictions .collapse">
+                            <h2>Check Method of Payment (MOP) is available based on server and currency.</h2>
+                            <pre>checkMOPCurrencyRestrictions(string $serverid, string $currency, string $mop) : boolean</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$serverid</h4>
+                                                <code>string</code><p><p>Server identifier</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$currency</h4>
+                                                <code>string</code><p><p>Currency</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$mop</h4>
+                                                <code>string</code><p><p>Method of Payment</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>Result of check</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_checkRestrictions"></a>
+                        <div class="element clickable method protected  method_checkRestrictions inherited" data-toggle="collapse" data-target=".method_checkRestrictions .collapse">
+                            <h2>Check restrictions for service.</h2>
+                            <pre>checkRestrictions(array $parameters, boolean $forceCurrencyCheck = FALSE) : boolean|string</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>Request parameters.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$forceCurrencyCheck</h4>
+                                                <code>boolean</code><p><p>True to force a currency check even when currency or
+method of payment are missing.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean|string</code><p><p>FALSE if no restrictions. Message if restricted.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_checkServerRestrictions"></a>
+                        <div class="element clickable method protected  method_checkServerRestrictions inherited" data-toggle="collapse" data-target=".method_checkServerRestrictions .collapse">
+                            <h2>Check server restrictions.</h2>
+                            <pre>checkServerRestrictions(string $serverid, array $restrictedservers) : boolean</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$serverid</h4>
+                                                <code>string</code><p><p>Server identifier</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$restrictedservers</h4>
+                                                <code>array</code><p><p>Restricted servers array</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>Result of server restricted check</p></p>
+                                                                    </div>
+                            </div>
+
                         </div>
                                             <a id="method_createCustomerCodeAndProcessACHEFT"></a>
                         <div class="element clickable method public  method_createCustomerCodeAndProcessACHEFT" data-toggle="collapse" data-target=".method_createCustomerCodeAndProcessACHEFT .collapse">
@@ -345,25 +492,20 @@
                             <pre>createCustomerCodeAndProcessACHEFT(array $parameters) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
                                     <div class="long_description"><p>North America clients only.</p></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
                                                                             </table>
 
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p>
-<pre><code>'customerIPAddress' =&gt; '' // Optional. The client IP address.
+                                                <code>array</code><p><p>An associative array with the following possible values.
+'customerIPAddress' =&gt; '' // Optional. The client IP address.
 'firstName' =&gt; 'Test' // The customer's first name.
 'lastName' =&gt; 'Account' // The customer's last name.
 'address' =&gt; '1234 Any Street' // The customer's address.
@@ -372,16 +514,29 @@
 'zipCode' =&gt; '12345' // The customer's ZIP code.
 'accountNum' =&gt; '02100002100000000000000001' // The customer's bank account number.
 'accountType' =&gt; 'CHECKING' // The customer's bank account type.
- // Options: CHECKING, SAVING (North America only.)
+// Options: CHECKING, SAVING (North America only.)
 'invoiceNum' =&gt; '00000001' // Optional. The invoice number for this transaction.
 'total' =&gt; '5' // The total payment amount.
-'comment' =&gt; 'Process ACH / EFT test.' // Optional. A comment describing this transaction.</code></pre></p>
+'comment' =&gt; 'Process ACH / EFT test.' // Optional. A comment describing this transaction.
+'title' =&gt; 'string'
+'phone' =&gt; '1234567890'
+'phone2' =&gt; '1234567890'
+'fax' =&gt; '1234567890'
+'email' =&gt; 'email@example.com'
+'country' =&gt; 'string'
+'item1' =&gt; 'string'
+'item2' =&gt; 'string'
+'item3' =&gt; 'string'
+'item4' =&gt; 'string'
+'item5' =&gt; 'string'
+'item6' =&gt; 'string'</p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
                                         <code>mixed</code><p><p>Client response array or API error.</p></p>
                                                                     </div>
                             </div>
+
                         </div>
                                             <a id="method_createCustomerCodeAndProcessCreditCard"></a>
                         <div class="element clickable method public  method_createCustomerCodeAndProcessCreditCard" data-toggle="collapse" data-target=".method_createCustomerCodeAndProcessCreditCard .collapse">
@@ -389,29 +544,23 @@
                             <pre>createCustomerCodeAndProcessCreditCard(array $parameters) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
                                     <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
                                                                             </table>
 
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p>
-<pre><code>'customerIPAddress' =&gt; '' // Optional. The client IP address.
+                                                <code>array</code><p><p>An associative array with the following possible values.
+'customerIPAddress' =&gt; '' // Optional. The client IP address.
 'invoiceNum' =&gt; '00000001' // Optional. The invoice number for this transaction.
 'ccNum' =&gt; '4222222222222220' // The customer's credit card number.
 'ccExp' =&gt; '12/17' // The customer's credit card expiration date.
-'mop' =&gt; 'VISA' // The customer's method of payment.
 'firstName' =&gt; 'Test' // The customer's first name.
 'lastName' =&gt; 'Account' // The customer's last name.
 'address' =&gt; '1234 Any Street' // The customer's address.
@@ -420,13 +569,26 @@
 'zipCode' =&gt; '12345' // The customer's ZIP code.
 'cvv2' =&gt; '000' // Optional. The customer's credit card CVV2 code.
 'total' =&gt; '5' // The total payment amount.
-'currency' =&gt; 'USD' // The currency to process payment in.</code></pre></p>
+'comment' =&gt; 'string'
+'title' =&gt; 'string'
+'phone' =&gt; '1234567890'
+'phone2' =&gt; '1234567890'
+'fax' =&gt; '1234567890'
+'email' =&gt; 'email@example.com'
+'country' =&gt; 'string'
+'item1' =&gt; 'string'
+'item2' =&gt; 'string'
+'item3' =&gt; 'string'
+'item4' =&gt; 'string'
+'item5' =&gt; 'string'
+'item6' =&gt; 'string'</p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
                                         <code>mixed</code><p><p>Client response array or API error.</p></p>
                                                                     </div>
                             </div>
+
                         </div>
                                             <a id="method_getBatchProcessResultFile"></a>
                         <div class="element clickable method public  method_getBatchProcessResultFile" data-toggle="collapse" data-target=".method_getBatchProcessResultFile .collapse">
@@ -434,6 +596,64 @@
                             <pre>getBatchProcessResultFile(array $parameters) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>An associative array with the following possible values.
+'customerIPAddress' =&gt; '' // Optional. The client IP address.
+'batchId' =&gt; '1' // The ID of the existing iATS batch process.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getFormattedDate"></a>
+                        <div class="element clickable method public  method_getFormattedDate inherited" data-toggle="collapse" data-target=".method_getFormattedDate .collapse">
+                            <h2>Converts a UNIX timestamp to a date string formatted for SOAP requests.</h2>
+                            <pre>getFormattedDate(integer $timestamp) : string</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$timestamp</h4>
+                                                <code>integer</code><p><p>The timestamp to convert.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p><p>The formatted date string.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getMOPCurrencyMatrix"></a>
+                        <div class="element clickable method protected  method_getMOPCurrencyMatrix inherited" data-toggle="collapse" data-target=".method_getMOPCurrencyMatrix .collapse">
+                            <h2>MOP Currency matrix.</h2>
+                            <pre>getMOPCurrencyMatrix() : array</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
                                     <div class="long_description"></div>
@@ -448,128 +668,44 @@
                                             </tr>
                                                                             </table>
 
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p>
-<pre><code>'customerIPAddress' =&gt; '' // Optional. The client IP address.
-'batchId' =&gt; '1' // The ID of the existing iATS batch process.</code></pre></p>
-                                            </div>
-                                                                            
+                                    
                                                                             <h3>Response</h3>
-                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
+                                        <code>array</code><p><p>Array of Server/Currency/MOP</p></p>
                                                                     </div>
                             </div>
+
                         </div>
-                                            <a id="method_processACHEFTChargeBatch"></a>
-                        <div class="element clickable method public  method_processACHEFTChargeBatch" data-toggle="collapse" data-target=".method_processACHEFTChargeBatch .collapse">
-                            <h2>Process a number of ACH / EFT transactions from a batch file.</h2>
-                            <pre>processACHEFTChargeBatch(array $parameters) : mixed</pre>
+                                            <a id="method_getSoapClient"></a>
+                        <div class="element clickable method protected  method_getSoapClient inherited" data-toggle="collapse" data-target=".method_getSoapClient .collapse">
+                            <h2>Create SoapClient object.</h2>
+                            <pre>getSoapClient(string $endpoint, array $options = array()) : \SoapClient</pre>
                             <div class="labels">
-                                                                                                                                                                                            </div>
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
-                                    <div class="long_description"><p>North America clients only.</p></div>
+                                    <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
                                                                             </table>
 
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
-                                                <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p>
-<pre><code>'customerIPAddress' =&gt; '' // Optional. The client IP address.
-'batchFile' =&gt; {base64Binary file} // CSV file encoded using base64_encode.
- // File format without Customer Codes:
- //  Invoice #, First Name, Last Name, Account Type, Account # (no spaces or dashes), Amount (no $), Comment
- // File format with Customer Codes:
- //  Invoice #, Customer Code, Amount, Comment</code></pre></p>
+                                                <h4>$endpoint</h4>
+                                                <code>string</code><p><p>Service endpoint</p></p>
                                             </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_processACHEFTRefundBatch"></a>
-                        <div class="element clickable method public  method_processACHEFTRefundBatch" data-toggle="collapse" data-target=".method_processACHEFTRefundBatch .collapse">
-                            <h2>Process a number of ACH / EFT refund transactions from a batch file.</h2>
-                            <pre>processACHEFTRefundBatch(array $parameters) : mixed</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"><p>North America clients only.</p></div>
-
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
-                                                <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p>
-<pre><code>'customerIPAddress' =&gt; '' // Optional. The client IP address.
-'batchFile' =&gt; {base64Binary file} // CSV file encoded using base64_encode.
- // File format without Customer Codes:
- //  Invoice #, First Name, Last Name, Account Type, Account # (no spaces or dashes), Amount (no $), Comment
- // File format with Customer Codes:
- //  Invoice #, Customer Code, Amount, Comment</code></pre></p>
+                                                <h4>$options</h4>
+                                                <code>array</code><p><p>SoapClient options
+@see <a href="http://www.php.net/manual/en/soapclient.soapclient.php">http://www.php.net/manual/en/soapclient.soapclient.php</a></p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
-                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
+                                        <code>\SoapClient</code><p><p>Returns IATS SoapClient object</p></p>
                                                                     </div>
                             </div>
-                        </div>
-                                            <a id="method_processACHEFTRefundWithTransactionId"></a>
-                        <div class="element clickable method public  method_processACHEFTRefundWithTransactionId" data-toggle="collapse" data-target=".method_processACHEFTRefundWithTransactionId .collapse">
-                            <h2>Refund a specific ACH / EFT transaction.</h2>
-                            <pre>processACHEFTRefundWithTransactionId(array $parameters) : mixed</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"><p>Partial refunds are valid.
-North America clients only.</p></div>
 
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p>
-<pre><code>'customerIPAddress' =&gt; '' // Optional. The client IP address.
-'transactionId' =&gt; '0000001' // The ID of the transaction to refund.
-'total' =&gt; '-10' // The amount to refund. Must be a negative number.
-'comment' =&gt; 'ACH / EFT refund test.' // Optional. A comment describing this transaction.</code></pre></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
-                                                                    </div>
-                            </div>
                         </div>
                                             <a id="method_processACHEFT"></a>
                         <div class="element clickable method public  method_processACHEFT" data-toggle="collapse" data-target=".method_processACHEFT .collapse">
@@ -577,29 +713,24 @@ North America clients only.</p></div>
                             <pre>processACHEFT(array $parameters) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
                                     <div class="long_description"><p>North America clients only.</p></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
                                                                             </table>
 
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p>
-<pre><code>'customerIPAddress' =&gt; '' // Optional. The client IP address.
+                                                <code>array</code><p><p>An associative array with the following possible values.
+'customerIPAddress' =&gt; '' // Optional. The client IP address.
 'invoiceNum' =&gt; '00000001' // Optional. The invoice number for this transaction.
 'accountNum' =&gt; '02100002100000000000000001' // The customer's bank account number.
 'accountType' =&gt; 'CHECKING' // The customer's bank account type.
- // Options: CHECKING, SAVING (North America only.)
+// Options: CHECKING, SAVING (North America only.)
 'firstName' =&gt; 'Test' // Optional. The customer's first name.
 'lastName' =&gt; 'Account' // Optional. The customer's last name.
 'address' =&gt; '1234 Any Street' // Optional. The customer's address.
@@ -607,13 +738,124 @@ North America clients only.</p></div>
 'state' =&gt; 'NY' // Optional. The customer's state or province.
 'zipCode' =&gt; '12345' // Optional. The customer's ZIP code.
 'total' =&gt; '5' // The total payment amount.
-'comment' =&gt; 'Process ACH / EFT test.' // Optional. A comment describing this transaction.</code></pre></p>
+'comment' =&gt; 'Process ACH / EFT test.' // Optional. A comment describing this transaction.
+'title' =&gt; 'string'
+'phone' =&gt; '1234567890'
+'phone2' =&gt; '1234567890'
+'fax' =&gt; '1234567890'
+'email' =&gt; 'email@example.com'
+'country' =&gt; 'string'
+'item1' =&gt; 'string'
+'item2' =&gt; 'string'
+'item3' =&gt; 'string'
+'item4' =&gt; 'string'
+'item5' =&gt; 'string'
+'item6' =&gt; 'string'</p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
                                         <code>mixed</code><p><p>Client response array or API error.</p></p>
                                                                     </div>
                             </div>
+
+                        </div>
+                                            <a id="method_processACHEFTChargeBatch"></a>
+                        <div class="element clickable method public  method_processACHEFTChargeBatch" data-toggle="collapse" data-target=".method_processACHEFTChargeBatch .collapse">
+                            <h2>Process a number of ACH / EFT transactions from a batch file.</h2>
+                            <pre>processACHEFTChargeBatch(array $parameters) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>North America clients only.</p></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>An associative array with the following possible values.
+'customerIPAddress' =&gt; '' // Optional. The client IP address.
+'batchFile' =&gt; {base64Binary file} // CSV file encoded using base64_encode.
+// File format without Customer Codes:
+//  Invoice #, First Name, Last Name, Account Type, Account # (no spaces or dashes), Amount (no $), Comment
+// File format with Customer Codes:
+//  Invoice #, Customer Code, Amount, Comment</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_processACHEFTRefundBatch"></a>
+                        <div class="element clickable method public  method_processACHEFTRefundBatch" data-toggle="collapse" data-target=".method_processACHEFTRefundBatch .collapse">
+                            <h2>Process a number of ACH / EFT refund transactions from a batch file.</h2>
+                            <pre>processACHEFTRefundBatch(array $parameters) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>North America clients only.</p></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>An associative array with the following possible values.
+'customerIPAddress' =&gt; '' // Optional. The client IP address.
+'batchFile' =&gt; {base64Binary file} // CSV file encoded using base64_encode.
+// File format without Customer Codes:
+//  Invoice #, First Name, Last Name, Account Type, Account # (no spaces or dashes), Amount (no $), Comment
+// File format with Customer Codes:
+//  Invoice #, Customer Code, Amount, Comment</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_processACHEFTRefundWithTransactionId"></a>
+                        <div class="element clickable method public  method_processACHEFTRefundWithTransactionId" data-toggle="collapse" data-target=".method_processACHEFTRefundWithTransactionId .collapse">
+                            <h2>Refund a specific ACH / EFT transaction.</h2>
+                            <pre>processACHEFTRefundWithTransactionId(array $parameters) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Partial refunds are valid.
+North America clients only.</p></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>An associative array with the following possible values.
+'customerIPAddress' =&gt; '' // Optional. The client IP address.
+'transactionId' =&gt; '0000001' // The ID of the transaction to refund.
+'total' =&gt; '-10' // The amount to refund. Must be a negative number.
+'comment' =&gt; 'ACH / EFT refund test.' // Optional. A comment describing this transaction.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
+                                                                    </div>
+                            </div>
+
                         </div>
                                             <a id="method_processACHEFTWithCustomerCode"></a>
                         <div class="element clickable method public  method_processACHEFTWithCustomerCode" data-toggle="collapse" data-target=".method_processACHEFTWithCustomerCode .collapse">
@@ -621,6 +863,8 @@ North America clients only.</p></div>
                             <pre>processACHEFTWithCustomerCode(array $parameters) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
                                     <div class="long_description"><p>North America clients only.</p></div>
@@ -635,106 +879,30 @@ North America clients only.</p></div>
                                                                                                                                                                         
                                                                                                     </td>
                                             </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
                                                                             </table>
 
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p>
-<pre><code>'customerIPAddress' =&gt; '' // Optional. The client's IP address.
+                                                <code>array</code><p><p>An associative array with the following possible values.
+'customerIPAddress' =&gt; '' // Optional. The client's IP address.
 'customerCode' =&gt; '' // The iATS Customer Code.
 'invoiceNum' =&gt; '00000001' // Optional. The invoice number for this transaction.
 'total' =&gt; '5' // The total payment amount.
-'comment' =&gt; 'Process ACH / EFT test.' // Optional. A comment describing this transaction.</code></pre></p>
+'comment' =&gt; 'Process ACH / EFT test.' // Optional. A comment describing this transaction.
+'item1' =&gt; 'string'
+'item2' =&gt; 'string'
+'item3' =&gt; 'string'
+'item4' =&gt; 'string'
+'item5' =&gt; 'string'
+'item6' =&gt; 'string'</p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
                                         <code>mixed</code><p><p>Client response array or API error.</p></p>
                                                                     </div>
                             </div>
-                        </div>
-                                            <a id="method_processCreditCardBatch"></a>
-                        <div class="element clickable method public  method_processCreditCardBatch" data-toggle="collapse" data-target=".method_processCreditCardBatch .collapse">
-                            <h2>Process multiple credit card transactions from a batch file.</h2>
-                            <pre>processCreditCardBatch(array $parameters) : mixed</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
 
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p>
-<pre><code>'customerIPAddress' =&gt; '' // Optional. The client's IP address.
-'batchFile' =&gt; {base64Binary file} // CSV file encoded using base64_encode.
- // File format without Customer Codes for US and UK clients:
- //  Date, Invoice #, First Name, Last Name, Street, City, State, Zip Code, Amount, MOP, Credit Card #, Expiry
- // File format without Customer Codes for Canadian clients:
- //  Date, Invoice #, Full Name, Amount, MOP, Credit Card #, Expiry
- // File format with Customer Codes:
- //  Invoice #, Customer Code, Amount, Comment</code></pre></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_processCreditCardRefundWithTransactionId"></a>
-                        <div class="element clickable method public  method_processCreditCardRefundWithTransactionId" data-toggle="collapse" data-target=".method_processCreditCardRefundWithTransactionId .collapse">
-                            <h2>Refund a specific credit card transaction.</h2>
-                            <pre>processCreditCardRefundWithTransactionId(array $parameters) : mixed</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"><p>Partial refunds are valid.</p></div>
-
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p>
-<pre><code>'customerIPAddress' =&gt; '' // Optional. The client's IP address.
-'transactionId' =&gt; '0000001' // The ID of the transaction to refund.
-'mop' =&gt; 'VISA' // The customer's method of payment.
-'total' =&gt; '-10' // The total amount to refund. Must be a negative number.
-'currency' =&gt; 'USD' // The currency to process payment in.
-'comment' =&gt; 'Credit card refund test.' // Optional. A comment describing this transaction.</code></pre></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
-                                                                    </div>
-                            </div>
                         </div>
                                             <a id="method_processCreditCard"></a>
                         <div class="element clickable method public  method_processCreditCard" data-toggle="collapse" data-target=".method_processCreditCard .collapse">
@@ -742,32 +910,27 @@ North America clients only.</p></div>
                             <pre>processCreditCard(array $parameters) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
                                     <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
                                                                             </table>
 
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p>
-<pre><code>'customerIPAddress' =&gt; '' // Optional. The client's IP address.
+                                                <code>array</code><p><p>An associative array with the following possible values.
+'customerIPAddress' =&gt; '' // Optional. The client's IP address.
 'invoiceNum' =&gt; '00000001' // Optional. The invoice number for this transaction.
 'creditCardNum' =&gt; '4222222222222220' // The customer's credit card number.
 'creditCardExpiry' =&gt; '12/17' // The customer's credit card expiration date. MM/YY.
 'cvv2' =&gt; '000' // The customer's credit card CVV2 code.
 'mop' =&gt; 'VISA' // The customer's method of payment.
- // North America options: VISA, MC, AMX, DSC
- // UK options: VISA, MC, AMX, MAESTR
+// North America options: VISA, MC, AMX, DSC
+// UK options: VISA, MC, AMX, MAESTR
 'firstName' =&gt; 'Test' // The customer's first name.
 'lastName' =&gt; 'Account' // The customer's last name.
 'address' =&gt; '1234 Any Street' // The customer's address.
@@ -776,13 +939,91 @@ North America clients only.</p></div>
 'zipCode' =&gt; '12345' // The customer's ZIP code.
 'total' =&gt; '5' // The total payment amount.
 'comment' =&gt; 'Process credit card test.' // Optional. A comment describing this transaction.
-'currency' =&gt; 'USD' // The currency to process payment in.</code></pre></p>
+'title' =&gt; 'string'
+'phone' =&gt; '1234567890'
+'phone2' =&gt; '1234567890'
+'fax' =&gt; '1234567890'
+'email' =&gt; 'email@example.com'
+'country' =&gt; 'string'
+'item1' =&gt; 'string'
+'item2' =&gt; 'string'
+'item3' =&gt; 'string'
+'item4' =&gt; 'string'
+'item5' =&gt; 'string'
+'item6' =&gt; 'string'</p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
                                         <code>mixed</code><p><p>Client response array or API error.</p></p>
                                                                     </div>
                             </div>
+
+                        </div>
+                                            <a id="method_processCreditCardBatch"></a>
+                        <div class="element clickable method public  method_processCreditCardBatch" data-toggle="collapse" data-target=".method_processCreditCardBatch .collapse">
+                            <h2>Process multiple credit card transactions from a batch file.</h2>
+                            <pre>processCreditCardBatch(array $parameters) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>An associative array with the following possible values.
+'customerIPAddress' =&gt; '' // Optional. The client's IP address.
+'batchFile' =&gt; {base64Binary file} // CSV file encoded using base64_encode.
+// File format without Customer Codes for US and UK clients:
+//  Date, Invoice #, First Name, Last Name, Street, City, State, Zip Code, Amount, MOP, Credit Card #, Expiry
+// File format without Customer Codes for Canadian clients:
+//  Date, Invoice #, Full Name, Amount, MOP, Credit Card #, Expiry
+// File format with Customer Codes:
+//  Invoice #, Customer Code, Amount, Comment</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_processCreditCardRefundWithTransactionId"></a>
+                        <div class="element clickable method public  method_processCreditCardRefundWithTransactionId" data-toggle="collapse" data-target=".method_processCreditCardRefundWithTransactionId .collapse">
+                            <h2>Refund a specific credit card transaction.</h2>
+                            <pre>processCreditCardRefundWithTransactionId(array $parameters) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Partial refunds are valid.</p></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parameters</h4>
+                                                <code>array</code><p><p>An associative array with the following possible values.
+'customerIPAddress' =&gt; '' // Optional. The client's IP address.
+'transactionId' =&gt; '0000001' // The ID of the transaction to refund.
+'total' =&gt; '-10' // The total amount to refund. Must be a negative number.
+'comment' =&gt; 'Credit card refund test.' // Optional. A comment describing this transaction.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>Client response array or API error.</p></p>
+                                                                    </div>
+                            </div>
+
                         </div>
                                             <a id="method_processCreditCardWithCustomerCode"></a>
                         <div class="element clickable method public  method_processCreditCardWithCustomerCode" data-toggle="collapse" data-target=".method_processCreditCardWithCustomerCode .collapse">
@@ -790,38 +1031,69 @@ North America clients only.</p></div>
                             <pre>processCreditCardWithCustomerCode(array $parameters) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
                                     <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
                                                                             </table>
 
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$parameters</h4>
-                                                <code>array</code><p><p>An associative array with the following possible values.</p>
-<pre><code>'customerIPAddress' =&gt; '' // Optional. The client's IP address.
+                                                <code>array</code><p><p>An associative array with the following possible values.
+'customerIPAddress' =&gt; '' // Optional. The client's IP address.
 'customerCode' =&gt; '' // The iATS Customer Code.
 'invoiceNum' =&gt; '00000001' // Optional. The invoice number for this transaction.
 'cvv2' =&gt; '000' // Optional. The customer's credit card CVV2 code.
-'mop' =&gt; 'VISA' // The customer's method of payment.
 'total' =&gt; '5' // The total payment amount.
 'comment' =&gt; 'Process credit card test with Customer Code.' // Optional. A comment describing this transaction.
-'currency' =&gt; 'USD' // The currency to process payment in.</code></pre></p>
+'item1' =&gt; 'string'
+'item2' =&gt; 'string'
+'item3' =&gt; 'string'
+'item4' =&gt; 'string'
+'item5' =&gt; 'string'
+'item6' =&gt; 'string'</p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
                                         <code>mixed</code><p><p>Client response array or API error.</p></p>
                                                                     </div>
                             </div>
+
+                        </div>
+                                            <a id="method_rejectMessage"></a>
+                        <div class="element clickable method protected  method_rejectMessage inherited" data-toggle="collapse" data-target=".method_rejectMessage .collapse">
+                            <h2>Return a rejection message for a given code.</h2>
+                            <pre>rejectMessage(integer $reject_code) : array</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$reject_code</h4>
+                                                <code>integer</code><p><p>iATS rejection code.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Rejection code and message as in array in the format:
+[
+'code' =&gt; 19,
+'message' =&gt; 'Incorrect CVV2 security code',
+]</p></p>
+                                                                    </div>
+                            </div>
+
                         </div>
                                             <a id="method_responseHandler"></a>
                         <div class="element clickable method public  method_responseHandler" data-toggle="collapse" data-target=".method_responseHandler .collapse">
@@ -829,18 +1101,13 @@ North America clients only.</p></div>
                             <pre>responseHandler(object $response, string $result_name) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
                                     <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
                                                                             </table>
 
                                                                             <h3>Arguments</h3>
@@ -857,42 +1124,7 @@ North America clients only.</p></div>
                                         <code>mixed</code><p><p>Restriction, error or API result.</p></p>
                                                                     </div>
                             </div>
-                        </div>
-                                            <a id="method_getSoapClient"></a>
-                        <div class="element clickable method protected  method_getSoapClient inherited" data-toggle="collapse" data-target=".method_getSoapClient .collapse">
-                            <h2>Create SoapClient object.</h2>
-                            <pre>getSoapClient(string $endpoint, array $options = array(&#039;trace&#039; =&gt; TRUE)) : \SoapClient</pre>
-                            <div class="labels">
-                                <span class="label">inherited</span>                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
 
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$endpoint</h4>
-                                                <code>string</code><p><p>Service endpoint</p></p>
-                                            </div>
-                                                                                    <div class="subelement argument">
-                                                <h4>$options</h4>
-                                                <code>array</code><p><p>SoapClient options
-  @see <a href="http://www.php.net/manual/en/soapclient.soapclient.php">http://www.php.net/manual/en/soapclient.soapclient.php</a></p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>\SoapClient</code><p><p>Returns IATS SoapClient object</p></p>
-                                                                    </div>
-                            </div>
                         </div>
                                             <a id="method_setServer"></a>
                         <div class="element clickable method private  method_setServer inherited" data-toggle="collapse" data-target=".method_setServer .collapse">
@@ -900,6 +1132,8 @@ North America clients only.</p></div>
                             <pre>setServer(string $serverid) </pre>
                             <div class="labels">
                                 <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
                                     <div class="long_description"></div>
@@ -931,193 +1165,7 @@ North America clients only.</p></div>
                                                                             
                                                                     </div>
                             </div>
-                        </div>
-                                            <a id="method_apiCall"></a>
-                        <div class="element clickable method protected  method_apiCall inherited" data-toggle="collapse" data-target=".method_apiCall .collapse">
-                            <h2>Make web service requests to the iATS API.</h2>
-                            <pre>apiCall(string $method, array $parameters) : object</pre>
-                            <div class="labels">
-                                <span class="label">inherited</span>                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
 
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    throws
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$method</h4>
-                                                <code>string</code><p><p>The name of the method to call.</p></p>
-                                            </div>
-                                                                                    <div class="subelement argument">
-                                                <h4>$parameters</h4>
-                                                <code>array</code><p><p>Parameters to pass the API.</p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>object</code><p><p>XML object or boolean.</p></p>
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_checkRestrictions"></a>
-                        <div class="element clickable method protected  method_checkRestrictions inherited" data-toggle="collapse" data-target=".method_checkRestrictions .collapse">
-                            <h2>Check restrictions for service.</h2>
-                            <pre>checkRestrictions(array $parameters, bool $forceCurrencyCheck = FALSE) : bool|string</pre>
-                            <div class="labels">
-                                <span class="label">inherited</span>                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$parameters</h4>
-                                                <code>array</code><p><p>Request parameters.</p></p>
-                                            </div>
-                                                                                    <div class="subelement argument">
-                                                <h4>$forceCurrencyCheck</h4>
-                                                <code>bool</code><p><p>True to force a currency check even when currency or
- method of payment are missing.</p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>bool|string</code><p><p>FALSE if no restrictions. Message if restricted.</p></p>
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_checkServerRestrictions"></a>
-                        <div class="element clickable method protected  method_checkServerRestrictions inherited" data-toggle="collapse" data-target=".method_checkServerRestrictions .collapse">
-                            <h2>Check server restrictions.</h2>
-                            <pre>checkServerRestrictions(string $serverid, array $restrictedservers) : bool</pre>
-                            <div class="labels">
-                                <span class="label">inherited</span>                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$serverid</h4>
-                                                <code>string</code><p><p>Server identifier</p></p>
-                                            </div>
-                                                                                    <div class="subelement argument">
-                                                <h4>$restrictedservers</h4>
-                                                <code>array</code><p><p>Restricted servers array</p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>bool</code><p><p>Result of server restricted check</p></p>
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_checkMOPCurrencyRestrictions"></a>
-                        <div class="element clickable method protected  method_checkMOPCurrencyRestrictions inherited" data-toggle="collapse" data-target=".method_checkMOPCurrencyRestrictions .collapse">
-                            <h2>Check Method of Payment (MOP) is available based on server and currency.</h2>
-                            <pre>checkMOPCurrencyRestrictions(string $serverid, string $currency, string $mop) : bool</pre>
-                            <div class="labels">
-                                <span class="label">inherited</span>                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$serverid</h4>
-                                                <code>string</code><p><p>Server identifier</p></p>
-                                            </div>
-                                                                                    <div class="subelement argument">
-                                                <h4>$currency</h4>
-                                                <code>string</code><p><p>Currency</p></p>
-                                            </div>
-                                                                                    <div class="subelement argument">
-                                                <h4>$mop</h4>
-                                                <code>string</code><p><p>Method of Payment</p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>bool</code><p><p>Result of check</p></p>
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_getMOPCurrencyMatrix"></a>
-                        <div class="element clickable method protected  method_getMOPCurrencyMatrix inherited" data-toggle="collapse" data-target=".method_getMOPCurrencyMatrix .collapse">
-                            <h2>MOP Currency matrix.</h2>
-                            <pre>getMOPCurrencyMatrix() : array</pre>
-                            <div class="labels">
-                                <span class="label">inherited</span>                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                    
-                                                                            <h3>Response</h3>
-                                        <code>array</code><p><p>Array of Server/Currency/MOP</p></p>
-                                                                    </div>
-                            </div>
                         </div>
                                             <a id="method_xml2array"></a>
                         <div class="element clickable method protected  method_xml2array inherited" data-toggle="collapse" data-target=".method_xml2array .collapse">
@@ -1125,18 +1173,13 @@ North America clients only.</p></div>
                             <pre>xml2array(string $xmlstring) : array</pre>
                             <div class="labels">
                                 <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
                             <div class="row collapse">
                                 <div class="detail-description">
                                     <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
                                                                             </table>
 
                                                                             <h3>Arguments</h3>
@@ -1149,37 +1192,7 @@ North America clients only.</p></div>
                                         <code>array</code><p><p>Array.</p></p>
                                                                     </div>
                             </div>
-                        </div>
-                                            <a id="method_rejectMessage"></a>
-                        <div class="element clickable method protected  method_rejectMessage inherited" data-toggle="collapse" data-target=".method_rejectMessage .collapse">
-                            <h2>Return a rejection message for a given code.</h2>
-                            <pre>rejectMessage(int $reject_code) : mixed</pre>
-                            <div class="labels">
-                                <span class="label">inherited</span>                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
 
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$reject_code</h4>
-                                                <code>int</code><p><p>iATS rejection code.</p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>mixed</code><p><p>Rejection message for a given code.</p></p>
-                                                                    </div>
-                            </div>
                         </div>
                     
                     
@@ -1201,13 +1214,6 @@ North America clients only.</p></div>
                                                     </th>
                                                     <td>
                                                                                                                     <p>North America server url.</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
                                                                                                             </td>
                                                 </tr>
                                                                                     </table>
@@ -1236,13 +1242,6 @@ North America clients only.</p></div>
                                                                                                                     <p>UK server url.</p>
                                                                                                             </td>
                                                 </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
-                                                                                                            </td>
-                                                </tr>
                                                                                     </table>
 
                                                                                     <h3>Type(s)</h3>
@@ -1267,13 +1266,6 @@ North America clients only.</p></div>
                                                     </th>
                                                     <td>
                                                                                                                     <p>iATS account agent code.</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
                                                                                                             </td>
                                                 </tr>
                                                                                     </table>
@@ -1302,13 +1294,6 @@ North America clients only.</p></div>
                                                                                                                     <p>iATS account password.</p>
                                                                                                             </td>
                                                 </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
-                                                                                                            </td>
-                                                </tr>
                                                                                     </table>
 
                                                                                     <h3>Type(s)</h3>
@@ -1319,6 +1304,7 @@ North America clients only.</p></div>
                                                     <a id="property_serverid"> </a>
                             <div class="element clickable property  protected property_serverid inherited" data-toggle="collapse" data-target=".property_serverid .collapse">
                                 <h2>Server identifier.
+
   @see Core::setServer()</h2>
                                 <pre>serverid : string</pre>
                                 <div class="labels">
@@ -1333,15 +1319,8 @@ North America clients only.</p></div>
                                                         var
                                                     </th>
                                                     <td>
-                                                                                                                    <p>Server identifier.
-  @see Core::setServer()</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
+                                                                                                                    <p>Server identifier.</p>
+<p>@see Core::setServer()</p>
                                                                                                             </td>
                                                 </tr>
                                                                                     </table>
@@ -1370,13 +1349,6 @@ North America clients only.</p></div>
                                                                                                                     <p>Server url.</p>
                                                                                                             </td>
                                                 </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
-                                                                                                            </td>
-                                                </tr>
                                                                                     </table>
 
                                                                                     <h3>Type(s)</h3>
@@ -1401,13 +1373,6 @@ North America clients only.</p></div>
                                                     </th>
                                                     <td>
                                                                                                                     <p>Service endpoint</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
                                                                                                             </td>
                                                 </tr>
                                                                                     </table>
@@ -1436,13 +1401,6 @@ North America clients only.</p></div>
                                                                                                                     <p>Requrest parameters</p>
                                                                                                             </td>
                                                 </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
-                                                                                                            </td>
-                                                </tr>
                                                                                     </table>
 
                                                                                     <h3>Type(s)</h3>
@@ -1467,13 +1425,6 @@ North America clients only.</p></div>
                                                     </th>
                                                     <td>
                                                                                                                     <p>The result name</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
                                                                                                             </td>
                                                 </tr>
                                                                                     </table>
@@ -1502,13 +1453,6 @@ North America clients only.</p></div>
                                                                                                                     <p>Format</p>
                                                                                                             </td>
                                                 </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
-                                                                                                            </td>
-                                                </tr>
                                                                                     </table>
 
                                                                                     <h3>Type(s)</h3>
@@ -1533,13 +1477,6 @@ North America clients only.</p></div>
                                                     </th>
                                                     <td>
                                                                                                                     <p>Restricted servers array</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
                                                                                                             </td>
                                                 </tr>
                                                                                     </table>
@@ -1569,7 +1506,7 @@ North America clients only.</p></div>
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Thu, 20 Feb 2014 17:38:27 +0000.<br/>
+            generated on Wed, 09 Dec 2015 21:48:40 +0000.<br/>
     </footer>
     </body>
 </html>
