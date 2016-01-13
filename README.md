@@ -6,7 +6,7 @@ iATS Web Services provide the facility to securely process payments using credit
 
 Full wrapper documentation: http://iatspayments.github.io/PHP/
 
-iATS Web Services [overview](https://na10.salesforce.com/sfc/p/#A0000000ZyVz/a/F00000008Qfp/68aOuqxOzcey6QbODvM9qyHG9fVgDtuWrkCDr84._WY=)
+iATS SOAP Web Services [overview](http://home.iatspayments.com/developers/underlying-soap-api)
 
 ## Requirements
 
@@ -75,8 +75,8 @@ The CustomerLink service is used to create and update customer records. Customer
 ProcessLink service to process single or recurring transactions for customers.
 
 **iATS documentation**
-* Request / response overview: https://www.iatspayments.com/NetGate/CustomerLink.asmx
-* Detailed service [guide](https://na10.salesforce.com/sfc/p/#A0000000ZyVz/a/F00000008Qfp/68aOuqxOzcey6QbODvM9qyHG9fVgDtuWrkCDr84._WY=)
+* Request / response overview: https://www.iatspayments.com/NetGate/Customerlinkv2.asmx
+* Detailed service [guide](http://home.iatspayments.com/developers/underlying-soap-api)
 
 ### ProcessLink
 
@@ -84,8 +84,8 @@ The ProcessLink service is used to process single, recurring and bulk transactio
 also be used to refund transactions.
 
 **iATS documentation**
-* Request / response overview: https://www.iatspayments.com/NetGate/ProcessLink.asmx
-* Detailed service [guide](https://na10.salesforce.com/sfc/p/#A0000000ZyVz/a/F00000008Qfp/68aOuqxOzcey6QbODvM9qyHG9fVgDtuWrkCDr84._WY=)
+* Request / response overview: https://www.iatspayments.com/NetGate/ProcessLinkv2.asmx
+* Detailed service [guide](http://home.iatspayments.com/developers/underlying-soap-api)
 
 ### ReportLink
 
@@ -93,8 +93,8 @@ The ReportLink service is used to generate transaction reports for the other ser
 credit / debit card transactions, rejected transactions and returns.
 
 **iATS documentation**
-* Request / response overview: https://www.iatspayments.com/NetGate/ReportLink.asmx
-* Detailed service [guide](https://na10.salesforce.com/sfc/p/#A0000000ZyVz/a/F00000008Qfp/68aOuqxOzcey6QbODvM9qyHG9fVgDtuWrkCDr84._WY=)
+* Request / response overview: https://www.iatspayments.com/NetGate/ReportLinkv2.asmx
+* Detailed service [guide](http://home.iatspayments.com/developers/underlying-soap-api)
 
 ## Usage Examples
 
