@@ -73,7 +73,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
   public function testReportLinkgetACHEFTApprovedSpecificDateXML() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
-    $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $time = strtotime('+1 day');
 
     $request = array(
       'date' => $iats->getFormattedDate($time),
@@ -82,8 +82,6 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
 
     $response = $iats->getACHEFTApprovedSpecificDateXML($request);
 
-    // ACH / EFT transactions are never processed when using the
-    // test server, so a successful request is made without returning report data.
     $this->assertEquals('No data returned for this date', $response);
   }
 
@@ -191,7 +189,7 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
   public function testReportLinkgetACHEFTReturnSpecificDateXML() {
     $iats = new ReportLink(self::$agentCode, self::$password);
 
-    $time = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $time = strtotime('+1 day');
 
     $request = array(
       'date' => $iats->getFormattedDate($time),
@@ -200,8 +198,6 @@ class ReportLinkTest extends \PHPUnit_Framework_TestCase {
 
     $response = $iats->getACHEFTReturnSpecificDateXML($request);
 
-    // ACH / EFT refunds are not processed when using the test server,
-    // so a successful request is made without returning report data.
     $this->assertEquals('No data returned for this date', $response);
   }
 
