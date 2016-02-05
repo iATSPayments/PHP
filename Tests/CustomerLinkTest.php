@@ -198,7 +198,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
 
     $beginTime = strtotime('+1 day');
-    $endTime   = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
 
     // Create and populate the request object.
     $request = array(
@@ -257,7 +257,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
 
     $beginTime = strtotime('+1 day');
-    $endTime   = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
 
     // Create and populate the request object.
     $request = array(
@@ -333,7 +333,7 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
 
     $beginTime = strtotime('+1 day');
-    $endTime   = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
 
     // Create and populate the request object.
     $request = array(
