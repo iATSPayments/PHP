@@ -84,6 +84,88 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     self::$creditCardCustomerCode = $response['CUSTOMERCODE'];
   }
+  /**
+   * Test createInvalidCreditCardCustomerCode.
+   */
+  public function testCustomerLinkcreateInvalidNumCreditCardCustomerCode() {
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
+
+    $beginTime = strtotime('+1 day');
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => '',
+      'firstName' => 'Test',
+      'lastName' => 'Account',
+      'companyName' => 'Test Co.',
+      'address' => '1234 Any Street',
+      'city' => 'Schenectady',
+      'state' => 'NY',
+      'zipCode' => '12345',
+      'phone' => '555-555-1234',
+      'fax' => '555-555-4321',
+      'alternatePhone' => '555-555-5555',
+      'email' => 'email@test.co',
+      'comment' => 'Customer code creation test.',
+      'recurring' => FALSE,
+      'amount' => '5',
+      'beginDate' => $iats->getFormattedDate($beginTime),
+      'endDate' => $iats->getFormattedDate($endTime),
+      'scheduleType' => 'Annually',
+      'scheduleDate' => '',
+      'creditCardCustomerName' => 'Test Account',
+      'creditCardNum' => '422222222222222',
+      'creditCardExpiry' => '12/17',
+      'mop' => '',
+    );
+
+    $response = $iats->createCreditCardCustomerCode($request);
+
+    $this->assertEquals('0Error:Invalid credit card number', $response['AUTHORIZATIONRESULT']);
+  }
+  /**
+   * Test createCreditCardCustomerCode.
+   */
+  public function testCustomerLinkcreateInvalidDateCreditCardCustomerCode() {
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
+
+    $beginTime = strtotime('+1 day');
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => '',
+      'firstName' => 'Test',
+      'lastName' => 'Account',
+      'companyName' => 'Test Co.',
+      'address' => '1234 Any Street',
+      'city' => 'Schenectady',
+      'state' => 'NY',
+      'zipCode' => '12345',
+      'phone' => '555-555-1234',
+      'fax' => '555-555-4321',
+      'alternatePhone' => '555-555-5555',
+      'email' => 'email@test.co',
+      'comment' => 'Customer code creation test.',
+      'recurring' => FALSE,
+      'amount' => '5',
+      'beginDate' => $iats->getFormattedDate($beginTime),
+      'endDate' => $iats->getFormattedDate($endTime),
+      'scheduleType' => 'Annually',
+      'scheduleDate' => '',
+      'creditCardCustomerName' => 'Test Account',
+      'creditCardNum' => '4222222222222220',
+      'creditCardExpiry' => '12/15',
+      'mop' => '',
+    );
+
+    $response = $iats->createCreditCardCustomerCode($request);
+
+    $this->assertEquals('0Error:Invalid expiry date', $response['AUTHORIZATIONRESULT']);
+  }
 
   /**
    * Test updateCreditCardCustomerCode.
@@ -308,6 +390,51 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
+   * Test updateInvalidCreditCardCustomerCode.
+   *
+   * @depends testCustomerLinkcreateCreditCardCustomerCode
+   */
+  public function testCustomerLinkupdateInvalidCreditCardCustomerCode() {
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
+
+    $beginTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => '000000',
+      'firstName' => 'Test',
+      'lastName' => 'Account',
+      'companyName' => 'Test Co.',
+      'address' => '1234 Any Street',
+      'city' => 'Schenectady',
+      'state' => 'NY',
+      'zipCode' => '12345',
+      'phone' => '555-555-1234',
+      'fax' => '555-555-4321',
+      'alternatePhone' => '555-555-5555',
+      'email' => 'email@test.co',
+      'comment' => 'Customer code update test.',
+      'recurring' => FALSE,
+      'amount' => '5',
+      'beginDate' => $iats->getFormattedDate($beginTime),
+      'endDate' => $iats->getFormattedDate($endTime),
+      'scheduleType' => 'Annually',
+      'scheduleDate' => '',
+      'creditCardCustomerName' => 'Test Account',
+      'creditCardNum' => '4222222222222220',
+      'creditCardExpiry' => '12/17',
+      'mop' => 'VISA',
+      'updateCreditCardNum' => FALSE,
+    );
+
+    $response = $iats->updateCreditCardCustomerCode($request);
+
+    $this->assertEquals('0Can not find the Customer Code', $response['AUTHORIZATIONRESULT']);
+  }
+
+  /**
    * Test getCustomerCodeDetail.
    *
    * @depends testCustomerLinkupdateCreditCardCustomerCode
@@ -324,6 +451,24 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
 
     $this->assertArrayHasKey('CST', $response);
     $this->assertEquals(self::$creditCardCustomerCode, $response['CST']['CSTC']);
+  }
+
+  /**
+   * Test getInvalidCustomerCodeDetail.
+   *
+   * @depends testCustomerLinkupdateCreditCardCustomerCode
+   */
+  public function testgetInvalidCustomerCodeDetail() {
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => '00000',
+    );
+
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
+    $response = $iats->getCustomerCodeDetail($request);
+
+    $this->assertEquals("Error : The customer code doesn't exist!", $response['AUTHORIZATIONRESULT']);
   }
 
   /**
@@ -367,6 +512,48 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
 
     self::$ACHEFTCustomerCode = $response['CUSTOMERCODE'];
+  }
+
+  /**
+   * Test createInvalidACHEFTCustomerCode.
+   */
+  public function testCustomerLinkcreateInvalidACHEFTCustomerCode() {
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
+
+    $beginTime = strtotime('+1 day');
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => '',
+      'firstName' => '',
+      'lastName' => '',
+      'companyName' => '',
+      'address' => '',
+      'city' => '',
+      'state' => '',
+      'zipCode' => '',
+      'phone' => '',
+      'fax' => '',
+      'alternatePhone' => '',
+      'email' => '',
+      'comment' => '',
+      'recurring' => FALSE,
+      'amount' => '',
+      'beginDate' => $iats->getFormattedDate($beginTime),
+      'endDate' => $iats->getFormattedDate($endTime),
+      'scheduleType' => '',
+      'scheduleDate' => '',
+      'accountCustomerName' => '',
+      'accountNum' => '',
+      'accountType' => '',
+    );
+
+    $response = $iats->createACHEFTCustomerCode($request);
+
+    // This request should probably fail, but it doesn't so...
+    $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
   }
 
   /**
@@ -414,15 +601,79 @@ class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
+   * Test updateInvalidACHEFTCustomerCode.
+   *
+   * @depends testCustomerLinkcreateACHEFTCustomerCode
+   */
+  public function testCustomerLinkupdateInvalidACHEFTCustomerCode() {
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
+
+    $beginTime = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+    $endTime = mktime(0, 0, 0, date('n'), date('j'), date('Y') + 10);
+
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => 00000,
+      'firstName' => 'Test',
+      'lastName' => 'Account',
+      'companyName' => 'Test Co.',
+      'address' => '1234 Any Street',
+      'city' => 'Schenectady',
+      'state' => 'NY',
+      'zipCode' => '12345',
+      'phone' => '555-555-1234',
+      'fax' => '555-555-4321',
+      'alternatePhone' => '555-555-5555',
+      'email' => 'email@test.co',
+      'comment' => 'Customer code update test.',
+      'recurring' => FALSE,
+      'amount' => '5',
+      'beginDate' => $iats->getFormattedDate($beginTime),
+      'endDate' => $iats->getFormattedDate($endTime),
+      'scheduleType' => 'Annually',
+      'scheduleDate' => '',
+      'accountCustomerName' => 'Test Account',
+      'accountNum' => '999999999',
+      'accountType' => 'Checking',
+      'updateAccountNum' => FALSE,
+    );
+
+    $response = $iats->updateACHEFTCustomerCode($request);
+
+    $this->assertEquals('0Can not find the Customer Code', $response['AUTHORIZATIONRESULT']);
+  }
+
+  /**
    * Test deleteCustomerCode for credit card customers.
    *
    * @depends testgetCustomerCodeDetail
    */
   public function testCustomerLinkdeleteCreditCardCustomerCode() {
+
     // Create and populate the request object.
     $request = array(
       'customerIPAddress' => '',
       'customerCode' => self::$creditCardCustomerCode,
+    );
+
+    $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
+    $response = $iats->deleteCustomerCode($request);
+
+    $this->assertEquals('OK', $response['AUTHORIZATIONRESULT']);
+  }
+
+  /**
+   * Test deleteInvalidCustomerCode for credit card customers.
+   *
+   * @depends testgetCustomerCodeDetail
+   */
+  public function testCustomerLinkdeleteInvalidCreditCardCustomerCode() {
+
+    // Create and populate the request object.
+    $request = array(
+      'customerIPAddress' => '',
+      'customerCode' => -1,
     );
 
     $iats = new CustomerLink(self::$agentCode, self::$password, 'NA');
