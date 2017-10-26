@@ -1,87 +1,94 @@
 <?php
-/**
- * Core class file.
- */
 
 namespace iATS;
 
 /**
- * Class Core
+ * Core iATS library. Makes requests to the iATS API.
  *
  * @package iATS
  */
 class Core {
 
   /**
+   * North America server url.
+   *
    * @var string $na_server
-   *   North America server url.
    */
   private $na_server = 'https://www.iatspayments.com';
 
   /**
+   * UK server url.
+   *
    * @var string $uk_server
-   *   UK server url.
    */
   private $uk_server = 'https://www.uk.iatspayments.com';
 
   /**
+   * The iATS account agent code.
+   *
    * @var string $agentcode
-   *   iATS account agent code.
    */
   protected $agentcode = '';
 
   /**
+   * The iATS account password.
+   *
    * @var string $password
-   *   iATS account password.
    */
   protected $password = '';
 
   /**
-   * @var string $serverid
-   *   Server identifier.
+   * Server identifier.
    *
-   *   @see Core::setServer()
+   * @var string $serverid
+   * @see Core::setServer()
    */
   protected $serverid = '';
 
   /**
+   * Server url.
+   *
    * @var string $server
-   *   Server url.
    */
   protected $server = '';
 
   /**
+   * Service endpoint.
+   *
    * @var string $endpoint
-   *   Service endpoint
    */
   protected $endpoint = '';
 
   /**
+   * Request parameters.
+   *
    * @var string $params
-   *   Requrest parameters
    */
   protected $params = '';
 
   /**
+   * The result name.
+   *
    * @var string $resultname
-   *   The result name
    */
   public $resultname = '';
 
   /**
+   * Format.
+   *
    * @var string $format
-   *   Format
    */
   public $format = '';
 
   /**
+   * Restricted servers array.
+   *
    * @var array $restrictedservers
-   *   Restricted servers array
    */
   public $restrictedservers = '';
 
   /**
-   * IATS class constructor.
+   * Constructor.
    *
    * @param string $agentcode
    *   iATS account agent code.
@@ -90,8 +97,7 @@ class Core {
    * @param string $serverid
    *   Server identifier. (Defaults to 'NA')
    *
-   * @see \iATS\Core::setServer() For options
-   *
+   * @see \iATS\Core::setServer()
    */
   public function __construct($agentcode, $password, $serverid = 'NA') {
     $this->agentcode = $agentcode;
@@ -108,7 +114,7 @@ class Core {
    * @return string
    *   The formatted date string.
    */
-  function getFormattedDate($timestamp) {
+  public function getFormattedDate($timestamp) {
     return date('c', $timestamp);
   }
 
@@ -116,13 +122,14 @@ class Core {
    * Create SoapClient object.
    *
    * @param string $endpoint
-   *   Service endpoint
+   *   Service endpoint.
    * @param array $options
-   *   SoapClient options
-   *   @see http://www.php.net/manual/en/soapclient.soapclient.php
+   *   SoapClient options.
    *
    * @return \SoapClient
    *   Returns IATS SoapClient object
+   *
+   * @see http://www.php.net/manual/en/soapclient.soapclient.php
    */
   protected function getSoapClient($endpoint, $options = array()) {
     $this->setServer($this->serverid);
@@ -163,6 +170,7 @@ class Core {
    *
    * @return object
    *   XML object or boolean.
+   *
    * @throws \SoapFault
    */
   protected function apiCall($method, $parameters) {
@@ -179,7 +187,7 @@ class Core {
 
       $soap_options = array(
         'trace' => TRUE,
-        'soap_version' => SOAP_1_2
+        'soap_version' => SOAP_1_2,
       );
 
       $soap = $this->getSoapClient($this->endpoint, $soap_options);
@@ -195,10 +203,9 @@ class Core {
    *
    * @param array $parameters
    *   Request parameters.
-   *
    * @param bool $forceCurrencyCheck
-   *  True to force a currency check even when currency or
-   *  method of payment are missing.
+   *   TRUE to force a currency check even when currency or method of payment
+   *   are missing.
    *
    * @return bool|string
    *   FALSE if no restrictions. Message if restricted.
@@ -211,10 +218,9 @@ class Core {
     $currency = isset($parameters['currency']) ? $parameters['currency'] : NULL;
     $mop = isset($parameters['mop']) ? $parameters['mop'] : NULL;
 
-    if ((($currency != null) && ($mop != null)) || $forceCurrencyCheck)
-    {
+    if ((($currency != NULL) && ($mop != NULL)) || $forceCurrencyCheck) {
       if ($this->checkMOPCurrencyRestrictions($this->serverid, $currency, $mop)) {
-       return 'Service cannot be used with this Method of Payment or Currency.';
+        return 'Service cannot be used with this Method of Payment or Currency.';
       }
     }
     return FALSE;
@@ -224,12 +230,12 @@ class Core {
    * Check server restrictions.
    *
    * @param string $serverid
-   *   Server identifier
+   *   Server identifier.
    * @param array $restrictedservers
-   *   Restricted servers array
+   *   Restricted servers array.
    *
    * @return bool
-   *   Result of server restricted check
+   *   Result of server restricted check.
    */
   protected function checkServerRestrictions($serverid, $restrictedservers) {
     if (is_array($restrictedservers) && in_array($serverid, $restrictedservers)) {
@@ -242,11 +248,11 @@ class Core {
    * Check Method of Payment (MOP) is available based on server and currency.
    *
    * @param string $serverid
-   *   Server identifier
+   *   Server identifier.
    * @param string $currency
-   *   Currency
+   *   Currency.
    * @param string $mop
-   *   Method of Payment
+   *   Method of Payment.
    *
    * @return bool
    *   Result of check
@@ -269,8 +275,7 @@ class Core {
         $restricted = FALSE;
       }
     }
-    else
-    {
+    else {
       // Currency not valid for this server.
       $restricted = TRUE;
     }
@@ -287,7 +292,7 @@ class Core {
     return array(
       'NA' => array(
         'USD' => array(
-          'VISA','MC', 'AMX', 'DSC',
+          'VISA', 'MC', 'AMX', 'DSC',
           'VISA DEBIT', 'MC DEBIT',
         ),
         'CAD' => array(

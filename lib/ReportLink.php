@@ -1,4 +1,7 @@
 <?php
+
+namespace iATS;
+
 /**
  * ReportLink class file.
  *
@@ -14,12 +17,6 @@
  * API documentation: https://www.iatspayments.com/NetGate/ReportLink.asmx
  * Note: API methods with responses containing the string "x0020" are
  * depreciated and not supported by this class.
- */
-
-namespace iATS;
-
-/**
- * Class ReportLink
  *
  * @package iATS
  */
@@ -34,7 +31,8 @@ class ReportLink extends Core {
    *   iATS account password.
    * @param string $serverid
    *   Server identifier (Defaults to 'NA').
-   *   @see setServer()
+   *
+   * @see setServer()
    */
   public function __construct($agentcode, $password, $serverid = 'NA') {
     parent::__construct($agentcode, $password, $serverid);
@@ -43,6 +41,7 @@ class ReportLink extends Core {
 
   /**
    * Get ACH / EFT Bank Reconciliation CSV report.
+   *
    * Provides a report of the bank balance of ACHEFT transactions.
    *
    * @param array $parameters
@@ -156,7 +155,6 @@ class ReportLink extends Core {
    *   An associative array with the following possible values.
    *     'date' => '2014-07-23T00:00:00+00:00' // The date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
-   * @endcode
    *
    * @return mixed
    *   Report array or API error.
@@ -296,7 +294,7 @@ class ReportLink extends Core {
    *     'toDate' => '2024-07-23T23:59:59+00:00' // The latest date to gather report data for.
    *     'customerIPAddress' => '' // Optional. The client's IP address.
    *     'startIndex' => '0' // Optional.
-   8     'endIndex' => '1' // Optional.
+   *     'endIndex' => '1' // Optional.
    *
    * @return mixed
    *   Report CSV (string) or API error.
@@ -342,10 +340,10 @@ class ReportLink extends Core {
    * Response Handler for ReportLink calls.
    *
    * @param object $response
-   *   SOAP response
+   *   SOAP response.
    * @param string $result
-   *   Result string
-   * @param string  $format
+   *   Result string.
+   * @param string $format
    *   Output format.
    *   'AR' will return array(),
    *   'CSV' will return a comma delimited data string with headers.
@@ -373,8 +371,7 @@ class ReportLink extends Core {
         return $resp;
 
       case 'CSV':
-        if ($return != null)
-        {
+        if ($return != NULL) {
           $xml_element = new \SimpleXMLElement($return);
           return base64_decode($xml_element->FILE);
         }

@@ -1,26 +1,24 @@
 <?php
-/**
- * ProcessLink class file.
- *
- * The ProcessLink service is used to process single, recurring, or batch transactions,
- * and to process refunds.
- *
- * The ProcessLink can process transactions using existing customer codes created via
- * the CustomerLink service, ProcessLink may also be used to create new customer codes
- * as part of an initial transaction.
- *
- * Service guide: http://home.iatspayments.com/sites/default/files/iats_webservices_processlink_version_4.0.pdf
- * API documentation: https://www.iatspayments.com/NetGate/ProcessLink.asmx
- */
 
 namespace iATS;
 
 /**
- * Class ProcessLink
+ * ProcessLink class file.
+ *
+ * The ProcessLink service is used to process single, recurring, or batch
+ * transactions, and to process refunds.
+ *
+ * The ProcessLink can process transactions using existing customer codes
+ * created via the CustomerLink service, ProcessLink may also be used to create
+ * new customer codes as part of an initial transaction.
+ *
+ * Service guide: http://home.iatspayments.com/sites/default/files/iats_webservices_processlink_version_4.0.pdf
+ * API documentation: https://www.iatspayments.com/NetGate/ProcessLink.asmx
  *
  * @package iATS
  */
 class ProcessLink extends Core {
+
   /**
    * ProcessLink constructor.
    *
@@ -30,7 +28,8 @@ class ProcessLink extends Core {
    *   iATS account password.
    * @param string $serverid
    *   Server identifier (Defaults to 'NA').
-   *   @see setServer()
+   *
+   * @see setServer()
    */
   public function __construct($agentcode, $password, $serverid = 'NA') {
     parent::__construct($agentcode, $password, $serverid);
@@ -146,10 +145,9 @@ class ProcessLink extends Core {
     if ($restricted) {
       return $restricted;
     }
-    else
-    {
+    else {
       $response = $this->apiCall('GetBatchProcessResultFile', $parameters);
-     return $this->responseHandler($response, 'GetBatchProcessResultFileResult');
+      return $this->responseHandler($response, 'GetBatchProcessResultFileResult');
     }
   }
 
@@ -207,12 +205,13 @@ class ProcessLink extends Core {
     }
     else {
       $response = $this->apiCall('ProcessACHEFTRefundBatch', $parameters);
-     return $this->responseHandler($response, 'ProcessACHEFTRefundBatchResult');
+      return $this->responseHandler($response, 'ProcessACHEFTRefundBatchResult');
     }
   }
 
   /**
    * Refund a specific ACH / EFT transaction.
+   *
    * Partial refunds are valid.
    * North America clients only.
    *
@@ -239,7 +238,7 @@ class ProcessLink extends Core {
   }
 
   /**
-   * Process an ACH / EFT transaction using an existing account, without using a Customer Code.
+   * Process ACH / EFT transaction using existing account without Customer Code.
    *
    * North America clients only.
    *
@@ -280,15 +279,14 @@ class ProcessLink extends Core {
     if ($restricted) {
       return $restricted;
     }
-    else
-    {
+    else {
       $response = $this->apiCall('ProcessACHEFT', $parameters);
       return $this->responseHandler($response, 'ProcessACHEFTResult');
     }
   }
 
   /**
-   * Process an ACH / EFT transaction using an existing account using a Customer Code.
+   * Process ACH / EFT transaction using existing account and a Customer Code.
    *
    * North America clients only.
    *
@@ -305,7 +303,6 @@ class ProcessLink extends Core {
    *     'item4' => 'string'
    *     'item5' => 'string'
    *     'item6' => 'string'
-   * @endcode
    *
    * @return mixed
    *   Client response array or API error.
@@ -316,8 +313,7 @@ class ProcessLink extends Core {
     if ($restricted) {
       return $restricted;
     }
-    else
-    {
+    else {
       $response = $this->apiCall('ProcessACHEFTWithCustomerCode', $parameters);
       return $this->responseHandler($response, 'ProcessACHEFTWithCustomerCodeResult');
     }
@@ -346,13 +342,14 @@ class ProcessLink extends Core {
       return $restricted;
     }
     else {
-     $response = $this->apiCall('ProcessCreditCardBatch', $parameters);
-     return $this->responseHandler($response, 'ProcessCreditCardBatchResult');
+      $response = $this->apiCall('ProcessCreditCardBatch', $parameters);
+      return $this->responseHandler($response, 'ProcessCreditCardBatchResult');
     }
   }
 
   /**
    * Refund a specific credit card transaction.
+   *
    * Partial refunds are valid.
    *
    * @param array $parameters
@@ -371,8 +368,8 @@ class ProcessLink extends Core {
       return $restricted;
     }
     else {
-     $response = $this->apiCall('ProcessCreditCardRefundWithTransactionId', $parameters);
-     return $this->responseHandler($response, 'ProcessCreditCardRefundWithTransactionIdResult');
+      $response = $this->apiCall('ProcessCreditCardRefundWithTransactionId', $parameters);
+      return $this->responseHandler($response, 'ProcessCreditCardRefundWithTransactionIdResult');
     }
   }
 
@@ -481,26 +478,24 @@ class ProcessLink extends Core {
       $parsedResult = $result['PROCESSRESULT'];
     }
     // Check for batch process result.
-    else if (isset($result['BATCHPROCESSRESULT']))
-    {
+    elseif (isset($result['BATCHPROCESSRESULT'])) {
       $parsedResult = $result['BATCHPROCESSRESULT'];
     }
 
     // Check auth result.
-    if ($parsedResult && isset($parsedResult['AUTHORIZATIONRESULT']))
-    {
+    if ($parsedResult && isset($parsedResult['AUTHORIZATIONRESULT'])) {
       // Handle reject codes.
       if (strpos($parsedResult['AUTHORIZATIONRESULT'], 'REJECT') !== FALSE) {
         $reject_code = preg_replace("/[^0-9]/", "", $parsedResult['AUTHORIZATIONRESULT']);
         return $this->rejectMessage($reject_code);
       }
     }
-    else
-    {
+    else {
       // If result hasn't been parsed, return exactly as returned by the API.
       $parsedResult = $result;
     }
 
     return $parsedResult;
   }
+
 }

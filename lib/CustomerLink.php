@@ -1,4 +1,7 @@
 <?php
+
+namespace iATS;
+
 /**
  * CustomerLink class file.
  *
@@ -6,24 +9,19 @@
  * used with the ProcessLink service to process single or recurring credit card
  * or ACH / EFT transactions.
  *
- * Once created, customer codes may be reused, removing the need to store sensitive
- * credit card or ACH information on local servers.
+ * Once created, customer codes may be reused, removing the need to store
+ * sensitive credit card or ACH information on local servers.
  *
  * Service guide: http://home.iatspayments.com/sites/default/files/iats_webservices_customerlink_version_4.0.pdf
  * API documentation: https://www.iatspayments.com/NetGate/CustomerLink.asmx
  *                UK: https://www.uk.iatspayments.com/NetGate/CustomerLink.asmx
  * ACH documentation: http://en.wikipedia.org/wiki/Automated_Clearing_House
  * EFT documentation: http://en.wikipedia.org/wiki/Electronic_funds_transfer
- */
-
-namespace iATS;
-
-/**
- * Class CustomerLink
  *
  * @package iATS
  */
 class CustomerLink extends Core {
+
   /**
    * CustomerLink constructor.
    *
@@ -33,7 +31,8 @@ class CustomerLink extends Core {
    *   iATS account password.
    * @param string $serverid
    *   Server identifier (Defaults to 'NA')
-   *   @see setServer()
+   *
+   * @see setServer()
    */
   public function __construct($agentcode, $password, $serverid = 'NA') {
     parent::__construct($agentcode, $password, $serverid);
@@ -63,8 +62,8 @@ class CustomerLink extends Core {
    *   An associative array with the following possible values.
    *     'customerIPAddress' => '' // Optional. The client IP address.
    *     'customerCode' => 'A10396688' // The iATS Customer Code.
-   *     'fromDate => '2014-07-23T00:00:00+00:00' // Customer creation start date
-   *     'toDate' => '2024-07-23T23:59:59+00:00'  // Customer creation to date
+   *     'fromDate => '2014-07-23T00:00:00+00:00' // Customer creation start date.
+   *     'toDate' => '2024-07-23T23:59:59+00:00'  // Customer creation to date.
    *
    * @return mixed
    *   Client response array or API error.
@@ -81,8 +80,8 @@ class CustomerLink extends Core {
    *   An associative array with the following possible values.
    *     'customerIPAddress' => '' // Optional. The client IP address.
    *     'customerCode' => 'A10396688' // The iATS Customer Code.
-   *     'fromDate => '2014-07-23T00:00:00+00:00' // Customer creation start date
-   *     'toDate' => '2024-07-23T23:59:59+00:00'  // Customer creation to date
+   *     'fromDate => '2014-07-23T00:00:00+00:00' // Customer creation start date.
+   *     'toDate' => '2024-07-23T23:59:59+00:00'  // Customer creation to date.
    *
    * @return mixed
    *   Client response array or API error.
@@ -92,7 +91,7 @@ class CustomerLink extends Core {
     return $this->responseHandler($response, 'GetCustomerListByCreationTimeXMLResult');
   }
 
-   /**
+  /**
    * Create Credit Card Customer Code.
    *
    * @param array $parameters
@@ -238,8 +237,7 @@ class CustomerLink extends Core {
     if ($restricted) {
       return $restricted;
     }
-    else
-    {
+    else {
       $response = $this->apiCall('CreateACHEFTCustomerCode', $parameters);
       return $this->responseHandler($response, 'CreateACHEFTCustomerCodeResult');
     }
@@ -295,8 +293,7 @@ class CustomerLink extends Core {
     if ($restricted) {
       return $restricted;
     }
-    else
-    {
+    else {
       $response = $this->apiCall('UpdateACHEFTCustomerCode', $parameters);
       return $this->responseHandler($response, 'UpdateACHEFTCustomerCodeResult');
     }
@@ -341,13 +338,11 @@ class CustomerLink extends Core {
     if (isset($result['PROCESSRESULT'])) {
       $authresult = $result['PROCESSRESULT'];
     }
-    else if (isset($result['CUSTOMERS']))
-    {
+    elseif (isset($result['CUSTOMERS'])) {
       $authresult = $result['CUSTOMERS'];
     }
 
-    if (!$authresult)
-    {
+    if (!$authresult) {
       $authresult = $result;
     }
 
