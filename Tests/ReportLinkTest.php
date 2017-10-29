@@ -1,17 +1,15 @@
 <?php
-/**
- * @file
- * Unit tests for Report Link component of the iATS API.
- */
 
 namespace iATS;
 
+use PHPUnit\Framework\TestCase;
+
 /**
- * Class ReportLinkTest
+ * Unit tests for Report Link component of the iATS API.
  *
  * @package IATSAPI\Test
  */
-class ReportLinkTest extends \PHPUnit_Framework_TestCase {
+class ReportLinkTest extends TestCase {
 
   /** @var string $agentCode */
   private static $agentCode;

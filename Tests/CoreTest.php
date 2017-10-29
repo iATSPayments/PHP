@@ -1,15 +1,13 @@
 <?php
-/**
- * @file
- * Unit tests for the core iATS API.
- */
 
 namespace iATS;
 
+use PHPUnit\Framework\TestCase;
+
 /**
- * Class CoreTest
+ * Unit tests for the core iATS API.
  */
-class CoreTest extends \PHPUnit_Framework_TestCase {
+class CoreTest extends TestCase {
 
   /** @var string $agentCode */
   private static $agentCode;

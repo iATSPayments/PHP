@@ -1,17 +1,15 @@
 <?php
-/**
- * @file
- * Unit tests for Process Link component of the iATS API.
- */
 
 namespace iATS;
 
+use PHPUnit\Framework\TestCase;
+
 /**
- * Class ProcessLinkTest
+ * Unit tests for Process Link component of the iATS API.
  *
  * @package iATS
  */
-class ProcessLinkTest extends \PHPUnit_Framework_TestCase {
+class ProcessLinkTest extends TestCase {
 
   /** @var string $agentCode */
   private static $agentCode;

@@ -1,17 +1,15 @@
 <?php
-/**
- * @file
- * Unit tests for Customer Link component of the iATS API.
- */
 
 namespace iATS;
 
+use PHPUnit\Framework\TestCase;
+
 /**
- * Class CustomerLinkTest
+ * Unit tests for Customer Link component of the iATS API.
  *
  * @package IATSAPI\Test
  */
-class CustomerLinkTest extends \PHPUnit_Framework_TestCase {
+class CustomerLinkTest extends TestCase {
 
   const TEST_INVALID_CUSTOMER_CODE = 'A00000000';
 
